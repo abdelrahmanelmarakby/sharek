@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "877028796126",
+    "project_id": "sharek-twinkle",
+    "storage_bucket": "sharek-twinkle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877028796126:android:0c05e4982dd2d05dc0044f",
+        "android_client_info": {
+          "package_name": "com.elmarakby.sharek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877028796126-l3dnk27mtarid29molmou6tir261tsa1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3x--u8Jd3Qxiem45y7Awtdd78G4mp0TI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "877028796126-l3dnk27mtarid29molmou6tir261tsa1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
