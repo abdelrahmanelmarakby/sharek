@@ -1,0 +1,9 @@
+{
+  "editor.tokenColorCustomizations": {
+    // "comments": "0xffEE9D41",
+    "textMateRules": []
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
+}

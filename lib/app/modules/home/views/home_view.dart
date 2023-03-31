@@ -1,8 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+
 import 'package:sharek/app/data/models/home_model.dart';
 import 'package:sharek/app/routes/app_pages.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
@@ -14,6 +15,7 @@ import 'package:sharek/core/extensions/widget.dart';
 import 'package:sharek/core/language/local_keys.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
 
+import '../../business_partner/views/add_business_partner_ads_screen.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -70,7 +72,9 @@ class HomeView extends GetView<HomeController> {
             );
           } else {
             return const Center(
-              child: CircularProgressIndicator.adaptive(),
+              child: CircularProgressIndicator.adaptive(
+                valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
+              ),
             );
           }
         },
@@ -186,7 +190,9 @@ class AdRowItem extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: StylesManager.regular(fontSize: FontSize.small),
+              style: StylesManager.regular(
+                fontSize: FontSize.medium,
+              ),
             ),
           ),
         ],
@@ -219,22 +225,28 @@ class ServicesList extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: const [
               PartnerCard(
-                  serviceId: 1,
-                  name: "شريك اعمال",
-                  imagePath: "assets/images/business_partner.svg"),
+                isDialog: false,
+                serviceId: 1,
+                name: "شريك اعمال",
+                imagePath: "assets/images/business_partner.svg",
+              ),
               PartnerCard(
+                  isDialog: false,
                   serviceId: 2,
                   name: "شريك رحلتي",
                   imagePath: "assets/images/travel_partner.svg"),
               PartnerCard(
+                  isDialog: false,
                   serviceId: 3,
                   name: "شريك ذبيحتي",
                   imagePath: "assets/images/sake_partner.svg"),
               PartnerCard(
+                  isDialog: false,
                   serviceId: 4,
                   name: "شريك سكني",
                   imagePath: "assets/images/housing_partner.svg"),
               PartnerCard(
+                  isDialog: false,
                   serviceId: 5,
                   name: "اخري",
                   imagePath: "assets/images/business_partner.svg"),
@@ -247,24 +259,28 @@ class ServicesList extends StatelessWidget {
 }
 
 class PartnerCard extends StatelessWidget {
-  const PartnerCard(
-      {super.key,
-      required this.name,
-      required this.imagePath,
-      required this.serviceId});
+  const PartnerCard({
+    Key? key,
+    required this.name,
+    required this.imagePath,
+    required this.serviceId,
+    required this.isDialog,
+  }) : super(key: key);
   final String name;
   final String imagePath;
   final int serviceId;
+  final bool isDialog;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: Sizes.size8),
       child: GestureDetector(
         onTap: () {
-          print(serviceId);
           switch (serviceId) {
             case 1:
-              Get.toNamed(Routes.BUSINESS_PARTNER);
+              isDialog == true
+                  ? Get.to(() => const AddBusinessPartnerAdsScreen())
+                  : Get.toNamed(Routes.BUSINESS_PARTNER);
               break;
             case 2:
               Get.toNamed(Routes.TRAVEL_PARTNER);

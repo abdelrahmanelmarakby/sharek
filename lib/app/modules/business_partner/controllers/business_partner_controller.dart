@@ -9,4 +9,15 @@ class BusinessPartnerController extends GetxController {
     getBusinessAds = BusinessPartnerAPI.getBusinessAds();
     super.onInit();
   }
+
+  changeFilterItems(bool val) {
+    val = !val;
+    update();
+  }
+
+  double currentImageStepper = 0;
+  changeImageStepper(double val) {
+    currentImageStepper = val;
+    update();
+  }
 }

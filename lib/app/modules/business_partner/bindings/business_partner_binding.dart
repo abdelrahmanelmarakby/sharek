@@ -7,6 +7,7 @@ class BusinessPartnerBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<BusinessPartnerController>(
       () => BusinessPartnerController(),
+      fenix: true,
     );
   }
 }

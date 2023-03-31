@@ -82,17 +82,20 @@ class MyAppState extends State<MyApp> {
         };
         child = botToastBuilder(context, child!);
         return ResponsiveWrapper.builder(
-            ClampingScrollWrapper.builder(context, child),
-            maxWidth: 1200,
-            minWidth: 480,
-            defaultScale: true,
-            breakpoints: [
-              const ResponsiveBreakpoint.resize(350, name: MOBILE),
-              const ResponsiveBreakpoint.autoScale(600, name: TABLET),
-              const ResponsiveBreakpoint.resize(800, name: DESKTOP),
-              const ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
-            ],
-            background: Container(color: const Color(0xFFF5F5F5)));
+          ClampingScrollWrapper.builder(context, child),
+          maxWidth: 1200,
+          minWidth: 480,
+          defaultScale: true,
+          breakpoints: [
+            const ResponsiveBreakpoint.resize(350, name: MOBILE),
+            const ResponsiveBreakpoint.autoScale(600, name: TABLET),
+            const ResponsiveBreakpoint.resize(800, name: DESKTOP),
+            const ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
+          ],
+          background: Container(
+            color: const Color(0xFFF5F5F5),
+          ),
+        );
       },
     );
   }

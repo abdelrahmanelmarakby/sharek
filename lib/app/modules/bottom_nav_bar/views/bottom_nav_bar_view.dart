@@ -67,39 +67,47 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
                                         Text(
                                           "اختر نوع الخدمة",
                                           style: StylesManager.semiBold(
-                                              fontSize: FontSize.xlarge),
+                                            fontSize: FontSize.xlarge,
+                                          ),
                                         ),
+                                        const Spacer(),
                                         Wrap(
                                           runSpacing: 0,
                                           spacing: 0,
                                           alignment: WrapAlignment.start,
                                           children: const [
                                             PartnerCard(
+                                              isDialog: true,
                                               name: "شريك اعمال",
                                               imagePath:
                                                   "assets/images/business_partner.svg",
                                               serviceId: 1,
                                             ),
                                             PartnerCard(
+                                                isDialog: true,
                                                 serviceId: 2,
                                                 name: "شريك رحلتي",
                                                 imagePath:
                                                     "assets/images/travel_partner.svg"),
                                             PartnerCard(
+                                                isDialog: true,
                                                 serviceId: 3,
                                                 name: "شريك ذبيحتي",
                                                 imagePath:
                                                     "assets/images/sake_partner.svg"),
                                             PartnerCard(
+                                                isDialog: true,
                                                 serviceId: 4,
                                                 name: "شريك سكني",
                                                 imagePath:
                                                     "assets/images/housing_partner.svg"),
                                             PartnerCard(
-                                                serviceId: 5,
-                                                name: "اخري",
-                                                imagePath:
-                                                    "assets/images/business_partner.svg"),
+                                              isDialog: true,
+                                              serviceId: 5,
+                                              name: "اخري",
+                                              imagePath:
+                                                  "assets/images/business_partner.svg",
+                                            ),
                                           ],
                                         ),
                                         const Spacer(),
