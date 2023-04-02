@@ -138,8 +138,8 @@ class NetworkService {
       )
       ..options.baseUrl = baseUrl
       ..options.headers = _headers
-      ..options.connectTimeout = 5000.milliseconds // 5 seconds
-      ..options.receiveTimeout = 5000.milliseconds; // 5 seconds
+      ..options.connectTimeout = 10000.milliseconds // 5 seconds
+      ..options.receiveTimeout = 10000.milliseconds; // 5 seconds
     dio.options.validateStatus = (status) => true;
     return dio;
   }
