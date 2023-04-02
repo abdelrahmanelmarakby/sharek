@@ -55,52 +55,52 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final void Function(bool)? onFocusChange;
   final void Function()? onEditingComplete;
-  const CustomTextField(
-      {Key? key,
-      this.focusNode,
-      this.type,
-      this.hint,
-      this.autoFillHints,
-      this.isPassword = false,
-      this.onChange,
-      this.validate,
-      this.onFocusChange,
-      this.inputAction = TextInputAction.next,
-      this.onTap,
-      this.maxLines,
-      this.isEnabled = true,
-      this.onEditingComplete,
-      this.controller,
-      this.errorText,
-      this.fillColor,
-      this.textColor,
-      this.maxLength,
-      this.formattedType,
-      this.iconColor,
-      this.labelColor,
-      this.keyboardPadding = true,
-      this.contentPadding = false,
-      this.autoFocus,
-      this.initialValue,
-      this.onSubmit,
-      this.prefixIcon,
-      this.readOnly = false,
-      this.needMargin = true,
-      this.textDirection,
-      this.anotherHint,
-      this.suffixIcon,
-      this.textSize,
-      this.height = 50,
-      this.borderRadius = 5,
-      this.isNeedToElevation = false,
-      this.hintColor,
-      this.textAlign,
-      this.borderColor = ColorsManager.veryLightGrey,
-      this.needToSuffixConstraints = false,
-      this.isResendSuffixIcon = false,
-      this.isBold = true,
-      required this.name})
-      : super(key: key);
+  const CustomTextField({
+    Key? key,
+    this.focusNode,
+    this.type,
+    this.hint,
+    this.autoFillHints,
+    this.isPassword = false,
+    this.onChange,
+    this.validate,
+    this.onFocusChange,
+    this.inputAction = TextInputAction.next,
+    this.onTap,
+    this.maxLines,
+    this.isEnabled = true,
+    this.onEditingComplete,
+    this.controller,
+    this.errorText,
+    this.fillColor,
+    this.textColor,
+    this.maxLength,
+    this.formattedType,
+    this.iconColor,
+    this.labelColor,
+    this.keyboardPadding = true,
+    this.contentPadding = false,
+    this.autoFocus,
+    this.initialValue,
+    this.onSubmit,
+    this.prefixIcon,
+    this.readOnly = false,
+    this.needMargin = true,
+    this.textDirection,
+    this.anotherHint,
+    this.suffixIcon,
+    this.textSize,
+    this.height = 50,
+    this.borderRadius = 5,
+    this.isNeedToElevation = false,
+    this.hintColor,
+    this.textAlign,
+    this.borderColor = ColorsManager.veryLightGrey,
+    this.needToSuffixConstraints = false,
+    this.isResendSuffixIcon = false,
+    this.isBold = true,
+    this.name = "",
+  }) : super(key: key);
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -115,12 +115,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-        // alignment: Alignment.bottomLeft,
+        // alignment: Alignment.topRight,
         constraints: BoxConstraints(
-            minHeight: widget.height,
-            minWidth: 1,
-            maxHeight: widget.height + 50,
-            maxWidth: context.width),
+          minHeight: widget.height,
+          minWidth: 1,
+          maxHeight: widget.height + 50,
+          maxWidth: context.width,
+        ),
         child: FormBuilderTextField(
           name: widget.name,
           focusNode: widget.focusNode,
@@ -195,6 +196,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             hintStyle: StylesManager.medium(
                 fontSize: 12, color: ColorsManager.veryDarkGrey),
             prefixIcon: widget.prefixIcon,
+
             suffixIcon: widget.isPassword
                 ? SizedBox(
                     width: Sizes.size38.h(context),
@@ -244,7 +246,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     minHeight: 47,
                     minWidth: widget.isResendSuffixIcon ? 30 : 1,
                     maxHeight: 48,
-                    maxWidth: widget.isResendSuffixIcon ? 30 : 1)
+                    maxWidth: widget.isResendSuffixIcon ? 30 : 1,
+                  )
                 : null,
             contentPadding: EdgeInsets.symmetric(
               horizontal: 22,

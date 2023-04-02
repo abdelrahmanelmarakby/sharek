@@ -1,8 +1,10 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/widgets/app_text.dart';
@@ -34,7 +36,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
               ),
               const SizedBox(height: 12),
               const FiltersList(),
-              const SizedBox(height: 12),
+              const SizedBox(height: 16),
               Container(
                 decoration: BoxDecoration(
                   color: const Color(0xFFF7F7F9),
@@ -45,7 +47,10 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 ),
                 width: double.infinity,
                 child: const ExpansionTile(
-                  leading: Icon(Iconsax.location),
+                  leading: Icon(
+                    Iconsax.location,
+                    color: Colors.black,
+                  ),
                   title: AppText(
                     "المنطقة",
                     fontSize: 16,
@@ -63,9 +68,9 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                   ),
                 ),
                 width: double.infinity,
-                child: const ExpansionTile(
-                  leading: Icon(Iconsax.buliding),
-                  title: AppText(
+                child: ExpansionTile(
+                  leading: SvgPicture.asset("assets/images/buildings.svg"),
+                  title: const AppText(
                     "الحي",
                     fontSize: 16,
                     color: ColorsManager.black,
@@ -83,7 +88,10 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 ),
                 width: double.infinity,
                 child: const ExpansionTile(
-                  leading: Icon(Iconsax.happyemoji),
+                  leading: Icon(
+                    Iconsax.happyemoji,
+                    color: Colors.black,
+                  ),
                   title: AppText(
                     "النوع",
                     fontSize: 16,
@@ -98,15 +106,26 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 borderRadius: 8,
                 prefixIcon: Icon(
                   Iconsax.document,
-                  color: Colors.grey,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 12),
-              const CustomTextField(
+              CustomTextField(
                 name: "",
                 hint: "تفاصيل الطلب",
-                maxLines: 5,
                 borderRadius: 8,
+                maxLines: 4,
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Column(
+                    children: const [
+                      Icon(
+                        Iconsax.document,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(height: 12),
               DottedBorder(
@@ -115,7 +134,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 radius: const Radius.circular(10),
                 child: Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(16),
                   decoration: const BoxDecoration(
                     color: Color(0xFFF7F7F9),
                   ),
@@ -124,14 +143,14 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Icon(
-                        Iconsax.document_upload,
+                        SharekIcons.upload_1,
                         color: ColorsManager.primary,
                       ),
                       SizedBox(width: 10),
                       AppText(
                         "رفع الصور أو الملفات",
                         color: Colors.black,
-                        fontSize: 14,
+                        fontSize: 16,
                         fontWeight: FontWeights.light,
                       ),
                     ],
@@ -148,7 +167,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                   color: Colors.grey,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 27),
               AppProgressButton(
                 onPressed: (animationController) {},
                 width: context.width,

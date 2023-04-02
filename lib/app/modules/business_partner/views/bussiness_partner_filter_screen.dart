@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
@@ -32,7 +33,10 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
               ),
               width: double.infinity,
               child: const ExpansionTile(
-                leading: Icon(Iconsax.location),
+                leading: Icon(
+                  Iconsax.location,
+                  color: Colors.black,
+                ),
                 title: AppText(
                   "المنطقة",
                   fontSize: 16,
@@ -50,9 +54,9 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
                 ),
               ),
               width: double.infinity,
-              child: const ExpansionTile(
-                leading: Icon(Iconsax.buliding),
-                title: AppText(
+              child: ExpansionTile(
+                leading: SvgPicture.asset("assets/images/buildings.svg"),
+                title: const AppText(
                   "الحي",
                   fontSize: 16,
                   color: ColorsManager.black,
@@ -70,7 +74,10 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
               ),
               width: double.infinity,
               child: const ExpansionTile(
-                leading: Icon(Iconsax.happyemoji),
+                leading: Icon(
+                  Iconsax.happyemoji,
+                  color: ColorsManager.black,
+                ),
                 title: AppText(
                   "النوع",
                   fontSize: 16,

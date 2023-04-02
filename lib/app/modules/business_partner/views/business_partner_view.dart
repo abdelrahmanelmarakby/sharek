@@ -113,8 +113,8 @@ class FiltersList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       alignment: WrapAlignment.spaceBetween,
-      runSpacing: 10,
-      spacing: 10,
+      runSpacing: 12,
+      spacing: 12,
       children: [
         "بحث عن شريك",
         "محاماة",

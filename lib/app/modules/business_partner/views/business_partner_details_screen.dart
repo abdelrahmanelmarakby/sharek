@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/core/constants/theme/font_manager.dart';
@@ -30,16 +31,19 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
         leading: GestureDetector(
           onTap: () => Get.back(),
           child: Container(
+            height: 40,
+            width: 40,
             margin: const EdgeInsets.only(right: 8),
+            padding: const EdgeInsets.only(right: 6),
             decoration: const BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
             ),
             alignment: Alignment.center,
-            padding: const EdgeInsets.only(right: 8),
             child: const Center(
               child: Icon(
                 Icons.arrow_back_ios,
+                size: 16,
               ),
             ),
           ),
@@ -52,11 +56,11 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(10),
               alignment: Alignment.center,
               child: const Center(
                 child: Icon(
-                  Icons.favorite_border,
+                  Iconsax.heart,
                 ),
               ),
             ),
@@ -69,12 +73,10 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(10),
               alignment: Alignment.center,
-              child: const Center(
-                child: Icon(
-                  Icons.share,
-                ),
+              child: Center(
+                child: SvgPicture.asset("assets/images/share.svg"),
               ),
             ),
           ),
@@ -117,8 +119,10 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                             dotsCount: ad?.photos?.length ?? 0,
                             position: controller.currentImageStepper,
                             decorator: DotsDecorator(
+                              activeSize: const Size(8, 8),
+                              size: const Size(8, 8),
                               color: ColorsManager.white
-                                  .withOpacity(.3), // Inactive color
+                                  .withOpacity(.4), // Inactive color
                               activeColor: ColorsManager.white,
                             ),
                           ),
@@ -148,13 +152,14 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                             icon: Iconsax.clock,
                             text: ad?.createdAt1 ?? "",
                           ),
+                          const Spacer(),
                           AdRowItem(
                             icon: Iconsax.location,
                             text: ad?.location ?? "",
                           )
                         ],
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 13),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -162,17 +167,18 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                             icon: Iconsax.user,
                             text: ad?.userName ?? "",
                           ),
+                          const Spacer(),
                           AdRowItem(
                             icon: Iconsax.routing,
                             text: ad?.neighborhood ?? "",
                           )
                         ],
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 16),
                       Divider(
                         color: Colors.grey.withOpacity(.2),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 16),
                       const AppText(
                         "التفاصيل",
                         color: Colors.black,
@@ -187,11 +193,11 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                         fontSize: 14,
                         fontWeight: FontWeights.regular,
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 16),
                       Divider(
                         color: Colors.grey.withOpacity(.2),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 16),
                       const AppText(
                         "طرق التواصل",
                         color: Colors.black,
@@ -202,13 +208,13 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                       Row(
                         children: [
                           Expanded(
-                            flex: 47,
+                            flex: 35,
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: ColorsManager.primary,
                               ),
-                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              padding: const EdgeInsets.symmetric(vertical: 12),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
@@ -218,7 +224,7 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                   ),
                                   SizedBox(width: 10),
                                   AppText(
-                                    " إتصال",
+                                    "إتصال",
                                     fontSize: 14,
                                     fontWeight: FontWeights.regular,
                                   ),
@@ -226,22 +232,23 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                               ),
                             ),
                           ),
-                          const Spacer(flex: 6),
+                          const SizedBox(width: 16),
                           Expanded(
-                            flex: 47,
+                            flex: 35,
                             child: Container(
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  color: ColorsManager.white,
-                                  border: Border.all(
-                                    color: ColorsManager.primary,
-                                  )),
-                              padding: const EdgeInsets.symmetric(vertical: 14),
+                                borderRadius: BorderRadius.circular(6),
+                                color: ColorsManager.white,
+                                border: Border.all(
+                                  color: ColorsManager.primary,
+                                ),
+                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 11),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
                                   Icon(
-                                    Iconsax.message,
+                                    Iconsax.sms,
                                     color: ColorsManager.primary,
                                   ),
                                   SizedBox(width: 10),
@@ -255,13 +262,14 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                               ),
                             ),
                           ),
+                          const Spacer(flex: 15),
                         ],
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 16),
                       Divider(
                         color: Colors.grey.withOpacity(.2),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 16),
                       const AppText(
                         "التعليقات",
                         color: Colors.black,
@@ -269,13 +277,16 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                         fontWeight: FontWeights.semiBold,
                       ),
                       const SizedBox(height: 12),
-                      const CustomTextField(
+                      CustomTextField(
                         name: "",
                         hint: "أكتب تعليقك هنا",
                         borderRadius: 8,
-                        suffixIcon: Icon(
-                          Iconsax.send_2,
-                          color: Colors.grey,
+                        isResendSuffixIcon: true,
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: SvgPicture.asset(
+                            "assets/images/send.svg",
+                          ),
                         ),
                       ),
                     ],
