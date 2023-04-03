@@ -111,29 +111,31 @@ class FiltersList extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      alignment: WrapAlignment.spaceBetween,
-      runSpacing: 12,
-      spacing: 12,
-      children: [
-        "بحث عن شريك",
-        "محاماة",
-        "محاماة",
-        "إعلانات البائعين",
-        "فرنشايز",
-        " أخري",
-      ]
-          .asMap()
-          .entries
-          .map(
-            (e) => GestureDetector(
-              child: AppFilterChip(
-                title: e.value,
-                selected: e.key == 0 ? true : false,
+    return SizedBox(
+      width: context.width,
+      child: Wrap(
+        alignment: WrapAlignment.spaceAround,
+        runSpacing: 12,
+        spacing: 12,
+        children: [
+          "بحث عن شريك",
+          "إعلانات البائعين",
+          "محاماة",
+          "فرنشايز",
+          " أخري",
+        ]
+            .asMap()
+            .entries
+            .map(
+              (e) => GestureDetector(
+                child: AppFilterChip(
+                  title: e.value,
+                  selected: e.key == 0 ? true : false,
+                ),
               ),
-            ),
-          )
-          .toList(),
+            )
+            .toList(),
+      ),
     );
   }
 }
@@ -164,12 +166,12 @@ class AppFilterChip extends StatelessWidget {
         ),
       ),
       backgroundColor: const Color(0xffF7F7F7),
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+      padding: EdgeInsets.symmetric(vertical: 12.h(context), horizontal: 30),
       label: Text(
         title,
         style: StylesManager.regular(
           color: selected ? Colors.white : Colors.black,
-          fontSize: FontSize.medium,
+          fontSize: FontSize.large,
         ),
       ),
       onSelected: (bool selected) {

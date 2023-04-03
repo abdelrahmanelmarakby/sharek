@@ -54,6 +54,28 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
                 ),
               ),
               width: double.infinity,
+              child: const ExpansionTile(
+                leading: Icon(
+                  Iconsax.location_tick,
+                  color: Colors.black,
+                ),
+                title: AppText(
+                  "المدينة",
+                  fontSize: 16,
+                  color: ColorsManager.black,
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFFF7F7F9),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: const Color(0xFFE4E4E5),
+                ),
+              ),
+              width: double.infinity,
               child: ExpansionTile(
                 leading: SvgPicture.asset("assets/images/buildings.svg"),
                 title: const AppText(
@@ -74,9 +96,12 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
               ),
               width: double.infinity,
               child: const ExpansionTile(
-                leading: Icon(
-                  Iconsax.happyemoji,
-                  color: ColorsManager.black,
+                leading: RotatedBox(
+                  quarterTurns: 2,
+                  child: Icon(
+                    Iconsax.happyemoji,
+                    color: ColorsManager.black,
+                  ),
                 ),
                 title: AppText(
                   "النوع",

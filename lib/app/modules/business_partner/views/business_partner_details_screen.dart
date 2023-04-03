@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/core/constants/theme/font_manager.dart';
+import 'package:sharek/core/constants/theme/sizes_manager.dart';
+import 'package:sharek/core/extensions/num.dart';
 import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/widgets/app_text.dart';
 import 'package:sharek/core/widgets/network_image.dart';
@@ -49,38 +51,55 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
           ),
         ),
         actions: [
+          //const SizedBox(width: 16),
           GestureDetector(
             onTap: () {},
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              padding: const EdgeInsets.all(10),
-              alignment: Alignment.center,
-              child: const Center(
-                child: Icon(
-                  Iconsax.heart,
+            child: PopupMenuButton(
+              itemBuilder: (BuildContext context) {
+                return [
+                  PopupMenuItem(
+                      child: Row(
+                    children: [
+                      const Icon(
+                        Iconsax.heart,
+                        size: 20,
+                      ),
+                      12.widthSizedBox,
+                      const Text("اضافة الي المفضلة"),
+                    ],
+                  )),
+                  PopupMenuItem(
+                      child: Row(
+                    children: [
+                      const Icon(
+                        Iconsax.flag,
+                        size: 20,
+                      ),
+                      12.widthSizedBox,
+                      const Text("ابلاغ عن الاعلان"),
+                    ],
+                  ))
+                ];
+              },
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+                padding: const EdgeInsets.all(10),
+                alignment: Alignment.center,
+                child: const Center(
+                  child: Icon(
+                    Icons.more_horiz_rounded,
+                    size: Sizes.size20,
+                  ),
                 ),
               ),
             ),
           ),
-          const SizedBox(width: 10),
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              padding: const EdgeInsets.all(10),
-              alignment: Alignment.center,
-              child: Center(
-                child: SvgPicture.asset("assets/images/share.svg"),
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
+          const SizedBox(width: 16),
         ],
       ),
       body: GetBuilder<BusinessPartnerController>(builder: (controller) {
