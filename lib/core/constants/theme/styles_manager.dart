@@ -7,7 +7,7 @@ TextStyle _getTextStyle({
   String? fontFamily,
   Color? color,
   FontWeight? fontWeight,
-  TextOverflow? overFlow,
+  TextOverflow? overFlow = TextOverflow.ellipsis,
   TextDecoration decoration = TextDecoration.none,
 }) {
   return TextStyle(

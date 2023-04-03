@@ -27,9 +27,9 @@ class AppProgressButton extends StatefulWidget {
     this.textColor,
     this.fontSize,
     this.isBordered,
-    this.height = 50,
+    this.height = 48,
     this.progressIndicatorColor,
-    this.radius = 5,
+    this.radius = 8,
     this.elevation,
     this.padding,
   }) : super(key: key);

@@ -22,11 +22,9 @@ class TripAdsItem extends StatelessWidget {
       height: context.height / 7,
       width: context.width,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(width: .5, color: ColorsManager.veryLightGrey),
-          color: const Color(
-            0xffF7F7F9,
-          )),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(width: .5, color: ColorsManager.veryLightGrey),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(

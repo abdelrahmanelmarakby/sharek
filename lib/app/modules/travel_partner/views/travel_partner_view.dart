@@ -64,7 +64,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                 .toList() ??
                             [],
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 20),
                       Text(
                         "الاعلانات الجديدة",
                         style: StylesManager.bold(fontSize: FontSize.xlarge),

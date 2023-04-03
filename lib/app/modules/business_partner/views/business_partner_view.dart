@@ -114,7 +114,7 @@ class FiltersList extends StatelessWidget {
     return SizedBox(
       width: context.width,
       child: Wrap(
-        alignment: WrapAlignment.spaceAround,
+        alignment: WrapAlignment.start,
         runSpacing: 8,
         spacing: 8,
         children: [
@@ -122,7 +122,7 @@ class FiltersList extends StatelessWidget {
           "إعلانات البائعين",
           "محاماة",
           "فرنشايز",
-          " أخري",
+          " خدمات اخرى",
         ]
             .asMap()
             .entries
@@ -166,12 +166,13 @@ class AppFilterChip extends StatelessWidget {
         ),
       ),
       backgroundColor: const Color(0xffF7F7F7),
-      padding: EdgeInsets.symmetric(vertical: 12.h(context), horizontal: 28),
+      padding: EdgeInsets.symmetric(
+          vertical: 12.w(context), horizontal: 16.w(context)),
       label: Text(
         title,
         style: StylesManager.regular(
           color: selected ? Colors.white : Colors.black,
-          fontSize: FontSize.large,
+          fontSize: FontSize.medium,
         ),
       ),
       onSelected: (bool selected) {

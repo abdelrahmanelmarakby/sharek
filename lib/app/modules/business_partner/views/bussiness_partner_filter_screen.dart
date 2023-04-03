@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:sharek/core/constants/theme/colors_manager.dart';
+import 'package:sharek/core/constants/theme/theme_export.dart';
+import 'package:sharek/core/widgets/custom_dropdown.dart';
+import 'package:sharek/core/widgets/progress_button.dart';
 
-import '../../../../core/widgets/app_text.dart';
 import '../controllers/business_partner_controller.dart';
 import 'business_partner_view.dart';
 
@@ -21,95 +22,58 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            const FiltersList(),
-            const SizedBox(height: 12),
-            Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFFF7F7F9),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: const Color(0xFFE4E4E5),
-                ),
-              ),
-              width: double.infinity,
-              child: const ExpansionTile(
-                leading: Icon(
-                  Iconsax.location,
-                  color: Colors.black,
-                ),
-                title: AppText(
-                  "المنطقة",
-                  fontSize: 16,
-                  color: ColorsManager.black,
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFFF7F7F9),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: const Color(0xFFE4E4E5),
-                ),
-              ),
-              width: double.infinity,
-              child: const ExpansionTile(
-                leading: Icon(
-                  Iconsax.location_tick,
-                  color: Colors.black,
-                ),
-                title: AppText(
-                  "المدينة",
-                  fontSize: 16,
-                  color: ColorsManager.black,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const FiltersList(),
+                    const SizedBox(height: 12),
+                    AppDropDown(
+                      title: "المنطقة",
+                      icon: const Icon(
+                        Iconsax.location,
+                        color: Colors.black,
+                      ),
+                      bottomSheet: Container(),
+                    ),
+                    const SizedBox(height: 12),
+                    AppDropDown(
+                        icon: const Icon(
+                          Iconsax.location_tick,
+                          color: Colors.black,
+                        ),
+                        title: "المدينة",
+                        bottomSheet: Container()),
+                    const SizedBox(height: 12),
+                    AppDropDown(
+                        icon: SvgPicture.asset("assets/images/buildings.svg"),
+                        title: "الحي",
+                        bottomSheet: Container()),
+                    const SizedBox(height: 12),
+                    AppDropDown(
+                        icon: const RotatedBox(
+                          quarterTurns: 2,
+                          child: Icon(
+                            Iconsax.happyemoji,
+                            color: ColorsManager.black,
+                          ),
+                        ),
+                        title: "النوع",
+                        bottomSheet: Container()),
+                  ],
                 ),
               ),
             ),
-            const SizedBox(height: 12),
-            Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFFF7F7F9),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: const Color(0xFFE4E4E5),
-                ),
+            AppProgressButton(
+              width: context.width,
+              onPressed: (anim) {},
+              backgroundColor: ColorsManager.primary,
+              child: Text(
+                "تصفية",
+                style: StylesManager.medium(
+                    fontSize: FontSize.large, color: ColorsManager.white),
               ),
-              width: double.infinity,
-              child: ExpansionTile(
-                leading: SvgPicture.asset("assets/images/buildings.svg"),
-                title: const AppText(
-                  "الحي",
-                  fontSize: 16,
-                  color: ColorsManager.black,
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFFF7F7F9),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: const Color(0xFFE4E4E5),
-                ),
-              ),
-              width: double.infinity,
-              child: const ExpansionTile(
-                leading: RotatedBox(
-                  quarterTurns: 2,
-                  child: Icon(
-                    Iconsax.happyemoji,
-                    color: ColorsManager.black,
-                  ),
-                ),
-                title: AppText(
-                  "النوع",
-                  fontSize: 16,
-                  color: ColorsManager.black,
-                ),
-              ),
-            ),
+            )
           ],
         ),
       ),

@@ -12,7 +12,7 @@ class ColorsManager {
   static const Color grey = Color(0xFF8C8C8C); //#8C8C8C
   static const Color darkGrey = Color(0xFF7F7F7F);
   static const Color veryDarkGrey = Color(0xFF505050);
-  static const Color charcoal = Color(0xFF1E1E1E);
+  static const Color charcoal = Color(0xFF222222);
   static const Color black = Color(0xFF000000);
   static const Color error = Color(0xFFB00020);
   static const Color red = Color(0xFFFA5F5F);

@@ -165,6 +165,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             enabled: widget.isEnabled,
             // labelText: textDirection != null ? "" : hint ?? "",
             hintText: widget.anotherHint ?? widget.hint ?? "",
+
             labelStyle: TextStyle(
                 color: widget.labelColor ??
                     (context.isDarkMode
@@ -194,7 +195,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             errorText: widget.errorText,
             errorMaxLines: 1,
             hintStyle: StylesManager.medium(
-                fontSize: 12, color: ColorsManager.veryDarkGrey),
+                fontSize: 16, color: ColorsManager.veryDarkGrey),
             prefixIcon: widget.prefixIcon,
 
             suffixIcon: widget.isPassword
@@ -250,7 +251,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   )
                 : null,
             contentPadding: EdgeInsets.symmetric(
-              horizontal: 22,
+              horizontal: 12,
               vertical: widget.height < 49
                   ? widget.suffixIcon != null || widget.prefixIcon != null
                       ? 0
