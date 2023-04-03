@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/services/network_service.dart/dio_network_service.dart';
 import '../models/trip_ads_model.dart';
-import '../models/trip_services_type_model.dart';
 
 class TripPartnerAPI {
   static Future<TripAdvertisementsModel?> getTripAds() async {
@@ -13,23 +12,6 @@ class TripPartnerAPI {
     );
     final response = await networkService.execute(
         request, (json) => TripAdvertisementsModel.fromJson(json));
-    final data = response.maybeWhen(
-      ok: (data) {
-        return data;
-      },
-      orElse: () {},
-    );
-    return data;
-  }
-
-  static Future<TripServiceTypeModel?> getTripServicesTypes() async {
-    const request = NetworkRequest(
-      type: NetworkRequestType.GET,
-      path: APIKeys.tripServicesType,
-      data: NetworkRequestBody.empty(),
-    );
-    final response = await networkService.execute(
-        request, (json) => TripServiceTypeModel.fromJson(json));
     final data = response.maybeWhen(
       ok: (data) {
         return data;

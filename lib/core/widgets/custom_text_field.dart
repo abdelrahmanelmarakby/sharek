@@ -154,11 +154,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 },
           inputFormatters: widget.formattedType ?? [],
           style: StylesManager.medium(
-              fontSize: widget.textSize ?? 12, color: widget.textColor),
+            fontSize: widget.textSize ?? 12,
+            color: widget.textColor,
+          ),
           scrollPadding: EdgeInsets.only(
-              bottom: widget.keyboardPadding
-                  ? MediaQuery.of(context).size.height * .2
-                  : 0.0),
+            bottom: widget.keyboardPadding
+                ? MediaQuery.of(context).size.height * .2
+                : 0.0,
+          ),
           cursorColor: ColorsManager.accent,
           decoration: InputDecoration(
             isDense: true,

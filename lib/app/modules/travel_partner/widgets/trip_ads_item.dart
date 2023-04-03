@@ -60,9 +60,9 @@ class TripAdsItem extends StatelessWidget {
                       children: [
                         AdRowItem(icon: Iconsax.user, text: ad?.userName ?? ""),
                         AdRowItem(
-                          icon: Iconsax.routing,
-                          text: ad?.carType ?? "",
-                        )
+                          icon: Iconsax.car,
+                          text: ad?.carType ?? "راكب",
+                        ),
                       ],
                     ),
                   )
