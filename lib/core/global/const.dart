@@ -64,4 +64,8 @@ class APIKeys {
   static String buyAcceptedService = "/api/buy/service";
   static String applyDiscountCode = "/api/check/cobon";
   static String buyProduct = "/api/buy/products";
+  //=============================Trip================================
+  static const String tripAds = "trip-advertisements";
+  static const String tripServicesType = "trip-advertisement/service/types";
+  //=================================================================
 }
