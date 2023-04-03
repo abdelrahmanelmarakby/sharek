@@ -51,7 +51,26 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
           ),
         ),
         actions: [
-          //const SizedBox(width: 16),
+          GestureDetector(
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              padding: const EdgeInsets.all(10),
+              alignment: Alignment.center,
+              child: const Center(
+                child: Icon(
+                  Iconsax.heart,
+                  size: Sizes.size20,
+                  color: ColorsManager.red,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
           GestureDetector(
             onTap: () {},
             child: PopupMenuButton(
@@ -61,11 +80,11 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                       child: Row(
                     children: [
                       const Icon(
-                        Iconsax.heart,
+                        Icons.share_outlined,
                         size: 20,
                       ),
                       12.widthSizedBox,
-                      const Text("اضافة الي المفضلة"),
+                      const Text("مشاركة الاعلان"),
                     ],
                   )),
                   PopupMenuItem(
