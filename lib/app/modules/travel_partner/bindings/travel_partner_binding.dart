@@ -7,6 +7,7 @@ class TravelPartnerBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<TravelPartnerController>(
       () => TravelPartnerController(),
+      fenix: true
     );
   }
 }

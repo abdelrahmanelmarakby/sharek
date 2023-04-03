@@ -127,6 +127,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           focusNode: widget.focusNode,
           autofillHints: widget.autoFillHints,
           onTap: widget.onTap,
+          
           textInputAction: widget.inputAction,
           readOnly: widget.readOnly,
           onEditingComplete: widget.onEditingComplete,
@@ -154,11 +155,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 },
           inputFormatters: widget.formattedType ?? [],
           style: StylesManager.medium(
-              fontSize: widget.textSize ?? 12, color: widget.textColor),
+            fontSize: widget.textSize ?? 12,
+            color: widget.textColor,
+          ),
           scrollPadding: EdgeInsets.only(
-              bottom: widget.keyboardPadding
-                  ? MediaQuery.of(context).size.height * .2
-                  : 0.0),
+            bottom: widget.keyboardPadding
+                ? MediaQuery.of(context).size.height * .2
+                : 0.0,
+          ),
           cursorColor: ColorsManager.accent,
           decoration: InputDecoration(
             isDense: true,
@@ -195,8 +199,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
             errorMaxLines: 1,
             hintStyle: StylesManager.medium(
                 fontSize: 12, color: ColorsManager.veryDarkGrey),
-            prefixIcon: widget.prefixIcon,
-
+            prefixIcon: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: widget.prefixIcon,
+            ),
             suffixIcon: widget.isPassword
                 ? SizedBox(
                     width: Sizes.size38.h(context),

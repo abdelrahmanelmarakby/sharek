@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -13,9 +15,11 @@ import 'package:sharek/core/constants/theme/styles_manager.dart';
 import 'package:sharek/core/extensions/num.dart';
 import 'package:sharek/core/extensions/widget.dart';
 import 'package:sharek/core/language/local_keys.dart';
+import 'package:sharek/core/widgets/app_text.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
 
 import '../../business_partner/views/add_business_partner_ads_screen.dart';
+import '../../travel_partner/views/add_trip_ads_screen.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -34,7 +38,7 @@ class HomeView extends GetView<HomeController> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final HomeModel? homeData = snapshot.data;
-            print(homeData.toString());
+            log(homeData.toString());
             return SingleChildScrollView(
               child: SafeArea(
                 child: Column(
@@ -188,11 +192,10 @@ class AdRowItem extends StatelessWidget {
           ),
           Sizes.size4.widthSizedBox,
           Expanded(
-            child: Text(
+            child: AppText(
               text,
-              style: StylesManager.regular(
-                fontSize: FontSize.medium,
-              ),
+              color: Colors.black,
+              fontSize: FontSize.medium,
             ),
           ),
         ],
@@ -283,7 +286,9 @@ class PartnerCard extends StatelessWidget {
                   : Get.toNamed(Routes.BUSINESS_PARTNER);
               break;
             case 2:
-              Get.toNamed(Routes.TRAVEL_PARTNER);
+              isDialog == true
+                  ? Get.to(() => const AddTripAdsScreen())
+                  : Get.toNamed(Routes.TRAVEL_PARTNER);
               break;
             case 3:
               Get.toNamed(Routes.SAKE_PARTNER);
