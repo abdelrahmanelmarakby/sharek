@@ -115,8 +115,8 @@ class FiltersList extends StatelessWidget {
       width: context.width,
       child: Wrap(
         alignment: WrapAlignment.spaceAround,
-        runSpacing: 12,
-        spacing: 12,
+        runSpacing: 8,
+        spacing: 8,
         children: [
           "بحث عن شريك",
           "إعلانات البائعين",
@@ -166,7 +166,7 @@ class AppFilterChip extends StatelessWidget {
         ),
       ),
       backgroundColor: const Color(0xffF7F7F7),
-      padding: EdgeInsets.symmetric(vertical: 12.h(context), horizontal: 30),
+      padding: EdgeInsets.symmetric(vertical: 12.h(context), horizontal: 28),
       label: Text(
         title,
         style: StylesManager.regular(
