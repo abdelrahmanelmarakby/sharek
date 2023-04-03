@@ -1,23 +1,21 @@
 import 'package:get/get.dart';
 
-class TravelPartnerController extends GetxController {
-  //TODO: Implement TravelPartnerController
+import '../../../data/models/trip_ads_model.dart';
+import '../../../data/models/trip_services_type_model.dart';
+import '../../../data/remote_data_source/trip_ads.dart';
 
-  final count = 0.obs;
+class TravelPartnerController extends GetxController {
+  late final Future<TripAdvertisementsModel?> getTripAds;
+  late final Future<TripServiceTypeModel?> getTripServicesTypes;
   @override
   void onInit() {
+    getTripServicesTypes = TripPartnerAPI.getTripServicesTypes();
+    getTripAds = TripPartnerAPI.getTripAds();
     super.onInit();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
+  int travelPartner = 0;
+  changeTravelPartnerState(int val) {
+    travelPartner = val;
+    update();
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
