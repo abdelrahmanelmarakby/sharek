@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:sharek/app/data/remote_data_source/trip_ads.dart';
 import 'package:sharek/app/modules/travel_partner/views/travel_partner_details_screen.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
@@ -21,7 +22,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
   Widget build(BuildContext context) {
     return GetBuilder<TravelPartnerController>(builder: (controller) {
       return FutureBuilder<TripAdvertisementsModel?>(
-        future: controller.getTripAds,
+        future: TripPartnerAPI.getTripAds(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Scaffold(
@@ -51,7 +52,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                       children: tripServicesTypes
                           .map(
                             (e) => TripServicesItem(
-                              activeIndex: controller.travelPartner,
+                              activeIndex: controller.travelPartner ?? 0,
                               index: e.serviceTypeId ?? 0,
                               title: e.name ?? "",
                               onTap: () {

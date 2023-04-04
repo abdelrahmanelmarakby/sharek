@@ -15,7 +15,6 @@ class DateTextFormatter extends TextInputFormatter {
   String _format(String value, String seperator) {
     value = value.replaceAll(seperator, '');
     var newString = '';
-
     for (int i = 0; i < math.min(value.length, _maxChars); i++) {
       newString += value[i];
       if ((i == 1 || i == 3) && i != value.length - 1) {

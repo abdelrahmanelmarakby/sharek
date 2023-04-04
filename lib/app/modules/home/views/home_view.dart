@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:sharek/app/data/models/home_model.dart';
+import 'package:sharek/app/modules/travel_partner/bindings/travel_partner_binding.dart';
 import 'package:sharek/app/routes/app_pages.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
 import 'package:sharek/core/constants/theme/font_manager.dart';
@@ -286,7 +287,8 @@ class PartnerCard extends StatelessWidget {
               break;
             case 2:
               isDialog == true
-                  ? Get.to(() => const AddTripAdsScreen())
+                  ? Get.to(() => const AddTripAdsScreen(),
+                      binding: TravelPartnerBinding())
                   : Get.toNamed(Routes.TRAVEL_PARTNER);
               break;
             case 3:

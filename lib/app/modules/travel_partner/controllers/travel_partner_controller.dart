@@ -4,14 +4,9 @@ import '../../../data/models/trip_ads_model.dart';
 import '../../../data/remote_data_source/trip_ads.dart';
 
 class TravelPartnerController extends GetxController {
-  late final Future<TripAdvertisementsModel?> getTripAds;
-  @override
-  void onInit() {
-    getTripAds = TripPartnerAPI.getTripAds();
-    super.onInit();
-  }
+  
 
-  int travelPartner = 6;
+  int? travelPartner ;
   changeTravelPartnerState(int val) {
     travelPartner = val;
     update();

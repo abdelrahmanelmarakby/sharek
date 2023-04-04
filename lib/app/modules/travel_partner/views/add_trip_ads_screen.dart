@@ -24,7 +24,6 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
 
   @override
   Widget build(BuildContext context) {
-    TravelPartnerController controller = Get.put(TravelPartnerController());
     return GetBuilder<TravelPartnerController>(
       builder: (controller) {
         return Scaffold(

@@ -23,7 +23,6 @@ class RadioButton<T> extends StatelessWidget {
     this.fillColor,
     this.textStyle,
   });
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
