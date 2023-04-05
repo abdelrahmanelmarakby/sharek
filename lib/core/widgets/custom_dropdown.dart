@@ -8,11 +8,15 @@ class AppDropDown extends StatelessWidget {
   const AppDropDown({
     super.key,
     this.icon,
+    this.center = false,
     required this.title,
     required this.bottomSheet,
   });
   final Widget? icon;
+  
   final String title;
+  final bool center;
+
   final Widget bottomSheet;
   @override
   Widget build(BuildContext context) {
@@ -33,12 +37,14 @@ class AppDropDown extends StatelessWidget {
             backgroundColor: Colors.white,
           );
         },
-        contentPadding: const EdgeInsets.symmetric(horizontal: 18),
-        horizontalTitleGap: 12,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+        dense: true,
+        horizontalTitleGap: 10.0,
         minLeadingWidth: 0,
         leading: icon,
         title: AppText(
           title,
+          centerText: center,
           fontSize: 16,
           color: ColorsManager.black,
         ),

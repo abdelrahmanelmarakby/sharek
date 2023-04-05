@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, deprecated_member_use
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -471,11 +471,28 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                               name: "",
                               hint: "أكتب تعليقك هنا",
                               borderRadius: 8,
+                              controller: controller.createCommentCtr,
+                              onChange: controller.onChangedComment,
                               isResendSuffixIcon: true,
+                              type: TextInputType.text,
                               suffixIcon: Padding(
                                 padding: const EdgeInsets.all(10.0),
-                                child: SvgPicture.asset(
-                                  "assets/images/send.svg",
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.isText
+                                        ? controller.createComment(
+                                            comment: controller
+                                                .createCommentCtr.text,
+                                            id: ads?.advertisementId ?? 0,
+                                          )
+                                        : null;
+                                  },
+                                  child: SvgPicture.asset(
+                                    "assets/images/send.svg",
+                                    color: !controller.isText
+                                        ? Colors.grey.withOpacity(.4)
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
                             ),

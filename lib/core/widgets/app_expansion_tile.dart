@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../constants/theme/colors_manager.dart';
 import 'app_text.dart';
@@ -9,11 +10,12 @@ class AppExpansionTile extends StatelessWidget {
     Key? key,
     this.icon,
     required this.title,
-    this.children,
+    required this.bottomSheet,
   }) : super(key: key);
   final IconData? icon;
   final String title;
-  final List<Widget>? children;
+  final Widget bottomSheet;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,6 +32,14 @@ class AppExpansionTile extends StatelessWidget {
         horizontalTitleGap: 10.0,
         minLeadingWidth: 0,
         child: ExpansionTile(
+          onExpansionChanged: (val) {
+            if (val) {
+              Get.bottomSheet(
+                bottomSheet,
+                backgroundColor: Colors.white,
+              );
+            } else {}
+          },
           leading: icon != null
               ? Icon(
                   icon,
@@ -41,7 +51,6 @@ class AppExpansionTile extends StatelessWidget {
             fontSize: 16,
             color: ColorsManager.black,
           ),
-          children: children ?? [],
         ),
       ),
     );

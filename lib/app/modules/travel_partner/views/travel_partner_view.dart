@@ -88,6 +88,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                         Expanded(
                           child: AppDropDown(
                             title: "نهاية الرحلة",
+                            center: true,
                             bottomSheet: Container(),
                           ),
                         ),
@@ -95,6 +96,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                         Expanded(
                           child: AppDropDown(
                             title: "نهاية الرحلة",
+                            center: true,
                             bottomSheet: Container(),
                           ),
                         ),
@@ -102,6 +104,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                         Expanded(
                           child: AppDropDown(
                             title: "التاريخ",
+                            center: true,
                             bottomSheet: CupertinoTimerPicker(
                               mode: CupertinoTimerPickerMode.hms,
                               minuteInterval: 1,

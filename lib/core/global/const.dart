@@ -66,9 +66,9 @@ class APIKeys {
   //=============================Trip================================
   static const String tripAds = "trip-advertisements";
   static const String tripServicesType = "trip-advertisement/service/types";
-  static const String createTripComment = "$createComment$tripAds/";
+  static const String createTripComment = "create/comment/trip-advertisement/";
   static const String tripAdsSearch = "search/$tripAds";
   //============================Comment==============================
-  static const String createComment = "/api/v1/create/comment/";
+  static const String createComment = "create/comment/";
   //=================================================================
 }

@@ -34,11 +34,9 @@ class TravelPartnerController extends GetxController {
   }
 
   Duration initialTimer = const Duration();
-  String? time;
+
   onTimerDurationChanged(Duration changeTimer) {
     initialTimer = changeTimer;
-    time =
-        '${changeTimer.inHours} hrs ${changeTimer.inMinutes % 60} mins ${changeTimer.inSeconds % 60} secs';
     update();
   }
 
@@ -122,5 +120,49 @@ class TravelPartnerController extends GetxController {
       log(e.toString());
     }
   }
+
+  //===============================Comment==================================
+  TextEditingController createCommentCtr = TextEditingController();
+  bool isText = false;
+  onChangedComment(String value) {
+    if (value.trim().isNotEmpty) {
+      createCommentCtr.text = value;
+      isText = true;
+    } else {
+      isText = false;
+    }
+    createCommentCtr.value = createCommentCtr.value.copyWith(
+      text: value,
+      selection: TextSelection.fromPosition(
+        TextPosition(offset: value.length),
+      ),
+    );
+    update();
+  }
+
+  //========================================================================
+  Future createComment({
+    required int id,
+    required String comment,
+  }) async {
+    try {
+      BotToast.showLoading();
+      final res =
+          await TripPartnerAPI.createTripComment(id: id, comment: comment);
+      if (res?.status == true) {
+        createCommentCtr.clear();
+        update();
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+      } else {
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+      }
+    } catch (e) {
+      BotToast.closeAllLoading();
+      log(e.toString());
+    }
+  }
+  //========================================================================
   //========================================================================
 }

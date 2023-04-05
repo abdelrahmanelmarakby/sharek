@@ -10,8 +10,8 @@ import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/extensions/input_formatter.dart';
-import '../../../../core/widgets/app_expansion_tile.dart';
 import '../../../../core/widgets/app_text.dart';
+import '../../../../core/widgets/custom_dropdown.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
 import '../../../../core/widgets/src/radio_button_builder.dart';
@@ -64,14 +64,24 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                           .toList(),
                     ),
                     const SizedBox(height: 16),
-                    const AppExpansionTile(
-                      icon: Iconsax.location,
+                    AppDropDown(
+                      icon: const Icon(
+                        Iconsax.location,
+                        size: 20,
+                        color: Colors.black,
+                      ),
                       title: "بداية الرحلة",
+                      bottomSheet: Container(),
                     ),
                     const SizedBox(height: 12),
-                    const AppExpansionTile(
-                      icon: Iconsax.location_tick,
+                    AppDropDown(
+                      icon: const Icon(
+                        Iconsax.location_tick,
+                        size: 20,
+                        color: Colors.black,
+                      ),
                       title: "نهاية الرحلة",
+                      bottomSheet: Container(),
                     ),
                     const SizedBox(height: 12),
                     controller.addTravelPartner == 7

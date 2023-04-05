@@ -42,19 +42,25 @@ class TripPartnerAPI {
     return data;
   }
 
-  static Future<TripAdsItemModel?> createTripComment({
+  static Future<MainModel?> createTripComment({
     required int id,
     required String comment,
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
       path: "${APIKeys.createTripComment}/$id",
-      data: NetworkRequestBody.fromData(FormData.fromMap({
-        "comment": comment,
-      })),
+      data: NetworkRequestBody.fromData(
+        FormData.fromMap(
+          {
+            "comment": comment,
+          },
+        ),
+      ),
     );
     final response = await networkService.execute(
-        request, (json) => TripAdsItemModel.fromJson(json));
+      request,
+      (json) => MainModel.fromJson(json),
+    );
     final data = response.maybeWhen(
       ok: (data) {
         return data;

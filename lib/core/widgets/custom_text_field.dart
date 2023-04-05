@@ -154,8 +154,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 },
           inputFormatters: widget.formattedType ?? [],
           style: StylesManager.medium(
-            fontSize: widget.textSize ?? 12,
-            color: widget.textColor,
+            fontSize: widget.textSize ?? 14,
+            color: widget.textColor ?? Colors.black,
           ),
           scrollPadding: EdgeInsets.only(
             bottom: widget.keyboardPadding
@@ -168,39 +168,46 @@ class _CustomTextFieldState extends State<CustomTextField> {
             enabled: widget.isEnabled,
             // labelText: textDirection != null ? "" : hint ?? "",
             hintText: widget.anotherHint ?? widget.hint ?? "",
-
             labelStyle: TextStyle(
-                color: widget.labelColor ??
-                    (context.isDarkMode
-                        ? Colors.white
-                        : ColorsManager.darkGrey)),
+              color: widget.labelColor ??
+                  (context.isDarkMode ? Colors.white : ColorsManager.darkGrey),
+            ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             alignLabelWithHint: true,
             errorBorder: OutlineInputBorder(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(widget.borderRadius)),
-                borderSide: BorderSide(color: widget.borderColor!, width: 0.5)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(widget.borderRadius),
+              ),
+              borderSide: BorderSide(color: widget.borderColor!, width: 0.5),
+            ),
             focusedBorder: OutlineInputBorder(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(widget.borderRadius)),
-                borderSide: BorderSide(color: widget.borderColor!, width: 0.5)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(widget.borderRadius),
+              ),
+              borderSide: BorderSide(color: widget.borderColor!, width: 0.5),
+            ),
             enabledBorder: OutlineInputBorder(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(widget.borderRadius)),
-                borderSide: BorderSide(color: widget.borderColor!, width: 0.5)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(widget.borderRadius),
+              ),
+              borderSide: BorderSide(color: widget.borderColor!, width: 0.5),
+            ),
             border: OutlineInputBorder(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(widget.borderRadius)),
-                borderSide: BorderSide(color: widget.borderColor!, width: 0.5)),
+              borderRadius: BorderRadius.all(
+                Radius.circular(widget.borderRadius),
+              ),
+              borderSide: BorderSide(color: widget.borderColor!, width: 0.5),
+            ),
             //  alignLabelWithHint: true,
             fillColor: widget.fillColor ?? const Color(0xffF7F7F9),
             filled: true,
             errorText: widget.errorText,
             errorMaxLines: 1,
             hintStyle: StylesManager.medium(
-                fontSize: 16, color: ColorsManager.veryDarkGrey),
+              fontSize: 16,
+              color: ColorsManager.veryDarkGrey,
+            ),
             prefixIcon: widget.prefixIcon,
-
             suffixIcon: widget.isPassword
                 ? SizedBox(
                     width: Sizes.size38.h(context),

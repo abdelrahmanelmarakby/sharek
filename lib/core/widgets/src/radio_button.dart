@@ -54,12 +54,10 @@ class RadioButton<T> extends StatelessWidget {
                 fillColor != null ? MaterialStateProperty.all(fillColor) : null,
           ),
           this.textPosition == RadioButtonTextPosition.right
-              ? Expanded(
-                  child: Text(
-                    this.description,
-                    style: this.textStyle,
-                    textAlign: TextAlign.left,
-                  ),
+              ? Text(
+                  this.description,
+                  style: this.textStyle,
+                  textAlign: TextAlign.left,
                 )
               : Container(),
         ],
