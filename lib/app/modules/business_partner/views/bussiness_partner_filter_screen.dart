@@ -51,15 +51,16 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
                         bottomSheet: Container()),
                     const SizedBox(height: 12),
                     AppDropDown(
-                        icon: const RotatedBox(
-                          quarterTurns: 2,
-                          child: Icon(
-                            Iconsax.happyemoji,
-                            color: ColorsManager.black,
-                          ),
+                      icon: const RotatedBox(
+                        quarterTurns: 2,
+                        child: Icon(
+                          Iconsax.happyemoji,
+                          color: ColorsManager.black,
                         ),
-                        title: "النوع",
-                        bottomSheet: Container()),
+                      ),
+                      title: "النوع",
+                      bottomSheet: Container(),
+                    ),
                   ],
                 ),
               ),

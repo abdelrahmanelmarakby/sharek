@@ -1,4 +1,3 @@
-import '../services/get_storage_helper.dart';
 import '../services/network_service.dart/dio_network_service.dart';
 
 const String dummyImage = "https://picsum.photos/800";
@@ -9,7 +8,7 @@ final NetworkService networkService = NetworkService(
   httpHeaders: {
     'Accept': 'application/json',
     'api_password': "drV1DHcwSgFE8ebzBUR523Ym9fo9TGrKFKtPX9xSAEHJ90B7DK",
-    'Authorization': 'Bearer ${CacheHelper.getUserToken}',
+    'Authorization': 'Bearer 1|92Kko8UWf4LO2KvpPlullUjZwY0oX8MMbui0tJFG',
   },
 );
 
@@ -67,5 +66,9 @@ class APIKeys {
   //=============================Trip================================
   static const String tripAds = "trip-advertisements";
   static const String tripServicesType = "trip-advertisement/service/types";
+  static const String createTripComment = "$createComment$tripAds/";
+  static const String tripAdsSearch = "search/$tripAds";
+  //============================Comment==============================
+  static const String createComment = "/api/v1/create/comment/";
   //=================================================================
 }

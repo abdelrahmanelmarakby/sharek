@@ -174,12 +174,17 @@ class AdCard extends StatelessWidget {
 
 class AdRowItem extends StatelessWidget {
   const AdRowItem({
-    super.key,
+    Key? key,
     required this.icon,
     required this.text,
-  });
+    this.flex = 1,
+    this.maxLines = 1,
+  }) : super(key: key);
   final IconData icon;
   final String text;
+  final int flex;
+  final int maxLines;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -194,6 +199,7 @@ class AdRowItem extends StatelessWidget {
           Expanded(
             child: AppText(
               text,
+              maxLines: maxLines,
               color: Colors.black,
               fontSize: FontSize.medium,
             ),

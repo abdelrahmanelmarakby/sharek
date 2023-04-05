@@ -86,7 +86,8 @@ Future<NetworkResponse<Model>> executeRequest<Model>(
     switch (response.statusCode) {
       case 200:
         return NetworkResponse.ok(request.parser(response.data));
-
+      case 201:
+        return NetworkResponse.ok(request.parser(response.data));
       case 400:
         return NetworkResponse.badRequest(request.parser(response.data));
       case 401:

@@ -49,8 +49,9 @@ class TripAdsItem extends StatelessWidget {
                         AdRowItem(
                             icon: Iconsax.clock, text: ad?.createdAt1 ?? ""),
                         AdRowItem(
-                            icon: Iconsax.location,
-                            text: ad?.startingPlace ?? "")
+                          icon: Iconsax.location,
+                          text: ad?.startingPlace ?? "",
+                        )
                       ],
                     ),
                   ),

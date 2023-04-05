@@ -13,7 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^5.0.3
   dots_indicator: ^2.1.0
-  dotted_border: 
+  dotted_border: null
   firebase_core: ^2.8.0
   flutter:
     sdk: flutter
@@ -26,6 +26,7 @@ dependencies:
   get: 4.6.5
   get_storage: ^2.1.1
   iconsax: ^0.0.8
+  image_picker: ^0.8.7+1
   image_pickers: ^2.0.1
   internet_connection_checker: ^1.0.0+1
   leak_tracker: ^2.0.1

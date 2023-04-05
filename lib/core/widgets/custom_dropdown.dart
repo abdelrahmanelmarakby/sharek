@@ -7,11 +7,11 @@ import '../constants/theme/theme_export.dart';
 class AppDropDown extends StatelessWidget {
   const AppDropDown({
     super.key,
-    required this.icon,
+    this.icon,
     required this.title,
     required this.bottomSheet,
   });
-  final Widget icon;
+  final Widget? icon;
   final String title;
   final Widget bottomSheet;
   @override
@@ -28,7 +28,10 @@ class AppDropDown extends StatelessWidget {
       padding: EdgeInsets.zero,
       child: ListTile(
         onTap: () {
-          Get.bottomSheet(Container(), backgroundColor: Colors.white);
+          Get.bottomSheet(
+            bottomSheet,
+            backgroundColor: Colors.white,
+          );
         },
         contentPadding: const EdgeInsets.symmetric(horizontal: 18),
         horizontalTitleGap: 12,
@@ -39,10 +42,12 @@ class AppDropDown extends StatelessWidget {
           fontSize: 16,
           color: ColorsManager.black,
         ),
-        trailing: const Icon(
-          Icons.keyboard_arrow_down,
-          color: ColorsManager.charcoal,
-        ),
+        trailing: icon != null
+            ? const Icon(
+                Icons.keyboard_arrow_down,
+                color: ColorsManager.charcoal,
+              )
+            : null,
       ),
     );
   }

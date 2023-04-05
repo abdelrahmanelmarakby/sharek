@@ -1,17 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/app/data/remote_data_source/trip_ads.dart';
 import 'package:sharek/app/modules/travel_partner/views/travel_partner_details_screen.dart';
+import 'package:sharek/app/modules/travel_partner/views/trip_ads_filter.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
-import '../../../../core/widgets/app_expansion_tile.dart';
+import '../../../../core/widgets/custom_dropdown.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../data/models/trip_ads_model.dart';
 import '../../../data/models/trip_services_type_model.dart';
+import '../bindings/travel_partner_binding.dart';
 import '../controllers/travel_partner_controller.dart';
 import '../widgets/trip_ads_item.dart';
 import '../widgets/trip_services_type_item.dart';
@@ -21,16 +24,25 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TravelPartnerController>(builder: (controller) {
-      return FutureBuilder<TripAdvertisementsModel?>(
-        future: TripPartnerAPI.getTripAds(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text('شريك رحلتي'),
-                centerTitle: true,
-              ),
-              body: Padding(
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('شريك رحلتي'),
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Get.back();
+              controller.clearData();
+            },
+          ),
+        ),
+        body: FutureBuilder<TripAdvertisementsModel?>(
+          future: TripPartnerAPI.filterTripAds(
+            servicesTypeid: controller.travelPartner,
+          ),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +52,12 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                       hint: "ابحث هنا",
                       prefixIcon: const Icon(Iconsax.search_normal),
                       suffixIcon: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(
+                            () => const TripAdsFilter(),
+                            binding: TravelPartnerBinding(),
+                          );
+                        },
                         child: const Icon(
                           Iconsax.filter,
                         ),
@@ -66,24 +83,33 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                     ),
                     const SizedBox(height: 8),
                     Row(
-                      children: const [
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                         Expanded(
-                          child: AppExpansionTile(
-                            title: "بداية الرحلة",
-                          ),
-                        ),
-                        SizedBox(width: 8),
-                        Expanded(
-                          child: AppExpansionTile(
+                          child: AppDropDown(
                             title: "نهاية الرحلة",
+                            bottomSheet: Container(),
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
-                          child: CustomTextField(
-                            name: "",
-                            hint: "ساعة الرحلة",
-                            borderRadius: 8,
+                          child: AppDropDown(
+                            title: "نهاية الرحلة",
+                            bottomSheet: Container(),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: AppDropDown(
+                            title: "التاريخ",
+                            bottomSheet: CupertinoTimerPicker(
+                              mode: CupertinoTimerPickerMode.hms,
+                              minuteInterval: 1,
+                              secondInterval: 1,
+                              initialTimerDuration: controller.initialTimer,
+                              onTimerDurationChanged:
+                                  controller.onTimerDurationChanged,
+                            ),
                           ),
                         ),
                       ],
@@ -104,9 +130,11 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                 final ads = snapshot.data?.data?[index];
                                 return GestureDetector(
                                   onTap: () {
-                                    Get.to(() => TravelPartnerDetailsScreen(
-                                          ads: ads,
-                                        ));
+                                    Get.to(
+                                      () => TravelPartnerDetailsScreen(
+                                        id: ads?.advertisementId ?? 0,
+                                      ),
+                                    );
                                   },
                                   child: TripAdsItem(
                                     ad: ads,
@@ -122,9 +150,11 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                 final ads = snapshot.data?.data?[index];
                                 return GestureDetector(
                                   onTap: () {
-                                    Get.to(() => TravelPartnerDetailsScreen(
-                                          ads: ads,
-                                        ));
+                                    Get.to(
+                                      () => TravelPartnerDetailsScreen(
+                                        id: ads?.advertisementId ?? 0,
+                                      ),
+                                    );
                                   },
                                   child: TripAdsItem(
                                     ad: ads,
@@ -135,16 +165,20 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                     ),
                   ],
                 ),
-              ),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(
-                valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
-              ),
-            );
-          }
-        },
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text(snapshot.error.toString()),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator.adaptive(
+                  valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
+                ),
+              );
+            }
+          },
+        ),
       );
     });
   }
