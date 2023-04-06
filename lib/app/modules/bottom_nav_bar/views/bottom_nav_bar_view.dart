@@ -1,8 +1,10 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:sharek/core/constants/theme/app_icons.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
 import '../add_ads_sheet.dart';
 import '../controllers/bottom_nav_bar_controller.dart';
@@ -71,9 +73,14 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
             ),
             label: "الرسائل",
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(
-              SharekIcons.profile,
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              "assets/images/profile.svg",
+              width: controller.getNavIndex == 4 ? 30 : 24,
+              height: controller.getNavIndex == 4 ? 30 : 24,
+              color: controller.getNavIndex == 4
+                  ? ColorsManager.primary
+                  : ColorsManager.darkGrey,
             ),
             label: "حسابي",
           ),

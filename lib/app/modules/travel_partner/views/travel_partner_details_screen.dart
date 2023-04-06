@@ -45,7 +45,7 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                           floating: false,
                           pinned: true,
                           expandedHeight:
-                              MediaQuery.of(context).size.height / 3.5,
+                              MediaQuery.of(context).size.height / 3,
                           leading: GestureDetector(
                             onTap: () => Get.back(),
                             child: Container(
@@ -451,22 +451,6 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                               fontWeight: FontWeights.semiBold,
                             ),
                             const SizedBox(height: 8),
-                            ListView.builder(
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: ads?.comments?.length ?? 0,
-                              itemBuilder: (context, index) {
-                                Comments? comment = ads?.comments?[index];
-                                return CommentItemWidget(
-                                  comment: comment?.comment ?? "",
-                                  createdAt: comment?.createdAt ?? "",
-                                  image: comment?.avatar ?? dummyImage,
-                                  username: comment?.userName ?? "",
-                                );
-                              },
-                            ),
-                            const SizedBox(height: 8),
                             CustomTextField(
                               name: "",
                               hint: "أكتب تعليقك هنا",
@@ -495,6 +479,22 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                   ),
                                 ),
                               ),
+                            ),
+                            const SizedBox(height: 8),
+                            ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: ads?.comments?.length ?? 0,
+                              itemBuilder: (context, index) {
+                                Comments? comment = ads?.comments?[index];
+                                return CommentItemWidget(
+                                  comment: comment?.comment ?? "",
+                                  createdAt: comment?.createdAt ?? "",
+                                  image: comment?.avatar ?? dummyImage,
+                                  username: comment?.userName ?? "",
+                                );
+                              },
                             ),
                           ],
                         ),
