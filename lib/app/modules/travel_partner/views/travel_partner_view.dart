@@ -1,15 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:sharek/app/data/remote_data_source/trip_ads.dart';
 import 'package:sharek/app/modules/travel_partner/views/travel_partner_details_screen.dart';
 import 'package:sharek/app/modules/travel_partner/views/trip_ads_filter.dart';
+import 'package:sharek/core/constants/theme/app_icons.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
+import '../../../../core/global/const.dart';
+import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_dropdown.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../data/models/trip_ads_model.dart';
@@ -29,7 +33,9 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
           title: const Text('شريك رحلتي'),
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
+            icon: Icon(
+              Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
+            ),
             onPressed: () {
               Get.back();
               controller.clearData();
@@ -39,6 +45,9 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
         body: FutureBuilder<TripAdvertisementsModel?>(
           future: TripPartnerAPI.filterTripAds(
             servicesTypeid: controller.travelPartner,
+            date: controller.viewDate == null
+                ? null
+                : appDateFormate(controller.viewDate!, "en"),
           ),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -51,7 +60,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                       CustomTextField(
                         name: "BusinessSearch",
                         hint: "ابحث هنا",
-                        prefixIcon: const Icon(Iconsax.search_normal),
+                        prefixIcon: const Icon(SharekIcons.search_1),
                         suffixIcon: GestureDetector(
                           onTap: () {
                             Get.to(
@@ -60,7 +69,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                             );
                           },
                           child: const Icon(
-                            Iconsax.filter,
+                            SharekIcons.filter_3,
                           ),
                         ),
                       ),
@@ -104,15 +113,16 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                           const SizedBox(width: 8),
                           Expanded(
                             child: AppDropDown(
-                              title: "التاريخ",
+                              title: controller.viewDate == null
+                                  ? "التاريخ"
+                                  : appDateFormate(controller.viewDate!, "ar"),
                               center: true,
-                              bottomSheet: CupertinoTimerPicker(
-                                mode: CupertinoTimerPickerMode.hms,
-                                minuteInterval: 1,
-                                secondInterval: 1,
-                                initialTimerDuration: controller.initialTimer,
-                                onTimerDurationChanged:
-                                    controller.onTimerDurationChanged,
+                              bottomSheet: CupertinoDatePicker(
+                                mode: CupertinoDatePickerMode.date,
+                                dateOrder: DatePickerDateOrder.ymd,
+                                initialDateTime: DateTime.now(),
+                                onDateTimeChanged:
+                                    controller.onDateViewPickerChanged,
                               ),
                             ),
                           ),
@@ -140,18 +150,28 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                         const SizedBox(height: 8),
                                     itemBuilder: (context, index) {
                                       final ads = snapshot.data?.data?[index];
-                                      return GestureDetector(
-                                        onTap: () {
-                                          Get.to(
-                                            () => TravelPartnerDetailsScreen(
-                                              id: ads?.advertisementId ?? 0,
-                                            ),
-                                          );
-                                        },
-                                        child: TripAdsItem(
-                                          ad: ads,
-                                        ),
-                                      );
+                                      return snapshot.data?.data?.isNotEmpty ??
+                                              false
+                                          ? GestureDetector(
+                                              onTap: () {
+                                                Get.to(
+                                                  () =>
+                                                      TravelPartnerDetailsScreen(
+                                                    id: ads?.advertisementId ??
+                                                        0,
+                                                  ),
+                                                );
+                                              },
+                                              child: TripAdsItem(
+                                                ad: ads,
+                                              ),
+                                            )
+                                          : Center(
+                                              child: AppText(
+                                                snapshot.data?.message ?? "",
+                                                color: Colors.black,
+                                              ),
+                                            );
                                     },
                                   )
                                 : ListView.separated(
@@ -163,18 +183,28 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                         const SizedBox(height: 8),
                                     itemBuilder: (context, index) {
                                       final ads = snapshot.data?.data?[index];
-                                      return GestureDetector(
-                                        onTap: () {
-                                          Get.to(
-                                            () => TravelPartnerDetailsScreen(
-                                              id: ads?.advertisementId ?? 0,
-                                            ),
-                                          );
-                                        },
-                                        child: TripAdsItem(
-                                          ad: ads,
-                                        ),
-                                      );
+                                      return snapshot.data?.data?.isNotEmpty ??
+                                              false
+                                          ? GestureDetector(
+                                              onTap: () {
+                                                Get.to(
+                                                  () =>
+                                                      TravelPartnerDetailsScreen(
+                                                    id: ads?.advertisementId ??
+                                                        0,
+                                                  ),
+                                                );
+                                              },
+                                              child: TripAdsItem(
+                                                ad: ads,
+                                              ),
+                                            )
+                                          : Center(
+                                              child: AppText(
+                                                snapshot.data?.message ?? "",
+                                                color: Colors.black,
+                                              ),
+                                            );
                                     },
                                   ),
                           ],

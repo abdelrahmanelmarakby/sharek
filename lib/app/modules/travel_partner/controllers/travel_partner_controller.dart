@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -13,6 +14,7 @@ class TravelPartnerController extends GetxController {
   int? travelPartner;
   clearData() {
     travelPartner = null;
+    viewDate = null;
     update();
   }
 
@@ -21,22 +23,9 @@ class TravelPartnerController extends GetxController {
     update();
   }
 
-  int travelPartneFilter = 6;
-  changeTravelPartnerFilterState(int val) {
-    travelPartneFilter = val;
-    update();
-  }
-
-  double currentImageStepper = 0;
-  changeImageStepper(double val) {
-    currentImageStepper = val;
-    update();
-  }
-
-  Duration initialTimer = const Duration();
-
-  onTimerDurationChanged(Duration changeTimer) {
-    initialTimer = changeTimer;
+  DateTime? viewDate;
+  onDateViewPickerChanged(val) {
+    viewDate = val;
     update();
   }
 
@@ -53,10 +42,24 @@ class TravelPartnerController extends GetxController {
   TextEditingController createTripAdPhoneCtr = TextEditingController();
   TextEditingController createTripAdsPriceCtr = TextEditingController();
   TextEditingController createTripAdsCarTypeCtr = TextEditingController();
+  DateTime? createAdsDate;
+  DateTime? createAdsTime;
 //========================================================================
   changeWithPackstatus(String? val) {
     withPackval = val!;
     createTripAdsIsWithPack = val == "نعم" ? true : false;
+    update();
+  }
+
+//========================================================================
+  onDateCreatePickerChanged(val) {
+    createAdsDate = val;
+    update();
+  }
+  //========================================================================
+
+  onTimeCreatePickerChanged(val) {
+    createAdsTime = val;
     update();
   }
 
@@ -83,8 +86,8 @@ class TravelPartnerController extends GetxController {
     required int numberPassengers,
     required String endingPlace,
     required String nationality,
-    required String date,
-    required String time,
+    required String? date,
+    required String? time,
     String? phone,
     List<File>? photos,
     required double price,
@@ -147,11 +150,12 @@ class TravelPartnerController extends GetxController {
   }) async {
     try {
       BotToast.showLoading();
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
       final res =
           await TripPartnerAPI.createTripComment(id: id, comment: comment);
       if (res?.status == true) {
-        createCommentCtr.clear();
         update();
+        createCommentCtr.clear();
         BotToast.closeAllLoading();
         BotToast.showText(text: res?.message ?? "");
       } else {
@@ -163,6 +167,56 @@ class TravelPartnerController extends GetxController {
       log(e.toString());
     }
   }
+
+  //================================Filter==================================
+  clearFilterData() {
+    travelPartneFilter = 6;
+    filterDate = null;
+    filterTime = null;
+    filterIsWithPack = true;
+    filterPassengersCtr.clear();
+    filterPriceCtr.clear();
+    filterCarTypeCtr.clear();
+    update();
+  }
+
+  int travelPartneFilter = 6;
+  DateTime? filterDate;
+  DateTime? filterTime;
+  final filterwithPackstatus = ["نعم", "لا"];
+  String filterwithPackval = "نعم";
+  bool filterIsWithPack = true;
+  TextEditingController filterPassengersCtr = TextEditingController();
+  TextEditingController filterPriceCtr = TextEditingController();
+  TextEditingController filterCarTypeCtr = TextEditingController();
+//========================================================================
+  changeWithPackFilterStatus(String? val) {
+    filterwithPackval = val!;
+    filterIsWithPack = val == "نعم" ? true : false;
+    update();
+  }
+
+//========================================================================
+  onDateFilterPickerChanged(val) {
+    filterDate = val;
+    update();
+  }
   //========================================================================
+
+  onTimeFilterPickerChanged(val) {
+    filterTime = val;
+    update();
+  }
+
+//========================================================================
+  changeTravelPartnerFilterState(int val) {
+    travelPartneFilter = val;
+    update();
+  }
+
+  //========================================================================
+  //========================================================================
+  //===============================Trip Details=============================
+  ScrollController scrollController = ScrollController();
   //========================================================================
 }

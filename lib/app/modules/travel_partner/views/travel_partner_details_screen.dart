@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:sharek/core/extensions/export.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
@@ -20,6 +19,7 @@ import '../../../data/remote_data_source/trip_ads.dart';
 import '../../home/views/home_view.dart';
 import '../controllers/travel_partner_controller.dart';
 import '../widgets/comment_item.dart';
+import '../widgets/trip_ads_photos_list_view.dart';
 
 class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
   const TravelPartnerDetailsScreen({
@@ -39,6 +39,7 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                 return Scaffold(
                   extendBodyBehindAppBar: true,
                   body: NestedScrollView(
+                    controller: controller.scrollController,
                     headerSliverBuilder: (context, innerBoxIsScrolled) {
                       return [
                         SliverAppBar(
@@ -145,54 +146,57 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                   duration: Duration(milliseconds: 300),
                                   opacity: 1.0,
                                 ),
-                                background: Stack(
-                                  alignment: Alignment.bottomCenter,
-                                  children: [
-                                    ListView.separated(
-                                      itemCount: ads?.photos?.length ?? 0,
-                                      scrollDirection: Axis.horizontal,
-                                      physics: const PageScrollPhysics(),
-                                      separatorBuilder: (context, index) =>
-                                          const SizedBox(width: 10),
-                                      itemBuilder: (context, index) {
-                                        final image = ads?.photos?[index];
-                                        return VisibilityDetector(
-                                          key: Key(index.toString()),
-                                          onVisibilityChanged: (info) {
-                                            controller.changeImageStepper(
-                                                index.toDouble());
-                                          },
-                                          child: AppCachedNetworkImage(
+                                background: GestureDetector(
+                                  onTap: () {
+                                    Get.to(
+                                      () => TripAdsPhotosListView(
+                                        photos: ads?.photos ?? [],
+                                      ),
+                                    );
+                                  },
+                                  child: Stack(
+                                    alignment: Alignment.bottomCenter,
+                                    children: [
+                                      ListView.separated(
+                                        itemCount: ads?.photos?.length ?? 0,
+                                        scrollDirection: Axis.horizontal,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        separatorBuilder: (context, index) =>
+                                            const SizedBox(width: 10),
+                                        itemBuilder: (context, index) {
+                                          final image = ads?.photos?[index];
+                                          return AppCachedNetworkImage(
                                             imageUrl: image ?? dummyImage,
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
                                             fit: BoxFit.cover,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    ads?.photos?.isNotEmpty ?? false
-                                        ? Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: DotsIndicator(
-                                              dotsCount:
-                                                  ads?.photos?.length ?? 0,
-                                              position: controller
-                                                  .currentImageStepper,
-                                              decorator: DotsDecorator(
-                                                activeSize: const Size(8, 8),
-                                                size: const Size(8, 8),
-                                                color: ColorsManager.white
-                                                    .withOpacity(
-                                                        .4), // Inactive color
-                                                activeColor:
-                                                    ColorsManager.white,
+                                          );
+                                        },
+                                      ),
+                                      ads?.photos?.isNotEmpty ?? false
+                                          ? Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: DotsIndicator(
+                                                dotsCount:
+                                                    ads?.photos?.length ?? 0,
+                                                position: 0,
+                                                decorator: DotsDecorator(
+                                                  activeSize: const Size(8, 8),
+                                                  size: const Size(8, 8),
+                                                  color: ColorsManager.white
+                                                      .withOpacity(
+                                                          .4), // Inactive color
+                                                  activeColor:
+                                                      ColorsManager.white,
+                                                ),
                                               ),
-                                            ),
-                                          )
-                                        : const SizedBox(),
-                                  ],
+                                            )
+                                          : const SizedBox(),
+                                    ],
+                                  ),
                                 ),
                               );
                             },
@@ -201,6 +205,7 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                       ];
                     },
                     body: SingleChildScrollView(
+                      physics: const NeverScrollableScrollPhysics(),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(

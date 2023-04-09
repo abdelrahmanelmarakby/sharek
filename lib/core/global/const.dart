@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import '../services/network_service.dart/dio_network_service.dart';
 
 const String dummyImage = "https://picsum.photos/800";
@@ -11,9 +13,22 @@ final NetworkService networkService = NetworkService(
     'Authorization': 'Bearer 1|92Kko8UWf4LO2KvpPlullUjZwY0oX8MMbui0tJFG',
   },
 );
+String appDateFormate(DateTime date, String locale) {
+  String pattern = 'yyyy-MM-dd';
+  var format = DateFormat(pattern, locale);
+  var dateString = format.format(date);
+  return dateString;
+}
+
+String appTimeFormate(DateTime time, String locale) {
+  String pattern = 'HH:mm';
+  var format = DateFormat(pattern, locale);
+  var timeString = format.format(time);
+  return timeString;
+}
 
 class APIKeys {
-  static const String baseUrl = "https://shreak.net/api/v1/";
+  static const String baseUrl = "https://api.shreak.net/api/v1/";
   static const String home = "home";
   static const String businessAds = "business-advertisements";
   static String verifyEmail = "/api/verify/email/code";

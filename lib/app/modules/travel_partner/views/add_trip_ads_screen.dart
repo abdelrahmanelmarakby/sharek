@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -10,6 +11,7 @@ import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/extensions/input_formatter.dart';
+import '../../../../core/global/const.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_dropdown.dart';
 import '../../../../core/widgets/custom_text_field.dart';
@@ -118,9 +120,23 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                     const SizedBox(height: 12),
                     CustomTextField(
                       name: "",
-                      hint: "تاريخ الرحلة",
-                      controller: controller.createTripAdsDateCtr,
+                      hint: controller.createAdsDate == null
+                          ? "تاريخ الرحلة"
+                          : appDateFormate(controller.createAdsDate!, "ar"),
                       borderRadius: 8,
+                      readOnly: true,
+                      onTap: () {
+                        Get.bottomSheet(
+                          CupertinoDatePicker(
+                            mode: CupertinoDatePickerMode.date,
+                            dateOrder: DatePickerDateOrder.ymd,
+                            initialDateTime: DateTime.now(),
+                            onDateTimeChanged:
+                                controller.onDateCreatePickerChanged,
+                          ),
+                          backgroundColor: Colors.white,
+                        );
+                      },
                       type: TextInputType.datetime,
                       formattedType: [
                         DateTextFormatter(),
@@ -133,14 +149,27 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                     const SizedBox(height: 12),
                     CustomTextField(
                       name: "",
-                      hint: "ساعة الرحلة",
+                      hint: controller.createAdsTime == null
+                          ? "ساعة الرحلة"
+                          : appTimeFormate(controller.createAdsTime!, "ar"),
                       borderRadius: 8,
-                      controller: controller.createTripAdsTimeCtr,
                       type:
                           const TextInputType.numberWithOptions(decimal: false),
                       formattedType: [
                         HourMinsFormatter(),
                       ],
+                      readOnly: true,
+                      onTap: () {
+                        Get.bottomSheet(
+                          CupertinoDatePicker(
+                            mode: CupertinoDatePickerMode.time,
+                            initialDateTime: DateTime.now(),
+                            onDateTimeChanged:
+                                controller.onTimeCreatePickerChanged,
+                          ),
+                          backgroundColor: Colors.white,
+                        );
+                      },
                       prefixIcon: const Icon(
                         Iconsax.clock,
                         color: Colors.black,
@@ -237,7 +266,9 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                       text: "إضافة إعلان جديد",
                       onPressed: (animationController) {
                         if (controller.createTripAdsFormKey.currentState!
-                            .validate()) {
+                                .validate() &&
+                            controller.createAdsDate != null &&
+                            controller.createAdsTime != null) {
                           controller.createTripAds(
                             animationController: animationController,
                             servicesTypeid: controller.addTravelPartner,
@@ -248,8 +279,14 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                             endingPlace: "xxxxx",
                             nationality: controller
                                 .createTripAdsNumberPassengersCtr.text,
-                            date: "2023-12-24",
-                            time: controller.createTripAdsTimeCtr.text,
+                            date: controller.createAdsDate == null
+                                ? null
+                                : appDateFormate(
+                                    controller.createAdsDate!, "en"),
+                            time: controller.createAdsTime == null
+                                ? null
+                                : appTimeFormate(
+                                    controller.createAdsTime!, "en"),
                             price: double.parse(
                               controller.createTripAdsPriceCtr.text,
                             ),
