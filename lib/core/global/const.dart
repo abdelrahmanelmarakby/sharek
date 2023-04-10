@@ -31,6 +31,10 @@ class APIKeys {
   static const String baseUrl = "https://api.shreak.net/api/v1/";
   static const String home = "home";
   static const String businessAds = "business-advertisements";
+
+  static const String businessAdsSearch = "search/business-advertisements";
+  static const String createBusinessAdComment =
+      "create/comment/business-advertisement/";
   static String verifyEmail = "/api/verify/email/code";
   static String forgetPassword = "/api/send/code/reset/password";
   static String receiveResetPasswordOtp = "/api/verify/password/code";
