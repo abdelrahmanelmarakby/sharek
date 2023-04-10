@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:sharek/app/data/models/trip_services_type_model.dart';
+import 'package:sharek/app/modules/business_partner/views/business_partner_filter_result.dart';
+import 'package:sharek/app/modules/travel_partner/widgets/trip_services_type_item.dart';
 import 'package:sharek/core/constants/theme/theme_export.dart';
 import 'package:sharek/core/widgets/custom_dropdown.dart';
 import 'package:sharek/core/widgets/progress_button.dart';
 
 import '../controllers/business_partner_controller.dart';
-import 'business_partner_view.dart';
 
 class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
   const BussinessPartnerFilterScreen({Key? key}) : super(key: key);
@@ -24,57 +25,114 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const FiltersList(),
-                    const SizedBox(height: 12),
-                    AppDropDown(
-                      title: "المنطقة",
-                      icon: const Icon(
-                        Iconsax.location,
-                        color: Colors.black,
-                      ),
-                      bottomSheet: Container(),
-                    ),
-                    const SizedBox(height: 12),
-                    AppDropDown(
+                child: GetBuilder<BusinessPartnerController>(
+                  builder: (controller) => Column(
+                    children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                            2,
+                            (index) => Expanded(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4),
+                                child: TripServicesItem(
+                                  activeIndex: controller.businessPartner ?? 0,
+                                  index: businessServicesTypes[index]
+                                          .serviceTypeId ??
+                                      0,
+                                  title:
+                                      businessServicesTypes[index].name ?? "",
+                                  onTap: () {
+                                    controller.changeBusinessPartnerState(
+                                      businessServicesTypes[index]
+                                              .serviceTypeId ??
+                                          0,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          )),
+                      const SizedBox(height: 8),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                            3,
+                            (index) => Expanded(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4),
+                                child: TripServicesItem(
+                                  activeIndex: controller.businessPartner ?? 0,
+                                  index: businessServicesTypes[index + 2]
+                                          .serviceTypeId ??
+                                      0,
+                                  title:
+                                      businessServicesTypes[index + 2].name ??
+                                          "",
+                                  onTap: () {
+                                    controller.changeBusinessPartnerState(
+                                      businessServicesTypes[index + 2]
+                                              .serviceTypeId ??
+                                          0,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          )),
+                      const SizedBox(height: 12),
+                      AppDropDown(
+                        title: "المنطقة",
                         icon: const Icon(
-                          Iconsax.location_tick,
+                          Iconsax.location,
                           color: Colors.black,
                         ),
-                        title: "المدينة",
-                        bottomSheet: Container()),
-                    const SizedBox(height: 12),
-                    AppDropDown(
-                        icon: SvgPicture.asset("assets/images/buildings.svg"),
-                        title: "الحي",
-                        bottomSheet: Container()),
-                    const SizedBox(height: 12),
-                    AppDropDown(
-                      icon: const RotatedBox(
-                        quarterTurns: 2,
-                        child: Icon(
-                          Iconsax.happyemoji,
-                          color: ColorsManager.black,
-                        ),
+                        bottomSheet: Container(),
                       ),
-                      title: "النوع",
-                      bottomSheet: Container(),
-                    ),
-                  ],
+                      const SizedBox(height: 12),
+                      AppDropDown(
+                          icon: const Icon(
+                            Iconsax.location_tick,
+                            color: Colors.black,
+                          ),
+                          title: "المدينة",
+                          bottomSheet: Container()),
+                      const SizedBox(height: 12),
+                      AppDropDown(
+                        icon: const RotatedBox(
+                          quarterTurns: 2,
+                          child: Icon(
+                            Iconsax.happyemoji,
+                            color: ColorsManager.black,
+                          ),
+                        ),
+                        title: "النوع",
+                        bottomSheet: Container(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
             AppProgressButton(
+              onPressed: (animationController) {
+                Get.to(
+                  () => BusinessAdsFilterResult(
+                    servicesTypeid: controller.businessPartner,
+                    city: controller.city.text == ""
+                        ? null
+                        : controller.city.text,
+                    location: controller.location.text == ""
+                        ? null
+                        : controller.location.text,
+                  ),
+                );
+              },
               width: context.width,
-              onPressed: (anim) {},
-              backgroundColor: ColorsManager.primary,
-              child: Text(
-                "تصفية",
-                style: StylesManager.medium(
-                    fontSize: FontSize.large, color: ColorsManager.white),
-              ),
-            )
+              text: "تصفية",
+            ),
           ],
         ),
       ),

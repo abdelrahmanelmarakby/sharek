@@ -35,7 +35,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 fontWeight: FontWeights.semiBold,
               ),
               const SizedBox(height: 12),
-              const FiltersList(),
+              //const FiltersList(),
               const SizedBox(height: 16),
               Container(
                 decoration: BoxDecoration(

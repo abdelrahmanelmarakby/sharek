@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:sharek/app/data/models/business_ad_model.dart';
 import 'package:sharek/app/data/models/business_ads_model.dart';
 import 'package:sharek/app/data/models/main_model.dart';
-import 'package:sharek/app/data/models/trip_ads_model.dart';
 import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/services/network_service.dart/dio_network_service.dart';
 
@@ -71,7 +70,7 @@ class BusinessPartnerAPI {
     return data;
   }
 
-  static Future<TripAdvertisementsModel?> filterTripAds(
+  static Future<BusinessPartnerModel?> filterBusinessAds(
       {int? servicesTypeid, String? location, String? city}) async {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
@@ -88,7 +87,7 @@ class BusinessPartnerAPI {
     );
 
     final response = await networkService.execute(
-        request, (json) => TripAdvertisementsModel.fromJson(json));
+        request, (json) => BusinessPartnerModel.fromJson(json));
     final data = response.maybeWhen(
       ok: (data) {
         return data;
@@ -98,7 +97,7 @@ class BusinessPartnerAPI {
     return data;
   }
 
-  static Future<MainModel?> createTripAds({
+  static Future<MainModel?> createBusinessAds({
     int? servicesTypeid,
     String? startingPlace,
     int? numberPassengers,

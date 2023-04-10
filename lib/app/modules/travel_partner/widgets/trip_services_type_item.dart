@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
@@ -23,7 +22,6 @@ class TripServicesItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: context.width / 2 - 24,
         padding: const EdgeInsets.symmetric(
           vertical: 12,
           horizontal: 20,

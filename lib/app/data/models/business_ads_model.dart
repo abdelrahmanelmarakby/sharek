@@ -1,7 +1,7 @@
 class BusinessPartnerModel {
   bool? status;
   String? message;
-  List<Data>? data;
+  List<BusinessAd>? data;
 
   BusinessPartnerModel({this.status, this.message, this.data});
 
@@ -9,9 +9,9 @@ class BusinessPartnerModel {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <BusinessAd>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(BusinessAd.fromJson(v));
       });
     }
   }
@@ -27,7 +27,7 @@ class BusinessPartnerModel {
   }
 }
 
-class Data {
+class BusinessAd {
   int? advertisementId;
   int? userId;
   int? serviceTypeId;
@@ -41,7 +41,7 @@ class Data {
   String? createdAt2;
   List<String>? photos;
 
-  Data(
+  BusinessAd(
       {this.advertisementId,
       this.userId,
       this.serviceTypeId,
@@ -55,7 +55,7 @@ class Data {
       this.createdAt2,
       this.photos});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  BusinessAd.fromJson(Map<String, dynamic> json) {
     advertisementId = json['advertisement_id'];
     userId = json['user_id'];
     serviceTypeId = json['service_type_id'];

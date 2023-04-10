@@ -1,183 +1,250 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-
-import 'package:sharek/app/data/models/ads_model.dart';
+import 'package:sharek/app/data/models/business_ads_model.dart';
 import 'package:sharek/app/data/models/home_model.dart';
+import 'package:sharek/app/data/models/trip_services_type_model.dart';
+import 'package:sharek/app/data/remote_data_source/business_ads.dart';
+import 'package:sharek/app/modules/business_partner/bindings/business_partner_binding.dart';
+import 'package:sharek/app/modules/business_partner/views/business_partner_details_screen.dart';
+import 'package:sharek/app/modules/business_partner/views/bussiness_partner_filter_screen.dart';
 import 'package:sharek/app/modules/home/views/home_view.dart';
+import 'package:sharek/app/modules/travel_partner/widgets/trip_services_type_item.dart';
+import 'package:sharek/core/constants/theme/app_icons.dart';
+
 import 'package:sharek/core/constants/theme/colors_manager.dart';
 import 'package:sharek/core/constants/theme/font_manager.dart';
-import 'package:sharek/core/constants/theme/sizes_manager.dart';
 import 'package:sharek/core/constants/theme/styles_manager.dart';
-import 'package:sharek/core/extensions/num.dart';
-import 'package:sharek/core/extensions/widget.dart';
+import 'package:sharek/core/widgets/app_text.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
 
 import '../controllers/business_partner_controller.dart';
-import 'business_partner_details_screen.dart';
-import 'bussiness_partner_filter_screen.dart';
 
 class BusinessPartnerView extends GetView<BusinessPartnerController> {
   const BusinessPartnerView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('شريك أعمال'),
-        centerTitle: true,
-      ),
-      body: FutureBuilder<AdsModel?>(
-        future: controller.getBusinessAds,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final AdsModel? model = snapshot.data;
-            return SingleChildScrollView(
-                child: Column(
-              children: [
-                CustomTextField(
-                  name: "BusinessSearch",
-                  hint: "ابحث هنا",
-                  prefixIcon: const Icon(Iconsax.search_normal),
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      Get.to(() => const BussinessPartnerFilterScreen());
-                    },
-                    child: const Icon(
-                      Iconsax.filter,
-                    ),
-                  ),
-                ),
-                Sizes.size12.h(context).heightSizedBox,
-                const FiltersList(),
-                Sizes.size20.h(context).heightSizedBox,
-                SizedBox(
-                  width: context.width,
+    return GetBuilder<BusinessPartnerController>(builder: (controller) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('شريك رحلتي'),
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(
+              Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
+            ),
+            onPressed: () {
+              Get.back();
+              controller.clearData();
+            },
+          ),
+        ),
+        body: FutureBuilder<BusinessPartnerModel?>(
+          future: BusinessPartnerAPI.filterBusinessAds(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "الاعلانات الجديدة",
-                        style: StylesManager.bold(fontSize: FontSize.xlarge),
+                      CustomTextField(
+                        name: "BusinessSearch",
+                        hint: "ابحث هنا",
+                        prefixIcon: const Icon(SharekIcons.search_1),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            Get.to(
+                              () => const BussinessPartnerFilterScreen(),
+                              binding: BusinessPartnerBinding(),
+                            );
+                          },
+                          child: const Icon(
+                            SharekIcons.filter_3,
+                          ),
+                        ),
                       ),
+                      const SizedBox(height: 12),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                            2,
+                            (index) => Expanded(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4),
+                                child: TripServicesItem(
+                                  activeIndex: controller.businessPartner ?? 0,
+                                  index: businessServicesTypes[index]
+                                          .serviceTypeId ??
+                                      0,
+                                  title:
+                                      businessServicesTypes[index].name ?? "",
+                                  onTap: () {
+                                    controller.changeBusinessPartnerState(
+                                      businessServicesTypes[index]
+                                              .serviceTypeId ??
+                                          0,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          )),
+                      const SizedBox(height: 8),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                            3,
+                            (index) => Expanded(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4),
+                                child: TripServicesItem(
+                                  activeIndex: controller.businessPartner ?? 0,
+                                  index: businessServicesTypes[index + 2]
+                                          .serviceTypeId ??
+                                      0,
+                                  title:
+                                      businessServicesTypes[index + 2].name ??
+                                          "",
+                                  onTap: () {
+                                    controller.changeBusinessPartnerState(
+                                      businessServicesTypes[index + 2]
+                                              .serviceTypeId ??
+                                          0,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          )),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        width: context.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "الاعلانات الجديدة",
+                              style:
+                                  StylesManager.bold(fontSize: FontSize.xlarge),
+                            ),
+                            const SizedBox(height: 8),
+                            controller.businessPartner == 0
+                                ? ListView.separated(
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: snapshot.data?.data?.length ?? 0,
+                                    separatorBuilder: (context, index) =>
+                                        const SizedBox(height: 8),
+                                    itemBuilder: (context, index) {
+                                      final ads = snapshot.data?.data?[index];
+                                      return snapshot.data?.data?.isNotEmpty ??
+                                              false
+                                          ? GestureDetector(
+                                              onTap: () {
+                                                Get.to(
+                                                  () =>
+                                                      BusinessPartnerDetailsScreen(
+                                                    adId:
+                                                        ads?.advertisementId ??
+                                                            0,
+                                                  ),
+                                                );
+                                              },
+                                              child: AdCard(
+                                                ad: NewAdvertisements(
+                                                  advertisementId:
+                                                      ads?.advertisementId,
+                                                  createdAt1: ads?.createdAt1,
+                                                  createdAt2: ads?.createdAt2,
+                                                  userName: ads?.userName,
+                                                  location: ads?.location,
+                                                  neighborhood:
+                                                      ads?.neighborhood,
+                                                  photos: ads?.photos,
+                                                ),
+                                              ),
+                                            )
+                                          : Center(
+                                              child: AppText(
+                                                snapshot.data?.message ?? "",
+                                                color: Colors.black,
+                                              ),
+                                            );
+                                    },
+                                  )
+                                : ListView.separated(
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: snapshot.data?.data?.length ?? 0,
+                                    separatorBuilder: (context, index) =>
+                                        const SizedBox(height: 8),
+                                    itemBuilder: (context, index) {
+                                      final BusinessAd? ads =
+                                          snapshot.data?.data?[index];
+                                      return snapshot.data?.data?.isNotEmpty ??
+                                              false
+                                          ? GestureDetector(
+                                              onTap: () {
+                                                Get.to(
+                                                  () =>
+                                                      BusinessPartnerDetailsScreen(
+                                                    adId:
+                                                        ads?.advertisementId ??
+                                                            0,
+                                                  ),
+                                                );
+                                              },
+                                              child: AdCard(
+                                                ad: NewAdvertisements(
+                                                  advertisementId:
+                                                      ads?.advertisementId,
+                                                  createdAt1: ads?.createdAt1,
+                                                  createdAt2: ads?.createdAt2,
+                                                  userName: ads?.userName,
+                                                  location: ads?.location,
+                                                  neighborhood:
+                                                      ads?.neighborhood,
+                                                  photos: ads?.photos,
+                                                ),
+                                              ),
+                                            )
+                                          : Center(
+                                              child: AppText(
+                                                snapshot.data?.message ?? "",
+                                                color: Colors.black,
+                                              ),
+                                            );
+                                    },
+                                  ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
-                Sizes.size8.h(context).heightSizedBox,
-                Column(
-                  children: List.generate(model!.data?.length ?? 0, (index) {
-                    final Ad? ad = model.data?[index];
-                    return GestureDetector(
-                      onTap: () {
-                        Get.to(
-                          () => BusinessPartnerDetailsScreen(
-                            ad: ad,
-                          ),
-                        );
-                      },
-                      child: AdCard(
-                        ad: NewAdvertisements(
-                          title: ad?.title,
-                          photos: ad?.photos,
-                          advertisementId: ad?.advertisementId,
-                          createdAt1: ad?.createdAt1,
-                          createdAt2: ad?.createdAt2,
-                          location: ad?.location,
-                          neighborhood: ad?.neighborhood,
-                          userName: ad?.userName,
-                        ),
-                      ),
-                    );
-                  }),
-                )
-              ],
-            )).horizontalScreenPadding;
-          } else {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(
-                valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
-              ),
-            );
-          }
-        },
-      ),
-    );
-  }
-}
-
-class FiltersList extends StatelessWidget {
-  const FiltersList({
-    Key? key,
-  }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: context.width,
-      child: Wrap(
-        alignment: WrapAlignment.start,
-        runSpacing: 8,
-        spacing: 8,
-        children: [
-          "بحث عن شريك",
-          "إعلانات البائعين",
-          "محاماة",
-          "فرنشايز",
-          " خدمات اخرى",
-        ]
-            .asMap()
-            .entries
-            .map(
-              (e) => GestureDetector(
-                child: AppFilterChip(
-                  title: e.value,
-                  selected: e.key == 0 ? true : false,
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text(snapshot.error.toString()),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator.adaptive(
+                  valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
                 ),
-              ),
-            )
-            .toList(),
-      ),
-    );
-  }
-}
-
-class AppFilterChip extends StatelessWidget {
-  const AppFilterChip({
-    super.key,
-    required this.title,
-    this.selected = false,
-    this.onSelected,
-  });
-  final String title;
-
-  final bool selected;
-
-  final void Function(bool)? onSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return FilterChip(
-      selectedColor: ColorsManager.primary,
-      showCheckmark: false,
-      selected: selected,
-      side: const BorderSide(width: 1, color: Color(0xffE4E4E6)),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          8,
+              );
+            }
+          },
         ),
-      ),
-      backgroundColor: const Color(0xffF7F7F7),
-      padding: EdgeInsets.symmetric(
-          vertical: 12.w(context), horizontal: 16.w(context)),
-      label: Text(
-        title,
-        style: StylesManager.regular(
-          color: selected ? Colors.white : Colors.black,
-          fontSize: FontSize.medium,
-        ),
-      ),
-      onSelected: (bool selected) {
-        onSelected != null ? onSelected!(selected) : null;
-      },
-    );
+      );
+    });
   }
 }

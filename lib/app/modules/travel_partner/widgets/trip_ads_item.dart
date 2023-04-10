@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-import 'package:sharek/app/data/models/trip_ads_model.dart';
-
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
@@ -15,7 +13,7 @@ class TripAdsItem extends StatelessWidget {
     Key? key,
     required this.ad,
   }) : super(key: key);
-  final Data? ad;
+  final dynamic? ad;
   @override
   Widget build(BuildContext context) {
     return Container(
