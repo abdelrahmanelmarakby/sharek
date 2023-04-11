@@ -24,7 +24,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.BOTTOM_NAV_BAR;
+  static const INITIAL = Routes.AUTH;
 
   static final routes = [
     GetPage(

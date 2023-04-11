@@ -2,7 +2,10 @@ class MainModel {
   bool? status;
   String? message;
 
-  MainModel({this.status, this.message});
+  MainModel({
+    this.status,
+    this.message,
+  });
 
   MainModel.fromJson(Map<String, dynamic> json) {
     if (json["status"] is bool) {
@@ -17,7 +20,6 @@ class MainModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["status"] = status;
     data["message"] = message;
-
     return data;
   }
 }

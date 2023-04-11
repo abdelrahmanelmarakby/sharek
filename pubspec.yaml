@@ -15,6 +15,7 @@ dependencies:
   dots_indicator: ^2.1.0
   dotted_border: null
   firebase_core: ^2.8.0
+  firebase_messaging: ^14.4.0
   flutter:
     sdk: flutter
   flutter_form_builder: ^7.8.0
@@ -38,8 +39,10 @@ dependencies:
   round_spot: ^0.5.0
   sentry_flutter: ^7.2.0
   sentry_logging: ^7.2.0
+  shared_preferences: ^2.1.0
   shimmer: ^2.0.0
   supercharged: ^2.1.1
+  timeago: any
   visibility_detector: ^0.4.0+2
 
 dev_dependencies:

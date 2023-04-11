@@ -1,6 +1,8 @@
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../services/network_service.dart/dio_network_service.dart';
+import '../services/shared_prefs.dart';
 
 const String dummyImage = "https://picsum.photos/800";
 const String emptyImage =
@@ -10,9 +12,12 @@ final NetworkService networkService = NetworkService(
   httpHeaders: {
     'Accept': 'application/json',
     'api_password': "drV1DHcwSgFE8ebzBUR523Ym9fo9TGrKFKtPX9xSAEHJ90B7DK",
-    'Authorization': 'Bearer 1|92Kko8UWf4LO2KvpPlullUjZwY0oX8MMbui0tJFG',
+    'Authorization':
+        'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
   },
 );
+late SharedPreferences globalPrefs;
+
 String appDateFormate(DateTime date, String locale) {
   String pattern = 'yyyy-MM-dd';
   var format = DateFormat(pattern, locale);
@@ -89,5 +94,10 @@ class APIKeys {
   static const String tripAdsSearch = "search/$tripAds";
   //============================Comment==============================
   static const String createComment = "create/comment/";
+  //============================Auth=================================
+  static const String register = "register";
+  static const String login = "login";
+  static const String otpLogin = "verify/login/code";
+  static const String otpRegister = "verify/register/code";
   //=================================================================
 }
