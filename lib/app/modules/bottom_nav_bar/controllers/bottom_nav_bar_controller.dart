@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sharek/app/modules/home/views/home_view.dart';
 
+import '../../profile/views/profile_view.dart';
+
 class BottomNavBarController extends GetxController {
   Widget _currentScreen = const HomeView();
 
@@ -37,7 +39,7 @@ class BottomNavBarController extends GetxController {
         }
       case 4:
         {
-          _currentScreen = const HomeView();
+          _currentScreen = const ProfileView();
           break;
         }
     }
