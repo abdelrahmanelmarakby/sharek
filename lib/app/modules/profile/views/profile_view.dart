@@ -3,18 +3,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:sharek/app/routes/app_pages.dart';
+import 'package:sharek/app/modules/profile/bindings/profile_binding.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
 import 'package:sharek/core/constants/theme/font_manager.dart';
 import 'package:sharek/core/extensions/export.dart';
 import 'package:sharek/core/widgets/app_text.dart';
 
 import '../../../../core/constants/theme/sizes_manager.dart';
-import '../../../../core/global/const.dart';
-import '../../../../core/services/shared_prefs.dart';
 import '../controllers/profile_controller.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_list_tile.dart';
+import 'account_erification_request_screen.dart';
+import 'edit_user_info_screen.dart';
+import 'favorites_screen.dart';
+import 'my_ads_screen.dart';
+import 'notification_settings_screen.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({Key? key}) : super(key: key);
@@ -46,25 +49,55 @@ class ProfileView extends GetView<ProfileController> {
                       color: ColorsManager.primary,
                     ),
                     Sizes.size8.h(context).heightSizedBox,
-                    const ProfileListTile(
+                    ProfileListTile(
                       title: "معلومات شخصية",
+                      onTap: () {
+                        Get.to(
+                          () => const EditUserInfoScreen(),
+                          binding: ProfileBinding(),
+                        );
+                      },
                     ),
                     Sizes.size4.h(context).heightSizedBox,
-                    const ProfileListTile(
+                    ProfileListTile(
                       title: "إعلاناتي",
+                      onTap: () {
+                        Get.to(
+                          () => const MyAdsScreen(),
+                          binding: ProfileBinding(),
+                        );
+                      },
                     ),
                     Sizes.size4.h(context).heightSizedBox,
-                    const ProfileListTile(
+                    ProfileListTile(
                       title: "المفضلة",
+                      onTap: () {
+                        Get.to(
+                          () => const FavoritesScreen(),
+                          binding: ProfileBinding(),
+                        );
+                      },
                     ),
                     Sizes.size4.h(context).heightSizedBox,
-                    const ProfileListTile(
+                    ProfileListTile(
                       title: "إعدادت التنبيهات",
+                      onTap: () {
+                        Get.to(
+                          () => const NotificationSettingsScreen(),
+                          binding: ProfileBinding(),
+                        );
+                      },
                     ),
                     Sizes.size4.h(context).heightSizedBox,
-                    const ProfileListTile(
+                    ProfileListTile(
                       title: "طلب توثيق الحساب",
                       isLast: true,
+                      onTap: () {
+                        Get.to(
+                          () => const AccountVerificationRequestScreen(),
+                          binding: ProfileBinding(),
+                        );
+                      },
                     ),
                     Sizes.size24.h(context).heightSizedBox,
                     AppText(
@@ -87,8 +120,7 @@ class ProfileView extends GetView<ProfileController> {
                     Sizes.size24.h(context).heightSizedBox,
                     GestureDetector(
                       onTap: () {
-                        SharedPrefService(prefs: globalPrefs).removeToken();
-                        Get.offAllNamed(Routes.AUTH);
+                        controller.logOut();
                       },
                       child: AppText(
                         "تسجيل الخروج",
