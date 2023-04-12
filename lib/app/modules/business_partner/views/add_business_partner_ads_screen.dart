@@ -11,7 +11,6 @@ import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
 import '../controllers/business_partner_controller.dart';
-import 'business_partner_view.dart';
 
 class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
   const AddBusinessPartnerAdsScreen({Key? key}) : super(key: key);

@@ -13,6 +13,7 @@ abstract class Routes {
   static const SAKE_PARTNER = _Paths.SAKE_PARTNER;
   static const HOUSE_PARTNER = _Paths.HOUSE_PARTNER;
   static const OTHER_SERVICE_PARTNER = _Paths.OTHER_SERVICE_PARTNER;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const SAKE_PARTNER = '/sake-partner';
   static const HOUSE_PARTNER = '/house-partner';
   static const OTHER_SERVICE_PARTNER = '/other-service-partner';
+  static const PROFILE = '/profile';
 }

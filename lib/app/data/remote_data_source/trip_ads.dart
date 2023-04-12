@@ -3,16 +3,23 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/services/network_service.dart/dio_network_service.dart';
+import '../../../core/services/shared_prefs.dart';
 import '../models/main_model.dart';
 import '../models/trip_ads_item_model.dart';
 import '../models/trip_ads_model.dart';
 
 class TripPartnerAPI {
   static Future<TripAdvertisementsModel?> getTripAds() async {
-    const request = NetworkRequest(
+    final request = NetworkRequest(
       type: NetworkRequestType.GET,
       path: APIKeys.tripAds,
-      data: NetworkRequestBody.empty(),
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
+      data: const NetworkRequestBody.empty(),
     );
     final response = await networkService.execute(
         request, (json) => TripAdvertisementsModel.fromJson(json));
@@ -29,6 +36,12 @@ class TripPartnerAPI {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
       path: "${APIKeys.tripAds}/$id",
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
       data: const NetworkRequestBody.empty(),
     );
     final response = await networkService.execute(
@@ -48,6 +61,12 @@ class TripPartnerAPI {
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
       path: "${APIKeys.createTripComment}/$id",
       data: NetworkRequestBody.fromData(
         FormData.fromMap(
@@ -85,6 +104,12 @@ class TripPartnerAPI {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
       path: APIKeys.tripAdsSearch,
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
       data: NetworkRequestBody.fromData(
         FormData.fromMap(
           {
@@ -130,6 +155,12 @@ class TripPartnerAPI {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
       path: APIKeys.tripAds,
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
       data: NetworkRequestBody.fromData(
         FormData.fromMap(
           photos != null

@@ -1,7 +1,9 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: non_constant_identifier_names
 
 import 'package:get/get.dart';
 
+import '../../core/global/const.dart';
+import '../../core/services/shared_prefs.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/bottom_nav_bar/bindings/bottom_nav_bar_binding.dart';
@@ -14,17 +16,24 @@ import '../modules/house_partner/bindings/house_partner_binding.dart';
 import '../modules/house_partner/views/house_partner_view.dart';
 import '../modules/other_service_partner/bindings/other_service_partner_binding.dart';
 import '../modules/other_service_partner/views/other_service_partner_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/sake_partner/bindings/sake_partner_binding.dart';
 import '../modules/sake_partner/views/sake_partner_view.dart';
 import '../modules/travel_partner/bindings/travel_partner_binding.dart';
 import '../modules/travel_partner/views/travel_partner_view.dart';
+
+// ignore_for_file: constant_identifier_names
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.BOTTOM_NAV_BAR;
+  static final INITIAL =
+      SharedPrefService(prefs: globalPrefs).getToken() == null
+          ? Routes.AUTH
+          : Routes.BOTTOM_NAV_BAR;
 
   static final routes = [
     GetPage(
@@ -66,6 +75,11 @@ class AppPages {
       name: _Paths.OTHER_SERVICE_PARTNER,
       page: () => const OtherServicePartnerView(),
       binding: OtherServicePartnerBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }

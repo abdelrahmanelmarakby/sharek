@@ -7,12 +7,20 @@ import 'package:sharek/app/data/models/main_model.dart';
 import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/services/network_service.dart/dio_network_service.dart';
 
+import '../../../core/services/shared_prefs.dart';
+
 class BusinessPartnerAPI {
   static Future<BusinessPartnerModel?> getBusinessAds() async {
-    const request = NetworkRequest(
+    final request = NetworkRequest(
       type: NetworkRequestType.GET,
       path: APIKeys.businessAds,
-      data: NetworkRequestBody.empty(),
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
+      data: const NetworkRequestBody.empty(),
     );
     final response = await networkService.execute(
         request, (json) => BusinessPartnerModel.fromJson(json));
@@ -29,6 +37,12 @@ class BusinessPartnerAPI {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
       path: "${APIKeys.businessAds}/$id",
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
       data: const NetworkRequestBody.empty(),
     );
     final response = await networkService.execute(
@@ -48,6 +62,12 @@ class BusinessPartnerAPI {
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
       path: "${APIKeys.createBusinessAdComment}/$id",
       data: NetworkRequestBody.fromData(
         FormData.fromMap(
@@ -75,6 +95,12 @@ class BusinessPartnerAPI {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
       path: APIKeys.businessAdsSearch,
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
       data: NetworkRequestBody.fromData(
         FormData.fromMap(
           {
@@ -114,6 +140,12 @@ class BusinessPartnerAPI {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
       path: APIKeys.businessAds,
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
       data: NetworkRequestBody.fromData(
         FormData.fromMap(
           photos != null

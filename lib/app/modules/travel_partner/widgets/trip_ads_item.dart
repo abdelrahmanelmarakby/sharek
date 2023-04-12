@@ -13,7 +13,7 @@ class TripAdsItem extends StatelessWidget {
     Key? key,
     required this.ad,
   }) : super(key: key);
-  final dynamic? ad;
+  final dynamic ad;
   @override
   Widget build(BuildContext context) {
     return Container(
