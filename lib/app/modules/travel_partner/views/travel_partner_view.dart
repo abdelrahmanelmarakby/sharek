@@ -78,15 +78,21 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: tripServicesTypes
                             .map(
-                              (e) => TripServicesItem(
-                                activeIndex: controller.travelPartner ?? 0,
-                                index: e.serviceTypeId ?? 0,
-                                title: e.name ?? "",
-                                onTap: () {
-                                  controller.changeTravelPartnerState(
-                                    e.serviceTypeId ?? 0,
-                                  );
-                                },
+                              (e) => Expanded(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  child: TripServicesItem(
+                                    activeIndex: controller.travelPartner ?? 0,
+                                    index: e.serviceTypeId ?? 0,
+                                    title: e.name ?? "",
+                                    onTap: () {
+                                      controller.changeTravelPartnerState(
+                                        e.serviceTypeId ?? 0,
+                                      );
+                                    },
+                                  ),
+                                ),
                               ),
                             )
                             .toList(),

@@ -52,6 +52,7 @@ class BusinessAdsFilterResult extends GetView<BusinessPartnerController> {
                           },
                           child: AdCard(
                             ad: NewAdvertisements(
+                              title: ads?.title,
                               advertisementId: ads?.advertisementId,
                               createdAt1: ads?.createdAt1,
                               createdAt2: ads?.createdAt2,

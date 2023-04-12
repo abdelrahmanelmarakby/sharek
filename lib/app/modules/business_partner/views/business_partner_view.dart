@@ -42,7 +42,9 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
           ),
         ),
         body: FutureBuilder<BusinessPartnerModel?>(
-          future: BusinessPartnerAPI.filterBusinessAds(),
+          future: BusinessPartnerAPI.filterBusinessAds(
+            servicesTypeid: controller.businessPartner,
+          ),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return SingleChildScrollView(
@@ -159,6 +161,7 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                                               },
                                               child: AdCard(
                                                 ad: NewAdvertisements(
+                                                  title: ads?.title,
                                                   advertisementId:
                                                       ads?.advertisementId,
                                                   createdAt1: ads?.createdAt1,
@@ -204,6 +207,7 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                                               },
                                               child: AdCard(
                                                 ad: NewAdvertisements(
+                                                  title: ads?.title,
                                                   advertisementId:
                                                       ads?.advertisementId,
                                                   createdAt1: ads?.createdAt1,

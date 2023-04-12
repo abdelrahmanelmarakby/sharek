@@ -17,7 +17,7 @@ class TripAdsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.height / 7,
+      height: context.height / 6,
       width: context.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
