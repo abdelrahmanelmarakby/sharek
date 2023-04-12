@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide FormData, MultipartFile;
 
 import '../../../core/global/const.dart';
 import '../../../core/services/network_service.dart/dio_network_service.dart';
 import '../../../core/services/shared_prefs.dart';
+import '../../routes/app_pages.dart';
 import '../models/main_model.dart';
 
 class ProfileApis {
@@ -14,7 +16,7 @@ class ProfileApis {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
       path: APIKeys.updateAvatar,
-       headers: {
+      headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,
         'Authorization':
@@ -49,7 +51,7 @@ class ProfileApis {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
       path: APIKeys.updateProfile,
-       headers: {
+      headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,
         'Authorization':
@@ -91,6 +93,11 @@ class ProfileApis {
         request, (json) => MainModel.fromJson(json));
     final data = response.maybeWhen(
       ok: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
         return data;
       },
       orElse: () {},

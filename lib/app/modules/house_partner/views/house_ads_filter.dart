@@ -1,0 +1,140 @@
+// ignore_for_file: unused_local_variable
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:sharek/core/extensions/validator.dart';
+
+import '../../../../core/widgets/custom_dropdown.dart';
+import '../../../../core/widgets/custom_text_field.dart';
+import '../../../../core/widgets/progress_button.dart';
+import '../../../data/models/trip_services_type_model.dart';
+import '../../travel_partner/widgets/services_type_item.dart';
+import '../controllers/house_partner_controller.dart';
+
+class HouseAdsFiterScreen extends GetView<HousePartnerController> {
+  const HouseAdsFiterScreen({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<HousePartnerController>(
+      builder: (controller) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('تصفية'),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Form(
+                    key: controller.createHouseAdsFormKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: houseServicesTypes
+                              .map(
+                                (e) => Container(
+                                  padding: EdgeInsets.only(
+                                    left: controller.addHousePartner == 10
+                                        ? 6
+                                        : 0,
+                                    right: controller.addHousePartner == 11
+                                        ? 6
+                                        : 0,
+                                  ),
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.2,
+                                  child: ServicesItem(
+                                    activeIndex: controller.addHousePartner,
+                                    index: e.serviceTypeId ?? 0,
+                                    title: e.name ?? "",
+                                    onTap: () {
+                                      controller.changeAddHousePartnerState(
+                                        e.serviceTypeId ?? 0,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                        const SizedBox(height: 16),
+                        AppDropDown(
+                          icon: const Icon(
+                            Iconsax.location,
+                            size: 20,
+                            color: Colors.black,
+                          ),
+                          title: "المنطقة",
+                          bottomSheet: Container(),
+                        ),
+                        const SizedBox(height: 12),
+                        AppDropDown(
+                          icon: const Icon(
+                            Iconsax.location_tick,
+                            size: 20,
+                            color: Colors.black,
+                          ),
+                          title: "الحي",
+                          bottomSheet: Container(),
+                        ),
+                        const SizedBox(height: 12),
+                        controller.addHousePartner == 10
+                            ? CustomTextField(
+                                name: "",
+                                hint: "عدد الشركاء (إختياري)",
+                                borderRadius: 8,
+                                type: TextInputType.text,
+                                validate: Validator.validateEmpty,
+                                controller:
+                                    controller.createHouseAdnumberPartnersCtr,
+                                prefixIcon: const Icon(
+                                  Iconsax.people,
+                                  color: Colors.black,
+                                ),
+                              )
+                            : const SizedBox(),
+                        controller.addHousePartner == 10
+                            ? const SizedBox(height: 12)
+                            : const SizedBox(),
+                        controller.addHousePartner == 10
+                            ? CustomTextField(
+                                name: "",
+                                hint: "الجنسية (إختياري)",
+                                borderRadius: 8,
+                                type: TextInputType.text,
+                                validate: Validator.validateEmpty,
+                                controller:
+                                    controller.createHouseAdnumberPartnersCtr,
+                                prefixIcon: const Icon(
+                                  Iconsax.global,
+                                  color: Colors.black,
+                                ),
+                              )
+                            : const SizedBox(),
+                        controller.addHousePartner == 10
+                            ? const SizedBox(height: 12)
+                            : const SizedBox(),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 35),
+                  child: AppProgressButton(
+                    width: context.width,
+                    text: "تصفية",
+                    onPressed: (animationController) {},
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

@@ -14,25 +14,25 @@ import '../../../../core/global/const.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/network_image.dart';
-import '../../../data/models/trip_ads_item_model.dart';
-import '../../../data/remote_data_source/trip_ads.dart';
+import '../../../data/models/house_partner_item_model.dart';
+import '../../../data/remote_data_source/house_ads_apis.dart';
 import '../../home/views/home_view.dart';
-import '../controllers/travel_partner_controller.dart';
-import '../widgets/comment_item.dart';
-import '../widgets/trip_ads_photos_list_view.dart';
+import '../../travel_partner/widgets/comment_item.dart';
+import '../../travel_partner/widgets/trip_ads_photos_list_view.dart';
+import '../controllers/house_partner_controller.dart';
 
-class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
-  const TravelPartnerDetailsScreen({
+class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
+  const HousePartnerDetailsScreen({
     required this.id,
     Key? key,
   }) : super(key: key);
   final int id;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TravelPartnerController>(
+    return GetBuilder<HousePartnerController>(
       builder: (controller) {
-        return FutureBuilder<TripAdsItemModel?>(
-            future: TripPartnerAPI.getTripAdsById(id),
+        return FutureBuilder<HousePartnerItemModel?>(
+            future: HousePartnerAPI.getHouseAdsById(id),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final ads = snapshot.data?.data;
@@ -226,11 +226,11 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                 ),
                                 AdRowItem(
                                   icon: Iconsax.location,
-                                  text: ads?.startingPlace ?? "",
+                                  text: ads?.location ?? "",
                                 ),
                                 AdRowItem(
-                                  icon: Iconsax.location_tick,
-                                  text: ads?.endingPlace ?? "",
+                                  icon: Iconsax.global,
+                                  text: ads?.nationality.toString() ?? "",
                                 ),
                               ],
                             ),
@@ -243,13 +243,10 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                   text: ads?.userName ?? "",
                                 ),
                                 AdRowItem(
-                                  icon: Iconsax.car,
-                                  text: ads?.carType ?? "راكب",
+                                  icon: Iconsax.routing,
+                                  text: ads?.neighborhood ?? "",
                                 ),
-                                AdRowItem(
-                                  icon: Iconsax.calendar,
-                                  text: ads?.date ?? "",
-                                )
+                                const Spacer(),
                               ],
                             ),
                             const SizedBox(height: 16),
@@ -264,109 +261,12 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                               fontWeight: FontWeights.semiBold,
                             ),
                             const SizedBox(height: 12),
-                            Row(
-                              children: [
-                                const Expanded(
-                                  child: AppText(
-                                    "هل يقبل طرود:",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: AppText(
-                                    ads?.withPackages == true ? "نعم" : "لا",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                const Expanded(
-                                  child: AppText(
-                                    "سعر الرحلة:",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: AppText(
-                                    "${ads?.price.toString()} ريال",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                const Expanded(
-                                  child: AppText(
-                                    "عدد الركاب:",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: AppText(
-                                    "${ads?.numberPassengers.toString()} ركاب",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                const Expanded(
-                                  child: AppText(
-                                    "تاريخ الرحلة:",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: AppText(
-                                    ads?.date ?? "",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                const Expanded(
-                                  child: AppText(
-                                    "وقت الرحلة:",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: AppText(
-                                    ads?.time ?? "",
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
+                            AppText(
+                              ads?.description ?? "",
+                              maxLines: 10,
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeights.semiBold,
                             ),
                             const SizedBox(height: 16),
                             Divider(

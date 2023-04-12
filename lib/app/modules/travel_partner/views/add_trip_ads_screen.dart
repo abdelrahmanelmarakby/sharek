@@ -20,7 +20,7 @@ import '../../../../core/widgets/src/radio_button_builder.dart';
 import '../../../../core/widgets/src/radio_group.dart';
 import '../../../data/models/trip_services_type_model.dart';
 import '../controllers/travel_partner_controller.dart';
-import '../widgets/trip_services_type_item.dart';
+import '../widgets/services_type_item.dart';
 
 class AddTripAdsScreen extends GetView<TravelPartnerController> {
   const AddTripAdsScreen({Key? key}) : super(key: key);
@@ -52,15 +52,22 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: tripServicesTypes
                           .map(
-                            (e) => TripServicesItem(
-                              activeIndex: controller.addTravelPartner,
-                              index: e.serviceTypeId ?? 0,
-                              title: e.name ?? "",
-                              onTap: () {
-                                controller.changeAddTravelPartnerState(
-                                  e.serviceTypeId ?? 0,
-                                );
-                              },
+                            (e) => Container(
+                              padding: EdgeInsets.only(
+                                left: controller.addTravelPartner == 6 ? 6 : 0,
+                                right: controller.addTravelPartner == 7 ? 6 : 0,
+                              ),
+                              width: MediaQuery.of(context).size.width / 2.2,
+                              child: ServicesItem(
+                                activeIndex: controller.addTravelPartner,
+                                index: e.serviceTypeId ?? 0,
+                                title: e.name ?? "",
+                                onTap: () {
+                                  controller.changeAddTravelPartnerState(
+                                    e.serviceTypeId ?? 0,
+                                  );
+                                },
+                              ),
                             ),
                           )
                           .toList(),

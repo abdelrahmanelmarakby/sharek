@@ -5,8 +5,8 @@ import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
 
-class TripServicesItem extends StatelessWidget {
-  const TripServicesItem({
+class ServicesItem extends StatelessWidget {
+  const ServicesItem({
     Key? key,
     required this.index,
     required this.activeIndex,

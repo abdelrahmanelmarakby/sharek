@@ -21,7 +21,10 @@ List<ServiceTypeModel> tripServicesTypes = [
   ServiceTypeModel(name: "راكب", serviceTypeId: 6),
   ServiceTypeModel(name: "سائق", serviceTypeId: 7),
 ];
-
+List<ServiceTypeModel> houseServicesTypes = [
+  ServiceTypeModel(name: "بحث عن شريك", serviceTypeId: 10),
+  ServiceTypeModel(name: "شقق الإيجار", serviceTypeId: 11),
+];
 List<ServiceTypeModel> businessServicesTypes = [
   ServiceTypeModel(name: "بحث عن شريك", serviceTypeId: 1),
   ServiceTypeModel(name: "إعلانات البائعين", serviceTypeId: 2),

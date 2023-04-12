@@ -18,7 +18,7 @@ import '../../../../core/widgets/src/radio_button_builder.dart';
 import '../../../../core/widgets/src/radio_group.dart';
 import '../../../data/models/trip_services_type_model.dart';
 import '../controllers/travel_partner_controller.dart';
-import '../widgets/trip_services_type_item.dart';
+import '../widgets/services_type_item.dart';
 
 class TripAdsFilter extends GetView<TravelPartnerController> {
   const TripAdsFilter({Key? key}) : super(key: key);
@@ -40,170 +40,192 @@ class TripAdsFilter extends GetView<TravelPartnerController> {
               },
             ),
           ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: tripServicesTypes
-                        .map(
-                          (e) => TripServicesItem(
-                            activeIndex: controller.travelPartneFilter,
-                            index: e.serviceTypeId ?? 0,
-                            title: e.name ?? "",
-                            onTap: () {
-                              controller.changeTravelPartnerFilterState(
-                                e.serviceTypeId ?? 0,
-                              );
-                            },
-                          ),
-                        )
-                        .toList(),
-                  ),
-                  const SizedBox(height: 16),
-                  AppDropDown(
-                    icon: const Icon(
-                      Iconsax.location,
-                      color: Colors.black,
-                    ),
-                    title: "بداية الرحلة",
-                    bottomSheet: Container(),
-                  ),
-                  const SizedBox(height: 12),
-                  AppDropDown(
-                    icon: const Icon(
-                      Iconsax.location_tick,
-                      color: Colors.black,
-                    ),
-                    title: "نهاية الرحلة",
-                    bottomSheet: Container(),
-                  ),
-                  const SizedBox(height: 12),
-                  controller.travelPartneFilter == 7
-                      ? CustomTextField(
-                          name: "",
-                          hint: "نوع السيارة",
-                          borderRadius: 8,
-                          controller: controller.filterCarTypeCtr,
-                          prefixIcon: const Icon(
-                            Iconsax.car,
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: tripServicesTypes
+                              .map(
+                                (e) => Container(
+                                  padding: EdgeInsets.only(
+                                    left: controller.travelPartneFilter == 6
+                                        ? 6
+                                        : 0,
+                                    right: controller.travelPartneFilter == 7
+                                        ? 6
+                                        : 0,
+                                  ),
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.2,
+                                  child: ServicesItem(
+                                    activeIndex: controller.travelPartneFilter,
+                                    index: e.serviceTypeId ?? 0,
+                                    title: e.name ?? "",
+                                    onTap: () {
+                                      controller.changeTravelPartnerFilterState(
+                                        e.serviceTypeId ?? 0,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                        const SizedBox(height: 16),
+                        AppDropDown(
+                          icon: const Icon(
+                            Iconsax.location,
                             color: Colors.black,
                           ),
-                        )
-                      : const SizedBox(),
-                  controller.travelPartneFilter == 7
-                      ? const SizedBox(height: 12)
-                      : const SizedBox(),
-                  CustomTextField(
-                    name: "",
-                    controller: controller.filterPassengersCtr,
-                    hint: controller.travelPartneFilter == 6
-                        ? "عدد الركاب"
-                        : "عدد الركاب المطلوب",
-                    borderRadius: 8,
-                    prefixIcon: const Icon(
-                      Iconsax.people,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  CustomTextField(
-                    name: "",
-                    hint: controller.filterDate == null
-                        ? "تاريخ الرحلة"
-                        : appDateFormate(controller.filterDate!, "ar"),
-                    borderRadius: 8,
-                    readOnly: true,
-                    onTap: () {
-                      Get.bottomSheet(
-                        CupertinoDatePicker(
-                          mode: CupertinoDatePickerMode.date,
-                          dateOrder: DatePickerDateOrder.ymd,
-                          initialDateTime: DateTime.now(),
-                          onDateTimeChanged:
-                              controller.onDateFilterPickerChanged,
+                          title: "بداية الرحلة",
+                          bottomSheet: Container(),
                         ),
-                        backgroundColor: Colors.white,
-                      );
-                    },
-                    type: TextInputType.datetime,
-                    formattedType: [
-                      DateTextFormatter(),
-                    ],
-                    prefixIcon: const Icon(
-                      Iconsax.calendar,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  CustomTextField(
-                    name: "",
-                    hint: controller.filterTime == null
-                        ? "ساعة الرحلة"
-                        : appTimeFormate(controller.filterTime!, "ar"),
-                    borderRadius: 8,
-                    type: const TextInputType.numberWithOptions(decimal: false),
-                    formattedType: [
-                      HourMinsFormatter(),
-                    ],
-                    readOnly: true,
-                    onTap: () {
-                      Get.bottomSheet(
-                        CupertinoDatePicker(
-                          mode: CupertinoDatePickerMode.time,
-                          initialDateTime: DateTime.now(),
-                          onDateTimeChanged:
-                              controller.onTimeFilterPickerChanged,
+                        const SizedBox(height: 12),
+                        AppDropDown(
+                          icon: const Icon(
+                            Iconsax.location_tick,
+                            color: Colors.black,
+                          ),
+                          title: "نهاية الرحلة",
+                          bottomSheet: Container(),
                         ),
-                        backgroundColor: Colors.white,
-                      );
-                    },
-                    prefixIcon: const Icon(
-                      Iconsax.clock,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  CustomTextField(
-                    name: "",
-                    hint: "السعر المتوقع",
-                    controller: controller.filterPriceCtr,
-                    borderRadius: 8,
-                    prefixIcon: const Icon(
-                      Iconsax.moneys,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      const Expanded(
-                        child: AppText(
-                          "هل تحتاج طرود؟",
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeights.medium,
-                        ),
-                      ),
-                      Expanded(
-                        child: RadioGroup<String>.builder(
-                          groupValue: controller.filterwithPackval,
-                          onChanged: controller.changeWithPackFilterStatus,
-                          activeColor: ColorsManager.primary,
-                          direction: Axis.horizontal,
-                          items: controller.withPackstatus,
-                          itemBuilder: (item) => RadioButtonBuilder(
-                            item,
+                        const SizedBox(height: 12),
+                        controller.travelPartneFilter == 7
+                            ? CustomTextField(
+                                name: "",
+                                hint: "نوع السيارة",
+                                borderRadius: 8,
+                                controller: controller.filterCarTypeCtr,
+                                prefixIcon: const Icon(
+                                  Iconsax.car,
+                                  color: Colors.black,
+                                ),
+                              )
+                            : const SizedBox(),
+                        controller.travelPartneFilter == 7
+                            ? const SizedBox(height: 12)
+                            : const SizedBox(),
+                        CustomTextField(
+                          name: "",
+                          controller: controller.filterPassengersCtr,
+                          hint: controller.travelPartneFilter == 6
+                              ? "عدد الركاب"
+                              : "عدد الركاب المطلوب",
+                          borderRadius: 8,
+                          prefixIcon: const Icon(
+                            Iconsax.people,
+                            color: Colors.black,
                           ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 12),
+                        CustomTextField(
+                          name: "",
+                          hint: controller.filterDate == null
+                              ? "تاريخ الرحلة"
+                              : appDateFormate(controller.filterDate!, "ar"),
+                          borderRadius: 8,
+                          readOnly: true,
+                          onTap: () {
+                            Get.bottomSheet(
+                              CupertinoDatePicker(
+                                mode: CupertinoDatePickerMode.date,
+                                dateOrder: DatePickerDateOrder.ymd,
+                                initialDateTime: DateTime.now(),
+                                onDateTimeChanged:
+                                    controller.onDateFilterPickerChanged,
+                              ),
+                              backgroundColor: Colors.white,
+                            );
+                          },
+                          type: TextInputType.datetime,
+                          formattedType: [
+                            DateTextFormatter(),
+                          ],
+                          prefixIcon: const Icon(
+                            Iconsax.calendar,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        CustomTextField(
+                          name: "",
+                          hint: controller.filterTime == null
+                              ? "ساعة الرحلة"
+                              : appTimeFormate(controller.filterTime!, "ar"),
+                          borderRadius: 8,
+                          type: const TextInputType.numberWithOptions(
+                              decimal: false),
+                          formattedType: [
+                            HourMinsFormatter(),
+                          ],
+                          readOnly: true,
+                          onTap: () {
+                            Get.bottomSheet(
+                              CupertinoDatePicker(
+                                mode: CupertinoDatePickerMode.time,
+                                initialDateTime: DateTime.now(),
+                                onDateTimeChanged:
+                                    controller.onTimeFilterPickerChanged,
+                              ),
+                              backgroundColor: Colors.white,
+                            );
+                          },
+                          prefixIcon: const Icon(
+                            Iconsax.clock,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        CustomTextField(
+                          name: "",
+                          hint: "السعر المتوقع",
+                          controller: controller.filterPriceCtr,
+                          borderRadius: 8,
+                          prefixIcon: const Icon(
+                            Iconsax.moneys,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          children: [
+                            const Expanded(
+                              child: AppText(
+                                "هل تحتاج طرود؟",
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeights.medium,
+                              ),
+                            ),
+                            Expanded(
+                              child: RadioGroup<String>.builder(
+                                groupValue: controller.filterwithPackval,
+                                onChanged:
+                                    controller.changeWithPackFilterStatus,
+                                activeColor: ColorsManager.primary,
+                                direction: Axis.horizontal,
+                                items: controller.withPackstatus,
+                                itemBuilder: (item) => RadioButtonBuilder(
+                                  item,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 27),
-                  AppProgressButton(
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 35),
+                  child: AppProgressButton(
                     onPressed: (animationController) {
                       Get.to(
                         () => TripAdsFilterResult(
@@ -232,8 +254,8 @@ class TripAdsFilter extends GetView<TravelPartnerController> {
                     width: context.width,
                     text: "تصفية",
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );

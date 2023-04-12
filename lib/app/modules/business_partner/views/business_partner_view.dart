@@ -11,7 +11,7 @@ import 'package:sharek/app/modules/business_partner/bindings/business_partner_bi
 import 'package:sharek/app/modules/business_partner/views/business_partner_details_screen.dart';
 import 'package:sharek/app/modules/business_partner/views/bussiness_partner_filter_screen.dart';
 import 'package:sharek/app/modules/home/views/home_view.dart';
-import 'package:sharek/app/modules/travel_partner/widgets/trip_services_type_item.dart';
+import 'package:sharek/app/modules/travel_partner/widgets/services_type_item.dart';
 import 'package:sharek/core/constants/theme/app_icons.dart';
 
 import 'package:sharek/core/constants/theme/colors_manager.dart';
@@ -29,7 +29,7 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
     return GetBuilder<BusinessPartnerController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text('شريك رحلتي'),
+          title: const Text('شريك أعمال'),
           centerTitle: true,
           leading: IconButton(
             icon: Icon(
@@ -78,7 +78,7 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 4),
-                                child: TripServicesItem(
+                                child: ServicesItem(
                                   activeIndex: controller.businessPartner ?? 0,
                                   index: businessServicesTypes[index]
                                           .serviceTypeId ??
@@ -105,7 +105,7 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 4),
-                                child: TripServicesItem(
+                                child: ServicesItem(
                                   activeIndex: controller.businessPartner ?? 0,
                                   index: businessServicesTypes[index + 2]
                                           .serviceTypeId ??

@@ -41,10 +41,11 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
         type: BottomNavigationBarType.fixed,
         items: [
           const BottomNavigationBarItem(
-              icon: Icon(
-                Iconsax.home,
-              ),
-              label: "الرئيسية"),
+            icon: Icon(
+              Iconsax.home,
+            ),
+            label: "الرئيسية",
+          ),
           const BottomNavigationBarItem(
             icon: Icon(
               Iconsax.notification_bing,

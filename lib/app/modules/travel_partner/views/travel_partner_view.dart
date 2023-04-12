@@ -21,7 +21,7 @@ import '../../../data/models/trip_services_type_model.dart';
 import '../bindings/travel_partner_binding.dart';
 import '../controllers/travel_partner_controller.dart';
 import '../widgets/trip_ads_item.dart';
-import '../widgets/trip_services_type_item.dart';
+import '../widgets/services_type_item.dart';
 
 class TravelPartnerView extends GetView<TravelPartnerController> {
   const TravelPartnerView({Key? key}) : super(key: key);
@@ -82,7 +82,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                 child: Padding(
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 4),
-                                  child: TripServicesItem(
+                                  child: ServicesItem(
                                     activeIndex: controller.travelPartner ?? 0,
                                     index: e.serviceTypeId ?? 0,
                                     title: e.name ?? "",
@@ -215,7 +215,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                   ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),

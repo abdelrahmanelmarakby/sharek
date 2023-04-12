@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:sharek/app/data/models/home_model.dart';
+import 'package:sharek/app/modules/house_partner/bindings/house_partner_binding.dart';
 import 'package:sharek/app/modules/travel_partner/bindings/travel_partner_binding.dart';
 import 'package:sharek/app/routes/app_pages.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
@@ -19,7 +20,9 @@ import 'package:sharek/core/language/local_keys.dart';
 import 'package:sharek/core/widgets/app_text.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
 
+import '../../business_partner/bindings/business_partner_binding.dart';
 import '../../business_partner/views/add_business_partner_ads_screen.dart';
+import '../../house_partner/views/add_house_ads_screen.dart';
 import '../../travel_partner/views/add_trip_ads_screen.dart';
 import '../controllers/home_controller.dart';
 
@@ -292,7 +295,10 @@ class PartnerCard extends StatelessWidget {
           switch (serviceId) {
             case 1:
               isDialog == true
-                  ? Get.to(() => const AddBusinessPartnerAdsScreen())
+                  ? Get.to(
+                      () => const AddBusinessPartnerAdsScreen(),
+                      binding: BusinessPartnerBinding(),
+                    )
                   : Get.toNamed(Routes.BUSINESS_PARTNER);
               break;
             case 2:
@@ -305,7 +311,13 @@ class PartnerCard extends StatelessWidget {
               Get.toNamed(Routes.SAKE_PARTNER);
               break;
             case 4:
-              Get.toNamed(Routes.HOUSE_PARTNER);
+              isDialog == true
+                  ? Get.to(
+                      () => const AddHouseAdsScreen(),
+                      binding: HousePartnerBinding(),
+                    )
+                  : Get.toNamed(Routes.HOUSE_PARTNER);
+
               break;
 
             default:

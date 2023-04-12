@@ -26,7 +26,8 @@ String appTimeFormate(DateTime time, String locale) {
 }
 
 class APIKeys {
-    static const String apiPassword = "drV1DHcwSgFE8ebzBUR523Ym9fo9TGrKFKtPX9xSAEHJ90B7DK";
+  static const String apiPassword =
+      "drV1DHcwSgFE8ebzBUR523Ym9fo9TGrKFKtPX9xSAEHJ90B7DK";
 
   static const String baseUrl = "https://api.shreak.net/api/v1/";
   static const String home = "home";
@@ -52,5 +53,10 @@ class APIKeys {
   static const String updateAvatar = "update/avatar";
   static const String updateProfile = "update/profile";
   static const String logout = "logout";
+  //=================================================================
+  static const String housingAds = "housing-advertisements";
+  static const String housingServicesType = "housing-advertisement/service/types";
+  static const String createhousingComment = "create/comment/housing-advertisement/";
+  static const String housingAdsSearch = "search/$housingAds";
   //=================================================================
 }

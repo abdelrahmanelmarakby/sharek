@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:sharek/core/widgets/network_image.dart';
 
-class TripAdsPhotosListView extends StatelessWidget {
-  const TripAdsPhotosListView({
+class AdsPhotosListView extends StatelessWidget {
+  const AdsPhotosListView({
     Key? key,
     required this.photos,
   }) : super(key: key);

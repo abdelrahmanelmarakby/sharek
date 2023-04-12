@@ -149,7 +149,7 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                     background: GestureDetector(
                                       onTap: () {
                                         Get.to(
-                                          () => TripAdsPhotosListView(
+                                          () => AdsPhotosListView(
                                             photos: ads?.photos ?? [],
                                           ),
                                         );
