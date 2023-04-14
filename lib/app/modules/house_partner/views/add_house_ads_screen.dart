@@ -1,5 +1,7 @@
 // ignore_for_file: unused_local_variable
 
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,12 +29,21 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
         return Scaffold(
           appBar: AppBar(
             title: const Text('إضافة إعلان'),
+            leading: IconButton(
+              icon: Icon(
+                Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
+              ),
+              onPressed: () {
+                Get.back();
+                controller.clearCreateData();
+              },
+            ),
           ),
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Form(
-                key: controller.createHouseAdsFormKey,
+                key: controller.createFormKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -94,9 +105,7 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                             hint: "عدد الشركاء (إختياري)",
                             borderRadius: 8,
                             type: TextInputType.text,
-                            validate: Validator.validateEmpty,
-                            controller:
-                                controller.createHouseAdnumberPartnersCtr,
+                            controller: controller.createNumberPartnersCtr,
                             prefixIcon: const Icon(
                               Iconsax.people,
                               color: Colors.black,
@@ -112,9 +121,7 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                             hint: "الجنسية (إختياري)",
                             borderRadius: 8,
                             type: TextInputType.text,
-                            validate: Validator.validateEmpty,
-                            controller:
-                                controller.createHouseAdnumberPartnersCtr,
+                            controller: controller.createNationalityPartnersCtr,
                             prefixIcon: const Icon(
                               Iconsax.global,
                               color: Colors.black,
@@ -124,13 +131,14 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                     controller.addHousePartner == 10
                         ? const SizedBox(height: 12)
                         : const SizedBox(),
-                    const CustomTextField(
+                    CustomTextField(
                       name: "",
                       validate: Validator.validateEmpty,
                       hint: "عنوان الطلب",
                       borderRadius: 8,
+                      controller: controller.createTitlePartnersCtr,
                       type: TextInputType.number,
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Iconsax.document_text,
                         color: Colors.black,
                       ),
@@ -140,7 +148,9 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                       name: "",
                       hint: "تفاصيل الطلب",
                       borderRadius: 8,
+                      controller: controller.createDescriptionPartnersCtr,
                       maxLines: 4,
+                      validate: Validator.validateEmpty,
                       prefixIcon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         child: Column(
@@ -156,7 +166,7 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                     const SizedBox(height: 12),
                     GestureDetector(
                       onTap: () {
-                        controller.pickCreateTripAdsImages();
+                        controller.pickCreateHouseAdsImages();
                       },
                       child: DottedBorder(
                         color: const Color(0xFFE4E4E5),
@@ -194,54 +204,84 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                       hint: "رقم الجوال الظاهر في الإعلان (إختياري)",
                       borderRadius: 8,
                       type: TextInputType.phone,
-                      controller: controller.createHouseAdPhoneCtr,
+                      validate: Validator.validateMobileNotRequared,
+                      controller: controller.createPhoneCtr,
                       prefixIcon: const Icon(
                         Iconsax.call,
                         color: Colors.grey,
                       ),
                     ),
                     const SizedBox(height: 27),
-                    AppProgressButton(
-                      width: context.width,
-                      text: "إضافة إعلان جديد",
-                      onPressed: (animationController) {
-                        // if (controller.createTripAdsFormKey.currentState!
-                        //         .validate() &&
-                        //     controller.createAdsDate != null &&
-                        //     controller.createAdsTime != null) {
-                        //   controller.createTripAds(
-                        //     animationController: animationController,
-                        //     servicesTypeid: controller.addTravelPartner,
-                        //     startingPlace: "sssss",
-                        //     numberPassengers: int.parse(
-                        //       controller.createTripAdsNumberPassengersCtr.text,
-                        //     ),
-                        //     endingPlace: "xxxxx",
-                        //     nationality: controller
-                        //         .createTripAdsNumberPassengersCtr.text,
-                        //     date: controller.createAdsDate == null
-                        //         ? null
-                        //         : appDateFormate(
-                        //             controller.createAdsDate!, "en"),
-                        //     time: controller.createAdsTime == null
-                        //         ? null
-                        //         : appTimeFormate(
-                        //             controller.createAdsTime!, "en"),
-                        //     price: double.parse(
-                        //       controller.createTripAdsPriceCtr.text,
-                        //     ),
-                        //     withPackages: controller.createTripAdsIsWithPack,
-                        //     carType:
-                        //         controller.createTripAdsCarTypeCtr.text == ""
-                        //             ? null
-                        //             : controller.createTripAdsCarTypeCtr.text,
-                        //     phone: controller.createTripAdPhoneCtr.text == ""
-                        //         ? null
-                        //         : controller.createTripAdPhoneCtr.text,
-                        //     photos: controller.createTripAdsPhotos,
-                        //   );
-                        // }
-                      },
+                    Center(
+                      child: AppProgressButton(
+                        width: context.width,
+                        text: "إضافة إعلان جديد",
+                        onPressed: (animationController) {
+                          if (controller.createFormKey.currentState!
+                              .validate()) {
+                            controller.addHousePartner == 10
+                                ? controller.createHouseAds(
+                                    animationController: animationController,
+                                    servicesTypeid: controller.addHousePartner,
+                                    location: "sssss",
+                                    numberPartners: controller
+                                                .createNumberPartnersCtr.text !=
+                                            ""
+                                        ? int.parse(controller
+                                            .createNumberPartnersCtr.text)
+                                        : null,
+                                    neighborhood: "xxxxx",
+                                    nationality: controller
+                                                .createNationalityPartnersCtr
+                                                .text ==
+                                            ""
+                                        ? null
+                                        : controller
+                                            .createNationalityPartnersCtr.text,
+                                    title: controller
+                                                .createTitlePartnersCtr.text ==
+                                            ""
+                                        ? null
+                                        : controller
+                                            .createTitlePartnersCtr.text,
+                                    description: controller
+                                                .createDescriptionPartnersCtr
+                                                .text ==
+                                            ""
+                                        ? null
+                                        : controller
+                                            .createDescriptionPartnersCtr.text,
+                                    phone: controller.createPhoneCtr.text == ""
+                                        ? null
+                                        : controller.createPhoneCtr.text,
+                                    photos: controller.createPhotos,
+                                  )
+                                : controller.createHouseAds(
+                                    animationController: animationController,
+                                    servicesTypeid: controller.addHousePartner,
+                                    location: "sssss",
+                                    neighborhood: "xxxxx",
+                                    title: controller
+                                                .createTitlePartnersCtr.text ==
+                                            ""
+                                        ? null
+                                        : controller
+                                            .createTitlePartnersCtr.text,
+                                    description: controller
+                                                .createDescriptionPartnersCtr
+                                                .text ==
+                                            ""
+                                        ? null
+                                        : controller
+                                            .createDescriptionPartnersCtr.text,
+                                    phone: controller.createPhoneCtr.text == ""
+                                        ? null
+                                        : controller.createPhoneCtr.text,
+                                    photos: controller.createPhotos,
+                                  );
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),

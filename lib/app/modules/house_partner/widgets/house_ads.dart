@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:sharek/core/global/const.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
@@ -77,7 +78,9 @@ class HouseAdsItem extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
-                    ad?.photos?[0] ?? "",
+                    ad?.photos?.isNotEmpty ?? false
+                        ? ad?.photos?.first ?? ""
+                        : dummyImage,
                     height: context.width / 4,
                     width: context.width / 4,
                     fit: BoxFit.cover,

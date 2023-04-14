@@ -12,6 +12,8 @@ import '../../../../core/widgets/snack_bar.dart';
 import '../../../routes/app_pages.dart';
 
 class ProfileController extends GetxController {
+  TextEditingController nameCtr = TextEditingController();
+  TextEditingController phoneCtr = TextEditingController();
   Future updateUserAvatar() async {
     final pickedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -32,8 +34,8 @@ class ProfileController extends GetxController {
   }
 
   Future updateUserProfile({
-    required String name,
-    required String phone,
+    String? name,
+    String? phone,
     required AnimationController animationController,
   }) async {
     animationController.forward();

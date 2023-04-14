@@ -45,8 +45,8 @@ class ProfileApis {
   }
 
   static Future<MainModel?> updateProfile({
-    required String name,
-    required String phone,
+    String? name,
+    String? phone,
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,

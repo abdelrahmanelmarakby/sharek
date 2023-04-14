@@ -18,10 +18,10 @@ class Validator {
     RegExp regExp = RegExp(pattern);
     if (value!.isEmpty) {
       return "يجب ألا يكون الهاتف فارغ";
-    } else if (value.length != 11) {
-      return "يجب أن يتكون رقم الهاتف من 11 رقم";
+    } else if (value.length != 9) {
+      return "يجب أن يتكون رقم الهاتف من 9 رقم";
     } else if (!regExp.hasMatch(value)) {
-      return "يجب أن يتكون رقم الهاتف من 11 رقم";
+      return "يجب أن يتكون رقم الهاتف من 9 رقم";
     }
     return null;
   }
@@ -29,10 +29,12 @@ class Validator {
   static String? validateMobileNotRequared(String? value) {
     String pattern = r'(^[0-9]*$)';
     RegExp regExp = RegExp(pattern);
-    if (value?.length != 11) {
-      return "يجب أن يتكون رقم الهاتف من 11 رقم";
-    } else if (!regExp.hasMatch(value!)) {
-      return "يجب أن يتكون رقم الهاتف من 11 رقم";
+    if (value != "") {
+      if (value?.length != 9) {
+        return "يجب أن يتكون رقم الهاتف من 9 رقم";
+      } else if (!regExp.hasMatch(value!)) {
+        return "يجب أن يتكون رقم الهاتف من 9 رقم";
+      }
     }
     return null;
   }
@@ -49,8 +51,8 @@ class Validator {
   static String? validatePhone(String? value) {
     if (value!.isEmpty) {
       return "يجب ألا يكون الهاتف فارغ";
-    } else if (value.length < 10) {
-      return "يجب أن يتكون رقم الهاتف من 11 رقم";
+    } else if (value.length < 9) {
+      return "يجب أن يتكون رقم الهاتف من 9 رقم";
     }
     return null;
   }

@@ -24,18 +24,20 @@ class EditUserInfoScreen extends GetView<ProfileController> {
             Expanded(
               child: Column(
                 children: [
-                  const CustomTextField(
+                  CustomTextField(
                     borderRadius: 8,
+                    controller: controller.nameCtr,
                     hint: "نبيل الصاوي",
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Iconsax.user,
                     ),
                   ),
                   Sizes.size12.h(context).heightSizedBox,
-                  const CustomTextField(
+                  CustomTextField(
                     hint: "01091273822",
                     borderRadius: 8,
-                    prefixIcon: Icon(
+                    controller: controller.phoneCtr,
+                    prefixIcon: const Icon(
                       Iconsax.call,
                     ),
                   ),
@@ -45,7 +47,17 @@ class EditUserInfoScreen extends GetView<ProfileController> {
             AppProgressButton(
               width: MediaQuery.of(context).size.width,
               text: "حفظ",
-              onPressed: (anim) {},
+              onPressed: (anim) {
+                controller.updateUserProfile(
+                  name: controller.nameCtr.text == ""
+                      ? null
+                      : controller.nameCtr.text,
+                  phone: controller.phoneCtr.text == ""
+                      ? null
+                      : controller.phoneCtr.text,
+                  animationController: anim,
+                );
+              },
             )
           ],
         ),

@@ -16,6 +16,7 @@ import 'package:sharek/core/constants/theme/sizes_manager.dart';
 import 'package:sharek/core/constants/theme/styles_manager.dart';
 import 'package:sharek/core/extensions/num.dart';
 import 'package:sharek/core/extensions/widget.dart';
+import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/language/local_keys.dart';
 import 'package:sharek/core/widgets/app_text.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
@@ -27,7 +28,11 @@ import '../../travel_partner/views/add_trip_ads_screen.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({
+    Key? key,
+    this.scrollController,
+  }) : super(key: key);
+  final ScrollController? scrollController;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +49,7 @@ class HomeView extends GetView<HomeController> {
             final HomeModel? homeData = snapshot.data;
             log(homeData.toString());
             return SingleChildScrollView(
+              controller: scrollController,
               child: SafeArea(
                 child: Column(
                   children: [
@@ -164,7 +170,9 @@ class AdCard extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: Image.network(
-                        ad?.photos?[0] ?? "",
+                        ad?.photos?.isNotEmpty ?? false
+                            ? ad?.photos?.first ?? ""
+                            : dummyImage,
                         fit: BoxFit.cover,
                       ),
                     )),

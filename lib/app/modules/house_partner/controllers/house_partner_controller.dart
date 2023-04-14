@@ -64,20 +64,21 @@ class HousePartnerController extends GetxController {
   }
 
 //==============================createTripAds=============================
-  List<File>? createHouseAdsPhotos;
-  GlobalKey<FormState> createHouseAdsFormKey = GlobalKey<FormState>();
-
-  TextEditingController createHouseAdPhoneCtr = TextEditingController();
-  TextEditingController createHouseAdnumberPartnersCtr =
-      TextEditingController();
+  List<File>? createPhotos;
+  GlobalKey<FormState> createFormKey = GlobalKey<FormState>();
+  TextEditingController createPhoneCtr = TextEditingController();
+  TextEditingController createNumberPartnersCtr = TextEditingController();
+  TextEditingController createNationalityPartnersCtr = TextEditingController();
+  TextEditingController createTitlePartnersCtr = TextEditingController();
+  TextEditingController createDescriptionPartnersCtr = TextEditingController();
 
 //========================================================================
 
 //========================================================================
-  void pickCreateTripAdsImages() async {
+  void pickCreateHouseAdsImages() async {
     List<XFile> pickedImages = await ImagePicker().pickMultiImage();
     if (pickedImages.isEmpty) return;
-    createHouseAdsPhotos = pickedImages.map((e) => File(e.path)).toList();
+    createPhotos = pickedImages.map((e) => File(e.path)).toList();
     update();
   }
 
@@ -85,19 +86,34 @@ class HousePartnerController extends GetxController {
   int addHousePartner = 10;
   changeAddHousePartnerState(int val) {
     addHousePartner = val;
+    if (addHousePartner == 11) {
+      createNumberPartnersCtr.clear();
+      createNationalityPartnersCtr.clear();
+    }
     update();
   }
 
+  clearCreateData() {
+    addHousePartner = 10;
+    createPhotos = null;
+    createPhoneCtr.clear();
+    createNumberPartnersCtr.clear();
+    createNationalityPartnersCtr.clear();
+    createTitlePartnersCtr.clear();
+    createDescriptionPartnersCtr.clear();
+    update();
+  }
 //========================================================================
-  Future createTripAds({
+
+  Future createHouseAds({
     required AnimationController animationController,
-    required int servicesTypeid,
-    required String location,
-    required int numberPartners,
-    required String neighborhood,
-    required String nationality,
-    required String? description,
-    required String? title,
+    int? servicesTypeid,
+    String? location,
+    int? numberPartners,
+    String? neighborhood,
+    String? nationality,
+    String? description,
+    String? title,
     String? phone,
     List<File>? photos,
   }) async {
@@ -116,9 +132,9 @@ class HousePartnerController extends GetxController {
       );
       if (res?.status == true) {
         animationController.reset();
-
         BotToast.showText(text: res?.message ?? "");
         Get.toNamed(Routes.BOTTOM_NAV_BAR);
+        clearCreateData();
       } else {
         animationController.reset();
         BotToast.showText(text: res?.message ?? "");

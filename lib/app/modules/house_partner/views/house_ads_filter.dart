@@ -28,7 +28,6 @@ class HouseAdsFiterScreen extends GetView<HousePartnerController> {
               children: [
                 Expanded(
                   child: Form(
-                    key: controller.createHouseAdsFormKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -83,15 +82,13 @@ class HouseAdsFiterScreen extends GetView<HousePartnerController> {
                         ),
                         const SizedBox(height: 12),
                         controller.addHousePartner == 10
-                            ? CustomTextField(
+                            ? const CustomTextField(
                                 name: "",
                                 hint: "عدد الشركاء (إختياري)",
                                 borderRadius: 8,
                                 type: TextInputType.text,
                                 validate: Validator.validateEmpty,
-                                controller:
-                                    controller.createHouseAdnumberPartnersCtr,
-                                prefixIcon: const Icon(
+                                prefixIcon: Icon(
                                   Iconsax.people,
                                   color: Colors.black,
                                 ),
@@ -101,15 +98,13 @@ class HouseAdsFiterScreen extends GetView<HousePartnerController> {
                             ? const SizedBox(height: 12)
                             : const SizedBox(),
                         controller.addHousePartner == 10
-                            ? CustomTextField(
+                            ? const CustomTextField(
                                 name: "",
                                 hint: "الجنسية (إختياري)",
                                 borderRadius: 8,
                                 type: TextInputType.text,
                                 validate: Validator.validateEmpty,
-                                controller:
-                                    controller.createHouseAdnumberPartnersCtr,
-                                prefixIcon: const Icon(
+                                prefixIcon: Icon(
                                   Iconsax.global,
                                   color: Colors.black,
                                 ),

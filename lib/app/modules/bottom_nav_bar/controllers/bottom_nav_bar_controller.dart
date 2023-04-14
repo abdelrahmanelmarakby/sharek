@@ -5,11 +5,11 @@ import 'package:sharek/app/modules/home/views/home_view.dart';
 import '../../profile/views/profile_view.dart';
 
 class BottomNavBarController extends GetxController {
-  Widget? _currentScreen = const HomeView();
+  ScrollController scrollController = ScrollController();
+  Widget? _currentScreen;
 
   // ignore: non_constant_identifier_names
   get CurrentScreen => _currentScreen;
-
   int _navIndex = 0;
 
   set setNavIndex(int value) => _navIndex = value;
@@ -19,22 +19,22 @@ class BottomNavBarController extends GetxController {
     switch (index) {
       case 0:
         {
-          _currentScreen = const HomeView();
+          _currentScreen = HomeView(scrollController: scrollController);
           break;
         }
       case 1:
         {
-          _currentScreen = const HomeView();
+          _currentScreen = HomeView(scrollController: scrollController);
           break;
         }
       case 2:
         {
-          _currentScreen = const HomeView();
+          _currentScreen = HomeView(scrollController: scrollController);
           break;
         }
       case 3:
         {
-          _currentScreen = const HomeView();
+          _currentScreen = HomeView(scrollController: scrollController);
           break;
         }
       case 4:
