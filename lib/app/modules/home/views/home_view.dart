@@ -30,11 +30,10 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   const HomeView({
     Key? key,
-    this.scrollController,
   }) : super(key: key);
-  final ScrollController? scrollController;
   @override
   Widget build(BuildContext context) {
+    final HomeController controller = Get.put<HomeController>(HomeController());
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -49,7 +48,6 @@ class HomeView extends GetView<HomeController> {
             final HomeModel? homeData = snapshot.data;
             log(homeData.toString());
             return SingleChildScrollView(
-              controller: scrollController,
               child: SafeArea(
                 child: Column(
                   children: [
@@ -110,75 +108,76 @@ class AdCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Container(
-          height: context.height / 6,
-          width: context.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(width: .5, color: ColorsManager.veryLightGrey),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          child: Text(
-                            (ad?.title) ?? "",
-                            overflow: TextOverflow.clip,
-                            style: StylesManager.bold(fontSize: FontSize.large),
-                          ),
+        height: context.height / 6,
+        width: context.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(width: .5, color: ColorsManager.veryLightGrey),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Text(
+                          (ad?.title) ?? "",
+                          overflow: TextOverflow.clip,
+                          style: StylesManager.bold(fontSize: FontSize.large),
                         ),
                       ),
-                      Expanded(
-                        child: Row(
-                          children: [
-                            AdRowItem(
-                                icon: Iconsax.clock,
-                                text: ad?.createdAt1 ?? ""),
-                            AdRowItem(
-                                icon: Iconsax.location,
-                                text: ad?.location ?? "")
-                          ],
-                        ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          AdRowItem(
+                              icon: Iconsax.clock, text: ad?.createdAt1 ?? ""),
+                          AdRowItem(
+                              icon: Iconsax.location, text: ad?.location ?? "")
+                        ],
                       ),
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AdRowItem(
-                                icon: Iconsax.user, text: ad?.userName ?? ""),
-                            AdRowItem(
-                                icon: Iconsax.routing,
-                                text: ad?.neighborhood ?? "")
-                          ],
-                        ),
-                      )
-                    ],
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AdRowItem(
+                              icon: Iconsax.user, text: ad?.userName ?? ""),
+                          AdRowItem(
+                              icon: Iconsax.routing,
+                              text: ad?.neighborhood ?? "")
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Flexible(
+                fit: FlexFit.loose,
+                flex: 1,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.network(
+                    dummyImage,
+                    // ad?.photos?.isNotEmpty ?? false
+                    //     ? ad?.photos?.first ?? ""
+                    //     : dummyImage,
+                    fit: BoxFit.cover,
                   ),
                 ),
-                Flexible(
-                    fit: FlexFit.loose,
-                    flex: 1,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        ad?.photos?.isNotEmpty ?? false
-                            ? ad?.photos?.first ?? ""
-                            : dummyImage,
-                        fit: BoxFit.cover,
-                      ),
-                    )),
-              ],
-            ),
-          )),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

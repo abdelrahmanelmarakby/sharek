@@ -268,47 +268,50 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                       ),
                     ),
                     const SizedBox(height: 27),
-                    AppProgressButton(
-                      width: context.width,
-                      text: "إضافة إعلان جديد",
-                      onPressed: (animationController) {
-                        if (controller.createTripAdsFormKey.currentState!
-                                .validate() &&
-                            controller.createAdsDate != null &&
-                            controller.createAdsTime != null) {
-                          controller.createTripAds(
-                            animationController: animationController,
-                            servicesTypeid: controller.addTravelPartner,
-                            startingPlace: "sssss",
-                            numberPassengers: int.parse(
-                              controller.createTripAdsNumberPassengersCtr.text,
-                            ),
-                            endingPlace: "xxxxx",
-                            nationality: controller
-                                .createTripAdsNumberPassengersCtr.text,
-                            date: controller.createAdsDate == null
-                                ? null
-                                : appDateFormate(
-                                    controller.createAdsDate!, "en"),
-                            time: controller.createAdsTime == null
-                                ? null
-                                : appTimeFormate(
-                                    controller.createAdsTime!, "en"),
-                            price: double.parse(
-                              controller.createTripAdsPriceCtr.text,
-                            ),
-                            withPackages: controller.createTripAdsIsWithPack,
-                            carType:
-                                controller.createTripAdsCarTypeCtr.text == ""
-                                    ? null
-                                    : controller.createTripAdsCarTypeCtr.text,
-                            phone: controller.createTripAdPhoneCtr.text == ""
-                                ? null
-                                : controller.createTripAdPhoneCtr.text,
-                            photos: controller.createTripAdsPhotos,
-                          );
-                        }
-                      },
+                    Center(
+                      child: AppProgressButton(
+                        width: context.width,
+                        text: "إضافة إعلان جديد",
+                        onPressed: (animationController) {
+                          if (controller.createTripAdsFormKey.currentState!
+                                  .validate() &&
+                              controller.createAdsDate != null &&
+                              controller.createAdsTime != null) {
+                            controller.createTripAds(
+                              animationController: animationController,
+                              servicesTypeid: controller.addTravelPartner,
+                              startingPlace: "sssss",
+                              numberPassengers: int.parse(
+                                controller
+                                    .createTripAdsNumberPassengersCtr.text,
+                              ),
+                              endingPlace: "xxxxx",
+                              nationality: controller
+                                  .createTripAdsNumberPassengersCtr.text,
+                              date: controller.createAdsDate == null
+                                  ? null
+                                  : appDateFormate(
+                                      controller.createAdsDate!, "en"),
+                              time: controller.createAdsTime == null
+                                  ? null
+                                  : appTimeFormate(
+                                      controller.createAdsTime!, "en"),
+                              price: double.parse(
+                                controller.createTripAdsPriceCtr.text,
+                              ),
+                              withPackages: controller.createTripAdsIsWithPack,
+                              carType:
+                                  controller.createTripAdsCarTypeCtr.text == ""
+                                      ? null
+                                      : controller.createTripAdsCarTypeCtr.text,
+                              phone: controller.createTripAdPhoneCtr.text == ""
+                                  ? null
+                                  : controller.createTripAdPhoneCtr.text,
+                              photos: controller.createTripAdsPhotos,
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),

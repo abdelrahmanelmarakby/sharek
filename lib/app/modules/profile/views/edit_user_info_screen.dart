@@ -48,15 +48,15 @@ class EditUserInfoScreen extends GetView<ProfileController> {
               width: MediaQuery.of(context).size.width,
               text: "حفظ",
               onPressed: (anim) {
-                controller.updateUserProfile(
-                  name: controller.nameCtr.text == ""
-                      ? null
-                      : controller.nameCtr.text,
-                  phone: controller.phoneCtr.text == ""
-                      ? null
-                      : controller.phoneCtr.text,
-                  animationController: anim,
-                );
+                // controller.updateUserProfile(
+                //   name: controller.nameCtr.text == ""
+                //       ? null
+                //       : controller.nameCtr.text,
+                //   phone: controller.phoneCtr.text == ""
+                //       ? null
+                //       : controller.phoneCtr.text,
+                //   animationController: anim,
+                // );
               },
             )
           ],

@@ -6,7 +6,7 @@ import '../../profile/views/profile_view.dart';
 
 class BottomNavBarController extends GetxController {
   ScrollController scrollController = ScrollController();
-  Widget? _currentScreen;
+  Widget _currentScreen = const HomeView();
 
   // ignore: non_constant_identifier_names
   get CurrentScreen => _currentScreen;
@@ -19,22 +19,22 @@ class BottomNavBarController extends GetxController {
     switch (index) {
       case 0:
         {
-          _currentScreen = HomeView(scrollController: scrollController);
+          _currentScreen = const HomeView();
           break;
         }
       case 1:
         {
-          _currentScreen = HomeView(scrollController: scrollController);
+          _currentScreen = const HomeView();
           break;
         }
       case 2:
         {
-          _currentScreen = HomeView(scrollController: scrollController);
+          _currentScreen = const HomeView();
           break;
         }
       case 3:
         {
-          _currentScreen = HomeView(scrollController: scrollController);
+          _currentScreen = const HomeView();
           break;
         }
       case 4:
