@@ -15,16 +15,14 @@ import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_dropdown.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
-import '../../../data/models/trip_services_type_model.dart';
-import '../../travel_partner/widgets/services_type_item.dart';
-import '../controllers/house_partner_controller.dart';
+import '../controllers/other_service_partner_controller.dart';
 
-class AddHouseAdsScreen extends GetView<HousePartnerController> {
-  const AddHouseAdsScreen({Key? key}) : super(key: key);
+class AddOtherAdsScreen extends GetView<OtherServicePartnerController> {
+  const AddOtherAdsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HousePartnerController>(
+    return GetBuilder<OtherServicePartnerController>(
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
@@ -53,31 +51,6 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                       fontSize: 20,
                       fontWeight: FontWeights.semiBold,
                     ),
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: houseServicesTypes
-                          .map(
-                            (e) => Container(
-                              padding: EdgeInsets.only(
-                                left: controller.addHousePartner == 10 ? 6 : 0,
-                                right: controller.addHousePartner == 11 ? 6 : 0,
-                              ),
-                              width: MediaQuery.of(context).size.width / 2.2,
-                              child: ServicesItem(
-                                activeIndex: controller.addHousePartner,
-                                index: e.serviceTypeId ?? 0,
-                                title: e.name ?? "",
-                                onTap: () {
-                                  controller.changeAddHousePartnerState(
-                                    e.serviceTypeId ?? 0,
-                                  );
-                                },
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    ),
                     const SizedBox(height: 16),
                     AppDropDown(
                       icon: const Icon(
@@ -97,30 +70,6 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                       ),
                       title: "الحي",
                       bottomSheet: Container(),
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      name: "",
-                      hint: "عدد الشركاء (إختياري)",
-                      borderRadius: 8,
-                      type: TextInputType.text,
-                      controller: controller.createNumberPartnersCtr,
-                      prefixIcon: const Icon(
-                        Iconsax.people,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      name: "",
-                      hint: "الجنسية (إختياري)",
-                      borderRadius: 8,
-                      type: TextInputType.text,
-                      controller: controller.createNationalityPartnersCtr,
-                      prefixIcon: const Icon(
-                        Iconsax.global,
-                        color: Colors.black,
-                      ),
                     ),
                     const SizedBox(height: 12),
                     CustomTextField(
@@ -213,21 +162,8 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                               .validate()) {
                             controller.createHouseAds(
                               animationController: animationController,
-                              servicesTypeid: controller.addHousePartner,
                               location: "sssss",
-                              numberPartners: controller
-                                          .createNumberPartnersCtr.text !=
-                                      ""
-                                  ? int.parse(
-                                      controller.createNumberPartnersCtr.text)
-                                  : null,
                               neighborhood: "xxxxx",
-                              nationality: controller
-                                          .createNationalityPartnersCtr.text ==
-                                      ""
-                                  ? null
-                                  : controller
-                                      .createNationalityPartnersCtr.text,
                               title:
                                   controller.createTitlePartnersCtr.text == ""
                                       ? null

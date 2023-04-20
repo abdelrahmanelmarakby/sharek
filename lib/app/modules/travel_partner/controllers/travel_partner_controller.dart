@@ -112,9 +112,8 @@ class TravelPartnerController extends GetxController {
       );
       if (res?.status == true) {
         animationController.reset();
-
         BotToast.showText(text: res?.message ?? "");
-        Get.toNamed(Routes.BOTTOM_NAV_BAR);
+        Get.offAllNamed(Routes.BOTTOM_NAV_BAR);
       } else {
         animationController.reset();
         BotToast.showText(text: res?.message ?? "");

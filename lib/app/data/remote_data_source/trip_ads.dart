@@ -209,8 +209,32 @@ class TripPartnerAPI {
       ok: (data) {
         return data;
       },
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
       orElse: () {
         return;
+      },
+      noAuth: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
       },
     );
     return data;

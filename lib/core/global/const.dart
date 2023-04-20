@@ -29,7 +29,7 @@ class APIKeys {
   static const String apiPassword =
       "drV1DHcwSgFE8ebzBUR523Ym9fo9TGrKFKtPX9xSAEHJ90B7DK";
 
-  static const String baseUrl = "https://api.shreak.net/api/v1/";
+  static const String baseUrl = "https://shreak.net/api/v1/";
   static const String home = "home";
   static const String businessAds = "business-advertisements";
 
@@ -55,8 +55,14 @@ class APIKeys {
   static const String logout = "logout";
   //=================================================================
   static const String housingAds = "housing-advertisements";
-  static const String housingServicesType = "housing-advertisement/service/types";
-  static const String createhousingComment = "create/comment/housing-advertisement/";
+  static const String housingServicesType =
+      "housing-advertisement/service/types";
+  static const String createhousingComment =
+      "create/comment/housing-advertisement/";
   static const String housingAdsSearch = "search/$housingAds";
+  //=============================other ads===========================
+  static const String otherAds = "another-advertisements";
+  static const String createOtherComment =
+      "create/comment/another-advertisement/";
   //=================================================================
 }

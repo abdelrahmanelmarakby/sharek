@@ -8,6 +8,7 @@ import 'package:iconsax/iconsax.dart';
 
 import 'package:sharek/app/data/models/home_model.dart';
 import 'package:sharek/app/modules/house_partner/bindings/house_partner_binding.dart';
+import 'package:sharek/app/modules/other_service_partner/bindings/other_service_partner_binding.dart';
 import 'package:sharek/app/modules/travel_partner/bindings/travel_partner_binding.dart';
 import 'package:sharek/app/routes/app_pages.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
@@ -24,6 +25,7 @@ import 'package:sharek/core/widgets/custom_text_field.dart';
 import '../../business_partner/bindings/business_partner_binding.dart';
 import '../../business_partner/views/add_business_partner_ads_screen.dart';
 import '../../house_partner/views/add_house_ads_screen.dart';
+import '../../other_service_partner/views/add_other_ads_screen.dart';
 import '../../travel_partner/views/add_trip_ads_screen.dart';
 import '../controllers/home_controller.dart';
 
@@ -152,8 +154,9 @@ class AdCard extends StatelessWidget {
                           AdRowItem(
                               icon: Iconsax.user, text: ad?.userName ?? ""),
                           AdRowItem(
-                              icon: Iconsax.routing,
-                              text: ad?.neighborhood ?? "")
+                            icon: Iconsax.routing,
+                            text: ad?.neighborhood ?? "",
+                          )
                         ],
                       ),
                     )
@@ -166,10 +169,9 @@ class AdCard extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
-                    dummyImage,
-                    // ad?.photos?.isNotEmpty ?? false
-                    //     ? ad?.photos?.first ?? ""
-                    //     : dummyImage,
+                    ad?.photos?.isNotEmpty ?? false
+                        ? ad?.photos?.first ?? ""
+                        : dummyImage,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -328,7 +330,12 @@ class PartnerCard extends StatelessWidget {
               break;
 
             default:
-              Get.toNamed(Routes.OTHER_SERVICE_PARTNER);
+              isDialog == true
+                  ? Get.to(
+                      () => const AddOtherAdsScreen(),
+                      binding: OtherServicePartnerBinding(),
+                    )
+                  : Get.toNamed(Routes.OTHER_SERVICE_PARTNER);
           }
         },
         child: Column(

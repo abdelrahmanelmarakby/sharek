@@ -86,10 +86,6 @@ class HousePartnerController extends GetxController {
   int addHousePartner = 10;
   changeAddHousePartnerState(int val) {
     addHousePartner = val;
-    if (addHousePartner == 11) {
-      createNumberPartnersCtr.clear();
-      createNationalityPartnersCtr.clear();
-    }
     update();
   }
 
@@ -133,7 +129,7 @@ class HousePartnerController extends GetxController {
       if (res?.status == true) {
         animationController.reset();
         BotToast.showText(text: res?.message ?? "");
-        Get.toNamed(Routes.BOTTOM_NAV_BAR);
+        Get.offAllNamed(Routes.BOTTOM_NAV_BAR);
         clearCreateData();
       } else {
         animationController.reset();
