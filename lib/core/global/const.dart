@@ -53,6 +53,7 @@ class APIKeys {
   static const String updateAvatar = "update/avatar";
   static const String updateProfile = "update/profile";
   static const String logout = "logout";
+  static const String userInfo = "user/info";
   //=================================================================
   static const String housingAds = "housing-advertisements";
   static const String housingServicesType =
@@ -64,5 +65,11 @@ class APIKeys {
   static const String otherAds = "another-advertisements";
   static const String createOtherComment =
       "create/comment/another-advertisement/";
+  //========================sacrifice=================================
+  static const String sacrificeAds = "sacrifice-advertisements";
+  static const String sacrificeAdsSearch = "search/$sacrificeAds";
+  static const String createSacrificeComment =
+      "create/comment/sacrifice-advertisement/";
+  static const String sacrificeReservation = "sacrifice/reservation/";
   //=================================================================
 }

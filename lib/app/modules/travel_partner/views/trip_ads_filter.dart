@@ -16,7 +16,7 @@ import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
 import '../../../../core/widgets/src/radio_button_builder.dart';
 import '../../../../core/widgets/src/radio_group.dart';
-import '../../../data/models/trip_services_type_model.dart';
+import '../../../data/models/service_type.dart';
 import '../controllers/travel_partner_controller.dart';
 import '../widgets/services_type_item.dart';
 

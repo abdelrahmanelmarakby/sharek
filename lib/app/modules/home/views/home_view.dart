@@ -9,6 +9,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:sharek/app/data/models/home_model.dart';
 import 'package:sharek/app/modules/house_partner/bindings/house_partner_binding.dart';
 import 'package:sharek/app/modules/other_service_partner/bindings/other_service_partner_binding.dart';
+import 'package:sharek/app/modules/sake_partner/bindings/sake_partner_binding.dart';
 import 'package:sharek/app/modules/travel_partner/bindings/travel_partner_binding.dart';
 import 'package:sharek/app/routes/app_pages.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
@@ -26,6 +27,7 @@ import '../../business_partner/bindings/business_partner_binding.dart';
 import '../../business_partner/views/add_business_partner_ads_screen.dart';
 import '../../house_partner/views/add_house_ads_screen.dart';
 import '../../other_service_partner/views/add_other_ads_screen.dart';
+import '../../sake_partner/views/add_sake_ads_screen.dart';
 import '../../travel_partner/views/add_trip_ads_screen.dart';
 import '../controllers/home_controller.dart';
 
@@ -317,7 +319,11 @@ class PartnerCard extends StatelessWidget {
                   : Get.toNamed(Routes.TRAVEL_PARTNER);
               break;
             case 3:
-              Get.toNamed(Routes.SAKE_PARTNER);
+              isDialog == true
+                  ? Get.to(() => const AddSakeAdsScreen(),
+                      binding: SakePartnerBinding())
+                  : Get.toNamed(Routes.SAKE_PARTNER);
+
               break;
             case 4:
               isDialog == true

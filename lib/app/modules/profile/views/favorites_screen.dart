@@ -41,7 +41,6 @@ class FavoritesScreen extends GetView<ProfileController> {
                 createdAt2: "الأن",
                 userName: "محمد أحمد",
                 location: "جدة",
-                endingPlace: "الريان",
                 neighborhood: "الريان",
                 title: "مطعم أسماك للتقبيل",
                 photos: [dummyImage],

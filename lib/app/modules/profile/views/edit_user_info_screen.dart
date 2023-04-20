@@ -9,10 +9,18 @@ import '../../../../core/constants/theme/sizes_manager.dart';
 import '../controllers/profile_controller.dart';
 
 class EditUserInfoScreen extends GetView<ProfileController> {
-  const EditUserInfoScreen({super.key});
+  const EditUserInfoScreen({
+    super.key,
+    required this.name,
+    required this.phone,
+  });
+  final String name;
+  final String phone;
 
   @override
   Widget build(BuildContext context) {
+    controller.nameCtr.text = name;
+    controller.phoneCtr.text = phone;
     return Scaffold(
       appBar: AppBar(
         title: const Text('معلومات الحساب'),
@@ -48,15 +56,15 @@ class EditUserInfoScreen extends GetView<ProfileController> {
               width: MediaQuery.of(context).size.width,
               text: "حفظ",
               onPressed: (anim) {
-                // controller.updateUserProfile(
-                //   name: controller.nameCtr.text == ""
-                //       ? null
-                //       : controller.nameCtr.text,
-                //   phone: controller.phoneCtr.text == ""
-                //       ? null
-                //       : controller.phoneCtr.text,
-                //   animationController: anim,
-                // );
+                controller.updateUserProfile(
+                  name: controller.nameCtr.text == ""
+                      ? null
+                      : controller.nameCtr.text,
+                  phone: controller.phoneCtr.text == ""
+                      ? null
+                      : controller.phoneCtr.text,
+                  animationController: anim,
+                );
               },
             )
           ],

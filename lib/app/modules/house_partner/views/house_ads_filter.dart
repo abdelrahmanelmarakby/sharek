@@ -8,7 +8,7 @@ import 'package:sharek/core/extensions/validator.dart';
 import '../../../../core/widgets/custom_dropdown.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
-import '../../../data/models/trip_services_type_model.dart';
+import '../../../data/models/service_type.dart';
 import '../../travel_partner/widgets/services_type_item.dart';
 import '../controllers/house_partner_controller.dart';
 

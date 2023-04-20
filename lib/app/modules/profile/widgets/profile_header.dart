@@ -8,6 +8,7 @@ import 'package:iconsax/iconsax.dart';
 
 import 'package:sharek/core/constants/theme/sizes_manager.dart';
 import 'package:sharek/core/extensions/export.dart';
+import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/widgets/network_image.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
@@ -18,8 +19,10 @@ class ProfileHeader extends StatelessWidget {
   const ProfileHeader({
     Key? key,
     this.userImage,
+    required this.name,
   }) : super(key: key);
   final String? userImage;
+  final String name;
   @override
   Widget build(BuildContext context) {
     final ProfileController controller =
@@ -54,7 +57,7 @@ class ProfileHeader extends StatelessWidget {
                       : ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: AppCachedNetworkImage(
-                            imageUrl: userImage!,
+                            imageUrl: userImage ?? dummyImage,
                             height: 96,
                             width: 96,
                           ),
@@ -79,7 +82,7 @@ class ProfileHeader extends StatelessWidget {
           ),
           Sizes.size8.h(context).heightSizedBox,
           AppText(
-            "مصعب حسن",
+            name,
             fontSize: Sizes.size16.h(context),
             fontWeight: FontWeight.bold,
             color: Colors.black,

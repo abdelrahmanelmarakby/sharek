@@ -13,7 +13,7 @@ import '../../../../core/constants/theme/styles_manager.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../data/models/house_partners_model.dart';
-import '../../../data/models/trip_services_type_model.dart';
+import '../../../data/models/service_type.dart';
 import '../../travel_partner/widgets/services_type_item.dart';
 import '../controllers/house_partner_controller.dart';
 import '../widgets/house_ads.dart';

@@ -38,8 +38,7 @@ class CommentItemWidget extends StatelessWidget {
         children: [
           Expanded(
             flex: 20,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(50),
+            child: ClipOval(
               child: AppCachedNetworkImage(
                 imageUrl: image,
                 fit: BoxFit.cover,

@@ -1,5 +1,3 @@
-// ignore_for_file: unused_local_variable
-
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
@@ -17,14 +15,15 @@ import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
 import '../../../data/models/service_type.dart';
 import '../../travel_partner/widgets/services_type_item.dart';
-import '../controllers/house_partner_controller.dart';
+import '../controllers/sake_partner_controller.dart';
+import '../widgets/create_ads_quantity_section.dart';
 
-class AddHouseAdsScreen extends GetView<HousePartnerController> {
-  const AddHouseAdsScreen({Key? key}) : super(key: key);
+class AddSakeAdsScreen extends GetView<SakePartnerController> {
+  const AddSakeAdsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HousePartnerController>(
+    return GetBuilder<SakePartnerController>(
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
@@ -56,29 +55,58 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                     const SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: houseServicesTypes
+                      children: sacrificeServicesTypes
                           .map(
-                            (e) => Container(
-                              padding: EdgeInsets.only(
-                                left: controller.addHousePartner == 10 ? 6 : 0,
-                                right: controller.addHousePartner == 11 ? 6 : 0,
-                              ),
-                              width: MediaQuery.of(context).size.width / 2.2,
-                              child: ServicesItem(
-                                activeIndex: controller.addHousePartner,
-                                index: e.serviceTypeId ?? 0,
-                                title: e.name ?? "",
-                                onTap: () {
-                                  controller.changeAddHousePartnerState(
-                                    e.serviceTypeId ?? 0,
-                                  );
-                                },
+                            (e) => Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 4,
+                                ),
+                                child: ServicesItem(
+                                  activeIndex:
+                                      controller.createSacrificePartner,
+                                  index: e.serviceTypeId ?? 0,
+                                  title: e.name ?? "",
+                                  onTap: () {
+                                    controller
+                                        .changeCreateSacrificePartnerState(
+                                      e.serviceTypeId ?? 0,
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           )
                           .toList(),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: controller.sacrificeType
+                          .map(
+                            (e) => Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 4,
+                                ),
+                                child: ServicesItem(
+                                  activeIndex: controller
+                                          .createSacrificeTypeItem
+                                          .serviceTypeId ??
+                                      0,
+                                  index: e.serviceTypeId ?? 0,
+                                  title: e.name ?? "",
+                                  onTap: () {
+                                    controller
+                                        .changeCreateSacrificeTypeState(e);
+                                  },
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                    const SizedBox(height: 12),
                     AppDropDown(
                       icon: const Icon(
                         Iconsax.location,
@@ -95,32 +123,18 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                         size: 20,
                         color: Colors.black,
                       ),
-                      title: "الحي",
+                      title: "المدينة",
                       bottomSheet: Container(),
                     ),
                     const SizedBox(height: 12),
-                    CustomTextField(
-                      name: "",
-                      hint: "عدد الشركاء (إختياري)",
-                      borderRadius: 8,
-                      type: TextInputType.text,
-                      controller: controller.createNumberPartnersCtr,
-                      prefixIcon: const Icon(
-                        Iconsax.people,
+                    AppDropDown(
+                      icon: const Icon(
+                        Iconsax.location_tick,
+                        size: 20,
                         color: Colors.black,
                       ),
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      name: "",
-                      hint: "الجنسية (إختياري)",
-                      borderRadius: 8,
-                      type: TextInputType.text,
-                      controller: controller.createNationalityPartnersCtr,
-                      prefixIcon: const Icon(
-                        Iconsax.global,
-                        color: Colors.black,
-                      ),
+                      title: "الحي",
+                      bottomSheet: Container(),
                     ),
                     const SizedBox(height: 12),
                     CustomTextField(
@@ -158,7 +172,7 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                     const SizedBox(height: 12),
                     GestureDetector(
                       onTap: () {
-                        controller.pickCreateHouseAdsImages();
+                        controller.pickCreateAdsImages();
                       },
                       child: DottedBorder(
                         color: const Color(0xFFE4E4E5),
@@ -203,6 +217,12 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                         color: Colors.grey,
                       ),
                     ),
+                    controller.createSacrificePartner == 8
+                        ? const SizedBox()
+                        : const SizedBox(height: 16),
+                    controller.createSacrificePartner == 8
+                        ? const SizedBox()
+                        : const CreateAdsQuantitySection(),
                     const SizedBox(height: 27),
                     Center(
                       child: AppProgressButton(
@@ -211,38 +231,25 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                         onPressed: (animationController) {
                           if (controller.createFormKey.currentState!
                               .validate()) {
-                            controller.createHouseAds(
-                              animationController: animationController,
-                              servicesTypeid: controller.addHousePartner,
-                              location: "sssss",
-                              numberPartners: controller
-                                          .createNumberPartnersCtr.text !=
-                                      ""
-                                  ? int.parse(
-                                      controller.createNumberPartnersCtr.text)
-                                  : null,
-                              neighborhood: "xxxxx",
-                              nationality: controller
-                                          .createNationalityPartnersCtr.text ==
-                                      ""
-                                  ? null
-                                  : controller
-                                      .createNationalityPartnersCtr.text,
-                              title:
-                                  controller.createTitlePartnersCtr.text == ""
-                                      ? null
-                                      : controller.createTitlePartnersCtr.text,
-                              description: controller
-                                          .createDescriptionPartnersCtr.text ==
-                                      ""
-                                  ? null
-                                  : controller
-                                      .createDescriptionPartnersCtr.text,
-                              phone: controller.createPhoneCtr.text == ""
-                                  ? null
-                                  : controller.createPhoneCtr.text,
-                              photos: controller.createPhotos,
-                            );
+                            // controller.createHouseAds(
+                            //   animationController: animationController,
+                            //   location: "sssss",
+                            //   neighborhood: "xxxxx",
+                            //   title:
+                            //       controller.createTitlePartnersCtr.text == ""
+                            //           ? null
+                            //           : controller.createTitlePartnersCtr.text,
+                            //   description: controller
+                            //               .createDescriptionPartnersCtr.text ==
+                            //           ""
+                            //       ? null
+                            //       : controller
+                            //           .createDescriptionPartnersCtr.text,
+                            //   phone: controller.createPhoneCtr.text == ""
+                            //       ? null
+                            //       : controller.createPhoneCtr.text,
+                            //   photos: controller.createPhotos,
+                            // );
                           }
                         },
                       ),

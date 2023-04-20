@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:sharek/app/data/models/trip_services_type_model.dart';
 import 'package:sharek/app/modules/business_partner/views/business_partner_filter_result.dart';
 import 'package:sharek/app/modules/travel_partner/widgets/services_type_item.dart';
 import 'package:sharek/core/constants/theme/theme_export.dart';
 import 'package:sharek/core/widgets/custom_dropdown.dart';
 import 'package:sharek/core/widgets/progress_button.dart';
 
+import '../../../data/models/service_type.dart';
 import '../controllers/business_partner_controller.dart';
 
 class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sharek/app/data/models/business_ads_model.dart';
 import 'package:sharek/app/data/models/home_model.dart';
-import 'package:sharek/app/data/models/trip_services_type_model.dart';
 import 'package:sharek/app/data/remote_data_source/business_ads.dart';
 import 'package:sharek/app/modules/business_partner/bindings/business_partner_binding.dart';
 import 'package:sharek/app/modules/business_partner/views/business_partner_details_screen.dart';
@@ -20,6 +19,7 @@ import 'package:sharek/core/constants/theme/styles_manager.dart';
 import 'package:sharek/core/widgets/app_text.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
 
+import '../../../data/models/service_type.dart';
 import '../controllers/business_partner_controller.dart';
 
 class BusinessPartnerView extends GetView<BusinessPartnerController> {
