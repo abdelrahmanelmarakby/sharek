@@ -124,7 +124,7 @@ class SarificeAPIS {
     int? half,
   }) async {
     final request = NetworkRequest(
-      type: NetworkRequestType.POST,
+      type: NetworkRequestType.GET,
       path: APIKeys.sacrificeAdsSearch,
       headers: {
         'Accept': 'application/json',
@@ -132,20 +132,17 @@ class SarificeAPIS {
         'Authorization':
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
       },
-      data: NetworkRequestBody.fromData(
-        FormData.fromMap(
-          {
-            "service_type_id": servicesTypeid,
-            "location": location,
-            "neighborhood": neighborhood,
-            "sacrifice_type": sacrificeType,
-            "eighth": eighth,
-            "third": third,
-            "quarter": quarter,
-            "half": half,
-          },
-        ),
-      ),
+      data: const NetworkRequestBody.empty(),
+      queryParams: {
+        "service_type_id": servicesTypeid,
+        "location": location,
+        "neighborhood": neighborhood,
+        "sacrifice_type": sacrificeType,
+        "eighth": eighth,
+        "third": third,
+        "quarter": quarter,
+        "half": half,
+      },
     );
     final response = await networkService.execute(
       request,
@@ -155,7 +152,30 @@ class SarificeAPIS {
       ok: (data) {
         return data;
       },
-      orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      orElse: () {
+        return;
+      },
     );
     return data;
   }

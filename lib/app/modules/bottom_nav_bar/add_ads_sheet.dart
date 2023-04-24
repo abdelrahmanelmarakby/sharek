@@ -58,7 +58,7 @@ class AddAdsSheet extends StatelessWidget {
                   isDialog: true,
                   serviceId: 5,
                   name: "اخري",
-                  imagePath: "assets/images/business_partner.svg",
+                  imagePath: "assets/images/bubble.svg",
                 ),
               ],
             ),

@@ -123,7 +123,7 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                         size: 20,
                         color: Colors.black,
                       ),
-                      title: "المدينة",
+                      title: "الحي",
                       bottomSheet: Container(),
                     ),
                     const SizedBox(height: 12),

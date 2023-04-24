@@ -93,7 +93,7 @@ class BusinessPartnerAPI {
   static Future<BusinessPartnerModel?> filterBusinessAds(
       {int? servicesTypeid, String? location, String? city}) async {
     final request = NetworkRequest(
-      type: NetworkRequestType.POST,
+      type: NetworkRequestType.GET,
       path: APIKeys.businessAdsSearch,
       headers: {
         'Accept': 'application/json',
@@ -101,15 +101,12 @@ class BusinessPartnerAPI {
         'Authorization':
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
       },
-      data: NetworkRequestBody.fromData(
-        FormData.fromMap(
-          {
-            "service_type_id": servicesTypeid,
-            "location": location,
-            "neighborhood": location,
-          },
-        ),
-      ),
+      queryParams: {
+        "service_type_id": servicesTypeid,
+        "location": location,
+        "neighborhood": location,
+      },
+      data: const NetworkRequestBody.empty(),
     );
 
     final response = await networkService.execute(
@@ -119,7 +116,32 @@ class BusinessPartnerAPI {
         return data;
       },
       orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
     );
+
     return data;
   }
 

@@ -121,7 +121,7 @@ class HousePartnerAPI {
     String? title,
   }) async {
     final request = NetworkRequest(
-      type: NetworkRequestType.POST,
+      type: NetworkRequestType.GET,
       path: APIKeys.housingAdsSearch,
       headers: {
         'Accept': 'application/json',
@@ -129,18 +129,15 @@ class HousePartnerAPI {
         'Authorization':
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
       },
-      data: NetworkRequestBody.fromData(
-        FormData.fromMap(
-          {
-            "service_type_id": servicesTypeid,
-            "location": location,
-            "neighborhood": neighborhood,
-            "number_partners": numberPartners,
-            "nationality": nationality,
-            "title": title,
-          },
-        ),
-      ),
+      data: const NetworkRequestBody.empty(),
+      queryParams: {
+        "service_type_id": servicesTypeid,
+        "location": location,
+        "neighborhood": neighborhood,
+        "number_partners": numberPartners,
+        "nationality": nationality,
+        "title": title,
+      },
     );
     final response = await networkService.execute(
         request, (json) => HousePartnersModel.fromJson(json));
@@ -148,7 +145,30 @@ class HousePartnerAPI {
       ok: (data) {
         return data;
       },
-      orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      orElse: () {
+        return;
+      },
     );
     return data;
   }

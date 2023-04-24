@@ -93,12 +93,13 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
                       ),
                       const SizedBox(height: 12),
                       AppDropDown(
-                          icon: const Icon(
-                            Iconsax.location_tick,
-                            color: Colors.black,
-                          ),
-                          title: "المدينة",
-                          bottomSheet: Container()),
+                        icon: const Icon(
+                          Iconsax.location_tick,
+                          color: Colors.black,
+                        ),
+                        title: "الحي",
+                        bottomSheet: Container(),
+                      ),
                       const SizedBox(height: 12),
                       AppDropDown(
                         icon: const RotatedBox(

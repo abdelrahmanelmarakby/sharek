@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_typing_uninitialized_variables
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:sharek/app/data/models/home_model.dart';
+import 'package:sharek/app/modules/home/bindings/home_binding.dart';
 import 'package:sharek/app/modules/house_partner/bindings/house_partner_binding.dart';
 import 'package:sharek/app/modules/other_service_partner/bindings/other_service_partner_binding.dart';
 import 'package:sharek/app/modules/sake_partner/bindings/sake_partner_binding.dart';
@@ -25,11 +26,17 @@ import 'package:sharek/core/widgets/custom_text_field.dart';
 
 import '../../business_partner/bindings/business_partner_binding.dart';
 import '../../business_partner/views/add_business_partner_ads_screen.dart';
+import '../../business_partner/views/business_partner_details_screen.dart';
 import '../../house_partner/views/add_house_ads_screen.dart';
+import '../../house_partner/views/house_ads_details_screen.dart';
 import '../../other_service_partner/views/add_other_ads_screen.dart';
+import '../../other_service_partner/views/other_ads_details_screen.dart';
 import '../../sake_partner/views/add_sake_ads_screen.dart';
+import '../../sake_partner/views/sake_ads_details_screen.dart';
 import '../../travel_partner/views/add_trip_ads_screen.dart';
+import '../../travel_partner/views/travel_partner_details_screen.dart';
 import '../controllers/home_controller.dart';
+import 'home_search_screen.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({
@@ -57,7 +64,14 @@ class HomeView extends GetView<HomeController> {
                   children: [
                     CustomTextField(
                       name: LocalKeys.search,
-                      hint: LocalKeys.search.tr,
+                      hint: "أبحث هنا",
+                      readOnly: true,
+                      onTap: () {
+                        Get.to(
+                          () => const HomeSearchScreen(),
+                          binding: HomeBinding(),
+                        );
+                      },
                       prefixIcon: const Icon(Iconsax.search_normal),
                     ),
                     Sizes.size16.h(context).heightSizedBox,
@@ -77,7 +91,54 @@ class HomeView extends GetView<HomeController> {
                           ...List.generate(20, (index) {
                             NewAdvertisements? ad =
                                 homeData?.data?.newAdvertisements?[index];
-                            return AdCard(ad: ad);
+                            return GestureDetector(
+                              onTap: () {
+                                if (ad?.serviceId == 1 ||
+                                    ad?.serviceId == 2 ||
+                                    ad?.serviceId == 3 ||
+                                    ad?.serviceId == 4 ||
+                                    ad?.serviceId == 5) {
+                                  Get.to(
+                                    () => BusinessPartnerDetailsScreen(
+                                      adId: ad?.advertisementId ?? 0,
+                                    ),
+                                    binding: BusinessPartnerBinding(),
+                                  );
+                                } else if (ad?.serviceId == 6 ||
+                                    ad?.serviceId == 7) {
+                                  Get.to(
+                                    () => TravelPartnerDetailsScreen(
+                                      id: ad?.advertisementId ?? 0,
+                                    ),
+                                    binding: TravelPartnerBinding(),
+                                  );
+                                } else if (ad?.serviceId == 8 ||
+                                    ad?.serviceId == 9) {
+                                  Get.to(
+                                    () => SakePartnerDetailsScreen(
+                                      id: ad?.advertisementId ?? 0,
+                                    ),
+                                    binding: SakePartnerBinding(),
+                                  );
+                                } else if (ad?.serviceId == 10 ||
+                                    ad?.serviceId == 11) {
+                                  Get.to(
+                                    () => HousePartnerDetailsScreen(
+                                      id: ad?.advertisementId ?? 0,
+                                    ),
+                                    binding: HousePartnerBinding(),
+                                  );
+                                } else {
+                                  Get.to(
+                                    () => OtherPartnerDetailsScreen(
+                                      id: ad?.advertisementId ?? 0,
+                                    ),
+                                    binding: OtherServicePartnerBinding(),
+                                  );
+                                }
+                              },
+                              child: AdCard(ad: ad),
+                            );
                           })
                         ],
                       ),
@@ -105,7 +166,7 @@ class AdCard extends StatelessWidget {
     required this.ad,
   });
 
-  final NewAdvertisements? ad;
+  final ad;
 
   @override
   Widget build(BuildContext context) {
@@ -275,7 +336,7 @@ class ServicesList extends StatelessWidget {
                 isDialog: false,
                 serviceId: 5,
                 name: "اخري",
-                imagePath: "assets/images/business_partner.svg",
+                imagePath: "assets/images/bubble.svg",
               ),
             ],
           )),
@@ -350,18 +411,17 @@ class PartnerCard extends StatelessWidget {
               height: 80.h(context),
               width: 80.h(context),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border:
-                      Border.all(width: .5, color: ColorsManager.veryLightGrey),
-                  color: const Color(
-                    0xffF7F7F9,
-                  )),
-              child: Center(
-                child: SvgPicture.asset(
-                  imagePath,
-                  height: 35,
-                  width: 35,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  width: .5,
+                  color: ColorsManager.veryLightGrey,
                 ),
+                color: const Color(
+                  0xffF7F7F9,
+                ),
+              ),
+              child: Center(
+                child: SvgPicture.asset(imagePath),
               ),
             ),
             Sizes.size8.heightSizedBox,

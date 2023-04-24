@@ -102,7 +102,7 @@ class TripPartnerAPI {
     String? carType,
   }) async {
     final request = NetworkRequest(
-      type: NetworkRequestType.POST,
+      type: NetworkRequestType.GET,
       path: APIKeys.tripAdsSearch,
       headers: {
         'Accept': 'application/json',
@@ -110,22 +110,19 @@ class TripPartnerAPI {
         'Authorization':
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
       },
-      data: NetworkRequestBody.fromData(
-        FormData.fromMap(
-          {
-            "service_type_id": servicesTypeid,
-            "starting_place": startingPlace,
-            "ending_place": endingPlace,
-            "number_passengers": numberPassengers,
-            "nationality": nationality,
-            "date": date,
-            "time": time,
-            "price": price,
-            "with_packages": withPackages == true ? 1 : 0,
-            "car_type": carType,
-          },
-        ),
-      ),
+      data: const NetworkRequestBody.empty(),
+      queryParams: {
+        "service_type_id": servicesTypeid,
+        "starting_place": startingPlace,
+        "ending_place": endingPlace,
+        "number_passengers": numberPassengers,
+        "nationality": nationality,
+        "date": date,
+        "time": time,
+        "price": price,
+        "with_packages": withPackages == true ? 1 : 0,
+        "car_type": carType,
+      },
     );
     final response = await networkService.execute(
         request, (json) => TripAdvertisementsModel.fromJson(json));
@@ -133,7 +130,33 @@ class TripPartnerAPI {
       ok: (data) {
         return data;
       },
-      orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      orElse: () {
+        return;
+      },
+      noAuth: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
     );
     return data;
   }

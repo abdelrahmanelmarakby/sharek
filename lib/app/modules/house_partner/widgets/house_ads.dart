@@ -60,7 +60,7 @@ class HouseAdsItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         AdRowItem(icon: Iconsax.user, text: ad?.userName ?? ""),
-                        ad?.serviceTypeId == 10
+                        ad?.serviceTypeId == 10 || ad?.nationality == null
                             ? AdRowItem(
                                 icon: Iconsax.global,
                                 text: ad?.nationality ?? "",

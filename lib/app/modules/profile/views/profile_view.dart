@@ -130,7 +130,7 @@ class ProfileView extends GetView<ProfileController> {
                           const ProfileListTile(
                             title: "الأحكام والشروط",
                           ),
-                          Sizes.size24.h(context).heightSizedBox,
+                          Sizes.size12.h(context).heightSizedBox,
                           GestureDetector(
                             onTap: () {
                               controller.logOut();

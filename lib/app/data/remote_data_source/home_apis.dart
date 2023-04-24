@@ -3,6 +3,7 @@ import 'package:sharek/core/services/network_service.dart/dio_network_service.da
 
 import '../../../core/services/shared_prefs.dart';
 import '../models/home_model.dart';
+import '../models/home_search_model.dart';
 
 class HomeAPI {
   static Future<HomeModel?> getHome() async {
@@ -25,6 +26,60 @@ class HomeAPI {
       },
       orElse: () {},
     );
+    return data;
+  }
+
+  static Future<HomeSearchModel?> searchHomeAds({String? search}) async {
+    final request = NetworkRequest(
+      type: NetworkRequestType.GET,
+      path: APIKeys.homeSearch,
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
+      queryParams: {
+        "search": search,
+      },
+      data: const NetworkRequestBody.empty(),
+    );
+
+    final response = await networkService.execute(
+      request,
+      (json) => HomeSearchModel.fromJson(json),
+    );
+    final data = response.maybeWhen(
+      ok: (data) {
+        return data;
+      },
+      orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
+    );
+
     return data;
   }
 }
