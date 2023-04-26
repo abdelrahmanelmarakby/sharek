@@ -93,35 +93,28 @@ class HomeView extends GetView<HomeController> {
                                 homeData?.data?.newAdvertisements?[index];
                             return GestureDetector(
                               onTap: () {
-                                if (ad?.serviceId == 1 ||
-                                    ad?.serviceId == 2 ||
-                                    ad?.serviceId == 3 ||
-                                    ad?.serviceId == 4 ||
-                                    ad?.serviceId == 5) {
+                                if (ad?.serviceId == 1) {
                                   Get.to(
                                     () => BusinessPartnerDetailsScreen(
                                       adId: ad?.advertisementId ?? 0,
                                     ),
                                     binding: BusinessPartnerBinding(),
                                   );
-                                } else if (ad?.serviceId == 6 ||
-                                    ad?.serviceId == 7) {
+                                } else if (ad?.serviceId == 2) {
                                   Get.to(
                                     () => TravelPartnerDetailsScreen(
                                       id: ad?.advertisementId ?? 0,
                                     ),
                                     binding: TravelPartnerBinding(),
                                   );
-                                } else if (ad?.serviceId == 8 ||
-                                    ad?.serviceId == 9) {
+                                } else if (ad?.serviceId == 3) {
                                   Get.to(
                                     () => SakePartnerDetailsScreen(
                                       id: ad?.advertisementId ?? 0,
                                     ),
                                     binding: SakePartnerBinding(),
                                   );
-                                } else if (ad?.serviceId == 10 ||
-                                    ad?.serviceId == 11) {
+                                } else if (ad?.serviceId == 4) {
                                   Get.to(
                                     () => HousePartnerDetailsScreen(
                                       id: ad?.advertisementId ?? 0,

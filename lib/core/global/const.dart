@@ -31,9 +31,9 @@ class APIKeys {
 
   static const String baseUrl = "https://shreak.net/api/v1/";
   static const String home = "home";
-    static const String homeSearch= "search/home";
-
-  
+  static const String homeSearch = "search/home";
+  static const String regions = "regions";
+  static const String cities = "cities/";
   static const String businessAds = "business-advertisements";
 
   static const String businessAdsSearch = "search/business-advertisements";
