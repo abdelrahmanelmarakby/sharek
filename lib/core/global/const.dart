@@ -74,5 +74,19 @@ class APIKeys {
   static const String createSacrificeComment =
       "create/comment/sacrifice-advertisement/";
   static const String sacrificeReservation = "sacrifice/reservation/";
-  //=================================================================
+  //============================Favorites=============================
+  static const String favorite = "favorite/";
+  static const String favoriteBusinessAds = "$favorite$businessAds/";
+  static const String favoriteTripAds = "$favorite$tripAds/";
+  static const String favoriteHousingAds = "$favorite$housingAds/";
+  static const String favoriteOtherAds = "$favorite$otherAds/";
+  static const String favoriteSacrificeAds = "$favorite$sacrificeAds/";
+  //============================report================================
+  static const String report = "report/";
+  static const String reportBusinessAds = "${report}business-advertisement/";
+  static const String reportTripAds = "${report}trip-advertisement/";
+  static const String reportHousingAds = "${report}housing-advertisement/";
+  static const String reportOtherAds = "${report}another-advertisement/";
+  static const String reportSacrificeAds = "${report}sacrifice-advertisement/";
+  //==================================================================
 }

@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:sharek/core/extensions/num.dart';
 
-import 'package:sharek/core/extensions/export.dart';
+// import 'package:sharek/core/extensions/export.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
@@ -14,6 +15,7 @@ import '../../../../core/global/const.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/network_image.dart';
+import '../../../../core/widgets/progress_button.dart';
 import '../../../data/models/trip_ads_item_model.dart';
 import '../../../data/remote_data_source/trip_ads.dart';
 import '../../home/views/home_view.dart';
@@ -69,6 +71,10 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                           ),
                           actions: [
                             GestureDetector(
+                              onTap: () {
+                                controller.addToFavorites(
+                                    id: ads?.advertisementId ?? 0);
+                              },
                               child: Container(
                                 height: 40,
                                 width: 40,
@@ -88,33 +94,102 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                               ),
                             ),
                             const SizedBox(width: 16),
-                            GestureDetector(
-                              onTap: () {},
-                              child: PopupMenuButton(
+                            if (innerBoxIsScrolled)
+                              const Icon(
+                                Icons.share_outlined,
+                                size: 20,
+                              )
+                            else
+                              PopupMenuButton(
+                                onSelected: (val) async {
+                                  if (val == "/report") {
+                                    Get.dialog(
+                                      Dialog(
+                                        child: Container(
+                                          width: context.width - 40,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                          ),
+                                          padding: const EdgeInsets.all(16),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              const AppText(
+                                                "ابلاغ",
+                                                color: Colors.black,
+                                                fontSize: 18,
+                                                fontWeight:
+                                                    FontWeights.semiBold,
+                                              ),
+                                              const SizedBox(height: 12),
+                                              CustomTextField(
+                                                name: "",
+                                                hint: "",
+                                                borderRadius: 8,
+                                                controller:
+                                                    controller.reportCtr,
+                                                suffixIcon: const SizedBox(),
+                                                isResendSuffixIcon: true,
+                                                type: TextInputType.text,
+                                              ),
+                                              const SizedBox(height: 24),
+                                              AppProgressButton(
+                                                onPressed: (anim) {
+                                                  controller.reportCtr.text ==
+                                                          ""
+                                                      ? null
+                                                      : controller.createReport(
+                                                          id: ads?.advertisementId ??
+                                                              0,
+                                                          report: controller
+                                                              .reportCtr.text,
+                                                          animationController:
+                                                              anim,
+                                                        );
+                                                },
+                                                text: "ابلاغ",
+                                                width: context.width,
+                                                backgroundColor:
+                                                    ColorsManager.primary,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
                                 itemBuilder: (BuildContext context) {
                                   return [
                                     PopupMenuItem(
+                                        value: "/share",
                                         child: Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.share_outlined,
-                                          size: 20,
-                                        ),
-                                        12.widthSizedBox,
-                                        const Text("مشاركة الاعلان"),
-                                      ],
-                                    )),
+                                          children: [
+                                            const Icon(
+                                              Icons.share_outlined,
+                                              size: 20,
+                                            ),
+                                            12.widthSizedBox,
+                                            const Text("مشاركة الاعلان"),
+                                          ],
+                                        )),
                                     PopupMenuItem(
-                                        child: Row(
-                                      children: [
-                                        const Icon(
-                                          Iconsax.flag,
-                                          size: 20,
-                                        ),
-                                        12.widthSizedBox,
-                                        const Text("ابلاغ عن الاعلان"),
-                                      ],
-                                    ))
+                                      value: "/report",
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Iconsax.flag,
+                                            size: 20,
+                                          ),
+                                          12.widthSizedBox,
+                                          const Text(
+                                            "ابلاغ عن الاعلان",
+                                          ),
+                                        ],
+                                      ),
+                                    )
                                   ];
                                 },
                                 child: Container(
@@ -134,7 +209,6 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                   ),
                                 ),
                               ),
-                            ),
                             const SizedBox(width: 16),
                           ],
                           flexibleSpace: LayoutBuilder(

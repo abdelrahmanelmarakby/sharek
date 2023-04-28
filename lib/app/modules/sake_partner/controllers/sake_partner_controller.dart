@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../data/models/service_type.dart';
+import '../../../data/remote_data_source/favorites_and_report_apis.dart';
 import '../../../data/remote_data_source/serifice_apis.dart';
 import '../../../routes/app_pages.dart';
 
@@ -332,5 +333,60 @@ class SakePartnerController extends GetxController {
     filterQuantityItem = null;
     update();
   }
-  //====================================================================
+  //====================================================================\
+    //===============================report==================================
+  TextEditingController reportCtr = TextEditingController();
+  Future createReport({
+    required int id,
+    required String report,
+    required AnimationController animationController,
+  }) async {
+    try {
+      animationController.forward();
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
+      final res = await FavoritesAndReportAPIS.createReport(
+        type: Partners.sacrificeAds,
+        id: id,
+        report: report,
+      );
+      if (res?.status == true) {
+        animationController.forward();
+        Future.delayed(1.milliseconds, () {
+          animationController.reverse();
+          Get.back();
+        });
+        reportCtr.clear();
+        BotToast.showText(text: res?.message ?? "");
+      } else {
+        animationController.reset();
+        BotToast.showText(text: res?.message ?? "");
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+//========================================================================
+  Future addToFavorites({
+    required int id,
+  }) async {
+    try {
+      BotToast.showLoading();
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
+      final res = await FavoritesAndReportAPIS.addToFavorites(
+        type: Partners.sacrificeAds,
+        id: id,
+      );
+      if (res?.status == true) {
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+      } else {
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+      }
+    } catch (e) {
+      BotToast.closeAllLoading();
+      log(e.toString());
+    }
+  }
 }
