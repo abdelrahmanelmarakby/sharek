@@ -70,6 +70,7 @@ class TripAdsFilterResult extends GetView<TravelPartnerController> {
                             Get.to(
                               () => TravelPartnerDetailsScreen(
                                 id: ads?.advertisementId ?? 0,
+                                isUserAds: false,
                               ),
                             );
                           },

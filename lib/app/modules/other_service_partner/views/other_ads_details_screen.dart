@@ -25,9 +25,11 @@ import '../controllers/other_service_partner_controller.dart';
 class OtherPartnerDetailsScreen extends GetView<OtherServicePartnerController> {
   const OtherPartnerDetailsScreen({
     required this.id,
+    required this.isUserAds,
     Key? key,
   }) : super(key: key);
   final int id;
+  final bool isUserAds;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OtherServicePartnerController>(
@@ -160,37 +162,84 @@ class OtherPartnerDetailsScreen extends GetView<OtherServicePartnerController> {
                                     );
                                   }
                                 },
-                                itemBuilder: (BuildContext context) {
-                                  return [
-                                    PopupMenuItem(
-                                        value: "/share",
-                                        child: Row(
-                                          children: [
-                                            const Icon(
-                                              Icons.share_outlined,
-                                              size: 20,
-                                            ),
-                                            12.widthSizedBox,
-                                            const Text("مشاركة الاعلان"),
-                                          ],
-                                        )),
-                                    PopupMenuItem(
-                                      value: "/report",
-                                      child: Row(
-                                        children: [
-                                          const Icon(
-                                            Iconsax.flag,
-                                            size: 20,
+                                 itemBuilder: (BuildContext context) {
+                                return isUserAds
+                                    ? [
+                                        PopupMenuItem(
+                                          value: "/share",
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.share_outlined,
+                                                size: 20,
+                                              ),
+                                              12.widthSizedBox,
+                                              const Text("مشاركة الاعلان"),
+                                            ],
                                           ),
-                                          12.widthSizedBox,
-                                          const Text(
-                                            "ابلاغ عن الاعلان",
+                                        ),
+                                        PopupMenuItem(
+                                          value: "/report",
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Iconsax.edit,
+                                                size: 20,
+                                              ),
+                                              12.widthSizedBox,
+                                              const Text(
+                                                "تعديل الإعلان",
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                    )
-                                  ];
-                                },
+                                        ),
+                                        PopupMenuItem(
+                                          value: "/report",
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.delete_outlined,
+                                                size: 20,
+                                              ),
+                                              12.widthSizedBox,
+                                              const Text(
+                                                "حذف الإعلان",
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ]
+                                    : [
+                                        PopupMenuItem(
+                                          value: "/share",
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.share_outlined,
+                                                size: 20,
+                                              ),
+                                              12.widthSizedBox,
+                                              const Text("مشاركة الاعلان"),
+                                            ],
+                                          ),
+                                        ),
+                                        PopupMenuItem(
+                                          value: "/report",
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Iconsax.flag,
+                                                size: 20,
+                                              ),
+                                              12.widthSizedBox,
+                                              const Text(
+                                                "ابلاغ عن الاعلان",
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ];
+                              },
                                 child: Container(
                                   height: 40,
                                   width: 40,

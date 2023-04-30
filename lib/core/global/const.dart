@@ -55,8 +55,10 @@ class APIKeys {
   //===========================Profile===============================
   static const String updateAvatar = "update/avatar";
   static const String updateProfile = "update/profile";
+
   static const String logout = "logout";
   static const String userInfo = "user/info";
+  static const String userAds = "user-advertisement";
   //=================================================================
   static const String housingAds = "housing-advertisements";
   static const String housingServicesType =
@@ -76,6 +78,7 @@ class APIKeys {
   static const String sacrificeReservation = "sacrifice/reservation/";
   //============================Favorites=============================
   static const String favorite = "favorite/";
+  static const String userFavorite = "user-favourite";
   static const String favoriteBusinessAds = "$favorite$businessAds/";
   static const String favoriteTripAds = "$favorite$tripAds/";
   static const String favoriteHousingAds = "$favorite$housingAds/";

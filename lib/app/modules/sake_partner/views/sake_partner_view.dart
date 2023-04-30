@@ -44,7 +44,6 @@ class SakePartnerView extends GetView<SakePartnerController> {
             future: SarificeAPIS.filterSerificeAds(
               servicesTypeid: controller.sacrificePartner,
               sacrificeType: controller.sacrificeTypeItem?.name,
-              
             ),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -154,6 +153,7 @@ class SakePartnerView extends GetView<SakePartnerController> {
                                             Get.to(
                                               () => SakePartnerDetailsScreen(
                                                 id: ads?.advertisementId ?? 0,
+                                                isUserAds: false,
                                               ),
                                             );
                                           },

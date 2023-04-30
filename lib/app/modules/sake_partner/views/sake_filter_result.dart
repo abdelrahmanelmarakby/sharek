@@ -53,6 +53,8 @@ class SakeFilterResultScreen extends GetView<SakePartnerController> {
                           Get.to(
                             () => SakePartnerDetailsScreen(
                               id: ads?.advertisementId ?? 0,
+                                                              isUserAds: false,
+
                             ),
                           );
                         },

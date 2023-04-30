@@ -182,7 +182,7 @@ class AddOtherAdsScreen extends GetView<OtherServicePartnerController> {
                       hint: "عنوان الطلب",
                       borderRadius: 8,
                       controller: controller.createTitlePartnersCtr,
-                      type: TextInputType.number,
+                      type: TextInputType.text,
                       prefixIcon: const Icon(
                         Iconsax.document_text,
                         color: Colors.black,

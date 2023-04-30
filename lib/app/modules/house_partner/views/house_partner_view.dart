@@ -124,6 +124,7 @@ class HousePartnerView extends GetView<HousePartnerController> {
                                                         HousePartnerDetailsScreen(
                                                       id: ads?.advertisementId ??
                                                           0,
+                                                      isUserAds: false,
                                                     ),
                                                   );
                                                 },
@@ -159,6 +160,7 @@ class HousePartnerView extends GetView<HousePartnerController> {
                                                         HousePartnerDetailsScreen(
                                                       id: ads?.advertisementId ??
                                                           0,
+                                                      isUserAds: false,
                                                     ),
                                                   );
                                                 },

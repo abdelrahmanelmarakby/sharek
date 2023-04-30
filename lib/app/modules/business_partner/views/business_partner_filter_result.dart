@@ -5,11 +5,11 @@ import 'package:sharek/app/data/models/home_model.dart';
 import 'package:sharek/app/data/remote_data_source/business_ads.dart';
 import 'package:sharek/app/modules/business_partner/controllers/business_partner_controller.dart';
 import 'package:sharek/app/modules/home/views/home_view.dart';
-import 'package:sharek/app/modules/travel_partner/views/travel_partner_details_screen.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/widgets/app_text.dart';
+import 'business_partner_details_screen.dart';
 
 class BusinessAdsFilterResult extends GetView<BusinessPartnerController> {
   final int? servicesTypeid;
@@ -45,8 +45,9 @@ class BusinessAdsFilterResult extends GetView<BusinessPartnerController> {
                         return GestureDetector(
                           onTap: () {
                             Get.to(
-                              () => TravelPartnerDetailsScreen(
-                                id: ads?.advertisementId ?? 0,
+                              () => BusinessPartnerDetailsScreen(
+                                adId: ads?.advertisementId ?? 0,
+                                isUserAds: false,
                               ),
                             );
                           },

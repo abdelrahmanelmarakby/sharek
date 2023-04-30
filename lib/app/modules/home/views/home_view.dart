@@ -99,6 +99,7 @@ class HomeView extends GetView<HomeController> {
                                     Get.to(
                                       () => BusinessPartnerDetailsScreen(
                                         adId: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
                                       ),
                                       binding: BusinessPartnerBinding(),
                                     );
@@ -106,6 +107,7 @@ class HomeView extends GetView<HomeController> {
                                     Get.to(
                                       () => TravelPartnerDetailsScreen(
                                         id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
                                       ),
                                       binding: TravelPartnerBinding(),
                                     );
@@ -113,6 +115,7 @@ class HomeView extends GetView<HomeController> {
                                     Get.to(
                                       () => SakePartnerDetailsScreen(
                                         id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
                                       ),
                                       binding: SakePartnerBinding(),
                                     );
@@ -120,6 +123,7 @@ class HomeView extends GetView<HomeController> {
                                     Get.to(
                                       () => HousePartnerDetailsScreen(
                                         id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
                                       ),
                                       binding: HousePartnerBinding(),
                                     );
@@ -127,6 +131,7 @@ class HomeView extends GetView<HomeController> {
                                     Get.to(
                                       () => OtherPartnerDetailsScreen(
                                         id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
                                       ),
                                       binding: OtherServicePartnerBinding(),
                                     );

@@ -156,6 +156,7 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                                                     adId:
                                                         ads?.advertisementId ??
                                                             0,
+                                                    isUserAds: false,
                                                   ),
                                                 );
                                               },
@@ -202,6 +203,7 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                                                     adId:
                                                         ads?.advertisementId ??
                                                             0,
+                                                    isUserAds: false,
                                                   ),
                                                 );
                                               },

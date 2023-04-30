@@ -170,6 +170,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                                         TravelPartnerDetailsScreen(
                                                       id: ads?.advertisementId ??
                                                           0,
+                                                      isUserAds: false,
                                                     ),
                                                   );
                                                 },
@@ -205,6 +206,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                                         TravelPartnerDetailsScreen(
                                                       id: ads?.advertisementId ??
                                                           0,
+                                                      isUserAds: false,
                                                     ),
                                                   );
                                                 },

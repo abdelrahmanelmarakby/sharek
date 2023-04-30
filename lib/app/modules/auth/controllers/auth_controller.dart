@@ -17,7 +17,6 @@ class AuthController extends GetxController {
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> otpFormKey = GlobalKey<FormState>();
 
-
   String otp = "";
   void onChangeOtp(String val) {
     otp = val;
@@ -98,7 +97,7 @@ class AuthController extends GetxController {
       });
       showSnackBar(res?.message ?? "");
       SharedPrefService(prefs: globalPrefs).saveToken(res?.data?.token ?? '');
-      Get.offAndToNamed(Routes.BOTTOM_NAV_BAR);
+      Get.offAllNamed(Routes.BOTTOM_NAV_BAR);
     } else {
       showSnackBar(res?.message ?? 'حدث خطآ ما'.tr);
       animationController.reset();

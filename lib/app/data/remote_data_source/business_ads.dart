@@ -147,17 +147,12 @@ class BusinessPartnerAPI {
 
   static Future<MainModel?> createBusinessAds({
     int? servicesTypeid,
-    String? startingPlace,
-    int? numberPassengers,
-    String? endingPlace,
-    String? nationality,
-    String? date,
-    String? time,
+    String? title,
+    String? location,
+    String? neighborhood,
     String? phone,
+    String? description,
     List<File>? photos,
-    double? price,
-    bool? withPackages,
-    String? carType,
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
@@ -173,12 +168,11 @@ class BusinessPartnerAPI {
           photos != null
               ? {
                   "service_type_id": servicesTypeid,
-                  "location": startingPlace,
-                  "neighborhood": endingPlace,
-                  "title": numberPassengers,
-                  "description": nationality,
-                  "phone": date,
-                  "time": time,
+                  "location": location,
+                  "neighborhood": neighborhood,
+                  "title": title,
+                  "description": description,
+                  "phone": phone,
                   "photos[]": photos
                       .map(
                         (e) => MultipartFile.fromFileSync(
@@ -190,12 +184,11 @@ class BusinessPartnerAPI {
                 }
               : {
                   "service_type_id": servicesTypeid,
-                  "location": startingPlace,
-                  "neighborhood": endingPlace,
-                  "title": numberPassengers,
-                  "description": nationality,
-                  "phone": date,
-                  "time": time,
+                  "location": location,
+                  "neighborhood": neighborhood,
+                  "title": title,
+                  "description": description,
+                  "phone": phone,
                 },
         ),
       ),

@@ -28,8 +28,10 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
   const BusinessPartnerDetailsScreen({
     Key? key,
     required this.adId,
+    required this.isUserAds,
   }) : super(key: key);
   final int adId;
+  final bool isUserAds;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BusinessPartnerController>(
@@ -160,35 +162,82 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                 }
                               },
                               itemBuilder: (BuildContext context) {
-                                return [
-                                  PopupMenuItem(
-                                      value: "/share",
-                                      child: Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.share_outlined,
-                                            size: 20,
+                                return isUserAds
+                                    ? [
+                                        PopupMenuItem(
+                                          value: "/share",
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.share_outlined,
+                                                size: 20,
+                                              ),
+                                              12.widthSizedBox,
+                                              const Text("مشاركة الاعلان"),
+                                            ],
                                           ),
-                                          12.widthSizedBox,
-                                          const Text("مشاركة الاعلان"),
-                                        ],
-                                      )),
-                                  PopupMenuItem(
-                                    value: "/report",
-                                    child: Row(
-                                      children: [
-                                        const Icon(
-                                          Iconsax.flag,
-                                          size: 20,
                                         ),
-                                        12.widthSizedBox,
-                                        const Text(
-                                          "ابلاغ عن الاعلان",
+                                        PopupMenuItem(
+                                          value: "/report",
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Iconsax.edit,
+                                                size: 20,
+                                              ),
+                                              12.widthSizedBox,
+                                              const Text(
+                                                "تعديل الإعلان",
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ],
-                                    ),
-                                  )
-                                ];
+                                        PopupMenuItem(
+                                          value: "/report",
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.delete_outlined,
+                                                size: 20,
+                                              ),
+                                              12.widthSizedBox,
+                                              const Text(
+                                                "حذف الإعلان",
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ]
+                                    : [
+                                        PopupMenuItem(
+                                          value: "/share",
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.share_outlined,
+                                                size: 20,
+                                              ),
+                                              12.widthSizedBox,
+                                              const Text("مشاركة الاعلان"),
+                                            ],
+                                          ),
+                                        ),
+                                        PopupMenuItem(
+                                          value: "/report",
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Iconsax.flag,
+                                                size: 20,
+                                              ),
+                                              12.widthSizedBox,
+                                              const Text(
+                                                "ابلاغ عن الاعلان",
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ];
                               },
                               child: Container(
                                 height: 40,

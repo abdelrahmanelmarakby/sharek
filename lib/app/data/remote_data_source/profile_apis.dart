@@ -7,7 +7,9 @@ import '../../../core/global/const.dart';
 import '../../../core/services/network_service.dart/dio_network_service.dart';
 import '../../../core/services/shared_prefs.dart';
 import '../../routes/app_pages.dart';
+import '../models/favorites_model.dart';
 import '../models/main_model.dart';
+import '../models/user_ads_model.dart';
 import '../models/user_data_model.dart';
 
 class ProfileApis {
@@ -121,6 +123,66 @@ class ProfileApis {
     final response = await networkService.execute(
       request,
       (json) => UserDataModel.fromJson(json),
+    );
+    final data = response.maybeWhen(
+      ok: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
+        return data;
+      },
+      orElse: () {},
+    );
+    return data;
+  }
+
+  static Future<FavoritesModel?> getUserFavorites() async {
+    final request = NetworkRequest(
+      type: NetworkRequestType.GET,
+      path: APIKeys.userFavorite,
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
+      data: const NetworkRequestBody.empty(),
+    );
+    final response = await networkService.execute(
+      request,
+      (json) => FavoritesModel.fromJson(json),
+    );
+    final data = response.maybeWhen(
+      ok: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
+        return data;
+      },
+      orElse: () {},
+    );
+    return data;
+  }
+
+  static Future<UserAdsModel?> getUserAds() async {
+    final request = NetworkRequest(
+      type: NetworkRequestType.GET,
+      path: APIKeys.userAds,
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
+      data: const NetworkRequestBody.empty(),
+    );
+    final response = await networkService.execute(
+      request,
+      (json) => UserAdsModel.fromJson(json),
     );
     final data = response.maybeWhen(
       ok: (data) {

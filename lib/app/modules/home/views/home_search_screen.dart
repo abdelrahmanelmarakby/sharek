@@ -66,6 +66,7 @@ class HomeSearchScreen extends GetView<HomeController> {
                                       Get.to(
                                         () => BusinessPartnerDetailsScreen(
                                           adId: ad?.advertisementId ?? 0,
+                                          isUserAds: false,
                                         ),
                                         binding: BusinessPartnerBinding(),
                                       );
@@ -73,6 +74,7 @@ class HomeSearchScreen extends GetView<HomeController> {
                                       Get.to(
                                         () => TravelPartnerDetailsScreen(
                                           id: ad?.advertisementId ?? 0,
+                                          isUserAds: false,
                                         ),
                                         binding: TravelPartnerBinding(),
                                       );
@@ -80,6 +82,7 @@ class HomeSearchScreen extends GetView<HomeController> {
                                       Get.to(
                                         () => SakePartnerDetailsScreen(
                                           id: ad?.advertisementId ?? 0,
+                                          isUserAds: false,
                                         ),
                                         binding: SakePartnerBinding(),
                                       );
@@ -87,6 +90,7 @@ class HomeSearchScreen extends GetView<HomeController> {
                                       Get.to(
                                         () => HousePartnerDetailsScreen(
                                           id: ad?.advertisementId ?? 0,
+                                          isUserAds: false,
                                         ),
                                         binding: HousePartnerBinding(),
                                       );
@@ -94,6 +98,7 @@ class HomeSearchScreen extends GetView<HomeController> {
                                       Get.to(
                                         () => OtherPartnerDetailsScreen(
                                           id: ad?.advertisementId ?? 0,
+                                          isUserAds: false,
                                         ),
                                         binding: OtherServicePartnerBinding(),
                                       );
