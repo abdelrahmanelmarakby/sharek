@@ -1,9 +1,14 @@
+import 'dart:math';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sentry_logging/sentry_logging.dart';
+
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:round_spot/round_spot.dart' as roundspot;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,8 +24,44 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   final pref = await SharedPreferences.getInstance();
+
   globalPrefs = pref;
   Get.put(SharedPrefService(prefs: pref));
+
+//*NOTIFICATIONS:
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings(
+    '@mipmap/ic_launcher',
+  );
+  const IOSInitializationSettings initializationSettingsIOS =
+      IOSInitializationSettings(
+    requestSoundPermission: false,
+    requestBadgePermission: true,
+    requestAlertPermission: true,
+  );
+  const MacOSInitializationSettings initializationSettingsMacOS =
+      MacOSInitializationSettings(
+          requestAlertPermission: false,
+          requestBadgePermission: true,
+          requestSoundPermission: true);
+  const InitializationSettings initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsIOS,
+      macOS: initializationSettingsMacOS);
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+  );
+  Future<void> _firebaseMessagingBackgroundHandler(
+      RemoteMessage message) async {
+    await Firebase.initializeApp();
+    flutterLocalNotificationsPlugin.show(
+        Random().nextInt(12121212122),
+        message.notification?.title,
+        message.notification?.body,
+        const NotificationDetails());
+  }
 
   await SentryFlutter.init(
     (options) {

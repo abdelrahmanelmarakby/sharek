@@ -4,10 +4,11 @@
 //
 //  Created by Elmarakbenoo on 4/25/23.
 //
-
 import UserNotifications
+import awesome_notifications_fcm
 
-class NotificationService: UNNotificationServiceExtension {
+@available(iOS 10.0, *)
+class NotificationService: DartAwesomeServiceExtension {
 
     var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?

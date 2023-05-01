@@ -14,11 +14,12 @@ dependencies:
   dio: ^5.0.3
   dots_indicator: ^2.1.0
   dotted_border: null
-  firebase_core: ^2.8.0
-  firebase_messaging: ^14.4.0
+  firebase_core: ^2.10.0
+  firebase_messaging: ^14.4.1
   flutter:
     sdk: flutter
   flutter_form_builder: ^7.8.0
+  flutter_local_notifications: ^8.2.0
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.2.19

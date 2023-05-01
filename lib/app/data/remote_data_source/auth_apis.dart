@@ -15,7 +15,7 @@ class AuthApis {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
       path: APIKeys.register,
-       headers: {
+      headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,
         'Authorization':
@@ -47,7 +47,7 @@ class AuthApis {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
       path: APIKeys.login,
-       headers: {
+      headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,
         'Authorization':
@@ -79,7 +79,7 @@ class AuthApis {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
       path: APIKeys.otpLogin,
-       headers: {
+      headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,
         'Authorization':
@@ -90,7 +90,7 @@ class AuthApis {
           {
             "phone": phone,
             "code": code,
-            "device_token": await FirebaseMessagingHelper.getToken(),
+            //"device_token": await FirebaseMessagingHelper.getToken(),
           },
         ),
       ),
@@ -113,7 +113,7 @@ class AuthApis {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
       path: APIKeys.otpRegister,
-       headers: {
+      headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,
         'Authorization':
@@ -124,7 +124,7 @@ class AuthApis {
           {
             "phone": phone,
             "code": code,
-            "device_token": await FirebaseMessagingHelper.getToken(),
+            //"device_token": await FirebaseMessagingHelper.getToken(),
           },
         ),
       ),
