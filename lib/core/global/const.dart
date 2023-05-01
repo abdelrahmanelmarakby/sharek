@@ -33,6 +33,8 @@ class APIKeys {
   static const String home = "home";
   static const String homeSearch = "search/home";
 
+  static const String regions = "regions";
+  static const String cities = "cities/";
   static const String businessAds = "business-advertisements";
 
   static const String businessAdsSearch = "search/business-advertisements";
@@ -54,8 +56,10 @@ class APIKeys {
   //===========================Profile===============================
   static const String updateAvatar = "update/avatar";
   static const String updateProfile = "update/profile";
+
   static const String logout = "logout";
   static const String userInfo = "user/info";
+  static const String userAds = "user-advertisement";
   //=================================================================
   static const String housingAds = "housing-advertisements";
   static const String housingServicesType =
@@ -73,5 +77,20 @@ class APIKeys {
   static const String createSacrificeComment =
       "create/comment/sacrifice-advertisement/";
   static const String sacrificeReservation = "sacrifice/reservation/";
-  //=================================================================
+  //============================Favorites=============================
+  static const String favorite = "favorite/";
+  static const String userFavorite = "user-favourite";
+  static const String favoriteBusinessAds = "$favorite$businessAds/";
+  static const String favoriteTripAds = "$favorite$tripAds/";
+  static const String favoriteHousingAds = "$favorite$housingAds/";
+  static const String favoriteOtherAds = "$favorite$otherAds/";
+  static const String favoriteSacrificeAds = "$favorite$sacrificeAds/";
+  //============================report================================
+  static const String report = "report/";
+  static const String reportBusinessAds = "${report}business-advertisement/";
+  static const String reportTripAds = "${report}trip-advertisement/";
+  static const String reportHousingAds = "${report}housing-advertisement/";
+  static const String reportOtherAds = "${report}another-advertisement/";
+  static const String reportSacrificeAds = "${report}sacrifice-advertisement/";
+  //==================================================================
 }

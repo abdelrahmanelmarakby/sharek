@@ -127,16 +127,6 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                       bottomSheet: Container(),
                     ),
                     const SizedBox(height: 12),
-                    AppDropDown(
-                      icon: const Icon(
-                        Iconsax.location_tick,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                      title: "الحي",
-                      bottomSheet: Container(),
-                    ),
-                    const SizedBox(height: 12),
                     CustomTextField(
                       name: "",
                       validate: Validator.validateEmpty,
@@ -231,25 +221,103 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                         onPressed: (animationController) {
                           if (controller.createFormKey.currentState!
                               .validate()) {
-                            // controller.createHouseAds(
-                            //   animationController: animationController,
-                            //   location: "sssss",
-                            //   neighborhood: "xxxxx",
-                            //   title:
-                            //       controller.createTitlePartnersCtr.text == ""
-                            //           ? null
-                            //           : controller.createTitlePartnersCtr.text,
-                            //   description: controller
-                            //               .createDescriptionPartnersCtr.text ==
-                            //           ""
-                            //       ? null
-                            //       : controller
-                            //           .createDescriptionPartnersCtr.text,
-                            //   phone: controller.createPhoneCtr.text == ""
-                            //       ? null
-                            //       : controller.createPhoneCtr.text,
-                            //   photos: controller.createPhotos,
-                            // );
+                            controller.createSacrificePartner == 8
+                                ? controller.createSakeAds(
+                                    animationController: animationController,
+                                    location: "sssss",
+                                    neighborhood: "xxxxx",
+                                    sacrificeType:
+                                        controller.createSacrificeTypeItem.name,
+                                    servicesTypeid:
+                                        controller.createSacrificePartner,
+                                    title: controller
+                                                .createTitlePartnersCtr.text ==
+                                            ""
+                                        ? null
+                                        : controller
+                                            .createTitlePartnersCtr.text,
+                                    description: controller
+                                                .createDescriptionPartnersCtr
+                                                .text ==
+                                            ""
+                                        ? null
+                                        : controller
+                                            .createDescriptionPartnersCtr.text,
+                                    phone: controller.createPhoneCtr.text == ""
+                                        ? null
+                                        : controller.createPhoneCtr.text,
+                                    photos: controller.createPhotos,
+                                  )
+                                : controller.eighth == 0 &&
+                                        controller.half == 0 &&
+                                        controller.quarter == 0 &&
+                                        controller.third == 0
+                                    ? null
+                                    : controller.createSakeAds(
+                                        animationController:
+                                            animationController,
+                                        location: "sssss",
+                                        neighborhood: "xxxxx",
+                                        title: controller.createTitlePartnersCtr
+                                                    .text ==
+                                                ""
+                                            ? null
+                                            : controller
+                                                .createTitlePartnersCtr.text,
+                                        description: controller
+                                                    .createDescriptionPartnersCtr
+                                                    .text ==
+                                                ""
+                                            ? null
+                                            : controller
+                                                .createDescriptionPartnersCtr
+                                                .text,
+                                        phone: controller.createPhoneCtr.text ==
+                                                ""
+                                            ? null
+                                            : controller.createPhoneCtr.text,
+                                        photos: controller.createPhotos,
+                                        eighthPrice: controller.eighth == 0
+                                            ? null
+                                            : int.parse(
+                                                controller
+                                                    .createEighthPriceCtr.text,
+                                              ),
+                                        eighthQuantity: controller.eighth == 0
+                                            ? null
+                                            : controller.eighth,
+                                        halfPrice: controller.half == 0
+                                            ? null
+                                            : int.parse(
+                                                controller
+                                                    .createHalfPriceCtr.text,
+                                              ),
+                                        halfQuantity: controller.half == 0
+                                            ? null
+                                            : controller.half,
+                                        quarterPrice: controller.quarter == 0
+                                            ? null
+                                            : int.parse(
+                                                controller
+                                                    .createQuarterPriceCtr.text,
+                                              ),
+                                        quarterQuantity: controller.quarter == 0
+                                            ? null
+                                            : controller.quarter,
+                                        sacrificeType: controller
+                                            .createSacrificeTypeItem.name,
+                                        servicesTypeid:
+                                            controller.createSacrificePartner,
+                                        thirdPrice: controller.third == 0
+                                            ? null
+                                            : controller.third,
+                                        thirdQuantity: controller.third == 0
+                                            ? null
+                                            : int.parse(
+                                                controller
+                                                    .createThirdPriceCtr.text,
+                                              ),
+                                      );
                           }
                         },
                       ),

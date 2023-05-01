@@ -88,58 +88,59 @@ class HomeView extends GetView<HomeController> {
                                 StylesManager.bold(fontSize: FontSize.xlarge),
                           ),
                           Sizes.size10.heightSizedBox,
-                          ...List.generate(20, (index) {
-                            NewAdvertisements? ad =
-                                homeData?.data?.newAdvertisements?[index];
-                            return GestureDetector(
-                              onTap: () {
-                                if (ad?.serviceId == 1 ||
-                                    ad?.serviceId == 2 ||
-                                    ad?.serviceId == 3 ||
-                                    ad?.serviceId == 4 ||
-                                    ad?.serviceId == 5) {
-                                  Get.to(
-                                    () => BusinessPartnerDetailsScreen(
-                                      adId: ad?.advertisementId ?? 0,
-                                    ),
-                                    binding: BusinessPartnerBinding(),
-                                  );
-                                } else if (ad?.serviceId == 6 ||
-                                    ad?.serviceId == 7) {
-                                  Get.to(
-                                    () => TravelPartnerDetailsScreen(
-                                      id: ad?.advertisementId ?? 0,
-                                    ),
-                                    binding: TravelPartnerBinding(),
-                                  );
-                                } else if (ad?.serviceId == 8 ||
-                                    ad?.serviceId == 9) {
-                                  Get.to(
-                                    () => SakePartnerDetailsScreen(
-                                      id: ad?.advertisementId ?? 0,
-                                    ),
-                                    binding: SakePartnerBinding(),
-                                  );
-                                } else if (ad?.serviceId == 10 ||
-                                    ad?.serviceId == 11) {
-                                  Get.to(
-                                    () => HousePartnerDetailsScreen(
-                                      id: ad?.advertisementId ?? 0,
-                                    ),
-                                    binding: HousePartnerBinding(),
-                                  );
-                                } else {
-                                  Get.to(
-                                    () => OtherPartnerDetailsScreen(
-                                      id: ad?.advertisementId ?? 0,
-                                    ),
-                                    binding: OtherServicePartnerBinding(),
-                                  );
-                                }
-                              },
-                              child: AdCard(ad: ad),
-                            );
-                          })
+                          ...List.generate(
+                            20,
+                            (index) {
+                              NewAdvertisements? ad =
+                                  homeData?.data?.newAdvertisements?[index];
+                              return GestureDetector(
+                                onTap: () {
+                                  if (ad?.serviceId == 1) {
+                                    Get.to(
+                                      () => BusinessPartnerDetailsScreen(
+                                        adId: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
+                                      ),
+                                      binding: BusinessPartnerBinding(),
+                                    );
+                                  } else if (ad?.serviceId == 2) {
+                                    Get.to(
+                                      () => TravelPartnerDetailsScreen(
+                                        id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
+                                      ),
+                                      binding: TravelPartnerBinding(),
+                                    );
+                                  } else if (ad?.serviceId == 3) {
+                                    Get.to(
+                                      () => SakePartnerDetailsScreen(
+                                        id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
+                                      ),
+                                      binding: SakePartnerBinding(),
+                                    );
+                                  } else if (ad?.serviceId == 4) {
+                                    Get.to(
+                                      () => HousePartnerDetailsScreen(
+                                        id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
+                                      ),
+                                      binding: HousePartnerBinding(),
+                                    );
+                                  } else {
+                                    Get.to(
+                                      () => OtherPartnerDetailsScreen(
+                                        id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
+                                      ),
+                                      binding: OtherServicePartnerBinding(),
+                                    );
+                                  }
+                                },
+                                child: AdCard(ad: ad),
+                              );
+                            },
+                          ),
                         ],
                       ),
                     )

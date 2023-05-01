@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:sharek/app/modules/sake_partner/bindings/sake_partner_binding.dart';
 import 'package:sharek/app/modules/sake_partner/views/sake_ads_details_screen.dart';
+import 'package:sharek/app/modules/sake_partner/views/sake_filter_screen.dart';
 
 import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
@@ -45,6 +47,7 @@ class SakePartnerView extends GetView<SakePartnerController> {
             ),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
+                var data = snapshot.data?.data;
                 return SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -54,12 +57,14 @@ class SakePartnerView extends GetView<SakePartnerController> {
                           name: "BusinessSearch",
                           hint: "ابحث هنا",
                           prefixIcon: const Icon(SharekIcons.search_1),
+                          controller: controller.searchController,
+                          onChange: controller.onChangedSearch,
                           suffixIcon: GestureDetector(
                             onTap: () {
-                              // Get.to(
-                              //   () => const HouseAdsFiterScreen(),
-                              //   binding: HousePartnerBinding(),
-                              // );
+                              Get.to(
+                                () => const SakeFilterScreen(),
+                                binding: SakePartnerBinding(),
+                              );
                             },
                             child: const Icon(
                               SharekIcons.filter_3,
@@ -132,36 +137,38 @@ class SakePartnerView extends GetView<SakePartnerController> {
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              ListView.separated(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: snapshot.data?.data?.length ?? 0,
-                                separatorBuilder: (context, index) =>
-                                    const SizedBox(height: 8),
-                                itemBuilder: (context, index) {
-                                  Data? ads = snapshot.data?.data?[index];
-                                  return snapshot.data?.data?.isNotEmpty ??
-                                          false
-                                      ? GestureDetector(
+                              data?.isNotEmpty ?? false
+                                  ? ListView.separated(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount:
+                                          snapshot.data?.data?.length ?? 0,
+                                      separatorBuilder: (context, index) =>
+                                          const SizedBox(height: 8),
+                                      itemBuilder: (context, index) {
+                                        Data? ads = snapshot.data?.data?[index];
+                                        return GestureDetector(
                                           onTap: () {
                                             Get.to(
                                               () => SakePartnerDetailsScreen(
                                                 id: ads?.advertisementId ?? 0,
+                                                isUserAds: false,
                                               ),
                                             );
                                           },
                                           child: SakeAdsItem(
                                             ad: ads,
                                           ),
-                                        )
-                                      : Center(
-                                          child: AppText(
-                                            snapshot.data?.message ?? "",
-                                            color: Colors.black,
-                                          ),
                                         );
-                                },
-                              ),
+                                      },
+                                    )
+                                  : Center(
+                                      child: AppText(
+                                        snapshot.data?.message ?? "",
+                                        color: Colors.black,
+                                      ),
+                                    ),
                             ],
                           ),
                         ),

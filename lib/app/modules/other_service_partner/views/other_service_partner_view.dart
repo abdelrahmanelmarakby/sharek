@@ -70,6 +70,7 @@ class OtherServicePartnerView extends GetView<OtherServicePartnerController> {
                                             Get.to(
                                               () => OtherPartnerDetailsScreen(
                                                 id: ads?.advertisementId ?? 0,
+                                                isUserAds: false,
                                               ),
                                             );
                                           },
