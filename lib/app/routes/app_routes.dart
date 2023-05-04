@@ -14,6 +14,8 @@ abstract class Routes {
   static const HOUSE_PARTNER = _Paths.HOUSE_PARTNER;
   static const OTHER_SERVICE_PARTNER = _Paths.OTHER_SERVICE_PARTNER;
   static const PROFILE = _Paths.PROFILE;
+  static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
+  static const CHATS = _Paths.CHATS;
 }
 
 abstract class _Paths {
@@ -27,4 +29,6 @@ abstract class _Paths {
   static const HOUSE_PARTNER = '/house-partner';
   static const OTHER_SERVICE_PARTNER = '/other-service-partner';
   static const PROFILE = '/profile';
+  static const NOTIFICATIONS = '/notifications';
+  static const CHATS = '/chats';
 }

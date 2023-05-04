@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sharek/app/modules/chats/views/chats_view.dart';
 import 'package:sharek/app/modules/home/views/home_view.dart';
+import 'package:sharek/app/modules/notifications/views/notifications_view.dart';
 
 import '../../profile/views/profile_view.dart';
 
@@ -24,7 +26,7 @@ class BottomNavBarController extends GetxController {
         }
       case 1:
         {
-          _currentScreen = const HomeView();
+          _currentScreen = const NotificationsView();
           break;
         }
       case 2:
@@ -34,7 +36,7 @@ class BottomNavBarController extends GetxController {
         }
       case 3:
         {
-          _currentScreen = const HomeView();
+          _currentScreen = const ChatsView();
           break;
         }
       case 4:

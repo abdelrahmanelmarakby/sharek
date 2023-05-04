@@ -36,6 +36,9 @@ class AuthApis {
       ok: (data) {
         return data;
       },
+      unProcessable: (data) {
+        print(data);
+      },
       orElse: () {},
     );
     return data;
@@ -90,7 +93,7 @@ class AuthApis {
           {
             "phone": phone,
             "code": code,
-            //"device_token": await FirebaseMessagingHelper.getToken(),
+            "device_token": await FirebaseMessagingHelper.getToken(),
           },
         ),
       ),
@@ -124,7 +127,7 @@ class AuthApis {
           {
             "phone": phone,
             "code": code,
-            //"device_token": await FirebaseMessagingHelper.getToken(),
+            "device_token": await FirebaseMessagingHelper.getToken(),
           },
         ),
       ),

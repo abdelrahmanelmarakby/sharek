@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:get/get.dart';
 
 import '../../core/global/const.dart';
@@ -10,10 +8,14 @@ import '../modules/bottom_nav_bar/bindings/bottom_nav_bar_binding.dart';
 import '../modules/bottom_nav_bar/views/bottom_nav_bar_view.dart';
 import '../modules/business_partner/bindings/business_partner_binding.dart';
 import '../modules/business_partner/views/business_partner_view.dart';
+import '../modules/chats/bindings/chats_binding.dart';
+import '../modules/chats/views/chats_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/house_partner/bindings/house_partner_binding.dart';
 import '../modules/house_partner/views/house_partner_view.dart';
+import '../modules/notifications/bindings/notifications_binding.dart';
+import '../modules/notifications/views/notifications_view.dart';
 import '../modules/other_service_partner/bindings/other_service_partner_binding.dart';
 import '../modules/other_service_partner/views/other_service_partner_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -22,6 +24,8 @@ import '../modules/sake_partner/bindings/sake_partner_binding.dart';
 import '../modules/sake_partner/views/sake_partner_view.dart';
 import '../modules/travel_partner/bindings/travel_partner_binding.dart';
 import '../modules/travel_partner/views/travel_partner_view.dart';
+
+// ignore_for_file: non_constant_identifier_names
 
 // ignore_for_file: constant_identifier_names
 
@@ -80,6 +84,16 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATIONS,
+      page: () => const NotificationsView(),
+      binding: NotificationsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHATS,
+      page: () => const ChatsView(),
+      binding: ChatsBinding(),
     ),
   ];
 }

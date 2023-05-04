@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:sharek/core/services/firebase_messaging_helper.dart';
 
 import 'app/modules/others/error_screen.dart';
 import 'app/modules/others/no_internet_dialog.dart';
@@ -48,6 +49,9 @@ class MyAppState extends State<MyApp> {
       }
     });
     super.initState();
+    NotificationService notificationService = NotificationService();
+
+    notificationService.initialize();
   }
 
   @override
