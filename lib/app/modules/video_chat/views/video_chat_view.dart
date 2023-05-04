@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/chats_controller.dart';
+import '../controllers/video_chat_controller.dart';
 
-class ChatsView extends GetView<ChatsController> {
-  const ChatsView({Key? key}) : super(key: key);
+class VideoChatView extends GetView<VideoChatController> {
+  const VideoChatView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('المحادثات'),
+        title: const Text('VideoChatView'),
         centerTitle: true,
       ),
       body: const Center(
         child: Text(
-          'ChatsView is working',
+          'VideoChatView is working',
           style: TextStyle(fontSize: 20),
         ),
       ),

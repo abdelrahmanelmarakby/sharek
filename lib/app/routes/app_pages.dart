@@ -8,8 +8,7 @@ import '../modules/bottom_nav_bar/bindings/bottom_nav_bar_binding.dart';
 import '../modules/bottom_nav_bar/views/bottom_nav_bar_view.dart';
 import '../modules/business_partner/bindings/business_partner_binding.dart';
 import '../modules/business_partner/views/business_partner_view.dart';
-import '../modules/chats/bindings/chats_binding.dart';
-import '../modules/chats/views/chats_view.dart';
+import '../modules/chats/chat_history.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/house_partner/bindings/house_partner_binding.dart';
@@ -24,6 +23,8 @@ import '../modules/sake_partner/bindings/sake_partner_binding.dart';
 import '../modules/sake_partner/views/sake_partner_view.dart';
 import '../modules/travel_partner/bindings/travel_partner_binding.dart';
 import '../modules/travel_partner/views/travel_partner_view.dart';
+import '../modules/video_chat/bindings/video_chat_binding.dart';
+import '../modules/video_chat/views/video_chat_view.dart';
 
 // ignore_for_file: non_constant_identifier_names
 
@@ -92,8 +93,14 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CHATS,
-      page: () => const ChatsView(),
-      binding: ChatsBinding(),
+      page: () => const ChatHistory(
+        myId: "",
+      ),
+    ),
+    GetPage(
+      name: _Paths.VIDEO_CHAT,
+      page: () => const VideoChatView(),
+      binding: VideoChatBinding(),
     ),
   ];
 }

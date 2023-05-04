@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sharek/app/modules/chats/views/chats_view.dart';
+import 'package:sharek/app/modules/chats/chat_history.dart';
 import 'package:sharek/app/modules/home/views/home_view.dart';
 import 'package:sharek/app/modules/notifications/views/notifications_view.dart';
 
@@ -36,7 +36,9 @@ class BottomNavBarController extends GetxController {
         }
       case 3:
         {
-          _currentScreen = const ChatsView();
+          _currentScreen = const ChatHistory(
+            myId: "",
+          );
           break;
         }
       case 4:

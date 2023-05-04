@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   agora_rtc_engine
   connectivity_plus
   firebase_core
+  geolocator_windows
   permission_handler_windows
   sentry_flutter
   smart_auth
