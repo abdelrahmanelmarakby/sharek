@@ -24,6 +24,7 @@ class ProfileListTile extends StatelessWidget {
     return Column(
       children: [
         ListTile(
+          minVerticalPadding: 0,
           onTap: onTap,
           contentPadding: EdgeInsets.zero,
           trailing: trailing ??

@@ -89,9 +89,12 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                       index: e.serviceTypeId ?? 0,
                                       title: e.name ?? "",
                                       onTap: () {
-                                        controller.changeTravelPartnerState(
-                                          e.serviceTypeId ?? 0,
-                                        );
+                                        controller.travelPartner != null
+                                            ? controller
+                                                .changeTravelPartnerState(
+                                                e.serviceTypeId ?? 0,
+                                              )
+                                            : controller.travelPartner = null;
                                       },
                                     ),
                                   ),
@@ -129,6 +132,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                 bottomSheet: CupertinoDatePicker(
                                   mode: CupertinoDatePickerMode.date,
                                   dateOrder: DatePickerDateOrder.ymd,
+                                  minimumDate: DateTime.now(),
                                   initialDateTime: DateTime.now(),
                                   onDateTimeChanged:
                                       controller.onDateViewPickerChanged,

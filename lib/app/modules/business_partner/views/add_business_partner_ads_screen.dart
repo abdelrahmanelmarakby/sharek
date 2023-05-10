@@ -158,7 +158,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                           ),
                           SizedBox(width: 10),
                           AppText(
-                            "رفع الصور أو الملفات",
+                            "رفع الصور ",
                             color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeights.light,
