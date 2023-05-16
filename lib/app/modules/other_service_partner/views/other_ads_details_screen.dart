@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/app/data/remote_data_source/other_services_partener_apis.dart';
 import 'package:sharek/core/extensions/num.dart';
-
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/sizes_manager.dart';
