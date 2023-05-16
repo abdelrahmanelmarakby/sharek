@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/global/const.dart';
+import '../../../../core/services/get_storage_helper.dart';
 import '../../../../core/services/shared_prefs.dart';
 import '../../../../core/widgets/snack_bar.dart';
 import '../../../data/remote_data_source/auth_apis.dart';
@@ -71,6 +72,8 @@ class AuthController extends GetxController {
     final res = await AuthApis.registerOtp(phone: phone, code: code);
     if (res?.status == true) {
       animationController.forward();
+      CacheHelper.cacheUserId(id: res?.data?.user?.id ?? 0);
+
       Future.delayed(1.seconds, () {
         animationController.reverse();
       });
@@ -92,6 +95,8 @@ class AuthController extends GetxController {
     final res = await AuthApis.loginOtp(phone: phone, code: code);
     if (res?.status == true) {
       animationController.forward();
+      CacheHelper.cacheUserId(id: res?.data?.user?.id ?? 0);
+
       Future.delayed(1.seconds, () {
         animationController.reverse();
       });

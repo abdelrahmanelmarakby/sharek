@@ -7,6 +7,16 @@ class CacheHelper {
   static Future<void> init() async => await GetStorage.init();
   //========================================================
 
+  static Future<void> cacheUserId({
+    required int id,
+  }) async {
+    await _cacheUserId(id);
+  }
+
+  static Future<void> _cacheUserId(int id) async =>
+      await _appBox.write('id', id);
+  static String? get getUserId => _appBox.read('id');
+
   static Future<void> cacheToken({
     required String token,
   }) async {

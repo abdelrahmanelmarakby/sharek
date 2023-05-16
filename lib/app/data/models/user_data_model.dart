@@ -32,6 +32,8 @@ class UserDataModel {
 
 class Data {
   int? phone;
+  int? id;
+
   String? name;
   dynamic accountVerified;
   String? deviceToken;
@@ -39,12 +41,16 @@ class Data {
 
   Data(
       {this.phone,
+      this.id,
       this.name,
       this.accountVerified,
       this.deviceToken,
       this.avatar});
 
   Data.fromJson(Map<String, dynamic> json) {
+    if (json["id"] is int) {
+      phone = json["id"];
+    }
     if (json["phone"] is int) {
       phone = json["phone"];
     }
@@ -62,6 +68,7 @@ class Data {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
+    _data['id'] = id;
     _data["phone"] = phone;
     _data["name"] = name;
     _data["account_verified"] = accountVerified;

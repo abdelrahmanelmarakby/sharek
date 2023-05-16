@@ -20,7 +20,9 @@ import 'package:sharek/core/widgets/network_image.dart';
 import 'package:sharek/core/widgets/progress_button.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
+import '../../../../core/services/get_storage_helper.dart';
 import '../../../../core/widgets/custom_text_field.dart';
+import '../../chats/chat_screen.dart';
 import '../../home/views/home_view.dart';
 import '../controllers/business_partner_controller.dart';
 
@@ -401,9 +403,9 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                   ),
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 12),
-                                  child: Row(
+                                  child: const Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
+                                    children: [
                                       Icon(
                                         Iconsax.call,
                                         color: Colors.white,
@@ -421,31 +423,42 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                               const SizedBox(width: 16),
                               Expanded(
                                 flex: 35,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(6),
-                                    color: ColorsManager.white,
-                                    border: Border.all(
-                                      color: ColorsManager.primary,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => ChatScreen(
+                                          hisId: "${ads?.userId ?? 0}",
+                                          myId:
+                                              CacheHelper.getUserId.toString(),
+                                          hisName: ads?.userName ?? "بدون اسم",
+                                        ));
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(6),
+                                      color: ColorsManager.white,
+                                      border: Border.all(
+                                        color: ColorsManager.primary,
+                                      ),
                                     ),
-                                  ),
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 11),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      Icon(
-                                        Iconsax.sms,
-                                        color: ColorsManager.primary,
-                                      ),
-                                      SizedBox(width: 10),
-                                      AppText(
-                                        "مراسلة",
-                                        fontSize: 14,
-                                        color: ColorsManager.primary,
-                                        fontWeight: FontWeights.regular,
-                                      ),
-                                    ],
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 11),
+                                    child: const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Iconsax.sms,
+                                          color: ColorsManager.primary,
+                                        ),
+                                        SizedBox(width: 10),
+                                        AppText(
+                                          "مراسلة",
+                                          fontSize: 14,
+                                          color: ColorsManager.primary,
+                                          fontWeight: FontWeights.regular,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

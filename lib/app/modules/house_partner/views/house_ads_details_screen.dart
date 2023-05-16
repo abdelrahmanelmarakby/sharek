@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:sharek/app/modules/chats/chat_screen.dart';
 import 'package:sharek/core/extensions/num.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/sizes_manager.dart';
 import '../../../../core/global/const.dart';
+import '../../../../core/services/get_storage_helper.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/network_image.dart';
@@ -162,83 +164,83 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                   }
                                 },
                                 itemBuilder: (BuildContext context) {
-                                return isUserAds
-                                    ? [
-                                        PopupMenuItem(
-                                          value: "/share",
-                                          child: Row(
-                                            children: [
-                                              const Icon(
-                                                Icons.share_outlined,
-                                                size: 20,
-                                              ),
-                                              12.widthSizedBox,
-                                              const Text("مشاركة الاعلان"),
-                                            ],
+                                  return isUserAds
+                                      ? [
+                                          PopupMenuItem(
+                                            value: "/share",
+                                            child: Row(
+                                              children: [
+                                                const Icon(
+                                                  Icons.share_outlined,
+                                                  size: 20,
+                                                ),
+                                                12.widthSizedBox,
+                                                const Text("مشاركة الاعلان"),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        PopupMenuItem(
-                                          value: "/report",
-                                          child: Row(
-                                            children: [
-                                              const Icon(
-                                                Iconsax.edit,
-                                                size: 20,
-                                              ),
-                                              12.widthSizedBox,
-                                              const Text(
-                                                "تعديل الإعلان",
-                                              ),
-                                            ],
+                                          PopupMenuItem(
+                                            value: "/report",
+                                            child: Row(
+                                              children: [
+                                                const Icon(
+                                                  Iconsax.edit,
+                                                  size: 20,
+                                                ),
+                                                12.widthSizedBox,
+                                                const Text(
+                                                  "تعديل الإعلان",
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        PopupMenuItem(
-                                          value: "/report",
-                                          child: Row(
-                                            children: [
-                                              const Icon(
-                                                Icons.delete_outlined,
-                                                size: 20,
-                                              ),
-                                              12.widthSizedBox,
-                                              const Text(
-                                                "حذف الإعلان",
-                                              ),
-                                            ],
+                                          PopupMenuItem(
+                                            value: "/report",
+                                            child: Row(
+                                              children: [
+                                                const Icon(
+                                                  Icons.delete_outlined,
+                                                  size: 20,
+                                                ),
+                                                12.widthSizedBox,
+                                                const Text(
+                                                  "حذف الإعلان",
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ]
+                                      : [
+                                          PopupMenuItem(
+                                            value: "/share",
+                                            child: Row(
+                                              children: [
+                                                const Icon(
+                                                  Icons.share_outlined,
+                                                  size: 20,
+                                                ),
+                                                12.widthSizedBox,
+                                                const Text("مشاركة الاعلان"),
+                                              ],
+                                            ),
                                           ),
-                                        )
-                                      ]
-                                    : [
-                                        PopupMenuItem(
-                                          value: "/share",
-                                          child: Row(
-                                            children: [
-                                              const Icon(
-                                                Icons.share_outlined,
-                                                size: 20,
-                                              ),
-                                              12.widthSizedBox,
-                                              const Text("مشاركة الاعلان"),
-                                            ],
+                                          PopupMenuItem(
+                                            value: "/report",
+                                            child: Row(
+                                              children: [
+                                                const Icon(
+                                                  Iconsax.flag,
+                                                  size: 20,
+                                                ),
+                                                12.widthSizedBox,
+                                                const Text(
+                                                  "ابلاغ عن الاعلان",
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        PopupMenuItem(
-                                          value: "/report",
-                                          child: Row(
-                                            children: [
-                                              const Icon(
-                                                Iconsax.flag,
-                                                size: 20,
-                                              ),
-                                              12.widthSizedBox,
-                                              const Text(
-                                                "ابلاغ عن الاعلان",
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ];
-                              },
+                                        ];
+                                },
                                 child: Container(
                                   height: 40,
                                   width: 40,
@@ -412,10 +414,10 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 12),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
+                                      children: [
                                         Icon(
                                           Iconsax.call,
                                           color: Colors.white,
@@ -433,32 +435,43 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                 const SizedBox(width: 16),
                                 Expanded(
                                   flex: 35,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(6),
-                                      color: ColorsManager.white,
-                                      border: Border.all(
-                                        color: ColorsManager.primary,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Get.to(() => ChatScreen(
+                                            hisId: "${ads?.userId ?? 0}",
+                                            myId: CacheHelper.getUserId
+                                                .toString(),
+                                            hisName:
+                                                ads?.userName ?? "بدون اسم",
+                                          ));
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(6),
+                                        color: ColorsManager.white,
+                                        border: Border.all(
+                                          color: ColorsManager.primary,
+                                        ),
                                       ),
-                                    ),
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 11),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: const [
-                                        Icon(
-                                          Iconsax.sms,
-                                          color: ColorsManager.primary,
-                                        ),
-                                        SizedBox(width: 10),
-                                        AppText(
-                                          "مراسلة",
-                                          fontSize: 14,
-                                          color: ColorsManager.primary,
-                                          fontWeight: FontWeights.regular,
-                                        ),
-                                      ],
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 11),
+                                      child: const Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Iconsax.sms,
+                                            color: ColorsManager.primary,
+                                          ),
+                                          SizedBox(width: 10),
+                                          AppText(
+                                            "مراسلة",
+                                            fontSize: 14,
+                                            color: ColorsManager.primary,
+                                            fontWeight: FontWeights.regular,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
