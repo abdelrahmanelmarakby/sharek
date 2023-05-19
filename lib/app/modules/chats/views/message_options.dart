@@ -1,8 +1,8 @@
+import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:sharek/app/data/models/private_message_model.dart';
-import 'package:video_viewer/video_viewer.dart';
 
 import 'build_msg.dart';
 
@@ -16,17 +16,25 @@ class MessageOptions extends StatefulWidget {
 }
 
 class _MessageOptionsState extends State<MessageOptions> {
-  late VideoPlayerController _controller;
+  late VideoPlayerController videoPlayerController;
+  late CustomVideoPlayerController _customVideoPlayerController;
 
   @override
   void initState() {
-    _controller = VideoPlayerController.network(widget.msg.video ?? "",
-        videoPlayerOptions: VideoPlayerOptions(
-          mixWithOthers: false,
-          allowBackgroundPlayback: false,
-        ));
-
     super.initState();
+    videoPlayerController =
+        VideoPlayerController.network(widget.msg.video ?? "")
+          ..initialize().then((value) => setState(() {}));
+    _customVideoPlayerController = CustomVideoPlayerController(
+      context: context,
+      videoPlayerController: videoPlayerController,
+    );
+  }
+
+  @override
+  void dispose() {
+    _customVideoPlayerController.dispose();
+    super.dispose();
   }
 
   @override
@@ -76,19 +84,17 @@ class _MessageOptionsState extends State<MessageOptions> {
               else
                 const SizedBox(),
               if (widget.msg.video != null)
-                VideoViewer(
-                  source: {
-                    "": VideoSource(video: _controller),
-                  },
+                CustomVideoPlayer(
+                  customVideoPlayerController: _customVideoPlayerController,
                 )
               else
                 const SizedBox(),
               const SizedBox(
                 height: 1,
               ),
-              Row(
+              const Row(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   Icon(
                     Icons.check,
                     //    size: Dimensions.getDesirableWidth(4),

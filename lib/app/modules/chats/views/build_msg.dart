@@ -1,3 +1,4 @@
+import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:bubble/bubble.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:sharek/core/services/encryption_service.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:sharek/app/data/models/private_message_model.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:video_viewer/video_viewer.dart';
 
 import '../../../../core/constants/theme/theme_export.dart';
 
@@ -22,17 +22,25 @@ class MessageBuilder extends StatefulWidget {
 }
 
 class _MessageBuilderState extends State<MessageBuilder> {
-  late VideoPlayerController _controller;
+  late VideoPlayerController videoPlayerController;
+  late CustomVideoPlayerController _customVideoPlayerController;
+
   @override
   void initState() {
-    _controller =
-        VideoPlayerController.network(widget.msg?.video?.decrypt ?? "",
-            videoPlayerOptions: VideoPlayerOptions(
-              mixWithOthers: false,
-              allowBackgroundPlayback: false,
-            ));
-
     super.initState();
+    videoPlayerController =
+        VideoPlayerController.network(widget.msg?.video?.decrypt ?? "")
+          ..initialize().then((value) => setState(() {}));
+    _customVideoPlayerController = CustomVideoPlayerController(
+      context: context,
+      videoPlayerController: videoPlayerController,
+    );
+  }
+
+  @override
+  void dispose() {
+    _customVideoPlayerController.dispose();
+    super.dispose();
   }
 
   @override
@@ -116,11 +124,8 @@ class _MessageBuilderState extends State<MessageBuilder> {
         else
           const SizedBox(),
         if (msg.video != null)
-          VideoViewer(
-            source: {
-              "": VideoSource(video: _controller),
-            },
-          )
+          CustomVideoPlayer(
+              customVideoPlayerController: _customVideoPlayerController)
         else
           const SizedBox(),
         Row(
