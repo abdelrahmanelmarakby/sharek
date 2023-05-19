@@ -20,6 +20,7 @@ class PrivateChatService {
   }
 
   String getRoomId() {
+    print("$myId :: $hisId");
     String roomId;
     int.parse(myId) > int.parse(hisId == null ? '0' : hisId!)
         ? roomId = 'id:$myId+id:$hisId+'

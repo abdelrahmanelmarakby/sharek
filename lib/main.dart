@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sentry_logging/sentry_logging.dart';
 
@@ -16,6 +17,7 @@ import 'package:sharek/firebase_options.dart';
 import 'package:workmanager/workmanager.dart';
 
 import 'core/global/const.dart';
+import 'core/services/get_storage_helper.dart';
 import 'core/services/shared_prefs.dart';
 
 Future<void> main() async {
@@ -24,6 +26,10 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   final pref = await SharedPreferences.getInstance();
+  GetStorage.init();
+  print(CacheHelper.getUserToken);
+  print(CacheHelper.getUserId);
+
   Workmanager().initialize(
 
       // The top level function, aka callbackDispatcher

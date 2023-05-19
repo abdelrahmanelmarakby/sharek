@@ -72,6 +72,7 @@ class AuthController extends GetxController {
     final res = await AuthApis.registerOtp(phone: phone, code: code);
     if (res?.status == true) {
       animationController.forward();
+      print(res?.data?.user?.id);
       CacheHelper.cacheUserId(id: res?.data?.user?.id ?? 0);
 
       Future.delayed(1.seconds, () {
@@ -94,6 +95,8 @@ class AuthController extends GetxController {
     animationController.forward();
     final res = await AuthApis.loginOtp(phone: phone, code: code);
     if (res?.status == true) {
+      print(res?.data?.user?.id);
+
       animationController.forward();
       CacheHelper.cacheUserId(id: res?.data?.user?.id ?? 0);
 

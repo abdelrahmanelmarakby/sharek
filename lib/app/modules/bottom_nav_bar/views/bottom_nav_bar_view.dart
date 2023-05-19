@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
+import '../../../../core/services/get_storage_helper.dart';
 import '../add_ads_sheet.dart';
 import '../controllers/bottom_nav_bar_controller.dart';
 
@@ -13,6 +14,7 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
   const BottomNavBarView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    print(CacheHelper.getUserId);
     return GetBuilder<BottomNavBarController>(
       builder: (controller) => Scaffold(
         extendBody: true,

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../core/global/const.dart';
+import '../../core/services/get_storage_helper.dart';
 import '../../core/services/shared_prefs.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
@@ -93,8 +94,8 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CHATS,
-      page: () => const ChatHistory(
-        myId: "",
+      page: () => ChatHistory(
+        myId: CacheHelper.getUserId ?? "",
       ),
     ),
     GetPage(

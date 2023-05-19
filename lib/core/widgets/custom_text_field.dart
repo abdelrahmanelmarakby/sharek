@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sharek/core/constants/theme/app_icons.dart';
 import 'package:sharek/core/constants/theme/sizes_manager.dart';
 import 'package:sharek/core/extensions/export.dart';
@@ -122,8 +121,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           maxHeight: widget.height + 50,
           maxWidth: context.width,
         ),
-        child: FormBuilderTextField(
-          name: widget.name,
+        child: TextFormField(
           focusNode: widget.focusNode,
           autofillHints: widget.autoFillHints,
           onTap: widget.onTap,
@@ -144,13 +142,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
           onChanged: widget.isPassword
               ? (password) {
                   setState(() {
-                    passwordStrength = password!.measurePasswordStrength();
+                    passwordStrength = password.measurePasswordStrength();
                     strengthColor =
                         passwordStrength.getColorForPasswordStrength();
                   });
                 }
               : (txt) {
-                  if (widget.onChange != null) widget.onChange!(txt!);
+                  if (widget.onChange != null) widget.onChange!(txt);
                 },
           inputFormatters: widget.formattedType ?? [],
           style: StylesManager.medium(

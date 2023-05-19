@@ -4,10 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:flutter_link_previewer/flutter_link_previewer.dart' hide Size;
-import 'package:sharek/core/services/encryption_service.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
-import 'package:sharek/app/data/models/private_message_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'package:sharek/app/data/models/private_message_model.dart';
+import 'package:sharek/core/services/encryption_service.dart';
 
 import '../../../../core/constants/theme/theme_export.dart';
 

@@ -191,7 +191,7 @@ class ChatScreenX extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                   reverse: true,
-                  itemCount: getFluffs != null ? getFluffs.length : 0,
+                  itemCount: getFluffs.length,
                   //padding: const EdgeInsets.only(
                   //  bottom: Dimensions.getDesirableHeight(2.2),
                   //  right: Dimensions.getDesirableHeight(1.2),

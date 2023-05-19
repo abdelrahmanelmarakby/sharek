@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:sharek/core/services/encryption_service.dart';
 import 'package:provider/provider.dart';
 import 'package:sharek/app/data/models/chat_model.dart';
@@ -34,96 +33,13 @@ class _RecentChatsState extends State<RecentChats> {
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: const Text(
-          'Chats',
+          'الرسائل',
           style: TextStyle(
             fontSize: FontSize.xlarge,
-            color: ColorsManager.black,
+            color: ColorsManager.primary,
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: [
-          // IconButton(
-          //   onPressed: () {},
-          //   icon: const Icon(
-          //     Icons.search,
-          //     color: ColorsManger.primary,
-          //   ),
-          // ),
-          GestureDetector(
-            onTap: () async {
-              Get.defaultDialog(
-                  title: "",
-                  content: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              color: ColorsManager.primary.withOpacity(.2),
-                              height: 1,
-                            ),
-                          ),
-                          Text("  Chats  ",
-                              style: StylesManager.bold(
-                                  fontSize: 14, color: ColorsManager.primary)),
-                          Expanded(
-                            child: Container(
-                              color: ColorsManager.primary.withOpacity(.2),
-                              height: 1,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                    ],
-                  ));
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                  decoration: BoxDecoration(
-                    color: ColorsManager.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                          color: ColorsManager.primary.withOpacity(.05),
-                          blurRadius: 15,
-                          spreadRadius: 5,
-                          offset: const Offset(1, 1))
-                    ],
-                  ),
-                  //width: 80,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Text(
-                          "Start",
-                          style: StylesManager.medium(
-                              color: ColorsManager.primary,
-                              fontSize: FontSize.medium),
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: ColorsManager.primary)),
-                          child: const Icon(
-                            Iconsax.add,
-                            size: 20,
-                            color: ColorsManager.primary,
-                          ),
-                        )
-                      ],
-                    ),
-                  )),
-            ),
-          ),
-        ],
       ),
       body: ListView.builder(
         itemCount: getRecentChat.isNotEmpty ? getRecentChat.length : 0,
