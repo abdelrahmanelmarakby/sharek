@@ -14,6 +14,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/house_partner/bindings/house_partner_binding.dart';
 import '../modules/house_partner/views/house_partner_view.dart';
+import '../modules/location_getter_widgets/bindings/location_getter_widgets_binding.dart';
+import '../modules/location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../modules/notifications/bindings/notifications_binding.dart';
 import '../modules/notifications/views/notifications_view.dart';
 import '../modules/other_service_partner/bindings/other_service_partner_binding.dart';
@@ -102,6 +104,11 @@ class AppPages {
       name: _Paths.VIDEO_CHAT,
       page: () => const VideoChatView(),
       binding: VideoChatBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOCATION_GETTER_WIDGETS,
+      page: () => const LocationGetterWidgetsView(),
+      binding: LocationGetterWidgetsBinding(),
     ),
   ];
 }

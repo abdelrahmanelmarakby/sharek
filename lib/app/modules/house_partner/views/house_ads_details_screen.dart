@@ -414,7 +414,7 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 12),
-                                    child: const Row(
+                                    child:  Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
@@ -455,7 +455,7 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                       ),
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 11),
-                                      child: const Row(
+                                      child:  Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [

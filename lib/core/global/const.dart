@@ -92,5 +92,8 @@ class APIKeys {
   static const String reportHousingAds = "${report}housing-advertisement/";
   static const String reportOtherAds = "${report}another-advertisement/";
   static const String reportSacrificeAds = "${report}sacrifice-advertisement/";
-  //==================================================================
+  //============================location===============================
+  static String getAllRegions = "${baseUrl}regions";
+  static String getCitiesById(int id) => "${baseUrl}cities/$id";
+  static String getDistrictById(int id) => "${baseUrl}regions/$id";
 }

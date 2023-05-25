@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide FormData, MultipartFile;
+import 'package:sharek/app/routes/app_pages.dart';
 import 'package:sharek/core/services/network_service.dart/dio_network_service.dart';
 
 import '../../../core/global/const.dart';
@@ -272,9 +274,7 @@ class SarificeAPIS {
       unProcessable: (data) {
         return data;
       },
-      noAuth: (data) {
-        return data;
-      },
+      noAuth: (data) => Get.toNamed(Routes.AUTH),
       noAccess: (data) {
         return data;
       },

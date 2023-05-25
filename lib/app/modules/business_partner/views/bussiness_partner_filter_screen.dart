@@ -8,6 +8,7 @@ import 'package:sharek/core/widgets/custom_dropdown.dart';
 import 'package:sharek/core/widgets/progress_button.dart';
 
 import '../../../data/models/service_type.dart';
+import '../../location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../controllers/business_partner_controller.dart';
 
 class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
@@ -83,35 +84,7 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
                             ),
                           )),
                       const SizedBox(height: 12),
-                      AppDropDown(
-                        title: "المنطقة",
-                        icon: const Icon(
-                          Iconsax.location,
-                          color: Colors.black,
-                        ),
-                        bottomSheet: Container(),
-                      ),
-                      const SizedBox(height: 12),
-                      AppDropDown(
-                        icon: const Icon(
-                          Iconsax.location_tick,
-                          color: Colors.black,
-                        ),
-                        title: "الحي",
-                        bottomSheet: Container(),
-                      ),
-                      const SizedBox(height: 12),
-                      AppDropDown(
-                        icon: const RotatedBox(
-                          quarterTurns: 2,
-                          child: Icon(
-                            Iconsax.happyemoji,
-                            color: ColorsManager.black,
-                          ),
-                        ),
-                        title: "النوع",
-                        bottomSheet: Container(),
-                      ),
+                      const LocationGetterWidgetsView(),
                     ],
                   ),
                 ),

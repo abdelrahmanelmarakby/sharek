@@ -1,5 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -14,7 +16,7 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
   const BottomNavBarView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    print(CacheHelper.getUserId);
+    log(CacheHelper.getUserId.toString());
     return GetBuilder<BottomNavBarController>(
       builder: (controller) => Scaffold(
         extendBody: true,
