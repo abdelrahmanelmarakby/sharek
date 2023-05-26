@@ -1,6 +1,5 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -11,6 +10,7 @@ import '../../../../core/extensions/validator.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
+import '../../location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../controllers/business_partner_controller.dart';
 
 class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
@@ -39,46 +39,8 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 const SizedBox(height: 12),
                 //const FiltersList(),
                 const SizedBox(height: 16),
-                Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF7F7F9),
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: const Color(0xFFE4E4E5),
-                    ),
-                  ),
-                  width: double.infinity,
-                  child: const ExpansionTile(
-                    leading: Icon(
-                      Iconsax.location,
-                      color: Colors.black,
-                    ),
-                    title: AppText(
-                      "المنطقة",
-                      fontSize: 16,
-                      color: ColorsManager.black,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF7F7F9),
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: const Color(0xFFE4E4E5),
-                    ),
-                  ),
-                  width: double.infinity,
-                  child: ExpansionTile(
-                    leading: SvgPicture.asset("assets/images/buildings.svg"),
-                    title: const AppText(
-                      "الحي",
-                      fontSize: 16,
-                      color: ColorsManager.black,
-                    ),
-                  ),
-                ),
+
+                const LocationGetterWidgetsView(),
                 const SizedBox(height: 12),
                 Container(
                   decoration: BoxDecoration(
@@ -121,10 +83,10 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                   controller: controller.createDescriptionPartnersCtr,
                   maxLines: 4,
                   validate: Validator.validateEmpty,
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                  prefixIcon: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12),
                     child: Column(
-                      children: const [
+                      children: [
                         Icon(
                           Iconsax.document,
                           color: Colors.black,
@@ -149,9 +111,9 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                         color: Color(0xFFF7F7F9),
                       ),
                       alignment: Alignment.center,
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Icon(
                             SharekIcons.upload_1,
                             color: ColorsManager.primary,

@@ -10,8 +10,8 @@ import '../models/regions_model.dart';
 
 class LocationGetterWidgetsController extends GetxController {
   late final Future<RegionsModel?> regions;
-  late final Future<CitiesModel?> cities;
-  late final Future<DistrictsModel?> districts;
+  CitiesModel? cities;
+  DistrictsModel? districts;
   String? regionName;
   String? cityName;
   String? districtName;
@@ -24,7 +24,7 @@ class LocationGetterWidgetsController extends GetxController {
     Get.close(1);
     BotToast.showLoading();
     try {
-      await (cities = LocationApis.getCitiesById(regionId ?? 0));
+      (cities = await LocationApis.getCitiesById(regionId ?? 0));
     } catch (e) {
       log(e.toString());
     }
@@ -40,7 +40,7 @@ class LocationGetterWidgetsController extends GetxController {
 
     BotToast.showLoading();
     try {
-      await (districts = LocationApis.getDistrictsById(regionId ?? 0));
+      (districts = await LocationApis.getDistrictsById(cityId ?? 0));
     } catch (e) {
       log(e.toString());
     }
@@ -59,6 +59,7 @@ class LocationGetterWidgetsController extends GetxController {
   @override
   void onInit() {
     regions = LocationApis.getAllRegions();
+
     super.onInit();
   }
 }

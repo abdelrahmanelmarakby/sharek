@@ -95,5 +95,5 @@ class APIKeys {
   //============================location===============================
   static String getAllRegions = "${baseUrl}regions";
   static String getCitiesById(int id) => "${baseUrl}cities/$id";
-  static String getDistrictById(int id) => "${baseUrl}regions/$id";
+  static String getDistrictById(int id) => "${baseUrl}districts/$id";
 }

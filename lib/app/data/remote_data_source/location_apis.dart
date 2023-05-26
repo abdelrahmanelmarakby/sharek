@@ -43,7 +43,7 @@ class LocationApis {
       data: const NetworkRequestBody.empty(),
     );
     final response = await networkService.execute(
-        request, (json) => DistrictsModel.fromJson(json));
+        request, (json) => CitiesModel.fromJson(json));
     final data = response.maybeWhen(
       ok: (data) {
         return data;

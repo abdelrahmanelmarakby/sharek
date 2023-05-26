@@ -14,6 +14,7 @@ import '../../../../core/widgets/custom_dropdown.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
 import '../../../data/models/service_type.dart';
+import '../../location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../../travel_partner/widgets/services_type_item.dart';
 import '../controllers/sake_partner_controller.dart';
 import '../widgets/create_ads_quantity_section.dart';
@@ -107,25 +108,7 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                           .toList(),
                     ),
                     const SizedBox(height: 12),
-                    AppDropDown(
-                      icon: const Icon(
-                        Iconsax.location,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                      title: "المنطقة",
-                      bottomSheet: Container(),
-                    ),
-                    const SizedBox(height: 12),
-                    AppDropDown(
-                      icon: const Icon(
-                        Iconsax.location_tick,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                      title: "الحي",
-                      bottomSheet: Container(),
-                    ),
+                    const LocationGetterWidgetsView(),
                     const SizedBox(height: 12),
                     CustomTextField(
                       name: "",
@@ -147,10 +130,10 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                       controller: controller.createDescriptionPartnersCtr,
                       maxLines: 4,
                       validate: Validator.validateEmpty,
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
+                      prefixIcon: const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 12),
                         child: Column(
-                          children: const [
+                          children: [
                             Icon(
                               Iconsax.document_text,
                               color: Colors.black,
@@ -175,9 +158,9 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                             color: Color(0xFFF7F7F9),
                           ),
                           alignment: Alignment.center,
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Icon(
                                 SharekIcons.upload_1,
                                 color: ColorsManager.primary,
