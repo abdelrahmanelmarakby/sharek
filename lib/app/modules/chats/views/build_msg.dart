@@ -8,7 +8,6 @@ import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:sharek/app/data/models/private_message_model.dart';
-import 'package:sharek/core/services/encryption_service.dart';
 
 import '../../../../core/constants/theme/theme_export.dart';
 
@@ -30,7 +29,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
   void initState() {
     super.initState();
     videoPlayerController =
-        VideoPlayerController.network(widget.msg?.video?.decrypt ?? "")
+        VideoPlayerController.network(widget.msg?.video ?? "")
           ..initialize().then((value) => setState(() {}));
     _customVideoPlayerController = CustomVideoPlayerController(
       context: context,
@@ -98,7 +97,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
       children: [
         if (msg.text != null)
           LinkPreviewText(
-            url: '${msg.text?.decrypt}',
+            url: '${msg.text}',
           )
         else
           const SizedBox(),
@@ -106,7 +105,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
           InstaImageViewer(
             disposeLevel: DisposeLevel.high,
             child: Image.network(
-              msg.image?.decrypt ?? '',
+              msg.image ?? '',
               //fit: BoxFit.cover,
               loadingBuilder: (context, child, loadingProgress) {
                 if (loadingProgress == null) return child;
@@ -136,7 +135,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
                 ? const Icon(
                     Icons.check,
                     //    size: Dimensions.getDesirableWidth(4),
-                    color: Colors.grey,
+                    color: ColorsManager.accent,
                   )
                 : const SizedBox(),
             const SizedBox(
@@ -146,7 +145,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
               '$hour:${msg.time?.minute} $amPm',
               style: const TextStyle(
                   //   fontSize: Dimensions.getDesirableWidth(3),
-                  color: Colors.grey,
+                  color: ColorsManager.accent,
                   fontSize: 11,
                   fontWeight: FontWeight.w600),
             ),
@@ -220,7 +219,7 @@ class _LinkPreviewTextState extends State<LinkPreviewText> {
           text: widget.url,
           style: StylesManager.regular(
             color: Colors.black,
-            fontSize: 12,
+            fontSize: FontSize.medium,
           ),
 
           // style: Theme.of(context).textTheme.headline6,

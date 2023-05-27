@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sharek/core/services/encryption_service.dart';
+import 'package:sharek/core/extensions/num.dart';
 import 'package:provider/provider.dart';
 import 'package:sharek/app/data/models/chat_model.dart';
 import 'package:sharek/core/constants/theme/sizes_manager.dart';
@@ -26,8 +26,6 @@ class _RecentChatsState extends State<RecentChats> {
   @override
   Widget build(BuildContext context) {
     final getRecentChat = Provider.of<List<ChatRoom>>(context);
-    print(getRecentChat);
-    print(widget.myId);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -80,9 +78,9 @@ class _RecentChatsState extends State<RecentChats> {
       ),
       closedBuilder: (context, action) => Container(
           margin: const EdgeInsets.only(top: 2, bottom: 4, right: 8, left: 8),
-          padding: EdgeInsets.symmetric(
-            horizontal: context.width * .04,
-            vertical: context.width * .02,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 12,
           ),
           decoration: BoxDecoration(
               boxShadow: [
@@ -109,8 +107,8 @@ class _RecentChatsState extends State<RecentChats> {
                             ? chatRoom.bImage.toString()
                             : chatRoom.aImage.toString(),
                         fit: BoxFit.cover,
-                        height: context.width * .2,
-                        width: context.width * .2,
+                        height: 48.h(context),
+                        width: 48.h(context),
                         placeholder: (context, url) =>
                             const CupertinoActivityIndicator(
                                 color: ColorsManager.primary),
@@ -124,9 +122,7 @@ class _RecentChatsState extends State<RecentChats> {
                               ),
                             )),
                   ),
-                  SizedBox(
-                    width: context.width * .05,
-                  ),
+                  Sizes.size12.h(context).heightSizedBox,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -147,10 +143,10 @@ class _RecentChatsState extends State<RecentChats> {
                       ),
                       SizedBox(
                           width: context.width * .35,
-                          child: Text('${chatRoom.lastMsg?.decrypt}',
+                          child: Text('${chatRoom.lastMsg}',
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                  fontSize: FontSize.small,
+                                  fontSize: FontSize.medium,
                                   color: ColorsManager.darkGrey,
                                   //           fontSize: Dimensions.getDesirableWidth(4),
                                   //          color: MyColors().textColor,
@@ -171,10 +167,10 @@ class _RecentChatsState extends State<RecentChats> {
                       child: chatRoom.lastSender != widget.myId
                           ? Container(
                               alignment: Alignment.centerLeft,
-                              child: const Text('New!',
+                              child: const Text('رسالة جديدة!',
                                   style: TextStyle(
                                       // fontSize: Dimensions.getDesirableWidth(4),
-                                      color: ColorsManager.success,
+                                      color: ColorsManager.selection,
                                       fontWeight: FontWeight.bold)))
                           : const Text(''),
                     ),
@@ -214,30 +210,26 @@ class MenuButton extends StatelessWidget {
   final Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: const Color.fromARGB(255, 216, 239, 251),
-      shadowColor: ColorsManager.primary.withOpacity(.3),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GestureDetector(
-          onTap: onTap,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Icon(
-                icon,
-                color: ColorsManager.primary,
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                text,
-                style: StylesManager.light(
-                    color: ColorsManager.primary, fontSize: FontSize.medium),
-              ),
-            ],
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Icon(
+              icon,
+              color: ColorsManager.primary,
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Text(
+              text,
+              style: StylesManager.light(
+                  color: ColorsManager.primary, fontSize: FontSize.medium),
+            ),
+          ],
         ),
       ),
     );

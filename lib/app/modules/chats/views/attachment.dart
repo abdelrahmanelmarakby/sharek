@@ -16,7 +16,6 @@ import 'package:sharek/app/data/models/private_message_model.dart';
 import 'package:sharek/core/constants/theme/theme_export.dart';
 import 'package:sharek/core/widgets/color_sonar_animation.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
-import 'package:sharek/core/services/encryption_service.dart';
 import '../../../../../core/services/chat/private/private_chat.dart';
 
 double getFileSize({required int bytes, int decimals = 0}) {
@@ -435,10 +434,10 @@ class Attachment {
   }) async {
     PrivateMessage newFluff = PrivateMessage(
         sender: myId,
-        image: image?.encrypt,
-        text: fluff?.encrypt,
-        video: video?.encrypt,
-        audio: audio?.encrypt,
+        image: image,
+        text: fluff,
+        video: video,
+        audio: audio,
         time: Timestamp.now().toDate());
 
     String userA, userB, aName, bName, aImage, bImage;
