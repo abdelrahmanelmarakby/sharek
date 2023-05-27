@@ -43,8 +43,8 @@ class ProfileView extends GetView<ProfileController> {
                   children: [
                     Sizes.size20.h(context).heightSizedBox,
                     ProfileHeader(
-                      name: userData?.name ?? "",
-                      userImage: userData?.avatar ?? dummyImage,
+                      name: userData?.user?.name ?? "",
+                      userImage: userData?.user?.avatar ?? dummyImage,
                     ),
                     Sizes.size8.h(context).heightSizedBox,
                     Padding(
@@ -64,8 +64,8 @@ class ProfileView extends GetView<ProfileController> {
                             onTap: () {
                               Get.to(
                                 () => EditUserInfoScreen(
-                                  name: userData?.name ?? "",
-                                  phone: userData?.phone.toString() ?? "",
+                                  name: userData?.user?.name ?? "",
+                                  phone: userData?.user?.phone.toString() ?? "",
                                 ),
                                 binding: ProfileBinding(),
                               );

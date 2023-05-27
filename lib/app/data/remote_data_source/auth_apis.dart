@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:sharek/app/data/models/user_model.dart';
 
 import '../../../core/global/const.dart';
 import '../../../core/services/firebase_messaging_helper.dart';
 import '../../../core/services/network_service.dart/dio_network_service.dart';
 import '../../../core/services/shared_prefs.dart';
 import '../models/main_model.dart';
+import '../models/user_data_model.dart';
 
 class AuthApis {
   static Future<MainModel?> register({

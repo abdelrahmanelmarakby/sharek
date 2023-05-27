@@ -26,7 +26,8 @@ class _RecentChatsState extends State<RecentChats> {
   @override
   Widget build(BuildContext context) {
     final getRecentChat = Provider.of<List<ChatRoom>>(context);
-
+    print(getRecentChat);
+    print(widget.myId);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

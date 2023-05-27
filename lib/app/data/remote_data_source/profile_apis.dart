@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -108,7 +109,7 @@ class ProfileApis {
     return data;
   }
 
-  static Future<UserDataModel?> getUserData() async {
+  static Future<UserModel?> getUserData() async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
       path: APIKeys.userInfo,
@@ -122,7 +123,7 @@ class ProfileApis {
     );
     final response = await networkService.execute(
       request,
-      (json) => UserDataModel.fromJson(json),
+      (json) => UserModel.fromJson(json),
     );
     final data = response.maybeWhen(
       ok: (data) {

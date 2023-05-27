@@ -4,6 +4,7 @@ import 'package:sharek/app/modules/chats/chat_history.dart';
 import 'package:sharek/app/modules/home/views/home_view.dart';
 import 'package:sharek/app/modules/notifications/views/notifications_view.dart';
 
+import '../../../../core/services/get_storage_helper.dart';
 import '../../profile/views/profile_view.dart';
 
 class BottomNavBarController extends GetxController {
@@ -36,8 +37,8 @@ class BottomNavBarController extends GetxController {
         }
       case 3:
         {
-          _currentScreen = const ChatHistory(
-            myId: "",
+          _currentScreen = ChatHistory(
+            myId: CacheHelper.getUserId ?? "",
           );
           break;
         }

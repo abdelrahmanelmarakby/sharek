@@ -70,19 +70,20 @@ class AuthController extends GetxController {
   }) async {
     animationController.forward();
     final res = await AuthApis.registerOtp(phone: phone, code: code);
-    if (res?.status == true) {
-      animationController.forward();
-      print(res?.data?.user?.id);
-      CacheHelper.cacheUserId(id: res?.data?.user?.id ?? 0);
 
-      Future.delayed(1.seconds, () {
-        animationController.reverse();
+    CacheHelper.cacheUserId(id: res!.data!.user!.id!);
+    if (res.status == true) {
+      animationController.forward();
+      print(res.data?.user?.id);
+
+      await Future.delayed(300.milliseconds, () {
+        animationController.reset();
       });
-      showSnackBar(res?.message ?? "");
-      SharedPrefService(prefs: globalPrefs).saveToken(res?.data?.token ?? '');
+      showSnackBar(res.message ?? "");
+      SharedPrefService(prefs: globalPrefs).saveToken(res.data?.token ?? '');
       Get.offAndToNamed(Routes.BOTTOM_NAV_BAR);
     } else {
-      showSnackBar(res?.message ?? 'حدث خطآ ما'.tr);
+      showSnackBar(res.message ?? 'حدث خطآ ما'.tr);
       animationController.reset();
     }
   }
@@ -94,11 +95,11 @@ class AuthController extends GetxController {
   }) async {
     animationController.forward();
     final res = await AuthApis.loginOtp(phone: phone, code: code);
-    if (res?.status == true) {
-      print(res?.data?.user?.id);
 
+    if (res?.status == true) {
       animationController.forward();
       CacheHelper.cacheUserId(id: res?.data?.user?.id ?? 0);
+      Get.log(res?.data?.user?.id.toString() ?? "");
 
       Future.delayed(1.seconds, () {
         animationController.reverse();

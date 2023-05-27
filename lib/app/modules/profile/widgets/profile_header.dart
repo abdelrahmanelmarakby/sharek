@@ -15,7 +15,7 @@ import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../controllers/profile_controller.dart';
 
-class ProfileHeader extends StatelessWidget {
+class ProfileHeader extends GetWidget<ProfileController> {
   const ProfileHeader({
     Key? key,
     this.userImage,
@@ -25,9 +25,6 @@ class ProfileHeader extends StatelessWidget {
   final String name;
   @override
   Widget build(BuildContext context) {
-    final ProfileController controller =
-        Get.put<ProfileController>(ProfileController());
-
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

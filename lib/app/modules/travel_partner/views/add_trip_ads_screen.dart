@@ -236,9 +236,9 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                             color: Color(0xFFF7F7F9),
                           ),
                           alignment: Alignment.center,
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Icon(
                                 SharekIcons.upload_1,
                                 color: ColorsManager.primary,

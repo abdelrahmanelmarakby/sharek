@@ -1,79 +1,81 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-
-class UserDataModel {
+class UserModel {
   bool? status;
   String? message;
   Data? data;
 
-  UserDataModel({this.status, this.message, this.data});
+  UserModel({this.status, this.message, this.data});
 
-  UserDataModel.fromJson(Map<String, dynamic> json) {
-    if (json["status"] is bool) {
-      status = json["status"];
-    }
-    if (json["message"] is String) {
-      message = json["message"];
-    }
-    if (json["data"] is Map) {
-      data = json["data"] == null ? null : Data.fromJson(json["data"]);
-    }
+  UserModel.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    message = json['message'];
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["status"] = status;
-    _data["message"] = message;
-    if (data != null) {
-      _data["data"] = data?.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
     }
-    return _data;
+    return data;
   }
 }
 
 class Data {
-  int? phone;
-  int? id;
+  String? token;
+  User? user;
 
+  Data({this.token, this.user});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    token = json['token'];
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['token'] = token;
+    if (user != null) {
+      data['user'] = user!.toJson();
+    }
+    return data;
+  }
+}
+
+class User {
+  int? id;
+  int? phone;
   String? name;
-  dynamic accountVerified;
+  bool? accountVerified;
   String? deviceToken;
   String? avatar;
 
-  Data(
-      {this.phone,
-      this.id,
+  User(
+      {this.id,
+      this.phone,
       this.name,
       this.accountVerified,
       this.deviceToken,
       this.avatar});
 
-  Data.fromJson(Map<String, dynamic> json) {
-    if (json["id"] is int) {
-      phone = json["id"];
-    }
-    if (json["phone"] is int) {
-      phone = json["phone"];
-    }
-    if (json["name"] is String) {
-      name = json["name"];
-    }
-    accountVerified = json["account_verified"];
-    if (json["device_token"] is String) {
-      deviceToken = json["device_token"];
-    }
-    if (json["avatar"] is String) {
-      avatar = json["avatar"];
-    }
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    phone = json['phone'];
+    name = json['name'];
+    accountVerified = json['account_verified'];
+    deviceToken = json['device_token'];
+    avatar = json['avatar'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data["phone"] = phone;
-    _data["name"] = name;
-    _data["account_verified"] = accountVerified;
-    _data["device_token"] = deviceToken;
-    _data["avatar"] = avatar;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['phone'] = phone;
+    data['name'] = name;
+    data['account_verified'] = accountVerified;
+    data['device_token'] = deviceToken;
+    data['avatar'] = avatar;
+    return data;
   }
 }

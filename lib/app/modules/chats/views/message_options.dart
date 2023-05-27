@@ -92,7 +92,7 @@ class _MessageOptionsState extends State<MessageOptions> {
               const SizedBox(
                 height: 1,
               ),
-              Row(
+              const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(

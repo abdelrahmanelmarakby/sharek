@@ -423,7 +423,7 @@ class SakePartnerDetailsScreen extends GetView<SakePartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 12),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
@@ -464,7 +464,7 @@ class SakePartnerDetailsScreen extends GetView<SakePartnerController> {
                                       ),
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 11),
-                                      child: Row(
+                                      child: const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
