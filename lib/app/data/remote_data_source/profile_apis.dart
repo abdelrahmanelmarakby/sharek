@@ -64,8 +64,8 @@ class ProfileApis {
       data: NetworkRequestBody.fromData(
         FormData.fromMap(
           {
-            "phone": phone,
-            "name": name,
+            if (phone != null) "phone": phone,
+            if (name != null) "name": name,
           },
         ),
       ),

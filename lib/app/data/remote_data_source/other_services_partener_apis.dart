@@ -133,31 +133,22 @@ class OtherServicesPartenerAPIS {
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
       },
       data: NetworkRequestBody.fromData(
-        FormData.fromMap(
-          photos != null
-              ? {
-                  "location": location,
-                  "neighborhood": neighborhood,
-                  "title": title,
-                  "description": description,
-                  "phone": phone,
-                  "photos[]": photos
-                      .map(
-                        (e) => MultipartFile.fromFileSync(
-                          e.path,
-                          filename: e.path.split('/').last,
-                        ),
-                      )
-                      .toList(),
-                }
-              : {
-                  "location": location,
-                  "neighborhood": neighborhood,
-                  "title": title,
-                  "description": description,
-                  "phone": phone,
-                },
-        ),
+        FormData.fromMap({
+          if (location != null) "location": location,
+          if (neighborhood != null) "neighborhood": neighborhood,
+          if (title != null) "title": title,
+          if (description != null) "description": description,
+          if (phone != null) "phone": phone,
+          if (photos != null)
+            "photos[]": photos
+                .map(
+                  (e) => MultipartFile.fromFileSync(
+                    e.path,
+                    filename: e.path.split('/').last,
+                  ),
+                )
+                .toList(),
+        }),
       ),
     );
     final response = await networkService.execute(

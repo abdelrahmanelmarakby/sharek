@@ -12,12 +12,10 @@ import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/widgets/app_text.dart';
-import '../../../../core/widgets/custom_dropdown.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
-import '../../../data/models/city_model.dart';
-import '../../../data/models/region_model.dart';
-import '../../../data/remote_data_source/regions_and_cities_apis.dart';
+import '../../location_getter_widgets/controllers/location_getter_widgets_controller.dart';
+import '../../location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../controllers/other_service_partner_controller.dart';
 
 class AddOtherAdsScreen extends GetView<OtherServicePartnerController> {
@@ -55,126 +53,7 @@ class AddOtherAdsScreen extends GetView<OtherServicePartnerController> {
                       fontWeight: FontWeights.semiBold,
                     ),
                     const SizedBox(height: 16),
-                    AppDropDown(
-                      icon: const Icon(
-                        Iconsax.location,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                      title: "المنطقة",
-                      bottomSheet: FutureBuilder<RegionModel?>(
-                        future: RegionsAndCitiesAPIS.getRegions(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data?.data;
-                            return Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                children: [
-                                  const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(vertical: 4),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Spacer(),
-                                        Expanded(
-                                          child: AppText(
-                                            "المنطقة",
-                                            color: Colors.black,
-                                            fontSize: 20,
-                                            centerText: true,
-                                            fontWeight: FontWeights.semiBold,
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Icon(
-                                              Icons.close,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: ListView.separated(
-                                      itemCount: data?.length ?? 0,
-                                      separatorBuilder: (context, index) =>
-                                          const SizedBox(height: 12),
-                                      itemBuilder: (context, index) {
-                                        var region = data?[index];
-                                        return RadioListTile(
-                                          contentPadding: EdgeInsets.zero,
-                                          activeColor: ColorsManager.primary,
-                                          title: Text(region?.name ?? ""),
-                                          value: region,
-                                          groupValue: data,
-                                          onChanged: (value) {},
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator.adaptive(
-                                valueColor: AlwaysStoppedAnimation(
-                                  ColorsManager.primary,
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    AppDropDown(
-                      icon: const Icon(
-                        Iconsax.location_tick,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                      title: "الحي",
-                      bottomSheet: FutureBuilder<CityModel?>(
-                        future: RegionsAndCitiesAPIS.getCities(1),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data?.data;
-                            return Column(
-                              children: [
-                                Expanded(
-                                  child: ListView.separated(
-                                    padding: const EdgeInsets.all(16),
-                                    itemCount: data?.length ?? 0,
-                                    separatorBuilder: (context, index) =>
-                                        const SizedBox(height: 12),
-                                    itemBuilder: (context, index) {
-                                      var region = data?[index];
-                                      return Text(region?.name ?? "");
-                                    },
-                                  ),
-                                ),
-                              ],
-                            );
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator.adaptive(
-                                valueColor: AlwaysStoppedAnimation(
-                                  ColorsManager.primary,
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                      ),
-                    ),
+                    const LocationGetterWidgetsView(),
                     const SizedBox(height: 12),
                     CustomTextField(
                       name: "",
@@ -196,10 +75,10 @@ class AddOtherAdsScreen extends GetView<OtherServicePartnerController> {
                       controller: controller.createDescriptionPartnersCtr,
                       maxLines: 4,
                       validate: Validator.validateEmpty,
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         child: Column(
-                          children: [
+                          children: const [
                             Icon(
                               Iconsax.document_text,
                               color: Colors.black,
@@ -224,9 +103,9 @@ class AddOtherAdsScreen extends GetView<OtherServicePartnerController> {
                             color: Color(0xFFF7F7F9),
                           ),
                           alignment: Alignment.center,
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Icon(
                                 SharekIcons.upload_1,
                                 color: ColorsManager.primary,
@@ -266,8 +145,12 @@ class AddOtherAdsScreen extends GetView<OtherServicePartnerController> {
                               .validate()) {
                             controller.createHouseAds(
                               animationController: animationController,
-                              location: "sssss",
-                              neighborhood: "xxxxx",
+                              location:
+                                  Get.find<LocationGetterWidgetsController>()
+                                      .regionName,
+                              neighborhood:
+                                  Get.find<LocationGetterWidgetsController>()
+                                      .cityName,
                               title:
                                   controller.createTitlePartnersCtr.text == ""
                                       ? null

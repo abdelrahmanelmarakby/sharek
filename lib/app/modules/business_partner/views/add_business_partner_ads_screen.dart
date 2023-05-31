@@ -10,6 +10,7 @@ import '../../../../core/extensions/validator.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
+import '../../location_getter_widgets/controllers/location_getter_widgets_controller.dart';
 import '../../location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../controllers/business_partner_controller.dart';
 
@@ -39,8 +40,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 const SizedBox(height: 12),
                 //const FiltersList(),
                 const SizedBox(height: 16),
-
-                const LocationGetterWidgetsView(),
+                const LocationGetterWidgetsView(showDistrict: true),
                 const SizedBox(height: 12),
                 Container(
                   decoration: BoxDecoration(
@@ -83,10 +83,10 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                   controller: controller.createDescriptionPartnersCtr,
                   maxLines: 4,
                   validate: Validator.validateEmpty,
-                  prefixIcon: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 12),
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                     child: Column(
-                      children: [
+                      children: const [
                         Icon(
                           Iconsax.document,
                           color: Colors.black,
@@ -111,9 +111,9 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                         color: Color(0xFFF7F7F9),
                       ),
                       alignment: Alignment.center,
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Icon(
                             SharekIcons.upload_1,
                             color: ColorsManager.primary,
@@ -154,8 +154,11 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                         controller.createTripAds(
                           servicesTypeid: 1,
                           animationController: animationController,
-                          location: "sssss",
-                          neighborhood: "xxxxx",
+                          location: Get.find<LocationGetterWidgetsController>()
+                              .regionName,
+                          neighborhood:
+                              Get.find<LocationGetterWidgetsController>()
+                                  .cityName,
                           title: controller.createTitlePartnersCtr.text == ""
                               ? null
                               : controller.createTitlePartnersCtr.text,

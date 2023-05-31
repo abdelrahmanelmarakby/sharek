@@ -17,6 +17,7 @@ class InitialBindings extends Bindings {
     );
     Get.lazyPut<LocationGetterWidgetsController>(
       () => LocationGetterWidgetsController(),
+      fenix: true,
     );
   }
 }

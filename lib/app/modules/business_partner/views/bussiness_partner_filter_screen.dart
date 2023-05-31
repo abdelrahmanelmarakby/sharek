@@ -5,6 +5,7 @@ import 'package:sharek/app/modules/travel_partner/widgets/services_type_item.dar
 import 'package:sharek/core/widgets/progress_button.dart';
 
 import '../../../data/models/service_type.dart';
+import '../../location_getter_widgets/controllers/location_getter_widgets_controller.dart';
 import '../../location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../controllers/business_partner_controller.dart';
 
@@ -81,7 +82,7 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
                             ),
                           )),
                       const SizedBox(height: 12),
-                      const LocationGetterWidgetsView(),
+                      const LocationGetterWidgetsView(showDistrict: true),
                     ],
                   ),
                 ),
@@ -92,12 +93,9 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
                 Get.to(
                   () => BusinessAdsFilterResult(
                     servicesTypeid: controller.businessPartner,
-                    city: controller.city.text == ""
-                        ? null
-                        : controller.city.text,
-                    location: controller.location.text == ""
-                        ? null
-                        : controller.location.text,
+                    location:
+                        Get.find<LocationGetterWidgetsController>().regionName,
+                    city: Get.find<LocationGetterWidgetsController>().cityName,
                   ),
                 );
               },

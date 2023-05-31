@@ -92,9 +92,9 @@ class _MessageOptionsState extends State<MessageOptions> {
               const SizedBox(
                 height: 1,
               ),
-              const Row(
+              Row(
                 mainAxisSize: MainAxisSize.min,
-                children: [
+                children: const [
                   Icon(
                     Icons.check,
                     //    size: Dimensions.getDesirableWidth(4),

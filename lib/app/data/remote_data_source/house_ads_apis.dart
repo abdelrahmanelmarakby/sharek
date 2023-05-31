@@ -131,12 +131,12 @@ class HousePartnerAPI {
       },
       data: const NetworkRequestBody.empty(),
       queryParams: {
-        "service_type_id": servicesTypeid,
-        "location": location,
-        "neighborhood": neighborhood,
-        "number_partners": numberPartners,
-        "nationality": nationality,
-        "title": title,
+        if (servicesTypeid != null) "service_type_id": servicesTypeid,
+        if (location != null) "location": location,
+        if (neighborhood != null) "neighborhood": neighborhood,
+        if (numberPartners != null) "number_partners": numberPartners,
+        if (nationality != null) "nationality": nationality,
+        if (title != null) "title": title,
       },
     );
     final response = await networkService.execute(
@@ -194,37 +194,25 @@ class HousePartnerAPI {
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
       },
       data: NetworkRequestBody.fromData(
-        FormData.fromMap(
-          photos != null
-              ? {
-                  "service_type_id": servicesTypeid,
-                  "location": location,
-                  "neighborhood": neighborhood,
-                  "number_partners": numberPartners,
-                  "nationality": nationality,
-                  "title": title,
-                  "description": description,
-                  "phone": phone,
-                  "photos[]": photos
-                      .map(
-                        (e) => MultipartFile.fromFileSync(
-                          e.path,
-                          filename: e.path.split('/').last,
-                        ),
-                      )
-                      .toList(),
-                }
-              : {
-                  "service_type_id": servicesTypeid,
-                  "location": location,
-                  "neighborhood": neighborhood,
-                  "number_partners": numberPartners,
-                  "nationality": nationality,
-                  "title": title,
-                  "description": description,
-                  "phone": phone,
-                },
-        ),
+        FormData.fromMap({
+          if (servicesTypeid != null) "service_type_id": servicesTypeid,
+          if (location != null) "location": location,
+          if (neighborhood != null) "neighborhood": neighborhood,
+          if (numberPartners != null) "number_partners": numberPartners,
+          if (nationality != null) "nationality": nationality,
+          if (title != null) "title": title,
+          if (description != null) "description": description,
+          if (phone != null) "phone": phone,
+          if (photos != null)
+            "photos[]": photos
+                .map(
+                  (e) => MultipartFile.fromFileSync(
+                    e.path,
+                    filename: e.path.split('/').last,
+                  ),
+                )
+                .toList(),
+        }),
       ),
     );
     final response = await networkService.execute(

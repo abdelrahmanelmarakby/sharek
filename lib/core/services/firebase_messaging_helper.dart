@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'dart:io';
@@ -43,7 +45,7 @@ class NotificationService {
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       // Handle FCM message when app is in backgmround
-      print('notification payload: ${message.data}');
+      log('notification payload: ${message.data}');
     });
 
     // Initialize flutter_local_notifications
@@ -58,7 +60,7 @@ class NotificationService {
       }
     });
 
-    print('Device Token: $token');
+    log('Device Token: $token');
   }
 
   Future<void> showNotification(RemoteMessage message) async {

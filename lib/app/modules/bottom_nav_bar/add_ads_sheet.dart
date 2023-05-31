@@ -28,11 +28,11 @@ class AddAdsSheet extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            const Wrap(
+            Wrap(
               runSpacing: 16,
               spacing: 0,
               alignment: WrapAlignment.start,
-              children: [
+              children: const [
                 PartnerCard(
                   isDialog: true,
                   name: "شريك اعمال",

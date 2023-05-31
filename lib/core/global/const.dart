@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:timeago/timeago.dart' as timeago;
+import 'package:timeago/timeago.dart';
 import '../services/network_service.dart/dio_network_service.dart';
 
 const String dummyImage = "https://picsum.photos/800";
@@ -23,6 +24,47 @@ String appTimeFormate(DateTime time, String locale) {
   var format = DateFormat(pattern, locale);
   var timeString = format.format(time);
   return timeString;
+}
+
+String timeUntil(DateTime date, String locale) {
+  timeago.setLocaleMessages(locale, MyCustomMessages());
+  return timeago.format(date, allowFromNow: true, locale: locale);
+}
+
+// my_custom_messages.dart
+class MyCustomMessages implements LookupMessages {
+  @override
+  String prefixAgo() => '';
+  @override
+  String prefixFromNow() => '';
+  @override
+  String suffixAgo() => '';
+  @override
+  String suffixFromNow() => '';
+  @override
+  String lessThanOneMinute(int seconds) => 'الآن';
+  @override
+  String aboutAMinute(int minutes) => '$minutesد';
+  @override
+  String minutes(int minutes) => '$minutesد';
+  @override
+  String aboutAnHour(int minutes) => '$minutesس';
+  @override
+  String hours(int hours) => '$hoursساعة';
+  @override
+  String aDay(int hours) => '$hoursساعات';
+  @override
+  String days(int days) => '$daysيوم';
+  @override
+  String aboutAMonth(int days) => '$daysأيام';
+  @override
+  String months(int months) => '$monthsشهر';
+  @override
+  String aboutAYear(int year) => '$yearسنة';
+  @override
+  String years(int years) => '$yearsسنوات';
+  @override
+  String wordSeparator() => ' ';
 }
 
 class APIKeys {

@@ -1,3 +1,7 @@
+// ignore_for_file: must_be_immutable, depend_on_referenced_packages
+
+import 'dart:developer';
+
 import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:bubble/bubble.dart';
 import 'package:flutter/cupertino.dart';
@@ -90,7 +94,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
       amPm = 'AM';
     }
     if (msg.image == null && msg.text != null && msg.video == null) {
-      print('${msg.text} ${msg.video} ${msg.image}');
+      log('${msg.text} ${msg.video} ${msg.image}');
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

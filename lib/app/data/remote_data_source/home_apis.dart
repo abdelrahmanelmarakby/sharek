@@ -40,7 +40,7 @@ class HomeAPI {
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
       },
       queryParams: {
-        "search": search,
+        if (search != null)  "search": search,
       },
       data: const NetworkRequestBody.empty(),
     );

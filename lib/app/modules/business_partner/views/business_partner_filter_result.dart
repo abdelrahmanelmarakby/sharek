@@ -27,7 +27,10 @@ class BusinessAdsFilterResult extends GetView<BusinessPartnerController> {
   Widget build(BuildContext context) {
     return FutureBuilder<BusinessPartnerModel?>(
       future: BusinessPartnerAPI.filterBusinessAds(
-          servicesTypeid: servicesTypeid, city: city, location: location),
+        servicesTypeid: servicesTypeid,
+        city: city,
+        location: location,
+      ),
       builder: (context, snapshot) {
         return Scaffold(
           appBar: AppBar(

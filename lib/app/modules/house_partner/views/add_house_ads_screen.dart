@@ -15,6 +15,7 @@ import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
 import '../../../data/models/service_type.dart';
+import '../../location_getter_widgets/controllers/location_getter_widgets_controller.dart';
 import '../../location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../../travel_partner/widgets/services_type_item.dart';
 import '../controllers/house_partner_controller.dart';
@@ -125,10 +126,10 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                       controller: controller.createDescriptionPartnersCtr,
                       maxLines: 4,
                       validate: Validator.validateEmpty,
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         child: Column(
-                          children: [
+                          children: const [
                             Icon(
                               Iconsax.document_text,
                               color: Colors.black,
@@ -153,9 +154,9 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                             color: Color(0xFFF7F7F9),
                           ),
                           alignment: Alignment.center,
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Icon(
                                 SharekIcons.upload_1,
                                 color: ColorsManager.primary,
@@ -196,14 +197,18 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                             controller.createHouseAds(
                               animationController: animationController,
                               servicesTypeid: controller.addHousePartner,
-                              location: "sssss",
+                              location:
+                                  Get.find<LocationGetterWidgetsController>()
+                                      .regionName,
+                              neighborhood:
+                                  Get.find<LocationGetterWidgetsController>()
+                                      .cityName,
                               numberPartners: controller
                                           .createNumberPartnersCtr.text !=
                                       ""
                                   ? int.parse(
                                       controller.createNumberPartnersCtr.text)
                                   : null,
-                              neighborhood: "xxxxx",
                               nationality: controller
                                           .createNationalityPartnersCtr.text ==
                                       ""

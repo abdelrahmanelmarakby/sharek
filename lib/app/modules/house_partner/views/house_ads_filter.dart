@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/core/extensions/validator.dart';
 
-import '../../../../core/widgets/custom_dropdown.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
 import '../../../data/models/service_type.dart';
+import '../../location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../../travel_partner/widgets/services_type_item.dart';
 import '../controllers/house_partner_controller.dart';
 
@@ -61,25 +61,7 @@ class HouseAdsFiterScreen extends GetView<HousePartnerController> {
                               .toList(),
                         ),
                         const SizedBox(height: 16),
-                        AppDropDown(
-                          icon: const Icon(
-                            Iconsax.location,
-                            size: 20,
-                            color: Colors.black,
-                          ),
-                          title: "المنطقة",
-                          bottomSheet: Container(),
-                        ),
-                        const SizedBox(height: 12),
-                        AppDropDown(
-                          icon: const Icon(
-                            Iconsax.location_tick,
-                            size: 20,
-                            color: Colors.black,
-                          ),
-                          title: "الحي",
-                          bottomSheet: Container(),
-                        ),
+                        const LocationGetterWidgetsView(showDistrict: true),
                         const SizedBox(height: 12),
                         controller.addHousePartner == 10
                             ? const CustomTextField(

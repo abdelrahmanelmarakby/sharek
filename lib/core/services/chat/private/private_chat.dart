@@ -1,3 +1,7 @@
+// ignore_for_file: empty_catches, body_might_complete_normally_catch_error
+
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sharek/app/data/models/private_message_model.dart';
 import '../../../../app/data/models/chat_model.dart';
@@ -19,7 +23,7 @@ class PrivateChatService {
   }
 
   String getRoomId() {
-    print("$myId :: $hisId");
+    log("$myId :: $hisId");
     String roomId;
     int.parse(myId) > int.parse(hisId == null ? '0' : hisId!)
         ? roomId = 'id:$myId+id:$hisId+'

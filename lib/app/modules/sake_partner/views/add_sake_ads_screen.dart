@@ -13,6 +13,7 @@ import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
 import '../../../data/models/service_type.dart';
+import '../../location_getter_widgets/controllers/location_getter_widgets_controller.dart';
 import '../../location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../../travel_partner/widgets/services_type_item.dart';
 import '../controllers/sake_partner_controller.dart';
@@ -129,10 +130,10 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                       controller: controller.createDescriptionPartnersCtr,
                       maxLines: 4,
                       validate: Validator.validateEmpty,
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         child: Column(
-                          children: [
+                          children: const [
                             Icon(
                               Iconsax.document_text,
                               color: Colors.black,
@@ -157,9 +158,9 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                             color: Color(0xFFF7F7F9),
                           ),
                           alignment: Alignment.center,
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Icon(
                                 SharekIcons.upload_1,
                                 color: ColorsManager.primary,
@@ -206,8 +207,12 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                             controller.createSacrificePartner == 8
                                 ? controller.createSakeAds(
                                     animationController: animationController,
-                                    location: "sssss",
-                                    neighborhood: "xxxxx",
+                                    location: Get.find<
+                                            LocationGetterWidgetsController>()
+                                        .regionName,
+                                    neighborhood: Get.find<
+                                            LocationGetterWidgetsController>()
+                                        .cityName,
                                     sacrificeType:
                                         controller.createSacrificeTypeItem.name,
                                     servicesTypeid:
@@ -238,8 +243,12 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                                     : controller.createSakeAds(
                                         animationController:
                                             animationController,
-                                        location: "sssss",
-                                        neighborhood: "xxxxx",
+                                        location: Get.find<
+                                                LocationGetterWidgetsController>()
+                                            .regionName,
+                                        neighborhood: Get.find<
+                                                LocationGetterWidgetsController>()
+                                            .cityName,
                                         title: controller.createTitlePartnersCtr
                                                     .text ==
                                                 ""

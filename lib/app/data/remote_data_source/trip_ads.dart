@@ -112,16 +112,16 @@ class TripPartnerAPI {
       },
       data: const NetworkRequestBody.empty(),
       queryParams: {
-        "service_type_id": servicesTypeid,
-        "starting_place": startingPlace,
-        "ending_place": endingPlace,
-        "number_passengers": numberPassengers,
-        "nationality": nationality,
-        "date": date,
-        "time": time,
-        "price": price,
-        "with_packages": withPackages == true ? 1 : 0,
-        "car_type": carType,
+        if (servicesTypeid != null) "service_type_id": servicesTypeid,
+        if (startingPlace != null) "starting_place": startingPlace,
+        if (endingPlace != null) "ending_place": endingPlace,
+        if (numberPassengers != null) "number_passengers": numberPassengers,
+        if (nationality != null) "nationality": nationality,
+        if (date != null) "date": date,
+        if (time != null) "time": time,
+        if (price != null) "price": price,
+        if (withPackages != null) "with_packages": withPackages == true ? 1 : 0,
+        if (carType != null) "car_type": carType,
       },
     );
     final response = await networkService.execute(
@@ -185,43 +185,29 @@ class TripPartnerAPI {
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
       },
       data: NetworkRequestBody.fromData(
-        FormData.fromMap(
-          photos != null
-              ? {
-                  "service_type_id": servicesTypeid,
-                  "starting_place": startingPlace,
-                  "ending_place": endingPlace,
-                  "number_passengers": numberPassengers,
-                  "nationality": nationality,
-                  "date": date,
-                  "time": time,
-                  "price": price,
-                  "with_packages": withPackages == true ? 1 : 0,
-                  "car_type": carType,
-                  "phone": phone,
-                  "photos[]": photos
-                      .map(
-                        (e) => MultipartFile.fromFileSync(
-                          e.path,
-                          filename: e.path.split('/').last,
-                        ),
-                      )
-                      .toList(),
-                }
-              : {
-                  "service_type_id": servicesTypeid,
-                  "starting_place": startingPlace,
-                  "ending_place": endingPlace,
-                  "number_passengers": numberPassengers,
-                  "nationality": nationality,
-                  "date": date,
-                  "time": time,
-                  "price": price,
-                  "with_packages": withPackages == true ? 1 : 0,
-                  "car_type": carType,
-                  "phone": phone,
-                },
-        ),
+        FormData.fromMap({
+          if (servicesTypeid != null) "service_type_id": servicesTypeid,
+          if (startingPlace != null) "starting_place": startingPlace,
+          if (endingPlace != null) "ending_place": endingPlace,
+          if (numberPassengers != null) "number_passengers": numberPassengers,
+          if (nationality != null) "nationality": nationality,
+          if (date != null) "date": date,
+          if (time != null) "time": time,
+          if (price != null) "price": price,
+          if (withPackages != null)
+            "with_packages": withPackages == true ? 1 : 0,
+          if (carType != null) "car_type": carType,
+          if (phone != null) "phone": phone,
+          if (photos != null)
+            "photos[]": photos
+                .map(
+                  (e) => MultipartFile.fromFileSync(
+                    e.path,
+                    filename: e.path.split('/').last,
+                  ),
+                )
+                .toList(),
+        }),
       ),
     );
     final response = await networkService.execute(

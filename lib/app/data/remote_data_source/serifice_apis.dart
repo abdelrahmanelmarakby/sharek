@@ -133,11 +133,11 @@ class SarificeAPIS {
       },
       data: const NetworkRequestBody.empty(),
       queryParams: {
-        "service_type_id": servicesTypeid,
-        "location": location,
-        "neighborhood": neighborhood,
-        "sacrifice_type": sacrificeType,
-        "quantity": quantity,
+        if (servicesTypeid != null) "service_type_id": servicesTypeid,
+        if (location != null) "location": location,
+        if (neighborhood != null) "neighborhood": neighborhood,
+        if (sacrificeType != null) "sacrifice_type": sacrificeType,
+        if (quantity != null) "quantity": quantity,
       },
     );
     final response = await networkService.execute(
@@ -204,51 +204,32 @@ class SarificeAPIS {
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
       },
       data: NetworkRequestBody.fromData(
-        FormData.fromMap(
-          photos != null
-              ? {
-                  "service_type_id": servicesTypeid,
-                  "location": location,
-                  "neighborhood": neighborhood,
-                  "title": title,
-                  "description": description,
-                  "phone": phone,
-                  "sacrifice_type": sacrificeType,
-                  "eighth_price": eighthPrice,
-                  "eighth_quantity": eighthQuantity,
-                  "quarter_price": quarterPrice,
-                  "quarter_quantity": quarterQuantity,
-                  "third_price": thirdPrice,
-                  "third_quantity": thirdQuantity,
-                  "half_price": halfPrice,
-                  "half_quantity": halfQuantity,
-                  "photos[]": photos
-                      .map(
-                        (e) => MultipartFile.fromFileSync(
-                          e.path,
-                          filename: e.path.split('/').last,
-                        ),
-                      )
-                      .toList(),
-                }
-              : {
-                  "service_type_id": servicesTypeid,
-                  "location": location,
-                  "neighborhood": neighborhood,
-                  "title": title,
-                  "description": description,
-                  "phone": phone,
-                  "sacrifice_type": sacrificeType,
-                  "eighth_price": eighthPrice,
-                  "eighth_quantity": eighthQuantity,
-                  "quarter_price": quarterPrice,
-                  "quarter_quantity": quarterQuantity,
-                  "third_price": thirdPrice,
-                  "third_quantity": thirdQuantity,
-                  "half_price": halfPrice,
-                  "half_quantity": halfQuantity,
-                },
-        ),
+        FormData.fromMap({
+          if (servicesTypeid != null) "service_type_id": servicesTypeid,
+          if (location != null) "location": location,
+          if (neighborhood != null) "neighborhood": neighborhood,
+          if (title != null) "title": title,
+          if (description != null) "description": description,
+          if (phone != null) "phone": phone,
+          if (sacrificeType != null) "sacrifice_type": sacrificeType,
+          if (eighthPrice != null) "eighth_price": eighthPrice,
+          if (eighthQuantity != null) "eighth_quantity": eighthQuantity,
+          if (quarterPrice != null) "quarter_price": quarterPrice,
+          if (quarterQuantity != null) "quarter_quantity": quarterQuantity,
+          if (thirdPrice != null) "third_price": thirdPrice,
+          if (thirdQuantity != null) "third_quantity": thirdQuantity,
+          if (halfPrice != null) "half_price": halfPrice,
+          if (halfQuantity != null) "half_quantity": halfQuantity,
+          if (photos != null)
+            "photos[]": photos
+                .map(
+                  (e) => MultipartFile.fromFileSync(
+                    e.path,
+                    filename: e.path.split('/').last,
+                  ),
+                )
+                .toList(),
+        }),
       ),
     );
     final response = await networkService.execute(

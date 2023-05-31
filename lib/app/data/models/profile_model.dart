@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this, prefer_void_to_null
+
 class UserInfoModel {
   bool? status;
   String? message;
@@ -8,13 +10,13 @@ class UserInfoModel {
   UserInfoModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -26,7 +28,7 @@ class Data {
   int? id;
   int? phone;
   String? name;
-  Null? accountVerified;
+  Null accountVerified;
   String? deviceToken;
   String? avatar;
   String? createdAt1;
@@ -54,7 +56,7 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = this.id;
     data['phone'] = this.phone;
     data['name'] = this.name;

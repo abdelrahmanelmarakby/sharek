@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +14,6 @@ import 'package:sharek/core/services/chat/private/private_chat.dart';
 
 import 'views/attachment.dart';
 
-// ignore: must_be_immutable
 class ChatScreen extends StatelessWidget {
   String myId, hisId, hisName, hisImage, myName, myImage;
 

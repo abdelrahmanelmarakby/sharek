@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../core/global/const.dart';
 import '../../core/services/get_storage_helper.dart';
-import '../../core/services/shared_prefs.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/bottom_nav_bar/bindings/bottom_nav_bar_binding.dart';

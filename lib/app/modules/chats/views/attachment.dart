@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages, use_build_context_synchronously, avoid_print, library_private_types_in_public_api
+
 import 'dart:io';
 import 'dart:math';
 

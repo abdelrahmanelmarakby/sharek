@@ -1,3 +1,7 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -27,8 +31,8 @@ Future<void> main() async {
   );
   final pref = await SharedPreferences.getInstance();
   GetStorage.init();
-  print(CacheHelper.getUserToken);
-  print(CacheHelper.getUserId);
+  log(CacheHelper.getUserToken.toString());
+  log(CacheHelper.getUserId.toString());
 
   Workmanager().initialize(
 
