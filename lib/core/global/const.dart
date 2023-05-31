@@ -73,7 +73,7 @@ class APIKeys {
 
   static const String baseUrl = "https://shreak.net/api/v1/";
   static const String home = "home";
-  static const String notification = "notification";
+  static const String notification = "notifications";
   static const String homeSearch = "search/home";
 
   static const String regions = "regions";
