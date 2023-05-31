@@ -28,7 +28,11 @@ class Data {
   int? id;
   int? phone;
   String? name;
+<<<<<<< HEAD
   Null accountVerified;
+=======
+  String? accountVerified;
+>>>>>>> ffe62141da1f51e1c81c8e8387c9fac7d788e899
   String? deviceToken;
   String? avatar;
   String? createdAt1;
@@ -57,6 +61,7 @@ class Data {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+<<<<<<< HEAD
     data['id'] = this.id;
     data['phone'] = this.phone;
     data['name'] = this.name;
@@ -65,6 +70,16 @@ class Data {
     data['avatar'] = this.avatar;
     data['created_at_1'] = this.createdAt1;
     data['created_at_2'] = this.createdAt2;
+=======
+    data['id'] = id;
+    data['phone'] = phone;
+    data['name'] = name;
+    data['account_verified'] = accountVerified;
+    data['device_token'] = deviceToken;
+    data['avatar'] = avatar;
+    data['created_at_1'] = createdAt1;
+    data['created_at_2'] = createdAt2;
+>>>>>>> ffe62141da1f51e1c81c8e8387c9fac7d788e899
     return data;
   }
 }
