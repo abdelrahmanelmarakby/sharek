@@ -3,12 +3,13 @@ import 'package:sharek/core/services/shared_prefs.dart';
 
 import '../../../core/services/network_service.dart/dio_network_service.dart';
 import '../models/home_model.dart';
+import '../models/notifications_model.dart';
 
-class HomeAPI {
-  static Future<HomeModel?> getHome() async {
+class NotificationsAPI {
+  static Future<NotificationsModel?> getAllNotifications() async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
-      path: APIKeys.home,
+      path: APIKeys.notification,
       headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,

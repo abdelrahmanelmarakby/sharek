@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
 
+import '../../../data/models/notifications_model.dart';
+import '../../../data/remote_data_source/notifications_apis.dart';
+
 class NotificationsController extends GetxController {
-  //TODO: Implement NotificationsController
-
-  final count = 0.obs;
-
-
-
-  void increment() => count.value++;
+  late final Future<NotificationsModel?> notifications;
+  @override
+  void onInit() {
+    notifications = NotificationsAPI.getAllNotifications();
+    super.onInit();
+  }
 }
