@@ -63,31 +63,6 @@ dependencies:
   visibility_detector: ^0.4.0+2
   workmanager: ^0.5.1
 
-<<<<<<< HEAD
-=======
-  encrypt: ^5.0.1
-  file_picker: ^5.2.2
-  firebase_auth: ^4.1.1
-  firebase_dynamic_links: ^5.0.6
-  #video_viewer: ^1.2.7
-
-  flutter_link_previewer: ^3.2.0
-
-  firebase_storage: ^11.0.4
-  flutter_localizations:
-    sdk: flutter
-  agora_rtc_engine: ^5.3.1
-  geolocator: ^9.0.2
-  audio_waveforms: ^1.0.4
-  video_thumbnail: ^0.5.3
-  insta_image_viewer: ^1.0.2
-  bubble: ^1.2.1
-  animations: ^2.0.7
-  provider: ^6.0.5
-  appinio_video_player: ^1.2.1
-  get_storage: ^2.1.1
-
->>>>>>> ffe62141da1f51e1c81c8e8387c9fac7d788e899
 dev_dependencies:
   build_runner: any
   flutter_lints: 2.0.1

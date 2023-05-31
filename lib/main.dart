@@ -127,7 +127,6 @@ void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) {
     // initialise the plugin of flutterlocalnotifications.
     FlutterLocalNotificationsPlugin flip = FlutterLocalNotificationsPlugin();
-
     // app_icon needs to be a added as a drawable
     // resource to the Android head project.
     var android = const AndroidInitializationSettings('@mipmap/ic_launcher');
