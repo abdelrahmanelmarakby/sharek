@@ -56,10 +56,12 @@ class APIKeys {
   //===========================Profile===============================
   static const String updateAvatar = "update/avatar";
   static const String updateProfile = "update/profile";
+  static const String profile = "profile";
 
   static const String logout = "logout";
   static const String userInfo = "user/info";
   static const String userAds = "user-advertisement";
+
   //=================================================================
   static const String housingAds = "housing-advertisements";
   static const String housingServicesType =

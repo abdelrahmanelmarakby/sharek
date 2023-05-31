@@ -23,20 +23,23 @@ class ProfileListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          minVerticalPadding: 0,
-          onTap: onTap,
-          contentPadding: EdgeInsets.zero,
-          trailing: trailing ??
-              const Icon(
-                Icons.arrow_forward_ios,
-                color: Color(0xFF7D848D),
-              ),
-          title: AppText(
-            title,
-            fontSize: Sizes.size16.h(context),
-            fontWeight: FontWeights.regular,
-            color: const Color(0xFF212121),
+        SizedBox(
+          height: 35.h(context),
+          child: ListTile(
+            minVerticalPadding: 0,
+            onTap: onTap,
+            contentPadding: EdgeInsets.zero,
+            trailing: trailing ??
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Color(0xFF7D848D),
+                ),
+            title: AppText(
+              title,
+              fontSize: Sizes.size16.h(context),
+              fontWeight: FontWeights.regular,
+              color: const Color(0xFF212121),
+            ),
           ),
         ),
         isLast == true

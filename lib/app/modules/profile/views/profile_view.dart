@@ -12,6 +12,7 @@ import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/widgets/app_text.dart';
 
 import '../../../../core/constants/theme/sizes_manager.dart';
+import '../../../data/models/profile_model.dart';
 import '../controllers/profile_controller.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_list_tile.dart';
@@ -31,11 +32,12 @@ class ProfileView extends GetView<ProfileController> {
         centerTitle: false,
         automaticallyImplyLeading: false,
       ),
-      body: FutureBuilder(
-        future: ProfileApis.getUserData(),
+      body: FutureBuilder<UserInfoModel?>(
+        future: ProfileApis.getUserProfile(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            var userData = snapshot.data?.data;
+            UserInfoModel? userData = snapshot.data!;
+            Get.log(userData.toString());
             return SingleChildScrollView(
               child: SafeArea(
                 child: Column(
@@ -43,8 +45,8 @@ class ProfileView extends GetView<ProfileController> {
                   children: [
                     Sizes.size20.h(context).heightSizedBox,
                     ProfileHeader(
-                      name: userData?.user?.name ?? "",
-                      userImage: userData?.user?.avatar ?? dummyImage,
+                      name: userData.data?.name ?? "",
+                      userImage: userData.data?.avatar ?? dummyImage,
                     ),
                     Sizes.size8.h(context).heightSizedBox,
                     Padding(
@@ -64,8 +66,8 @@ class ProfileView extends GetView<ProfileController> {
                             onTap: () {
                               Get.to(
                                 () => EditUserInfoScreen(
-                                  name: userData?.user?.name ?? "",
-                                  phone: userData?.user?.phone.toString() ?? "",
+                                  name: userData.data?.name ?? "",
+                                  phone: userData.data?.phone.toString() ?? "",
                                 ),
                                 binding: ProfileBinding(),
                               );

@@ -20,6 +20,10 @@ class UserModel {
     }
     return data;
   }
+
+  @override
+  String toString() =>
+      'UserModel(status: $status, message: $message, data: $data)';
 }
 
 class Data {
@@ -41,6 +45,9 @@ class Data {
     }
     return data;
   }
+
+  @override
+  String toString() => 'Data(token: $token, user: $user)';
 }
 
 class User {
@@ -77,5 +84,10 @@ class User {
     data['device_token'] = deviceToken;
     data['avatar'] = avatar;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'User(id: $id, phone: $phone, name: $name, accountVerified: $accountVerified, deviceToken: $deviceToken, avatar: $avatar)';
   }
 }

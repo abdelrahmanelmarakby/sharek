@@ -38,10 +38,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static final INITIAL =
-      SharedPrefService(prefs: globalPrefs).getToken() == null
-          ? Routes.AUTH
-          : Routes.BOTTOM_NAV_BAR;
+  static const INITIAL = Routes.BOTTOM_NAV_BAR;
 
   static final routes = [
     GetPage(

@@ -36,8 +36,11 @@ class OtpVerification extends GetView<AuthController> {
               style: StylesManager.bold(fontSize: FontSize.xlarge),
             ),
             4.h(context).heightSizedBox,
-            FilledRoundedPinPut(
-              onChanged: controller.onChangeOtp,
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: FilledRoundedPinPut(
+                onChanged: controller.onChangeOtp,
+              ),
             ),
             32.h(context).heightSizedBox,
             Center(
@@ -62,7 +65,7 @@ class OtpVerification extends GetView<AuthController> {
                     }
                   }
                 },
-              ),
+              ).horizontalScreenPadding,
             ),
             Sizes.size26.h(context).heightSizedBox,
           ],

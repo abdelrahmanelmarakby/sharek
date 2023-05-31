@@ -10,8 +10,8 @@ import '../../../core/services/shared_prefs.dart';
 import '../../routes/app_pages.dart';
 import '../models/favorites_model.dart';
 import '../models/main_model.dart';
+import '../models/profile_model.dart';
 import '../models/user_ads_model.dart';
-import '../models/user_data_model.dart';
 
 class ProfileApis {
   static Future<MainModel?> updateAvatar({
@@ -109,7 +109,7 @@ class ProfileApis {
     return data;
   }
 
-  static Future<UserModel?> getUserData() async {
+  static Future<UserInfoModel?> getUserProfile() async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
       path: APIKeys.userInfo,
@@ -123,7 +123,7 @@ class ProfileApis {
     );
     final response = await networkService.execute(
       request,
-      (json) => UserModel.fromJson(json),
+      (json) => UserInfoModel.fromJson(json),
     );
     final data = response.maybeWhen(
       ok: (data) {

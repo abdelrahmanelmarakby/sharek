@@ -38,7 +38,7 @@ class FilledRoundedPinPutState extends State<FilledRoundedPinPut> {
     const errorColor = Colors.red;
     const fillColor = Color(0xffF7f7f9);
     final defaultPinTheme = PinTheme(
-      width: 50,
+      width: 64,
       height: 50,
       margin: EdgeInsets.symmetric(horizontal: 13.h(context)),
       textStyle: StylesManager.medium(fontSize: FontSize.large),
@@ -51,6 +51,8 @@ class FilledRoundedPinPutState extends State<FilledRoundedPinPut> {
     return Center(
       child: Pinput(
         length: length,
+        listenForMultipleSmsOnAndroid: true,
+        keyboardType: TextInputType.number,
         controller: controller,
         focusNode: focusNode,
         errorTextStyle: const TextStyle(
@@ -68,7 +70,7 @@ class FilledRoundedPinPutState extends State<FilledRoundedPinPut> {
         },
         onChanged: widget.onChanged,
         focusedPinTheme: defaultPinTheme.copyWith(
-          height: 68,
+          height: 50,
           width: 64,
           decoration: defaultPinTheme.decoration!.copyWith(
             border: Border.all(
