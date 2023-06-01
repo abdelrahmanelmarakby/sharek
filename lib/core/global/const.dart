@@ -74,7 +74,7 @@ class APIKeys {
       "https://96a341df044045648028d4b5de7a7286@o1189629.ingest.sentry.io/4504901865439232";
   static const String baseUrl = "https://shreak.net/api/v1/";
   static const String home = "home";
-  static const String notification = "notification";
+  static const String notification = "notifications";
   static const String homeSearch = "search/home";
 
   static const String regions = "regions";

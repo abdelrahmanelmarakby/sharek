@@ -15,7 +15,7 @@ class HousePartnerController extends GetxController {
   ScrollController scrollController = ScrollController();
 
   int? housePartner;
-  changeHousePartnerState(int val) {
+  changeHousePartnerState(int? val) {
     housePartner = val;
     update();
   }

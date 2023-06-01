@@ -86,6 +86,15 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                                   title:
                                       businessServicesTypes[index].name ?? "",
                                   onTap: () {
+                                    if (controller.businessPartner ==
+                                        businessServicesTypes[index]
+                                            .serviceTypeId) {
+                                      controller.changeBusinessPartnerState(
+                                        null,
+                                      );
+                                      return;
+                                    }
+
                                     controller.changeBusinessPartnerState(
                                       businessServicesTypes[index]
                                               .serviceTypeId ??
@@ -114,6 +123,14 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                                       businessServicesTypes[index + 2].name ??
                                           "",
                                   onTap: () {
+                                    if (controller.businessPartner ==
+                                        businessServicesTypes[index]
+                                            .serviceTypeId) {
+                                      controller.changeBusinessPartnerState(
+                                        null,
+                                      );
+                                      return;
+                                    }
                                     controller.changeBusinessPartnerState(
                                       businessServicesTypes[index + 2]
                                               .serviceTypeId ??

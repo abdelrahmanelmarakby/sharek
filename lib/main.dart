@@ -12,6 +12,7 @@ import 'package:sentry_logging/sentry_logging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:round_spot/round_spot.dart' as roundspot;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:timeago/timeago.dart' as timeago;
 import 'package:sharek/app.dart';
 import 'package:sharek/firebase_options.dart';
 import 'package:workmanager/workmanager.dart';
@@ -50,7 +51,7 @@ Future<void> main() async {
     provisional: false,
     sound: true,
   );
-
+  timeago.setLocaleMessages("ar", MyCustomMessages());
   if (kDebugMode) {
     print('Permission granted: ${settings.authorizationStatus}');
   }

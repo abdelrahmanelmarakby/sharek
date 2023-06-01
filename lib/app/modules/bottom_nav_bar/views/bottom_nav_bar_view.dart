@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
 import '../../../../core/services/get_storage_helper.dart';
-import '../../../data/models/profile_model.dart';
 import '../add_ads_sheet.dart';
 import '../controllers/bottom_nav_bar_controller.dart';
 
@@ -19,28 +18,14 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
   Widget build(BuildContext context) {
     log(CacheHelper.getUserId.toString());
     return GetBuilder<BottomNavBarController>(
-      builder: (controller) => FutureBuilder<UserInfoModel?>(
-        future: controller.getUserData,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Scaffold(
+        builder: (controller) => Scaffold(
               extendBody: true,
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
               body: controller.CurrentScreen,
               bottomNavigationBar: _bottomNavigationBar(context),
               resizeToAvoidBottomInset: true,
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(
-                valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
-              ),
-            );
-          }
-        },
-      ),
-    );
+            ));
   }
 
   _bottomNavigationBar(BuildContext context) {

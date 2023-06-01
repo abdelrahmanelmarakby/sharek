@@ -73,13 +73,13 @@ class Attachment {
                     attachmentDialog(context);
                   },
                 ),
-                prefixIcon: IconButton(
-                  icon: const Icon(Iconsax.emoji_happy),
-                  iconSize: 25.0,
-                  color: ColorsManager.primary,
-                  onPressed: () {},
-                ),
-                hintText: 'Send a message',
+                // prefixIcon: IconButton(
+                //   icon: const Icon(Iconsax.emoji_happy),
+                //   iconSize: 25.0,
+                //   color: ColorsManager.primary,
+                //   onPressed: () {},
+                // ),
+                hintText: 'ارسال',
               ),
             ),
           ),
@@ -91,11 +91,11 @@ class Attachment {
               fluff.isNotEmpty ? postMsg(fluff: fluff) : null;
             },
           ),
-          AudioRecorderWidget(
-            onRecordComplete: (path) {
-              uploadAudiotoStorage(context, path);
-            },
-          )
+          // AudioRecorderWidget(
+          //   onRecordComplete: (path) {
+          //     uploadAudiotoStorage(context, path);
+          //   },
+          // )
         ],
       ),
     );
@@ -121,35 +121,35 @@ class Attachment {
               ),
               dialogBtn(
                   icon: Iconsax.image,
-                  text: 'Image',
+                  text: 'صورة',
                   onTap: () {
                     Get.back();
                     uploadImageToStorage(ctx);
                   }),
               dialogBtn(
                   icon: Iconsax.camera,
-                  text: 'Camera',
+                  text: 'التقاط من الكاميرا',
                   onTap: () {
                     Get.back();
                     uploadFromCameraToStorage(ctx);
                   }),
               dialogBtn(
                   icon: Icons.play_circle_outline,
-                  text: 'Video',
+                  text: 'فيديو',
                   onTap: () {
                     Get.back();
                     uploadVideoToStorage(ctx);
                   }),
               dialogBtn(
                   icon: Iconsax.document,
-                  text: 'File',
+                  text: 'ملف',
                   onTap: () {
                     Get.back();
                     uploadDocumentToStorage(ctx);
                   }),
               dialogBtn(
                   icon: Iconsax.location,
-                  text: 'Location',
+                  text: 'موقعك',
                   onTap: () {
                     Get.back();
                     sendMyLocationToStorage(ctx);
@@ -352,13 +352,13 @@ class Attachment {
     ].request();
     //get current location
     Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+        desiredAccuracy: LocationAccuracy.best);
     final String lat = position.latitude.toString();
     final String lng = position.longitude.toString();
     final String location = ('$lat,$lng');
     postMsg(
         fluff:
-            'https://www.google.com/maps/search/?api=1&query=$location&zoom=15');
+            'https://www.google.com/maps/search/?api=1&query=$location&zoom=18');
   }
 
   //image + صورة
