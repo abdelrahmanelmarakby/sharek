@@ -70,7 +70,8 @@ class MyCustomMessages implements LookupMessages {
 class APIKeys {
   static const String apiPassword =
       "drV1DHcwSgFE8ebzBUR523Ym9fo9TGrKFKtPX9xSAEHJ90B7DK";
-
+  static const String sentryKey =
+      "https://96a341df044045648028d4b5de7a7286@o1189629.ingest.sentry.io/4504901865439232";
   static const String baseUrl = "https://shreak.net/api/v1/";
   static const String home = "home";
   static const String notification = "notifications";
