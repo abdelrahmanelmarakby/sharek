@@ -36,7 +36,7 @@ Future<void> main() async {
   Workmanager().registerPeriodicTask(
     "2",
     "simplePeriodicTask",
-    frequency: const Duration(minutes: 30),
+    frequency: const Duration(minutes: 60),
   );
   globalPrefs = pref;
   Get.put(SharedPrefService(prefs: pref));
