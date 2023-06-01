@@ -27,45 +27,54 @@ class NotificationsView extends GetView<NotificationsController> {
                   child: Text("لا توجد اشعارات جديدة"),
                 );
               }
-              return ListView.builder(
-                itemCount: notification?.data?.length ?? 0,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      const Divider(
-                        thickness: 1,
-                        height: 1,
-                      ),
-                      ListTile(
-                        tileColor: (notification?.data?[index].isRead == 1)
-                            ? ColorsManager.white
-                            : ColorsManager.selection.withOpacity(.2),
-                        trailing: Text(timeago
-                            .format(
-                                DateTime.tryParse(
-                                        notification?.data?[index].createdAt ??
-                                            "") ??
-                                    DateTime.now(),
-                                locale: "ar")
-                            .toString()),
-                        subtitle:
-                            Text(notification?.data?[index].content ?? ""),
-                        title: Text(
-                          notification?.data?[index].title ?? "",
-                          style: StylesManager.bold(
-                              fontSize: FontSize.large,
-                              color: ColorsManager.black),
-                        ),
-                        leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: AppCachedNetworkImage(
-                            imageUrl: notification?.data?[index].avatar ?? "",
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
+              return SizedBox(
+                height: context.height,
+                child: Column(
+                    children: List.generate(
+                        notification?.data?.length ?? 0,
+                        (index) => Column(children: [
+                              const Divider(
+                                thickness: 1,
+                                height: 1,
+                              ),
+                              ListTile(
+                                tileColor: (notification?.data?[index].isRead ==
+                                        1)
+                                    ? ColorsManager.white
+                                    : ColorsManager.selection.withOpacity(.2),
+                                trailing: Text(
+                                  timeago
+                                      .format(
+                                          DateTime.tryParse(notification
+                                                      ?.data?[index]
+                                                      .createdAt ??
+                                                  "") ??
+                                              DateTime.now(),
+                                          locale: "ar")
+                                      .toString(),
+                                  style: StylesManager.light(),
+                                ),
+                                subtitle: Text(
+                                  notification?.data?[index].content ?? "",
+                                  style: const TextStyle(
+                                      color: ColorsManager.veryDarkGrey,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                title: Text(
+                                  notification?.data?[index].title ?? "",
+                                  style: StylesManager.semiBold(
+                                      fontSize: FontSize.medium,
+                                      color: ColorsManager.charcoal),
+                                ),
+                                leading: ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: AppCachedNetworkImage(
+                                    imageUrl:
+                                        notification?.data?[index].avatar ?? "",
+                                  ),
+                                ),
+                              )
+                            ]))),
               );
             }
             return const Center(

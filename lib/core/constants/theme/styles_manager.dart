@@ -68,16 +68,17 @@ class StylesManager {
         fontSize: fontSize,
         fontFamily: FontNames.fontName,
         decoration: decoration,
-        overFlow: TextOverflow.ellipsis,
+        overFlow: TextOverflow.visible,
         color: color,
         fontWeight: FontWeights.light);
   }
 
 // SemiBold TextStyle
-  static TextStyle semiBold(
-      {double fontSize = 10,
-      Color? color,
-      TextDecoration decoration = TextDecoration.none}) {
+  static TextStyle semiBold({
+    double fontSize = 10,
+    Color? color,
+    TextDecoration decoration = TextDecoration.none,
+  }) {
     return _getTextStyle(
         fontSize: fontSize,
         fontFamily: FontNames.fontName,
