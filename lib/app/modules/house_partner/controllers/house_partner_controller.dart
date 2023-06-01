@@ -19,7 +19,8 @@ class HousePartnerController extends GetxController {
     housePartner = val;
     update();
   }
-
+ TextEditingController filterNumberPartnersCtr = TextEditingController();
+  TextEditingController filterNationalityPartnersCtr = TextEditingController();
   //===============================Comment==================================
   TextEditingController createCommentCtr = TextEditingController();
   bool isText = false;
