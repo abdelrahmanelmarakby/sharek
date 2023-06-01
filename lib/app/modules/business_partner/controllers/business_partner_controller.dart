@@ -18,7 +18,7 @@ class BusinessPartnerController extends GetxController {
     update();
   }
 
-  changeBusinessPartnerState(int val) {
+  changeBusinessPartnerState(int? val) {
     businessPartner = val;
     update();
   }

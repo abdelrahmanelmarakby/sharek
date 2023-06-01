@@ -1,14 +1,10 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:sharek/app/data/models/private_message_model.dart';
 import 'package:sharek/app/modules/chats/views/build_msg.dart';
-import 'package:sharek/app/modules/video_chat/views/video_chat_view.dart';
-import 'package:sharek/app/routes/app_pages.dart';
 import 'package:sharek/core/constants/theme/theme_export.dart';
 import 'package:sharek/core/services/chat/private/private_chat.dart';
 
@@ -100,89 +96,6 @@ class ChatScreenX extends StatelessWidget {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Iconsax.video,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const VideoChatView()));
-            },
-          ),
-          IconButton(
-            icon: const Icon(
-              Iconsax.call,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              // Get.toNamed(Routes.VIDEO_CHAT);
-            },
-          ),
-          PopupMenuButton(
-            onSelected: (value) async {
-              switch (value) {
-                case 2:
-                  Get.dialog(
-                    AlertDialog(
-                      title: const Text('Delete Chat'),
-                      content: const Text(
-                          'Are you sure you want to delete this chat?'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          child: const Text('Cancel'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            int aId = int.parse(myId);
-                            int bId = int.parse(hisId);
-                            String chatId = aId > bId
-                                ? "id:$aId+id:$bId+"
-                                : "id:$bId+id:$aId+";
-
-                            FirebaseFirestore.instance
-                                .collection('Chats')
-                                .doc(chatId)
-                                .delete();
-
-                            Get.offAllNamed(Routes.BOTTOM_NAV_BAR);
-                          },
-                          child: const Text('delete'),
-                        ),
-                      ],
-                    ),
-                  );
-                  break;
-              }
-            },
-            itemBuilder: (context) {
-              return [
-                const PopupMenuItem(
-                  value: 0,
-                  child: Text('View Contact'),
-                ),
-                const PopupMenuItem(
-                  value: 1,
-                  child: Text('Report'),
-                ),
-                const PopupMenuItem(
-                  value: 2,
-                  child: Text('Delete Chat'),
-                ),
-              ];
-            },
-            icon: const Icon(
-              Icons.more_vert,
-              color: Colors.black,
-            ),
-          ),
-        ],
       ),
       body: SafeArea(
         child: GestureDetector(

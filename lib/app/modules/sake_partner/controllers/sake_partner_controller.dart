@@ -17,7 +17,7 @@ class SakePartnerController extends GetxController {
 
   //====================================================================
   int? sacrificePartner;
-  changeSacrificePartnerState(int val) {
+  changeSacrificePartnerState(int? val) {
     sacrificePartner = val;
     update();
   }
@@ -48,7 +48,7 @@ class SakePartnerController extends GetxController {
     ServiceTypeModel(name: "تيس", serviceTypeId: 4),
   ];
   ServiceTypeModel? sacrificeTypeItem;
-  changeSacrificeTypeState(ServiceTypeModel val) {
+  changeSacrificeTypeState(ServiceTypeModel? val) {
     sacrificeTypeItem = val;
     update();
   }
@@ -333,8 +333,9 @@ class SakePartnerController extends GetxController {
     filterQuantityItem = null;
     update();
   }
+
   //====================================================================\
-    //===============================report==================================
+  //===============================report==================================
   TextEditingController reportCtr = TextEditingController();
   Future createReport({
     required int id,

@@ -19,7 +19,7 @@ class TravelPartnerController extends GetxController {
     update();
   }
 
-  changeTravelPartnerState(int val) {
+  changeTravelPartnerState(int? val) {
     travelPartner = val;
     update();
   }

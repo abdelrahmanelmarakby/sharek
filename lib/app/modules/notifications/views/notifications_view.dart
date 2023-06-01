@@ -14,8 +14,10 @@ class NotificationsView extends GetView<NotificationsController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('التنبيهات'),
-          centerTitle: true,
+          title: Text('التنبيهات',
+              style: StylesManager.semiBold(
+                  color: ColorsManager.primary, fontSize: FontSize.xlarge)),
+          centerTitle: false,
         ),
         body: FutureBuilder<NotificationsModel?>(
           future: controller.notifications,

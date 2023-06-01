@@ -87,6 +87,14 @@ class SakePartnerView extends GetView<SakePartnerController> {
                                       index: e.serviceTypeId ?? 0,
                                       title: e.name ?? "",
                                       onTap: () {
+                                        if (controller.sacrificePartner ==
+                                            e.serviceTypeId) {
+                                          controller
+                                              .changeSacrificePartnerState(
+                                            null,
+                                          );
+                                          return;
+                                        }
                                         controller.changeSacrificePartnerState(
                                           e.serviceTypeId ?? 0,
                                         );
@@ -114,6 +122,12 @@ class SakePartnerView extends GetView<SakePartnerController> {
                                       index: e.serviceTypeId ?? 0,
                                       title: e.name ?? "",
                                       onTap: () {
+                                        if (controller.sacrificeTypeItem == e) {
+                                          controller.changeSacrificeTypeState(
+                                            null,
+                                          );
+                                          return;
+                                        }
                                         controller.changeSacrificeTypeState(
                                           e,
                                         );

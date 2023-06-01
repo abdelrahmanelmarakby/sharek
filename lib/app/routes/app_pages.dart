@@ -22,6 +22,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/sake_partner/bindings/sake_partner_binding.dart';
 import '../modules/sake_partner/views/sake_partner_view.dart';
+import '../modules/splash/bindings/splash_binding.dart';
+import '../modules/splash/views/splash_view.dart';
 import '../modules/travel_partner/bindings/travel_partner_binding.dart';
 import '../modules/travel_partner/views/travel_partner_view.dart';
 import '../modules/video_chat/bindings/video_chat_binding.dart';
@@ -36,7 +38,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.BOTTOM_NAV_BAR;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(
@@ -104,6 +106,11 @@ class AppPages {
       name: _Paths.LOCATION_GETTER_WIDGETS,
       page: () => const LocationGetterWidgetsView(),
       binding: LocationGetterWidgetsBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => const MyCustomSplashScreen(),
+      binding: SplashBinding(),
     ),
   ];
 }

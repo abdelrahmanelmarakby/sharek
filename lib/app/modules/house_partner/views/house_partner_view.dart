@@ -81,6 +81,13 @@ class HousePartnerView extends GetView<HousePartnerController> {
                                       index: e.serviceTypeId ?? 0,
                                       title: e.name ?? "",
                                       onTap: () {
+                                        if (controller.housePartner ==
+                                            e.serviceTypeId) {
+                                          controller.changeHousePartnerState(
+                                            null,
+                                          );
+                                          return;
+                                        }
                                         controller.changeHousePartnerState(
                                           e.serviceTypeId ?? 0,
                                         );
