@@ -43,6 +43,11 @@ class ProfileApis {
       ok: (data) {
         return data;
       },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
+        return data;
+      },
       orElse: () {},
     );
     return data;
@@ -74,6 +79,11 @@ class ProfileApis {
         request, (json) => MainModel.fromJson(json));
     final data = response.maybeWhen(
       ok: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
         return data;
       },
       orElse: () {},

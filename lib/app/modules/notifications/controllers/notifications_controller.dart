@@ -10,4 +10,9 @@ class NotificationsController extends GetxController {
     notifications = NotificationsAPI.getAllNotifications();
     super.onInit();
   }
+
+   refreshNotifications() async {
+    notifications = NotificationsAPI.getAllNotifications();
+    update();
+  }
 }

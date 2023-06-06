@@ -18,14 +18,14 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
   Widget build(BuildContext context) {
     log(CacheHelper.getUserId.toString());
     return GetBuilder<BottomNavBarController>(
-        builder: (controller) => Scaffold(
-              extendBody: true,
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked,
-              body: controller.CurrentScreen,
-              bottomNavigationBar: _bottomNavigationBar(context),
-              resizeToAvoidBottomInset: true,
-            ));
+      builder: (controller) => Scaffold(
+        extendBody: true,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        body: controller.CurrentScreen,
+        bottomNavigationBar: _bottomNavigationBar(context),
+        resizeToAvoidBottomInset: true,
+      ),
+    );
   }
 
   _bottomNavigationBar(BuildContext context) {

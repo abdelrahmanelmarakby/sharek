@@ -23,6 +23,7 @@ class ProfileController extends GetxController {
       BotToast.showLoading();
       final res = await ProfileApis.updateAvatar(image: File(pickedImage.path));
       if (res?.status == true) {
+        Get.offAllNamed(Routes.BOTTOM_NAV_BAR);
         BotToast.closeAllLoading();
         showSnackBar(res?.message ?? "");
       } else {
@@ -46,7 +47,7 @@ class ProfileController extends GetxController {
         animationController.reverse();
       });
       showSnackBar(res?.message ?? "");
-      Get.back();
+      Get.offAllNamed(Routes.BOTTOM_NAV_BAR);
     } else {
       animationController.reset();
       showSnackBar(res?.message ?? "");

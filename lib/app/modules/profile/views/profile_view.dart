@@ -32,133 +32,136 @@ class ProfileView extends GetView<ProfileController> {
         centerTitle: false,
         automaticallyImplyLeading: false,
       ),
-      body: FutureBuilder<UserInfoModel?>(
-        future: ProfileApis.getUserProfile(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            UserInfoModel? userData = snapshot.data!;
-            Get.log(userData.toString());
-            return SingleChildScrollView(
-              child: SafeArea(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Sizes.size20.h(context).heightSizedBox,
-                    ProfileHeader(
-                      name: userData.data?.name ?? "",
-                      userImage: userData.data?.avatar ?? dummyImage,
-                    ),
-                    Sizes.size8.h(context).heightSizedBox,
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AppText(
-                            "إعدادت الحساب",
-                            fontSize: Sizes.size14.h(context),
-                            fontWeight: FontWeights.medium,
-                            color: ColorsManager.primary,
-                          ),
-                          Sizes.size8.h(context).heightSizedBox,
-                          ProfileListTile(
-                            title: "معلومات شخصية",
-                            onTap: () {
-                              Get.to(
-                                () => EditUserInfoScreen(
-                                  name: userData.data?.name ?? "",
-                                  phone: userData.data?.phone.toString() ?? "",
-                                ),
-                                binding: ProfileBinding(),
-                              );
-                            },
-                          ),
-                          Sizes.size4.h(context).heightSizedBox,
-                          ProfileListTile(
-                            title: "إعلاناتي",
-                            onTap: () {
-                              Get.to(
-                                () => const MyAdsScreen(),
-                                binding: ProfileBinding(),
-                              );
-                            },
-                          ),
-                          Sizes.size4.h(context).heightSizedBox,
-                          ProfileListTile(
-                            title: "المفضلة",
-                            onTap: () {
-                              Get.to(
-                                () => const FavoritesScreen(),
-                                binding: ProfileBinding(),
-                              );
-                            },
-                          ),
-                          Sizes.size4.h(context).heightSizedBox,
-                          ProfileListTile(
-                            title: "إعدادت التنبيهات",
-                            onTap: () {
-                              Get.to(
-                                () => const NotificationSettingsScreen(),
-                                binding: ProfileBinding(),
-                              );
-                            },
-                          ),
-                          Sizes.size4.h(context).heightSizedBox,
-                          ProfileListTile(
-                            title: "طلب توثيق الحساب",
-                            isLast: true,
-                            onTap: () {
-                              Get.to(
-                                () => const AccountVerificationRequestScreen(),
-                                binding: ProfileBinding(),
-                              );
-                            },
-                          ),
-                          Sizes.size24.h(context).heightSizedBox,
-                          AppText(
-                            "الدعم",
-                            fontSize: Sizes.size14.h(context),
-                            fontWeight: FontWeights.medium,
-                            color: ColorsManager.primary,
-                          ),
-                          const ProfileListTile(
-                            title: "تواصل معنا",
-                          ),
-                          Sizes.size4.h(context).heightSizedBox,
-                          const ProfileListTile(
-                            title: "معلومات عنا",
-                          ),
-                          Sizes.size4.h(context).heightSizedBox,
-                          const ProfileListTile(
-                            title: "الأحكام والشروط",
-                          ),
-                          Sizes.size12.h(context).heightSizedBox,
-                          GestureDetector(
-                            onTap: () {
-                              controller.logOut();
-                            },
-                            child: AppText(
-                              "تسجيل الخروج",
+      body: RefreshIndicator(
+        onRefresh: () {
+          return Get.forceAppUpdate();
+        },
+        child: FutureBuilder<UserInfoModel?>(
+          future: ProfileApis.getUserProfile(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              UserInfoModel? userData = snapshot.data!;
+              Get.log(userData.toString());
+              return SingleChildScrollView(
+                child: SafeArea(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Sizes.size20.h(context).heightSizedBox,
+                      ProfileHeader(
+                        name: userData.data?.name ?? "",
+                        userImage: userData.data?.avatar ?? dummyImage,
+                      ),
+                      Sizes.size8.h(context).heightSizedBox,
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AppText(
+                              "إعدادت الحساب",
                               fontSize: Sizes.size14.h(context),
                               fontWeight: FontWeights.medium,
-                              color: ColorsManager.red,
+                              color: ColorsManager.primary,
                             ),
-                          ),
-                        ],
+                            Sizes.size8.h(context).heightSizedBox,
+                            ProfileListTile(
+                              title: "معلومات شخصية",
+                              onTap: () {
+                                Get.to(
+                                  () => const EditUserInfoScreen(),
+                                  binding: ProfileBinding(),
+                                );
+                              },
+                            ),
+                            Sizes.size4.h(context).heightSizedBox,
+                            ProfileListTile(
+                              title: "إعلاناتي",
+                              onTap: () {
+                                Get.to(
+                                  () => const MyAdsScreen(),
+                                  binding: ProfileBinding(),
+                                );
+                              },
+                            ),
+                            Sizes.size4.h(context).heightSizedBox,
+                            ProfileListTile(
+                              title: "المفضلة",
+                              onTap: () {
+                                Get.to(
+                                  () => const FavoritesScreen(),
+                                  binding: ProfileBinding(),
+                                );
+                              },
+                            ),
+                            Sizes.size4.h(context).heightSizedBox,
+                            ProfileListTile(
+                              title: "إعدادت التنبيهات",
+                              onTap: () {
+                                Get.to(
+                                  () => const NotificationSettingsScreen(),
+                                  binding: ProfileBinding(),
+                                );
+                              },
+                            ),
+                            Sizes.size4.h(context).heightSizedBox,
+                            ProfileListTile(
+                              title: "طلب توثيق الحساب",
+                              isLast: true,
+                              onTap: () {
+                                Get.to(
+                                  () =>
+                                      const AccountVerificationRequestScreen(),
+                                  binding: ProfileBinding(),
+                                );
+                              },
+                            ),
+                            Sizes.size24.h(context).heightSizedBox,
+                            AppText(
+                              "الدعم",
+                              fontSize: Sizes.size14.h(context),
+                              fontWeight: FontWeights.medium,
+                              color: ColorsManager.primary,
+                            ),
+                            const ProfileListTile(
+                              title: "تواصل معنا",
+                            ),
+                            Sizes.size4.h(context).heightSizedBox,
+                            const ProfileListTile(
+                              title: "معلومات عنا",
+                            ),
+                            Sizes.size4.h(context).heightSizedBox,
+                            const ProfileListTile(
+                              title: "الأحكام والشروط",
+                            ),
+                            Sizes.size12.h(context).heightSizedBox,
+                            GestureDetector(
+                              onTap: () {
+                                controller.logOut();
+                              },
+                              child: AppText(
+                                "تسجيل الخروج",
+                                fontSize: Sizes.size14.h(context),
+                                fontWeight: FontWeights.medium,
+                                color: ColorsManager.red,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(
-                valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
-              ),
-            );
-          }
-        },
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator.adaptive(
+                  valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }

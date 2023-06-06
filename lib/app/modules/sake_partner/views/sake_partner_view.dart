@@ -40,168 +40,177 @@ class SakePartnerView extends GetView<SakePartnerController> {
               },
             ),
           ),
-          body: FutureBuilder<SarificeAdsModel?>(
-            future: SarificeAPIS.filterSerificeAds(
-              servicesTypeid: controller.sacrificePartner,
-              sacrificeType: controller.sacrificeTypeItem?.name,
-            ),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                var data = snapshot.data?.data;
-                return SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          name: "BusinessSearch",
-                          hint: "ابحث هنا",
-                          prefixIcon: const Icon(SharekIcons.search_1),
-                          controller: controller.searchController,
-                          onChange: controller.onChangedSearch,
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              Get.to(
-                                () => const SakeFilterScreen(),
-                                binding: SakePartnerBinding(),
-                              );
-                            },
-                            child: const Icon(
-                              SharekIcons.filter_3,
+          body: RefreshIndicator(
+            onRefresh: () {
+              return Get.forceAppUpdate();
+            },
+            child: FutureBuilder<SarificeAdsModel?>(
+              future: SarificeAPIS.filterSerificeAds(
+                servicesTypeid: controller.sacrificePartner,
+                sacrificeType: controller.sacrificeTypeItem?.name,
+              ),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  var data = snapshot.data?.data;
+                  return SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          CustomTextField(
+                            name: "BusinessSearch",
+                            hint: "ابحث هنا",
+                            prefixIcon: const Icon(SharekIcons.search_1),
+                            controller: controller.searchController,
+                            onChange: controller.onChangedSearch,
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                Get.to(
+                                  () => const SakeFilterScreen(),
+                                  binding: SakePartnerBinding(),
+                                );
+                              },
+                              child: const Icon(
+                                SharekIcons.filter_3,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: sacrificeServicesTypes
-                              .map(
-                                (e) => Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 4,
-                                    ),
-                                    child: ServicesItem(
-                                      activeIndex:
-                                          controller.sacrificePartner ?? 0,
-                                      index: e.serviceTypeId ?? 0,
-                                      title: e.name ?? "",
-                                      onTap: () {
-                                        if (controller.sacrificePartner ==
-                                            e.serviceTypeId) {
+                          const SizedBox(height: 12),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: sacrificeServicesTypes
+                                .map(
+                                  (e) => Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 4,
+                                      ),
+                                      child: ServicesItem(
+                                        activeIndex:
+                                            controller.sacrificePartner ?? 0,
+                                        index: e.serviceTypeId ?? 0,
+                                        title: e.name ?? "",
+                                        onTap: () {
+                                          if (controller.sacrificePartner ==
+                                              e.serviceTypeId) {
+                                            controller
+                                                .changeSacrificePartnerState(
+                                              null,
+                                            );
+                                            return;
+                                          }
                                           controller
                                               .changeSacrificePartnerState(
-                                            null,
+                                            e.serviceTypeId ?? 0,
                                           );
-                                          return;
-                                        }
-                                        controller.changeSacrificePartnerState(
-                                          e.serviceTypeId ?? 0,
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                        ),
-                        const SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: controller.sacrificeType
-                              .map(
-                                (e) => Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 4,
-                                    ),
-                                    child: ServicesItem(
-                                      activeIndex: controller.sacrificeTypeItem
-                                              ?.serviceTypeId ??
-                                          0,
-                                      index: e.serviceTypeId ?? 0,
-                                      title: e.name ?? "",
-                                      onTap: () {
-                                        if (controller.sacrificeTypeItem == e) {
-                                          controller.changeSacrificeTypeState(
-                                            null,
-                                          );
-                                          return;
-                                        }
-                                        controller.changeSacrificeTypeState(
-                                          e,
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                        ),
-                        const SizedBox(height: 20),
-                        SizedBox(
-                          width: context.width,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "الاعلانات الجديدة",
-                                style: StylesManager.bold(
-                                  fontSize: FontSize.xlarge,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              data?.isNotEmpty ?? false
-                                  ? ListView.separated(
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      itemCount:
-                                          snapshot.data?.data?.length ?? 0,
-                                      separatorBuilder: (context, index) =>
-                                          const SizedBox(height: 8),
-                                      itemBuilder: (context, index) {
-                                        Data? ads = snapshot.data?.data?[index];
-                                        return GestureDetector(
-                                          onTap: () {
-                                            Get.to(
-                                              () => SakePartnerDetailsScreen(
-                                                id: ads?.advertisementId ?? 0,
-                                                isUserAds: false,
-                                              ),
-                                            );
-                                          },
-                                          child: SakeAdsItem(
-                                            ad: ads,
-                                          ),
-                                        );
-                                      },
-                                    )
-                                  : Center(
-                                      child: AppText(
-                                        snapshot.data?.message ?? "",
-                                        color: Colors.black,
+                                        },
                                       ),
                                     ),
-                            ],
+                                  ),
+                                )
+                                .toList(),
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: controller.sacrificeType
+                                .map(
+                                  (e) => Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 4,
+                                      ),
+                                      child: ServicesItem(
+                                        activeIndex: controller
+                                                .sacrificeTypeItem
+                                                ?.serviceTypeId ??
+                                            0,
+                                        index: e.serviceTypeId ?? 0,
+                                        title: e.name ?? "",
+                                        onTap: () {
+                                          if (controller.sacrificeTypeItem ==
+                                              e) {
+                                            controller.changeSacrificeTypeState(
+                                              null,
+                                            );
+                                            return;
+                                          }
+                                          controller.changeSacrificeTypeState(
+                                            e,
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                          const SizedBox(height: 20),
+                          SizedBox(
+                            width: context.width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "الاعلانات الجديدة",
+                                  style: StylesManager.bold(
+                                    fontSize: FontSize.xlarge,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                data?.isNotEmpty ?? false
+                                    ? ListView.separated(
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemCount:
+                                            snapshot.data?.data?.length ?? 0,
+                                        separatorBuilder: (context, index) =>
+                                            const SizedBox(height: 8),
+                                        itemBuilder: (context, index) {
+                                          Data? ads =
+                                              snapshot.data?.data?[index];
+                                          return GestureDetector(
+                                            onTap: () {
+                                              Get.to(
+                                                () => SakePartnerDetailsScreen(
+                                                  id: ads?.advertisementId ?? 0,
+                                                  isUserAds: false,
+                                                ),
+                                              );
+                                            },
+                                            child: SakeAdsItem(
+                                              ad: ads,
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    : Center(
+                                        child: AppText(
+                                          snapshot.data?.message ?? "",
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text(snapshot.error.toString()),
-                );
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator.adaptive(
-                    valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
-                  ),
-                );
-              }
-            },
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text(snapshot.error.toString()),
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator.adaptive(
+                      valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
+                    ),
+                  );
+                }
+              },
+            ),
           ),
         );
       },

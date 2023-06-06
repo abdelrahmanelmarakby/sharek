@@ -1,7 +1,9 @@
+import 'package:get/get.dart';
 import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/services/network_service.dart/dio_network_service.dart';
 
 import '../../../core/services/shared_prefs.dart';
+import '../../routes/app_pages.dart';
 import '../models/home_model.dart';
 import '../models/home_search_model.dart';
 
@@ -40,7 +42,7 @@ class HomeAPI {
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
       },
       queryParams: {
-        if (search != null)  "search": search,
+        if (search != null) "search": search,
       },
       data: const NetworkRequestBody.empty(),
     );
@@ -67,6 +69,8 @@ class HomeAPI {
         return data;
       },
       noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
         return data;
       },
       noData: (data) {

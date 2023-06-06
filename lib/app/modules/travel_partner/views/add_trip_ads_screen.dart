@@ -3,6 +3,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/core/extensions/validator.dart';
@@ -118,6 +119,9 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                           ? "عدد الركاب"
                           : "عدد الركاب المطلوب",
                       borderRadius: 8,
+                      formattedType: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
                       type: TextInputType.number,
                       prefixIcon: const Icon(
                         Iconsax.people,
@@ -137,6 +141,8 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                           CupertinoDatePicker(
                             mode: CupertinoDatePickerMode.date,
                             dateOrder: DatePickerDateOrder.ymd,
+                            minimumDate: DateTime.now(),
+                            minimumYear: DateTime.now().year,
                             initialDateTime: DateTime.now(),
                             onDateTimeChanged:
                                 controller.onDateCreatePickerChanged,
@@ -190,6 +196,9 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                       controller: controller.createTripAdsPriceCtr,
                       validate: Validator.validateEmpty,
                       type: TextInputType.number,
+                      formattedType: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
                       prefixIcon: const Icon(
                         Iconsax.moneys,
                         color: Colors.black,

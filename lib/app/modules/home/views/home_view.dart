@@ -24,6 +24,7 @@ import 'package:sharek/core/language/local_keys.dart';
 import 'package:sharek/core/widgets/app_text.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
 
+import '../../../data/remote_data_source/home_apis.dart';
 import '../../business_partner/bindings/business_partner_binding.dart';
 import '../../business_partner/views/add_business_partner_ads_screen.dart';
 import '../../business_partner/views/business_partner_details_screen.dart';
@@ -44,7 +45,7 @@ class HomeView extends GetView<HomeController> {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final HomeController controller = Get.put<HomeController>(HomeController());
+    Get.put<HomeController>(HomeController());
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -52,110 +53,115 @@ class HomeView extends GetView<HomeController> {
         ),
         centerTitle: true,
       ),
-      body: FutureBuilder<HomeModel?>(
-        future: controller.getHomeData,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final HomeModel? homeData = snapshot.data;
-            log(homeData.toString());
-            return SingleChildScrollView(
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    CustomTextField(
-                      name: LocalKeys.search,
-                      hint: "أبحث هنا",
-                      readOnly: true,
-                      onTap: () {
-                        Get.to(
-                          () => const HomeSearchScreen(),
-                          binding: HomeBinding(),
-                        );
-                      },
-                      prefixIcon: const Icon(Iconsax.search_normal),
-                    ),
-                    Sizes.size16.h(context).heightSizedBox,
-                    const ServicesList(),
-                    Sizes.size16.h(context).heightSizedBox,
-                    SizedBox(
-                      width: context.width,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "الاعلانات الجديدة",
-                            style:
-                                StylesManager.bold(fontSize: FontSize.xlarge),
-                          ),
-                          Sizes.size10.heightSizedBox,
-                          ...List.generate(
-                            20,
-                            (index) {
-                              NewAdvertisements? ad =
-                                  homeData?.data?.newAdvertisements?[index];
-                              return GestureDetector(
-                                onTap: () {
-                                  if (ad?.serviceId == 1) {
-                                    Get.to(
-                                      () => BusinessPartnerDetailsScreen(
-                                        adId: ad?.advertisementId ?? 0,
-                                        isUserAds: false,
-                                      ),
-                                      binding: BusinessPartnerBinding(),
-                                    );
-                                  } else if (ad?.serviceId == 2) {
-                                    Get.to(
-                                      () => TravelPartnerDetailsScreen(
-                                        id: ad?.advertisementId ?? 0,
-                                        isUserAds: false,
-                                      ),
-                                      binding: TravelPartnerBinding(),
-                                    );
-                                  } else if (ad?.serviceId == 3) {
-                                    Get.to(
-                                      () => SakePartnerDetailsScreen(
-                                        id: ad?.advertisementId ?? 0,
-                                        isUserAds: false,
-                                      ),
-                                      binding: SakePartnerBinding(),
-                                    );
-                                  } else if (ad?.serviceId == 4) {
-                                    Get.to(
-                                      () => HousePartnerDetailsScreen(
-                                        id: ad?.advertisementId ?? 0,
-                                        isUserAds: false,
-                                      ),
-                                      binding: HousePartnerBinding(),
-                                    );
-                                  } else {
-                                    Get.to(
-                                      () => OtherPartnerDetailsScreen(
-                                        id: ad?.advertisementId ?? 0,
-                                        isUserAds: false,
-                                      ),
-                                      binding: OtherServicePartnerBinding(),
-                                    );
-                                  }
-                                },
-                                child: AdCard(ad: ad),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ).horizontalScreenPadding,
-              ),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(
-                valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
-              ),
-            );
-          }
+      body: RefreshIndicator(
+        onRefresh: () {
+          return Get.forceAppUpdate();
         },
+        child: FutureBuilder<HomeModel?>(
+          future: HomeAPI.getHome(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final HomeModel? homeData = snapshot.data;
+              log(homeData.toString());
+              return SingleChildScrollView(
+                child: SafeArea(
+                  child: Column(
+                    children: [
+                      CustomTextField(
+                        name: LocalKeys.search,
+                        hint: "أبحث هنا",
+                        readOnly: true,
+                        onTap: () {
+                          Get.to(
+                            () => const HomeSearchScreen(),
+                            binding: HomeBinding(),
+                          );
+                        },
+                        prefixIcon: const Icon(Iconsax.search_normal),
+                      ),
+                      Sizes.size16.h(context).heightSizedBox,
+                      const ServicesList(),
+                      Sizes.size16.h(context).heightSizedBox,
+                      SizedBox(
+                        width: context.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "الاعلانات الجديدة",
+                              style:
+                                  StylesManager.bold(fontSize: FontSize.xlarge),
+                            ),
+                            Sizes.size10.heightSizedBox,
+                            ...List.generate(
+                              20,
+                              (index) {
+                                NewAdvertisements? ad =
+                                    homeData?.data?.newAdvertisements?[index];
+                                return GestureDetector(
+                                  onTap: () {
+                                    if (ad?.serviceId == 1) {
+                                      Get.to(
+                                        () => BusinessPartnerDetailsScreen(
+                                          adId: ad?.advertisementId ?? 0,
+                                          isUserAds: false,
+                                        ),
+                                        binding: BusinessPartnerBinding(),
+                                      );
+                                    } else if (ad?.serviceId == 2) {
+                                      Get.to(
+                                        () => TravelPartnerDetailsScreen(
+                                          id: ad?.advertisementId ?? 0,
+                                          isUserAds: false,
+                                        ),
+                                        binding: TravelPartnerBinding(),
+                                      );
+                                    } else if (ad?.serviceId == 3) {
+                                      Get.to(
+                                        () => SakePartnerDetailsScreen(
+                                          id: ad?.advertisementId ?? 0,
+                                          isUserAds: false,
+                                        ),
+                                        binding: SakePartnerBinding(),
+                                      );
+                                    } else if (ad?.serviceId == 4) {
+                                      Get.to(
+                                        () => HousePartnerDetailsScreen(
+                                          id: ad?.advertisementId ?? 0,
+                                          isUserAds: false,
+                                        ),
+                                        binding: HousePartnerBinding(),
+                                      );
+                                    } else {
+                                      Get.to(
+                                        () => OtherPartnerDetailsScreen(
+                                          id: ad?.advertisementId ?? 0,
+                                          isUserAds: false,
+                                        ),
+                                        binding: OtherServicePartnerBinding(),
+                                      );
+                                    }
+                                  },
+                                  child: AdCard(ad: ad),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ).horizontalScreenPadding,
+                ),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator.adaptive(
+                  valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }
