@@ -867,7 +867,7 @@ PODS:
     - AFNetworking
     - Flutter
     - SDWebImage
-    - ZLPhotoBrowser (~> 4.4.1)
+    - ZLPhotoBrowser (~> 4.3.9)
   - leveldb-library (1.22.2)
   - Libuv-gRPC (0.0.10):
     - Libuv-gRPC/Implementation (= 0.0.10)
@@ -926,9 +926,9 @@ PODS:
     - libwebp
   - workmanager (0.0.1):
     - Flutter
-  - ZLPhotoBrowser (4.4.1):
-    - ZLPhotoBrowser/Core (= 4.4.1)
-  - ZLPhotoBrowser/Core (4.4.1)
+  - ZLPhotoBrowser (4.3.9):
+    - ZLPhotoBrowser/Core (= 4.3.9)
+  - ZLPhotoBrowser/Core (4.3.9)
 
 DEPENDENCIES:
   - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
@@ -1077,11 +1077,7 @@ SPEC CHECKSUMS:
   firebase_dynamic_links: db9f2ebcc3ea646e76a1d3ee37e9e57890ff0a83
   firebase_messaging: 42912365e62efc1ea3e00724e5eecba6068ddb88
   firebase_storage: 7e99be67d69a310a307f7be32b93c7412ffc2282
-<<<<<<< HEAD
   FirebaseAppCheckInterop: 7d3521f56872cf74a01792c0a095a30e054ff6ae
-=======
-  FirebaseAppCheckInterop: e69dde5cd51b88ee1b4339d6766b691272256f9b
->>>>>>> 28ea0650dbcbacd47c2b117fe182fae7ac884802
   FirebaseAuth: 21d5e902fcea44d0d961540fc4742966ae6118cc
   FirebaseAuthInterop: edf6ead0428515d8efc10810c2dabc3a4ec70501
   FirebaseCore: b68d3616526ec02e4d155166bbafb8eca64af557
@@ -1103,11 +1099,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
-<<<<<<< HEAD
-  image_pickers: 08451c3005799ca313ded2bd21f43bc2ccdedcbb
-=======
   image_pickers: 4406949954a5eb4fac5ada5f13810e6419ef4467
->>>>>>> 28ea0650dbcbacd47c2b117fe182fae7ac884802
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
@@ -1129,8 +1121,8 @@ SPEC CHECKSUMS:
   video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126
   video_thumbnail: c4e2a3c539e247d4de13cd545344fd2d26ffafd1
   workmanager: 0afdcf5628bbde6924c21af7836fed07b42e30e6
-  ZLPhotoBrowser: dd045d229bf0d966e05a06a97ea428aace0303c7
+  ZLPhotoBrowser: 02b3569b8f702d2e153e8fdb1f6b32fef3a2867c
 
 PODFILE CHECKSUM: 80e776cf835210d51780a13d0506262202b2fda9
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
