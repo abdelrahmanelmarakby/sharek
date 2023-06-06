@@ -46,60 +46,60 @@ class HousePartnerView extends GetView<HousePartnerController> {
             ),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          name: "BusinessSearch",
-                          hint: "ابحث هنا",
-                          prefixIcon: const Icon(SharekIcons.search_1),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              Get.to(
-                                () => const HouseAdsFiterScreen(),
-                                binding: HousePartnerBinding(),
-                              );
-                            },
-                            child: const Icon(
-                              SharekIcons.filter_3,
-                            ),
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      CustomTextField(
+                        name: "BusinessSearch",
+                        hint: "ابحث هنا",
+                        prefixIcon: const Icon(SharekIcons.search_1),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            Get.to(
+                              () => const HouseAdsFiterScreen(),
+                              binding: HousePartnerBinding(),
+                            );
+                          },
+                          child: const Icon(
+                            SharekIcons.filter_3,
                           ),
                         ),
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: houseServicesTypes
-                              .map(
-                                (e) => Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 4),
-                                    child: ServicesItem(
-                                      activeIndex: controller.housePartner ?? 0,
-                                      index: e.serviceTypeId ?? 0,
-                                      title: e.name ?? "",
-                                      onTap: () {
-                                        if (controller.housePartner ==
-                                            e.serviceTypeId) {
-                                          controller.changeHousePartnerState(
-                                            null,
-                                          );
-                                          return;
-                                        }
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: houseServicesTypes
+                            .map(
+                              (e) => Expanded(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  child: ServicesItem(
+                                    activeIndex: controller.housePartner ?? 0,
+                                    index: e.serviceTypeId ?? 0,
+                                    title: e.name ?? "",
+                                    onTap: () {
+                                      if (controller.housePartner ==
+                                          e.serviceTypeId) {
                                         controller.changeHousePartnerState(
-                                          e.serviceTypeId ?? 0,
+                                          null,
                                         );
-                                      },
-                                    ),
+                                        return;
+                                      }
+                                      controller.changeHousePartnerState(
+                                        e.serviceTypeId ?? 0,
+                                      );
+                                    },
                                   ),
                                 ),
-                              )
-                              .toList(),
-                        ),
-                        const SizedBox(height: 20),
-                        SizedBox(
+                              ),
+                            )
+                            .toList(),
+                      ),
+                      const SizedBox(height: 20),
+                      Expanded(
+                        child: SizedBox(
                           width: context.width,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,8 +186,8 @@ class HousePartnerView extends GetView<HousePartnerController> {
                             ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 );
               } else if (snapshot.hasError) {

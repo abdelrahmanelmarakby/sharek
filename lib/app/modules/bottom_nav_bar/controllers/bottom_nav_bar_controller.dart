@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sharek/app/data/remote_data_source/profile_apis.dart';
 import 'package:sharek/app/modules/chats/chat_history.dart';
 import 'package:sharek/app/modules/home/views/home_view.dart';
 import 'package:sharek/app/modules/notifications/views/notifications_view.dart';
@@ -13,11 +12,6 @@ class BottomNavBarController extends GetxController {
   ScrollController scrollController = ScrollController();
   Widget _currentScreen = const HomeView();
   late Future<UserInfoModel?> getUserData;
-    @override
-  void onInit() {
-    getUserData = ProfileApis.getUserProfile();
-    super.onInit();
-  }
   // ignore: non_constant_identifier_names
   get CurrentScreen => _currentScreen;
   int _navIndex = 0;

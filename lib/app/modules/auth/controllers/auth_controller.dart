@@ -100,14 +100,23 @@ class AuthController extends GetxController {
 
     if (res?.status == true) {
       animationController.forward();
-      CacheHelper.cacheUserId(id: res?.data?.user?.id ?? 0);
+      try {
+        CacheHelper.cacheUserId(id: res?.data?.user?.id ?? 0);
+      } catch (e) {
+        showSnackBar(e.toString());
+      }
+
       Get.log(res?.data?.user?.id.toString() ?? "");
 
       Future.delayed(1.seconds, () {
         animationController.reverse();
       });
       showSnackBar(res?.message ?? "");
-      SharedPrefService(prefs: globalPrefs).saveToken(res?.data?.token ?? '');
+      try {
+        SharedPrefService(prefs: globalPrefs).saveToken(res?.data?.token ?? '');
+      } catch (e) {
+        showSnackBar(e.toString());
+      }
       Get.offAllNamed(Routes.BOTTOM_NAV_BAR);
     } else {
       showSnackBar(res?.message ?? 'حدث خطآ ما'.tr);
