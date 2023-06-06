@@ -48,21 +48,25 @@ class OtpVerification extends GetView<AuthController> {
                 width: context.width,
                 text: signIn ? LocalKeys.signIn.tr : LocalKeys.signUp.tr,
                 onPressed: (anim) {
-                  if (controller.otpFormKey.currentState!.validate() &&
-                      controller.otp != "") {
-                    if (signIn) {
-                      controller.loginOtp(
-                        phone: phone,
-                        code: controller.otp,
-                        animationController: anim,
-                      );
-                    } else {
-                      controller.registerOtp(
-                        phone: phone,
-                        code: controller.otp,
-                        animationController: anim,
-                      );
+                  try {
+                    if (controller.otpFormKey.currentState!.validate() &&
+                        controller.otp != "") {
+                      if (signIn) {
+                        controller.loginOtp(
+                          phone: phone,
+                          code: controller.otp,
+                          animationController: anim,
+                        );
+                      } else {
+                        controller.registerOtp(
+                          phone: phone,
+                          code: controller.otp,
+                          animationController: anim,
+                        );
+                      }
                     }
+                  } catch (e) {
+                    (e);
                   }
                 },
               ).horizontalScreenPadding,

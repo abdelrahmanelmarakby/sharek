@@ -611,34 +611,6 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - agora_rtc_engine (5.3.1):
-    - AgoraIrisRTC_iOS (= 3.7.0.3)
-    - AgoraRtcEngine_iOS (= 3.7.0.3)
-    - Flutter
-  - AgoraIrisRTC_iOS (3.7.0.3)
-  - AgoraRtcEngine_iOS (3.7.0.3):
-    - AgoraRtcEngine_iOS/AINS (= 3.7.0.3)
-    - AgoraRtcEngine_iOS/AV1Dec (= 3.7.0.3)
-    - AgoraRtcEngine_iOS/ContentInspect (= 3.7.0.3)
-    - AgoraRtcEngine_iOS/FullAudioFormat (= 3.7.0.3)
-    - AgoraRtcEngine_iOS/ReplayKit (= 3.7.0.3)
-    - AgoraRtcEngine_iOS/ROIEnc (= 3.7.0.3)
-    - AgoraRtcEngine_iOS/RtcBasic (= 3.7.0.3)
-    - AgoraRtcEngine_iOS/SpatialAudio (= 3.7.0.3)
-    - AgoraRtcEngine_iOS/SuperResolution (= 3.7.0.3)
-    - AgoraRtcEngine_iOS/VideoPreprocess (= 3.7.0.3)
-    - AgoraRtcEngine_iOS/VirtualBackground (= 3.7.0.3)
-  - AgoraRtcEngine_iOS/AINS (3.7.0.3)
-  - AgoraRtcEngine_iOS/AV1Dec (3.7.0.3)
-  - AgoraRtcEngine_iOS/ContentInspect (3.7.0.3)
-  - AgoraRtcEngine_iOS/FullAudioFormat (3.7.0.3)
-  - AgoraRtcEngine_iOS/ReplayKit (3.7.0.3)
-  - AgoraRtcEngine_iOS/ROIEnc (3.7.0.3)
-  - AgoraRtcEngine_iOS/RtcBasic (3.7.0.3)
-  - AgoraRtcEngine_iOS/SpatialAudio (3.7.0.3)
-  - AgoraRtcEngine_iOS/SuperResolution (3.7.0.3)
-  - AgoraRtcEngine_iOS/VideoPreprocess (3.7.0.3)
-  - AgoraRtcEngine_iOS/VirtualBackground (3.7.0.3)
   - "app_settings (3.0.0+1)":
     - Flutter
   - audio_waveforms (0.0.1):
@@ -867,7 +839,7 @@ PODS:
     - AFNetworking
     - Flutter
     - SDWebImage
-    - ZLPhotoBrowser (~> 4.4.1)
+    - ZLPhotoBrowser (~> 4.3.9)
   - leveldb-library (1.22.2)
   - Libuv-gRPC (0.0.10):
     - Libuv-gRPC/Implementation (= 0.0.10)
@@ -898,9 +870,9 @@ PODS:
     - Flutter
   - PromisesObjC (2.2.0)
   - ReachabilitySwift (5.0.0)
-  - SDWebImage (5.15.8):
-    - SDWebImage/Core (= 5.15.8)
-  - SDWebImage/Core (5.15.8)
+  - SDWebImage (5.16.0):
+    - SDWebImage/Core (= 5.16.0)
+  - SDWebImage/Core (5.16.0)
   - Sentry/HybridSDK (8.7.3):
     - SentryPrivate (= 8.7.3)
   - sentry_flutter (0.0.1):
@@ -926,12 +898,11 @@ PODS:
     - libwebp
   - workmanager (0.0.1):
     - Flutter
-  - ZLPhotoBrowser (4.4.1):
-    - ZLPhotoBrowser/Core (= 4.4.1)
-  - ZLPhotoBrowser/Core (4.4.1)
+  - ZLPhotoBrowser (4.3.9):
+    - ZLPhotoBrowser/Core (= 4.3.9)
+  - ZLPhotoBrowser/Core (4.3.9)
 
 DEPENDENCIES:
-  - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
   - app_settings (from `.symlinks/plugins/app_settings/ios`)
   - audio_waveforms (from `.symlinks/plugins/audio_waveforms/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
@@ -949,10 +920,10 @@ DEPENDENCIES:
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - image_pickers (from `.symlinks/plugins/image_pickers/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
-  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - smart_auth (from `.symlinks/plugins/smart_auth/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
@@ -964,8 +935,6 @@ SPEC REPOS:
   trunk:
     - abseil
     - AFNetworking
-    - AgoraIrisRTC_iOS
-    - AgoraRtcEngine_iOS
     - BoringSSL-GRPC
     - DKImagePickerController
     - DKPhotoGallery
@@ -1000,8 +969,6 @@ SPEC REPOS:
     - ZLPhotoBrowser
 
 EXTERNAL SOURCES:
-  agora_rtc_engine:
-    :path: ".symlinks/plugins/agora_rtc_engine/ios"
   app_settings:
     :path: ".symlinks/plugins/app_settings/ios"
   audio_waveforms:
@@ -1037,13 +1004,13 @@ EXTERNAL SOURCES:
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/ios"
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   sentry_flutter:
     :path: ".symlinks/plugins/sentry_flutter/ios"
   shared_preferences_foundation:
-    :path: ".symlinks/plugins/shared_preferences_foundation/ios"
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   smart_auth:
     :path: ".symlinks/plugins/smart_auth/ios"
   sqflite:
@@ -1060,9 +1027,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
-  agora_rtc_engine: 47e0ddc177bae1b85eb00d01a0ea546d87ce0b8b
-  AgoraIrisRTC_iOS: d802443ae16f043e7b2805c978880eb62ee8154c
-  AgoraRtcEngine_iOS: 549bb3853d5afb18fabca4197786f39f31141da8
   app_settings: d103828c9f5d515c4df9ee754dabd443f7cedcf3
   audio_waveforms: cd736909ebc6b6a164eb74701d8c705ce3241e1c
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
@@ -1077,11 +1041,7 @@ SPEC CHECKSUMS:
   firebase_dynamic_links: db9f2ebcc3ea646e76a1d3ee37e9e57890ff0a83
   firebase_messaging: 42912365e62efc1ea3e00724e5eecba6068ddb88
   firebase_storage: 7e99be67d69a310a307f7be32b93c7412ffc2282
-<<<<<<< HEAD
   FirebaseAppCheckInterop: 7d3521f56872cf74a01792c0a095a30e054ff6ae
-=======
-  FirebaseAppCheckInterop: e69dde5cd51b88ee1b4339d6766b691272256f9b
->>>>>>> 28ea0650dbcbacd47c2b117fe182fae7ac884802
   FirebaseAuth: 21d5e902fcea44d0d961540fc4742966ae6118cc
   FirebaseAuthInterop: edf6ead0428515d8efc10810c2dabc3a4ec70501
   FirebaseCore: b68d3616526ec02e4d155166bbafb8eca64af557
@@ -1103,11 +1063,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
-<<<<<<< HEAD
-  image_pickers: 08451c3005799ca313ded2bd21f43bc2ccdedcbb
-=======
   image_pickers: 4406949954a5eb4fac5ada5f13810e6419ef4467
->>>>>>> 28ea0650dbcbacd47c2b117fe182fae7ac884802
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
@@ -1117,7 +1073,7 @@ SPEC CHECKSUMS:
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  SDWebImage: cb032eba469c54e0000e78bcb0a13cdde0a52798
+  SDWebImage: 2aea163b50bfcb569a2726b6a754c54a4506fcf6
   Sentry: c7a86f43510a7d5678d4de28d78c28ab351d295b
   sentry_flutter: f2710a4f537e9a7143b02562b8754ccdc8224751
   SentryPrivate: 2eaabf598a46d4b9b8822aef766df2a84caf2e6f
@@ -1129,7 +1085,7 @@ SPEC CHECKSUMS:
   video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126
   video_thumbnail: c4e2a3c539e247d4de13cd545344fd2d26ffafd1
   workmanager: 0afdcf5628bbde6924c21af7836fed07b42e30e6
-  ZLPhotoBrowser: dd045d229bf0d966e05a06a97ea428aace0303c7
+  ZLPhotoBrowser: 02b3569b8f702d2e153e8fdb1f6b32fef3a2867c
 
 PODFILE CHECKSUM: 80e776cf835210d51780a13d0506262202b2fda9
 
