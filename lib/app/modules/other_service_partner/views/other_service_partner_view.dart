@@ -45,53 +45,49 @@ class OtherServicePartnerView extends GetView<OtherServicePartnerController> {
                             hint: "ابحث هنا",
                             prefixIcon: Icon(SharekIcons.search_1),
                           ),
-                          const SizedBox(height: 12),
                           const SizedBox(height: 20),
-                          SizedBox(
-                            width: context.width,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "الاعلانات الجديدة",
-                                  style: StylesManager.bold(
-                                    fontSize: FontSize.xlarge,
-                                  ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "الاعلانات الجديدة",
+                                style: StylesManager.bold(
+                                  fontSize: FontSize.xlarge,
                                 ),
-                                const SizedBox(height: 8),
-                                ListView.separated(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: otherAds?.length ?? 0,
-                                  separatorBuilder: (context, index) =>
-                                      const SizedBox(height: 8),
-                                  itemBuilder: (context, index) {
-                                    final ads = otherAds?[index];
-                                    return snapshot.data?.data?.isNotEmpty ??
-                                            false
-                                        ? GestureDetector(
-                                            onTap: () {
-                                              Get.to(
-                                                () => OtherPartnerDetailsScreen(
-                                                  id: ads?.advertisementId ?? 0,
-                                                  isUserAds: false,
-                                                ),
-                                              );
-                                            },
-                                            child: OtherAdsItem(
-                                              ad: ads,
-                                            ),
-                                          )
-                                        : Center(
-                                            child: AppText(
-                                              snapshot.data?.message ?? "",
-                                              color: Colors.black,
-                                            ),
-                                          );
-                                  },
-                                ),
-                              ],
-                            ),
+                              ),
+                              const SizedBox(height: 12),
+                              ListView.separated(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: otherAds?.length ?? 0,
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox(height: 8),
+                                itemBuilder: (context, index) {
+                                  final ads = otherAds?[index];
+                                  return snapshot.data?.data?.isNotEmpty ??
+                                          false
+                                      ? GestureDetector(
+                                          onTap: () {
+                                            Get.to(
+                                              () => OtherPartnerDetailsScreen(
+                                                id: ads?.advertisementId ?? 0,
+                                                isUserAds: false,
+                                              ),
+                                            );
+                                          },
+                                          child: OtherAdsItem(
+                                            ad: ads,
+                                          ),
+                                        )
+                                      : Center(
+                                          child: AppText(
+                                            snapshot.data?.message ?? "",
+                                            color: Colors.black,
+                                          ),
+                                        );
+                                },
+                              ),
+                            ],
                           ),
                         ],
                       ),

@@ -159,104 +159,48 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                                     fontSize: FontSize.xlarge),
                               ),
                               const SizedBox(height: 8),
-                              controller.businessPartner == 0
-                                  ? ListView.separated(
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      itemCount:
-                                          snapshot.data?.data?.length ?? 0,
-                                      separatorBuilder: (context, index) =>
-                                          const SizedBox(height: 8),
-                                      itemBuilder: (context, index) {
-                                        final ads = snapshot.data?.data?[index];
-                                        return snapshot
-                                                    .data?.data?.isNotEmpty ??
-                                                false
-                                            ? GestureDetector(
-                                                onTap: () {
-                                                  Get.to(
-                                                    () =>
-                                                        BusinessPartnerDetailsScreen(
-                                                      adId:
-                                                          ads?.advertisementId ??
-                                                              0,
-                                                      isUserAds: false,
-                                                    ),
-                                                  );
-                                                },
-                                                child: AdCard(
-                                                  ad: NewAdvertisements(
-                                                    title: ads?.title,
-                                                    advertisementId:
-                                                        ads?.advertisementId,
-                                                    createdAt1: ads?.createdAt1,
-                                                    createdAt2: ads?.createdAt2,
-                                                    userName: ads?.userName,
-                                                    location: ads?.location,
-                                                    neighborhood:
-                                                        ads?.neighborhood,
-                                                    photos: ads?.photos,
-                                                  ),
-                                                ),
-                                              )
-                                            : Center(
-                                                child: AppText(
-                                                  snapshot.data?.message ?? "",
-                                                  color: Colors.black,
-                                                ),
-                                              );
-                                      },
-                                    )
-                                  : ListView.separated(
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      itemCount:
-                                          snapshot.data?.data?.length ?? 0,
-                                      separatorBuilder: (context, index) =>
-                                          const SizedBox(height: 8),
-                                      itemBuilder: (context, index) {
-                                        final BusinessAd? ads =
-                                            snapshot.data?.data?[index];
-                                        return snapshot
-                                                    .data?.data?.isNotEmpty ??
-                                                false
-                                            ? GestureDetector(
-                                                onTap: () {
-                                                  Get.to(
-                                                    () =>
-                                                        BusinessPartnerDetailsScreen(
-                                                      adId:
-                                                          ads?.advertisementId ??
-                                                              0,
-                                                      isUserAds: false,
-                                                    ),
-                                                  );
-                                                },
-                                                child: AdCard(
-                                                  ad: NewAdvertisements(
-                                                    title: ads?.title,
-                                                    advertisementId:
-                                                        ads?.advertisementId,
-                                                    createdAt1: ads?.createdAt1,
-                                                    createdAt2: ads?.createdAt2,
-                                                    userName: ads?.userName,
-                                                    location: ads?.location,
-                                                    neighborhood:
-                                                        ads?.neighborhood,
-                                                    photos: ads?.photos,
-                                                  ),
-                                                ),
-                                              )
-                                            : Center(
-                                                child: AppText(
-                                                  snapshot.data?.message ?? "",
-                                                  color: Colors.black,
-                                                ),
-                                              );
-                                      },
-                                    ),
+                              ListView.separated(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: snapshot.data?.data?.length ?? 0,
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox(height: 8),
+                                itemBuilder: (context, index) {
+                                  final ads = snapshot.data?.data?[index];
+                                  return snapshot.data?.data?.isNotEmpty ??
+                                          false
+                                      ? GestureDetector(
+                                          onTap: () {
+                                            Get.to(
+                                              () =>
+                                                  BusinessPartnerDetailsScreen(
+                                                adId: ads?.advertisementId ?? 0,
+                                                isUserAds: false,
+                                              ),
+                                            );
+                                          },
+                                          child: AdCard(
+                                            ad: NewAdvertisements(
+                                              title: ads?.title,
+                                              advertisementId:
+                                                  ads?.advertisementId,
+                                              createdAt1: ads?.createdAt1,
+                                              createdAt2: ads?.createdAt2,
+                                              userName: ads?.userName,
+                                              location: ads?.location,
+                                              neighborhood: ads?.neighborhood,
+                                              photos: ads?.photos,
+                                            ),
+                                          ),
+                                        )
+                                      : Center(
+                                          child: AppText(
+                                            snapshot.data?.message ?? "",
+                                            color: Colors.black,
+                                          ),
+                                        );
+                                },
+                              )
                             ],
                           ),
                         )

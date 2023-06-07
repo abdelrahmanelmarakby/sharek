@@ -104,29 +104,26 @@ class HouseAdsFiterScreen extends GetView<HousePartnerController> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 35),
-                  child: AppProgressButton(
-                    width: context.width,
-                    text: "تصفية",
-                    onPressed: (animationController) {
-                      Get.to(
-                        () => HouseFilterResoult(
-                          numberPartners: int.tryParse(
-                            controller.filterNumberPartnersCtr.text,
-                          ),
-                          servicesTypeid: controller.addHousePartner,
-                          location: Get.find<LocationGetterWidgetsController>()
-                              .regionName,
-                          neighborhood:
-                              Get.find<LocationGetterWidgetsController>()
-                                  .cityName,
-                          nationality:
-                              controller.filterNationalityPartnersCtr.text,
+                AppProgressButton(
+                  width: context.width,
+                  text: "تصفية",
+                  onPressed: (animationController) {
+                    Get.to(
+                      () => HouseFilterResoult(
+                        numberPartners: int.tryParse(
+                          controller.filterNumberPartnersCtr.text,
                         ),
-                      );
-                    },
-                  ),
+                        servicesTypeid: controller.addHousePartner,
+                        location: Get.find<LocationGetterWidgetsController>()
+                            .regionName,
+                        neighborhood:
+                            Get.find<LocationGetterWidgetsController>()
+                                .cityName,
+                        nationality:
+                            controller.filterNationalityPartnersCtr.text,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

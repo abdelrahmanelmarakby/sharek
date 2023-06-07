@@ -162,83 +162,38 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                       fontSize: FontSize.xlarge),
                                 ),
                                 const SizedBox(height: 8),
-                                controller.travelPartner == 0
-                                    ? ListView.separated(
-                                        shrinkWrap: true,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        itemCount:
-                                            snapshot.data?.data?.length ?? 0,
-                                        separatorBuilder: (context, index) =>
-                                            const SizedBox(height: 8),
-                                        itemBuilder: (context, index) {
-                                          final ads =
-                                              snapshot.data?.data?[index];
-                                          return snapshot
-                                                      .data?.data?.isNotEmpty ??
-                                                  false
-                                              ? GestureDetector(
-                                                  onTap: () {
-                                                    Get.to(
-                                                      () =>
-                                                          TravelPartnerDetailsScreen(
-                                                        id: ads?.advertisementId ??
-                                                            0,
-                                                        isUserAds: false,
-                                                      ),
-                                                    );
-                                                  },
-                                                  child: TripAdsItem(
-                                                    ad: ads,
-                                                  ),
-                                                )
-                                              : Center(
-                                                  child: AppText(
-                                                    snapshot.data?.message ??
-                                                        "",
-                                                    color: Colors.black,
-                                                  ),
-                                                );
-                                        },
-                                      )
-                                    : ListView.separated(
-                                        shrinkWrap: true,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        itemCount:
-                                            snapshot.data?.data?.length ?? 0,
-                                        separatorBuilder: (context, index) =>
-                                            const SizedBox(height: 8),
-                                        itemBuilder: (context, index) {
-                                          final ads =
-                                              snapshot.data?.data?[index];
-                                          return snapshot
-                                                      .data?.data?.isNotEmpty ??
-                                                  false
-                                              ? GestureDetector(
-                                                  onTap: () {
-                                                    Get.to(
-                                                      () =>
-                                                          TravelPartnerDetailsScreen(
-                                                        id: ads?.advertisementId ??
-                                                            0,
-                                                        isUserAds: false,
-                                                      ),
-                                                    );
-                                                  },
-                                                  child: TripAdsItem(
-                                                    ad: ads,
-                                                  ),
-                                                )
-                                              : Center(
-                                                  child: AppText(
-                                                    snapshot.data?.message ??
-                                                        "",
-                                                    color: Colors.black,
-                                                  ),
-                                                );
-                                        },
-                                      ),
+                                ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: snapshot.data?.data?.length ?? 0,
+                                  separatorBuilder: (context, index) =>
+                                      const SizedBox(height: 8),
+                                  itemBuilder: (context, index) {
+                                    final ads = snapshot.data?.data?[index];
+                                    return snapshot.data?.data?.isNotEmpty ??
+                                            false
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              Get.to(
+                                                () =>
+                                                    TravelPartnerDetailsScreen(
+                                                  id: ads?.advertisementId ?? 0,
+                                                  isUserAds: false,
+                                                ),
+                                              );
+                                            },
+                                            child: TripAdsItem(
+                                              ad: ads,
+                                            ),
+                                          )
+                                        : Center(
+                                            child: AppText(
+                                              snapshot.data?.message ?? "",
+                                              color: Colors.black,
+                                            ),
+                                          );
+                                  },
+                                )
                               ],
                             ),
                           ),

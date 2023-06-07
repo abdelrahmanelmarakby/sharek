@@ -67,4 +67,16 @@ class ProfileController extends GetxController {
       showSnackBar(res?.message ?? "");
     }
   }
+
+  bool phoneNotifiCation = true;
+  bool notifiCation = true;
+  onChangePhoneNotifiCation(bool val) {
+    phoneNotifiCation = val;
+    update();
+  }
+
+  onChangeNotifiCation(bool val) {
+    notifiCation = val;
+    update();
+  }
 }

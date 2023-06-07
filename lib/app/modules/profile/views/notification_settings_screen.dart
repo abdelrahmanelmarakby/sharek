@@ -14,43 +14,45 @@ class NotificationSettingsScreen extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('إعدادت التنبيهات'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppText(
-              "التنبيهات",
-              fontSize: Sizes.size12.h(context),
-              fontWeight: FontWeights.medium,
-              color: ColorsManager.primary,
-            ),
-            Sizes.size8.h(context).heightSizedBox,
-            ProfileListTile(
-              title: "رقم الجوال",
-              trailing: Switch.adaptive(
-                activeColor: ColorsManager.primary,
-                value: true,
-                onChanged: (val) {},
-              ),
-            ),
-            Sizes.size16.h(context).heightSizedBox,
-            ProfileListTile(
-              title: "الإشعارات",
-              isLast: true,
-              trailing: Switch.adaptive(
-                activeColor: ColorsManager.primary,
-                value: false,
-                onChanged: (val) {},
-              ),
-            ),
-          ],
+    return GetBuilder<ProfileController>(builder: (controller) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('إعدادت التنبيهات'),
         ),
-      ),
-    );
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppText(
+                "التنبيهات",
+                fontSize: Sizes.size12.h(context),
+                fontWeight: FontWeights.medium,
+                color: ColorsManager.primary,
+              ),
+              Sizes.size8.h(context).heightSizedBox,
+              ProfileListTile(
+                title: "رقم الجوال",
+                trailing: Switch.adaptive(
+                  activeColor: ColorsManager.primary,
+                  value: controller.phoneNotifiCation,
+                  onChanged: controller.onChangePhoneNotifiCation,
+                ),
+              ),
+              Sizes.size16.h(context).heightSizedBox,
+              ProfileListTile(
+                title: "الإشعارات",
+                isLast: true,
+                trailing: Switch.adaptive(
+                  activeColor: ColorsManager.primary,
+                  value: controller.notifiCation,
+                  onChanged: controller.onChangeNotifiCation,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

@@ -32,9 +32,8 @@ class NotificationsView extends GetView<NotificationsController> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final notification = snapshot.data?.data;
-              return ListView.separated(
+              return ListView.builder(
                 itemCount: notification?.length ?? 0,
-                separatorBuilder: (context, index) => const SizedBox(height: 8),
                 itemBuilder: (context, index) {
                   var item = notification?[index];
                   return Column(
@@ -47,7 +46,7 @@ class NotificationsView extends GetView<NotificationsController> {
                       ListTile(
                         tileColor: (item?.isRead == 1)
                             ? ColorsManager.white
-                            : ColorsManager.selection.withOpacity(.2),
+                            : const Color(0xFFF4F4FF),
                         trailing: Text(
                           timeago
                               .format(
@@ -62,15 +61,17 @@ class NotificationsView extends GetView<NotificationsController> {
                         subtitle: Text(
                           item?.content ?? "",
                           style: const TextStyle(
+                            fontSize: 14,
                             color: ColorsManager.veryDarkGrey,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                         title: Text(
                           item?.title ?? "",
-                          style: StylesManager.semiBold(
-                              fontSize: FontSize.medium,
-                              color: ColorsManager.charcoal),
+                          style: StylesManager.bold(
+                            fontSize: FontSize.large,
+                            color: ColorsManager.charcoal,
+                          ),
                         ),
                         leading: SizedBox(
                           height: 50,

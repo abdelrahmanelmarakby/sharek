@@ -81,73 +81,69 @@ class HomeView extends GetView<HomeController> {
                       ),
                       Sizes.size16.h(context).heightSizedBox,
                       const ServicesList(),
-                      Sizes.size16.h(context).heightSizedBox,
-                      SizedBox(
-                        width: context.width,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "الاعلانات الجديدة",
-                              style:
-                                  StylesManager.bold(fontSize: FontSize.xlarge),
-                            ),
-                            Sizes.size10.heightSizedBox,
-                            ...List.generate(
-                              20,
-                              (index) {
-                                NewAdvertisements? ad =
-                                    homeData?.data?.newAdvertisements?[index];
-                                return GestureDetector(
-                                  onTap: () {
-                                    if (ad?.serviceId == 1) {
-                                      Get.to(
-                                        () => BusinessPartnerDetailsScreen(
-                                          adId: ad?.advertisementId ?? 0,
-                                          isUserAds: false,
-                                        ),
-                                        binding: BusinessPartnerBinding(),
-                                      );
-                                    } else if (ad?.serviceId == 2) {
-                                      Get.to(
-                                        () => TravelPartnerDetailsScreen(
-                                          id: ad?.advertisementId ?? 0,
-                                          isUserAds: false,
-                                        ),
-                                        binding: TravelPartnerBinding(),
-                                      );
-                                    } else if (ad?.serviceId == 3) {
-                                      Get.to(
-                                        () => SakePartnerDetailsScreen(
-                                          id: ad?.advertisementId ?? 0,
-                                          isUserAds: false,
-                                        ),
-                                        binding: SakePartnerBinding(),
-                                      );
-                                    } else if (ad?.serviceId == 4) {
-                                      Get.to(
-                                        () => HousePartnerDetailsScreen(
-                                          id: ad?.advertisementId ?? 0,
-                                          isUserAds: false,
-                                        ),
-                                        binding: HousePartnerBinding(),
-                                      );
-                                    } else {
-                                      Get.to(
-                                        () => OtherPartnerDetailsScreen(
-                                          id: ad?.advertisementId ?? 0,
-                                          isUserAds: false,
-                                        ),
-                                        binding: OtherServicePartnerBinding(),
-                                      );
-                                    }
-                                  },
-                                  child: AdCard(ad: ad),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "الاعلانات الجديدة",
+                            style:
+                                StylesManager.bold(fontSize: FontSize.xlarge),
+                          ),
+                          Sizes.size10.heightSizedBox,
+                          ...List.generate(
+                            20,
+                            (index) {
+                              NewAdvertisements? ad =
+                                  homeData?.data?.newAdvertisements?[index];
+                              return GestureDetector(
+                                onTap: () {
+                                  if (ad?.serviceId == 1) {
+                                    Get.to(
+                                      () => BusinessPartnerDetailsScreen(
+                                        adId: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
+                                      ),
+                                      binding: BusinessPartnerBinding(),
+                                    );
+                                  } else if (ad?.serviceId == 2) {
+                                    Get.to(
+                                      () => TravelPartnerDetailsScreen(
+                                        id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
+                                      ),
+                                      binding: TravelPartnerBinding(),
+                                    );
+                                  } else if (ad?.serviceId == 3) {
+                                    Get.to(
+                                      () => SakePartnerDetailsScreen(
+                                        id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
+                                      ),
+                                      binding: SakePartnerBinding(),
+                                    );
+                                  } else if (ad?.serviceId == 4) {
+                                    Get.to(
+                                      () => HousePartnerDetailsScreen(
+                                        id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
+                                      ),
+                                      binding: HousePartnerBinding(),
+                                    );
+                                  } else {
+                                    Get.to(
+                                      () => OtherPartnerDetailsScreen(
+                                        id: ad?.advertisementId ?? 0,
+                                        isUserAds: false,
+                                      ),
+                                      binding: OtherServicePartnerBinding(),
+                                    );
+                                  }
+                                },
+                                child: AdCard(ad: ad),
+                              );
+                            },
+                          ),
+                        ],
                       )
                     ],
                   ).horizontalScreenPadding,
@@ -187,7 +183,7 @@ class AdCard extends StatelessWidget {
           border: Border.all(width: .5, color: ColorsManager.veryLightGrey),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -234,7 +230,7 @@ class AdCard extends StatelessWidget {
                 ),
               ),
               Flexible(
-                fit: FlexFit.loose,
+                fit: FlexFit.tight,
                 flex: 1,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
@@ -275,7 +271,7 @@ class AdRowItem extends StatelessWidget {
           Icon(
             icon,
             color: ColorsManager.grey,
-            size: Sizes.size18,
+            size: Sizes.size20,
           ),
           Sizes.size4.widthSizedBox,
           Expanded(
@@ -300,7 +296,7 @@ class ServicesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.height * .2,
+      height: context.height * .18,
       width: context.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

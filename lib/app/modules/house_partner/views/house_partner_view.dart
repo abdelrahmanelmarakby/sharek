@@ -115,83 +115,37 @@ class HousePartnerView extends GetView<HousePartnerController> {
                                       fontSize: FontSize.xlarge),
                                 ),
                                 const SizedBox(height: 8),
-                                controller.housePartner == 0
-                                    ? ListView.separated(
-                                        shrinkWrap: true,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        itemCount:
-                                            snapshot.data?.data?.length ?? 0,
-                                        separatorBuilder: (context, index) =>
-                                            const SizedBox(height: 8),
-                                        itemBuilder: (context, index) {
-                                          Data? ads =
-                                              snapshot.data?.data?[index];
-                                          return snapshot
-                                                      .data?.data?.isNotEmpty ??
-                                                  false
-                                              ? GestureDetector(
-                                                  onTap: () {
-                                                    Get.to(
-                                                      () =>
-                                                          HousePartnerDetailsScreen(
-                                                        id: ads?.advertisementId ??
-                                                            0,
-                                                        isUserAds: false,
-                                                      ),
-                                                    );
-                                                  },
-                                                  child: HouseAdsItem(
-                                                    ad: ads,
-                                                  ),
-                                                )
-                                              : Center(
-                                                  child: AppText(
-                                                    snapshot.data?.message ??
-                                                        "",
-                                                    color: Colors.black,
-                                                  ),
-                                                );
-                                        },
-                                      )
-                                    : ListView.separated(
-                                        shrinkWrap: true,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        itemCount:
-                                            snapshot.data?.data?.length ?? 0,
-                                        separatorBuilder: (context, index) =>
-                                            const SizedBox(height: 8),
-                                        itemBuilder: (context, index) {
-                                          final ads =
-                                              snapshot.data?.data?[index];
-                                          return snapshot
-                                                      .data?.data?.isNotEmpty ??
-                                                  false
-                                              ? GestureDetector(
-                                                  onTap: () {
-                                                    Get.to(
-                                                      () =>
-                                                          HousePartnerDetailsScreen(
-                                                        id: ads?.advertisementId ??
-                                                            0,
-                                                        isUserAds: false,
-                                                      ),
-                                                    );
-                                                  },
-                                                  child: HouseAdsItem(
-                                                    ad: ads,
-                                                  ),
-                                                )
-                                              : Center(
-                                                  child: AppText(
-                                                    snapshot.data?.message ??
-                                                        "",
-                                                    color: Colors.black,
-                                                  ),
-                                                );
-                                        },
-                                      ),
+                                ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: snapshot.data?.data?.length ?? 0,
+                                  separatorBuilder: (context, index) =>
+                                      const SizedBox(height: 8),
+                                  itemBuilder: (context, index) {
+                                    Data? ads = snapshot.data?.data?[index];
+                                    return snapshot.data?.data?.isNotEmpty ??
+                                            false
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              Get.to(
+                                                () => HousePartnerDetailsScreen(
+                                                  id: ads?.advertisementId ?? 0,
+                                                  isUserAds: false,
+                                                ),
+                                              );
+                                            },
+                                            child: HouseAdsItem(
+                                              ad: ads,
+                                            ),
+                                          )
+                                        : Center(
+                                            child: AppText(
+                                              snapshot.data?.message ?? "",
+                                              color: Colors.black,
+                                            ),
+                                          );
+                                  },
+                                )
                               ],
                             ),
                           ),

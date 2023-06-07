@@ -1,9 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:sharek/core/extensions/validator.dart';
 
 import '../../../../core/constants/theme/font_manager.dart';
+import '../../../../core/extensions/validator.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 
@@ -34,6 +35,7 @@ class SelectQuantityRow extends StatelessWidget {
             controller: textEditingController,
             type: TextInputType.number,
             validate: Validator.validateEmpty,
+            formattedType: [FilteringTextInputFormatter.digitsOnly],
             prefixIcon: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
