@@ -104,6 +104,8 @@ class APIKeys {
 
   static const String logout = "logout";
   static const String userInfo = "user/info";
+  static const String anotherUserInfo = "profile/";
+
   static const String userAds = "user-advertisement";
 
   //=================================================================

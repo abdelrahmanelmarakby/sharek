@@ -22,6 +22,7 @@ import 'package:sharek/core/widgets/progress_button.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/services/get_storage_helper.dart';
 import '../../../../core/widgets/custom_text_field.dart';
+import '../../../routes/app_pages.dart';
 import '../../chats/chat_screen.dart';
 import '../../home/views/home_view.dart';
 import '../controllers/business_partner_controller.dart';
@@ -364,6 +365,14 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                               AdRowItem(
                                 icon: Iconsax.user,
                                 text: ads?.userName ?? "",
+                                onTap: () {
+                                  Get.toNamed(
+                                    Routes.ANOTHER_USER_PROFILE,
+                                    arguments: {
+                                      "userId": ads?.userId,
+                                    },
+                                  );
+                                },
                               ),
                             ],
                           ),

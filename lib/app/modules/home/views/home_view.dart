@@ -218,7 +218,9 @@ class AdCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           AdRowItem(
-                              icon: Iconsax.user, text: ad?.userName ?? ""),
+                            icon: Iconsax.user,
+                            text: ad?.userName ?? "",
+                          ),
                           AdRowItem(
                             icon: Iconsax.routing,
                             text: ad?.neighborhood ?? "",
@@ -256,6 +258,7 @@ class AdRowItem extends StatelessWidget {
     required this.icon,
     required this.text,
     this.flex = 1,
+    this.onTap,
     this.maxLines = 1,
   }) : super(key: key);
   final IconData icon;
@@ -263,26 +266,30 @@ class AdRowItem extends StatelessWidget {
   final int flex;
   final int maxLines;
 
+  final Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            color: ColorsManager.grey,
-            size: Sizes.size20,
-          ),
-          Sizes.size4.widthSizedBox,
-          Expanded(
-            child: AppText(
-              text,
-              maxLines: maxLines,
-              color: Colors.black,
-              fontSize: FontSize.medium,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color: ColorsManager.grey,
+              size: Sizes.size20,
             ),
-          ),
-        ],
+            Sizes.size4.widthSizedBox,
+            Expanded(
+              child: AppText(
+                text,
+                maxLines: maxLines,
+                color: Colors.black,
+                fontSize: FontSize.medium,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

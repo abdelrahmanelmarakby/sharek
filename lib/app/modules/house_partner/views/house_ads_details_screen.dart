@@ -351,10 +351,13 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                   icon: Iconsax.location,
                                   text: ads?.location ?? "",
                                 ),
-                                AdRowItem(
-                                  icon: Iconsax.global,
-                                  text: ads?.nationality.toString() ?? "",
-                                ),
+                                ads?.serviceTypeId == 10 ||
+                                        ads?.nationality == null
+                                    ? const Spacer()
+                                    : AdRowItem(
+                                        icon: Iconsax.global,
+                                        text: ads?.nationality.toString() ?? "",
+                                      ),
                               ],
                             ),
                             const SizedBox(height: 13),

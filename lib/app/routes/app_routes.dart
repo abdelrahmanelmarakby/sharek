@@ -20,6 +20,7 @@ abstract class Routes {
   static const VIDEO_CHAT = _Paths.VIDEO_CHAT;
   static const LOCATION_GETTER_WIDGETS = _Paths.LOCATION_GETTER_WIDGETS;
   static const SPLASH = _Paths.SPLASH;
+  static const ANOTHER_USER_PROFILE = _Paths.ANOTHER_USER_PROFILE;
 }
 
 abstract class _Paths {
@@ -39,4 +40,5 @@ abstract class _Paths {
   static const VIDEO_CHAT = '/video-chat';
   static const LOCATION_GETTER_WIDGETS = '/location-getter-widgets';
   static const SPLASH = '/splash';
+  static const ANOTHER_USER_PROFILE = '/another-user-profile';
 }

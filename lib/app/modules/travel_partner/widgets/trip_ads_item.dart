@@ -69,7 +69,7 @@ class TripAdsItem extends StatelessWidget {
               ),
             ),
             Flexible(
-                fit: FlexFit.loose,
+                fit: FlexFit.tight,
                 flex: 1,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),

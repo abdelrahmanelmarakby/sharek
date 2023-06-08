@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_typing_uninitialized_variables
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -7,7 +7,6 @@ import 'package:sharek/core/global/const.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
-import '../../../data/models/house_partners_model.dart';
 import '../../home/views/home_view.dart';
 
 class HouseAdsItem extends StatelessWidget {
@@ -15,7 +14,7 @@ class HouseAdsItem extends StatelessWidget {
     Key? key,
     required this.ad,
   }) : super(key: key);
-  final Data? ad;
+  final ad;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,11 +60,11 @@ class HouseAdsItem extends StatelessWidget {
                       children: [
                         AdRowItem(icon: Iconsax.user, text: ad?.userName ?? ""),
                         ad?.serviceTypeId == 10 || ad?.nationality == null
-                            ? AdRowItem(
+                            ? const Spacer()
+                            : AdRowItem(
                                 icon: Iconsax.global,
                                 text: ad?.nationality ?? "",
                               )
-                            : const SizedBox(),
                       ],
                     ),
                   )
@@ -73,7 +72,7 @@ class HouseAdsItem extends StatelessWidget {
               ),
             ),
             Flexible(
-                fit: FlexFit.loose,
+                fit: FlexFit.tight,
                 flex: 1,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),

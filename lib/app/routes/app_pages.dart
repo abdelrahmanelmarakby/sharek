@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
 import '../../core/services/get_storage_helper.dart';
+import '../modules/another_user_profile/bindings/another_user_profile_binding.dart';
+import '../modules/another_user_profile/views/another_user_profile_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/bottom_nav_bar/bindings/bottom_nav_bar_binding.dart';
@@ -111,6 +113,11 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => const MyCustomSplashScreen(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.ANOTHER_USER_PROFILE,
+      page: () => const AnotherUserProfileView(),
+      binding: AnotherUserProfileBinding(),
     ),
   ];
 }

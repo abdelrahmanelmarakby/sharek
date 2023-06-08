@@ -1,8 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_typing_uninitialized_variables
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:sharek/app/data/models/sarifice_ads_model.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
@@ -15,7 +14,7 @@ class SakeAdsItem extends StatelessWidget {
     Key? key,
     required this.ad,
   }) : super(key: key);
-  final Data? ad;
+  final ad;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -79,7 +78,7 @@ class SakeAdsItem extends StatelessWidget {
               ),
             ),
             Flexible(
-                fit: FlexFit.loose,
+                fit: FlexFit.tight,
                 flex: 1,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
