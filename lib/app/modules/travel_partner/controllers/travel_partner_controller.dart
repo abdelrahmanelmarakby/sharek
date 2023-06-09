@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/remote_data_source/favorites_and_report_apis.dart';
 import '../../../data/remote_data_source/trip_ads.dart';
@@ -273,5 +274,15 @@ class TravelPartnerController extends GetxController {
       log(e.toString());
     }
   }
+
   //========================================================================
+  void makePhoneCall(String phone) async {
+    var url = 'tel:$phone';
+
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }

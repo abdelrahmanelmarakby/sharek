@@ -46,7 +46,9 @@ class HouseAdsItem extends StatelessWidget {
                     child: Row(
                       children: [
                         AdRowItem(
-                            icon: Iconsax.clock, text: ad?.createdAt1 ?? ""),
+                          icon: Iconsax.clock,
+                          text: ad?.createdAt1 ?? "",
+                        ),
                         AdRowItem(
                           icon: Iconsax.location,
                           text: ad?.location ?? "",
@@ -58,7 +60,18 @@ class HouseAdsItem extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        AdRowItem(icon: Iconsax.user, text: ad?.userName ?? ""),
+                        AdRowItem(
+                          icon: Iconsax.user,
+                          text: ad?.userName ?? "",
+                          // onTap: () {
+                          //   Get.toNamed(
+                          //     Routes.ANOTHER_USER_PROFILE,
+                          //     arguments: {
+                          //       "userId": ad?.userId,
+                          //     },
+                          //   );
+                          // },
+                        ),
                         ad?.serviceTypeId == 10 || ad?.nationality == null
                             ? const Spacer()
                             : AdRowItem(
@@ -72,19 +85,20 @@ class HouseAdsItem extends StatelessWidget {
               ),
             ),
             Flexible(
-                fit: FlexFit.tight,
-                flex: 1,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    ad?.photos?.isNotEmpty ?? false
-                        ? ad?.photos?.first ?? ""
-                        : dummyImage,
-                    height: context.width / 4,
-                    width: context.width / 4,
-                    fit: BoxFit.cover,
-                  ),
-                )),
+              fit: FlexFit.tight,
+              flex: 1,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  ad?.photos?.isNotEmpty ?? false
+                      ? ad?.photos?.first ?? ""
+                      : dummyImage,
+                  height: context.width / 4,
+                  width: context.width / 4,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
           ],
         ),
       ),

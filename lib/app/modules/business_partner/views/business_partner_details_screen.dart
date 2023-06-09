@@ -405,27 +405,35 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                             children: [
                               Expanded(
                                 flex: 35,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(6),
-                                    color: ColorsManager.primary,
-                                  ),
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 12),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      Icon(
-                                        Iconsax.call,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(width: 10),
-                                      AppText(
-                                        "إتصال",
-                                        fontSize: 14,
-                                        fontWeight: FontWeights.regular,
-                                      ),
-                                    ],
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.makePhoneCall(
+                                      ads?.phone.toString() ?? "",
+                                    );
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(6),
+                                      color: ColorsManager.primary,
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(
+                                          Iconsax.call,
+                                          color: Colors.white,
+                                        ),
+                                        SizedBox(width: 10),
+                                        AppText(
+                                          "إتصال",
+                                          fontSize: 14,
+                                          fontWeight: FontWeights.regular,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -434,12 +442,13 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                 flex: 35,
                                 child: GestureDetector(
                                   onTap: () {
-                                    Get.to(() => ChatScreen(
-                                          hisId: "${ads?.userId ?? 0}",
-                                          myId:
-                                              CacheHelper.getUserId.toString(),
-                                          hisName: ads?.userName ?? "بدون اسم",
-                                        ));
+                                    Get.to(
+                                      () => ChatScreen(
+                                        hisId: "${ads?.userId ?? 0}",
+                                        myId: CacheHelper.getUserId.toString(),
+                                        hisName: ads?.userName ?? "بدون اسم",
+                                      ),
+                                    );
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(

@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sharek/app/data/remote_data_source/business_ads.dart';
 import 'package:sharek/app/routes/app_pages.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/remote_data_source/favorites_and_report_apis.dart';
 
@@ -220,4 +221,13 @@ class BusinessPartnerController extends GetxController {
     }
   }
   //========================================================================
+    void makePhoneCall(String phone) async {
+    var url = 'tel:$phone';
+
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }

@@ -16,6 +16,7 @@ import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/network_image.dart';
 import '../../../../core/widgets/progress_button.dart';
 import '../../../data/models/other_service_partner_item_model.dart';
+import '../../../routes/app_pages.dart';
 import '../../chats/chat_screen.dart';
 import '../../home/views/home_view.dart';
 import '../../travel_partner/widgets/comment_item.dart';
@@ -359,6 +360,14 @@ class OtherPartnerDetailsScreen extends GetView<OtherServicePartnerController> {
                                 AdRowItem(
                                   icon: Iconsax.user,
                                   text: ads?.userName ?? "",
+                                  onTap: () {
+                                    Get.toNamed(
+                                      Routes.ANOTHER_USER_PROFILE,
+                                      arguments: {
+                                        "userId": ads?.userId,
+                                      },
+                                    );
+                                  },
                                 ),
                                 AdRowItem(
                                   icon: Iconsax.routing,
@@ -401,28 +410,35 @@ class OtherPartnerDetailsScreen extends GetView<OtherServicePartnerController> {
                               children: [
                                 Expanded(
                                   flex: 35,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(6),
-                                      color: ColorsManager.primary,
-                                    ),
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 12),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: const [
-                                        Icon(
-                                          Iconsax.call,
-                                          color: Colors.white,
-                                        ),
-                                        SizedBox(width: 10),
-                                        AppText(
-                                          "إتصال",
-                                          fontSize: 14,
-                                          fontWeight: FontWeights.regular,
-                                        ),
-                                      ],
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      controller.makePhoneCall(
+                                        ads?.phone.toString() ?? "",
+                                      );
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(6),
+                                        color: ColorsManager.primary,
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: const [
+                                          Icon(
+                                            Iconsax.call,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(width: 10),
+                                          AppText(
+                                            "إتصال",
+                                            fontSize: 14,
+                                            fontWeight: FontWeights.regular,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

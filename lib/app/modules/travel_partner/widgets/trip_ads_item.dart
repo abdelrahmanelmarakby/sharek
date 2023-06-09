@@ -57,7 +57,18 @@ class TripAdsItem extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        AdRowItem(icon: Iconsax.user, text: ad?.userName ?? ""),
+                        AdRowItem(
+                          icon: Iconsax.user,
+                          text: ad?.userName ?? "",
+                          // onTap: () {
+                          //   Get.toNamed(
+                          //     Routes.ANOTHER_USER_PROFILE,
+                          //     arguments: {
+                          //       "userId": ad?.userId,
+                          //     },
+                          //   );
+                          // },
+                        ),
                         AdRowItem(
                           icon: Iconsax.car,
                           text: ad?.carType ?? "راكب",

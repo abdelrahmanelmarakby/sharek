@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sharek/app/data/remote_data_source/other_services_partener_apis.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/remote_data_source/favorites_and_report_apis.dart';
 import '../../../routes/app_pages.dart';
@@ -119,7 +120,8 @@ class OtherServicePartnerController extends GetxController {
       log(e.toString());
     }
   }
-    //===============================report==================================
+
+  //===============================report==================================
   TextEditingController reportCtr = TextEditingController();
   Future createReport({
     required int id,
@@ -172,6 +174,16 @@ class OtherServicePartnerController extends GetxController {
     } catch (e) {
       BotToast.closeAllLoading();
       log(e.toString());
+    }
+  }
+
+  void makePhoneCall(String phone) async {
+    var url = 'tel:$phone';
+
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
     }
   }
 }
