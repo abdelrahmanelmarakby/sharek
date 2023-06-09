@@ -23,24 +23,6 @@ class SakePartnerController extends GetxController {
     update();
   }
 
-  String? titleSearch;
-  TextEditingController searchController = TextEditingController();
-  onChangedSearch(String value) {
-    if (value.trim().isNotEmpty) {
-      searchController.text = value;
-      titleSearch = value;
-    } else {
-      titleSearch = value;
-    }
-    searchController.value = searchController.value.copyWith(
-      text: value,
-      selection: TextSelection.fromPosition(
-        TextPosition(offset: value.length),
-      ),
-    );
-    update();
-  }
-
 //======================================================================
   List<ServiceTypeModel> sacrificeType = [
     ServiceTypeModel(name: "حاشي", serviceTypeId: 1),
@@ -401,5 +383,23 @@ class SakePartnerController extends GetxController {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  String? textSearch;
+  TextEditingController searchController = TextEditingController();
+  onChangedSearch(String value) {
+    if (value.trim().isNotEmpty) {
+      searchController.text = value;
+      textSearch = value;
+    } else {
+      textSearch = value;
+    }
+    searchController.value = searchController.value.copyWith(
+      text: value,
+      selection: TextSelection.fromPosition(
+        TextPosition(offset: value.length),
+      ),
+    );
+    update();
   }
 }

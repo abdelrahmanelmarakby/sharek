@@ -187,4 +187,22 @@ class OtherServicePartnerController extends GetxController {
       throw 'Could not launch $url';
     }
   }
+
+  String? textSearch;
+  TextEditingController searchController = TextEditingController();
+  onChangedSearch(String value) {
+    if (value.trim().isNotEmpty) {
+      searchController.text = value;
+      textSearch = value;
+    } else {
+      textSearch = value;
+    }
+    searchController.value = searchController.value.copyWith(
+      text: value,
+      selection: TextSelection.fromPosition(
+        TextPosition(offset: value.length),
+      ),
+    );
+    update();
+  }
 }

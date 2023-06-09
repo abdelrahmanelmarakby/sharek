@@ -117,6 +117,8 @@ class APIKeys {
   static const String housingAdsSearch = "search/$housingAds";
   //=============================other ads===========================
   static const String otherAds = "another-advertisements";
+    static const String otherAdsSearch = "search/$otherAds";
+
   static const String createOtherComment =
       "create/comment/another-advertisement/";
   //========================sacrifice=================================

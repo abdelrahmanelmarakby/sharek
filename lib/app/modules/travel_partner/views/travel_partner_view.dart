@@ -48,6 +48,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
             child: FutureBuilder<TripAdvertisementsModel?>(
               future: TripPartnerAPI.filterTripAds(
                 servicesTypeid: controller.travelPartner,
+                title: controller.textSearch,
                 date: controller.viewDate == null
                     ? null
                     : appDateFormate(controller.viewDate!, "en"),
@@ -63,6 +64,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                           CustomTextField(
                             name: "BusinessSearch",
                             hint: "ابحث هنا",
+                            onChange: controller.onChangedSearch,
                             prefixIcon: const Icon(SharekIcons.search_1),
                             suffixIcon: GestureDetector(
                               onTap: () {
@@ -162,38 +164,51 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                       fontSize: FontSize.xlarge),
                                 ),
                                 const SizedBox(height: 8),
-                                ListView.separated(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: snapshot.data?.data?.length ?? 0,
-                                  separatorBuilder: (context, index) =>
-                                      const SizedBox(height: 8),
-                                  itemBuilder: (context, index) {
-                                    final ads = snapshot.data?.data?[index];
-                                    return snapshot.data?.data?.isNotEmpty ??
-                                            false
-                                        ? GestureDetector(
-                                            onTap: () {
-                                              Get.to(
-                                                () =>
-                                                    TravelPartnerDetailsScreen(
-                                                  id: ads?.advertisementId ?? 0,
-                                                  isUserAds: false,
-                                                ),
-                                              );
-                                            },
-                                            child: TripAdsItem(
-                                              ad: ads,
-                                            ),
-                                          )
-                                        : Center(
-                                            child: AppText(
-                                              snapshot.data?.message ?? "",
-                                              color: Colors.black,
-                                            ),
-                                          );
-                                  },
-                                )
+                                snapshot.data?.data?.isEmpty ?? false
+                                    ? Center(
+                                        child: AppText(
+                                          snapshot.data?.message ?? "",
+                                          color: Colors.black,
+                                        ),
+                                      )
+                                    : ListView.separated(
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemCount:
+                                            snapshot.data?.data?.length ?? 0,
+                                        separatorBuilder: (context, index) =>
+                                            const SizedBox(height: 8),
+                                        itemBuilder: (context, index) {
+                                          final ads =
+                                              snapshot.data?.data?[index];
+                                          return snapshot
+                                                      .data?.data?.isNotEmpty ??
+                                                  false
+                                              ? GestureDetector(
+                                                  onTap: () {
+                                                    Get.to(
+                                                      () =>
+                                                          TravelPartnerDetailsScreen(
+                                                        id: ads?.advertisementId ??
+                                                            0,
+                                                        isUserAds: false,
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: TripAdsItem(
+                                                    ad: ads,
+                                                  ),
+                                                )
+                                              : Center(
+                                                  child: AppText(
+                                                    snapshot.data?.message ??
+                                                        "",
+                                                    color: Colors.black,
+                                                  ),
+                                                );
+                                        },
+                                      )
                               ],
                             ),
                           ),

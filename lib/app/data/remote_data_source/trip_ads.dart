@@ -100,6 +100,7 @@ class TripPartnerAPI {
     double? price,
     bool? withPackages,
     String? carType,
+    String? title,
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
@@ -118,6 +119,7 @@ class TripPartnerAPI {
         if (numberPassengers != null) "number_passengers": numberPassengers,
         if (nationality != null) "nationality": nationality,
         if (date != null) "date": date,
+        if (title != null) "title": title,
         if (time != null) "time": time,
         if (price != null) "price": price,
         if (withPackages != null) "with_packages": withPackages == true ? 1 : 0,

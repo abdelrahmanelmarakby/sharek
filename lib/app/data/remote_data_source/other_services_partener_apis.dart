@@ -10,15 +10,20 @@ import '../models/other_service_partner_item_model.dart';
 import '../models/other_services_partener_model.dart';
 
 class OtherServicesPartenerAPIS {
-  static Future<OtherServicesPartenerModel?> getOtherAds() async {
+  static Future<OtherServicesPartenerModel?> getOtherAds(
+    String? title,
+  ) async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
-      path: APIKeys.otherAds,
+      path: APIKeys.otherAdsSearch,
       headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,
         'Authorization':
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
+      queryParams: {
+        if (title != null) "title": title,
       },
       data: const NetworkRequestBody.empty(),
     );

@@ -30,7 +30,9 @@ class OtherServicePartnerView extends GetView<OtherServicePartnerController> {
               return Get.forceAppUpdate();
             },
             child: FutureBuilder<OtherServicesPartenerModel?>(
-              future: OtherServicesPartenerAPIS.getOtherAds(),
+              future: OtherServicesPartenerAPIS.getOtherAds(
+                controller.textSearch,
+              ),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<Data>? otherAds = snapshot.data?.data;
@@ -40,10 +42,12 @@ class OtherServicePartnerView extends GetView<OtherServicePartnerController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const CustomTextField(
+                          CustomTextField(
                             name: "BusinessSearch",
                             hint: "ابحث هنا",
-                            prefixIcon: Icon(SharekIcons.search_1),
+                            controller: controller.searchController,
+                            prefixIcon: const Icon(SharekIcons.search_1),
+                            onChange: controller.onChangedSearch,
                           ),
                           const SizedBox(height: 20),
                           Column(
@@ -56,37 +60,48 @@ class OtherServicePartnerView extends GetView<OtherServicePartnerController> {
                                 ),
                               ),
                               const SizedBox(height: 12),
-                              ListView.separated(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: otherAds?.length ?? 0,
-                                separatorBuilder: (context, index) =>
-                                    const SizedBox(height: 8),
-                                itemBuilder: (context, index) {
-                                  final ads = otherAds?[index];
-                                  return snapshot.data?.data?.isNotEmpty ??
-                                          false
-                                      ? GestureDetector(
-                                          onTap: () {
-                                            Get.to(
-                                              () => OtherPartnerDetailsScreen(
-                                                id: ads?.advertisementId ?? 0,
-                                                isUserAds: false,
-                                              ),
-                                            );
-                                          },
-                                          child: OtherAdsItem(
-                                            ad: ads,
-                                          ),
-                                        )
-                                      : Center(
-                                          child: AppText(
-                                            snapshot.data?.message ?? "",
-                                            color: Colors.black,
-                                          ),
-                                        );
-                                },
-                              ),
+                              otherAds?.isEmpty ?? false
+                                  ? Center(
+                                      child: AppText(
+                                        snapshot.data?.message ?? "",
+                                        color: Colors.black,
+                                      ),
+                                    )
+                                  : ListView.separated(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount: otherAds?.length ?? 0,
+                                      separatorBuilder: (context, index) =>
+                                          const SizedBox(height: 8),
+                                      itemBuilder: (context, index) {
+                                        final ads = otherAds?[index];
+                                        return snapshot
+                                                    .data?.data?.isNotEmpty ??
+                                                false
+                                            ? GestureDetector(
+                                                onTap: () {
+                                                  Get.to(
+                                                    () =>
+                                                        OtherPartnerDetailsScreen(
+                                                      id: ads?.advertisementId ??
+                                                          0,
+                                                      isUserAds: false,
+                                                    ),
+                                                  );
+                                                },
+                                                child: OtherAdsItem(
+                                                  ad: ads,
+                                                ),
+                                              )
+                                            : Center(
+                                                child: AppText(
+                                                  snapshot.data?.message ?? "",
+                                                  color: Colors.black,
+                                                ),
+                                              );
+                                      },
+                                    ),
                             ],
                           ),
                         ],
