@@ -210,10 +210,10 @@ class ProfileApis {
     return data;
   }
 
-  static Future<AnotherUserProfile?> getAnotherUserProfile() async {
+  static Future<AnotherUserProfile?> getAnotherUserProfile(int id) async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
-      path: APIKeys.anotherUserInfo,
+      path: APIKeys.anotherUserInfo + id.toString(),
       headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,

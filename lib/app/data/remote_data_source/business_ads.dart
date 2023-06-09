@@ -15,7 +15,7 @@ class BusinessPartnerAPI {
   static Future<BusinessPartnerModel?> getBusinessAds() async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
-      path: APIKeys.businessAds,
+      path: APIKeys.businessAdsSearch,
       headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,
@@ -93,8 +93,12 @@ class BusinessPartnerAPI {
     return data;
   }
 
-  static Future<BusinessPartnerModel?> filterBusinessAds(
-      {int? servicesTypeid, String? location, String? city}) async {
+  static Future<BusinessPartnerModel?> filterBusinessAds({
+    int? servicesTypeid,
+    String? location,
+    String? city,
+    String? title,
+  }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
       path: APIKeys.businessAdsSearch,
@@ -108,6 +112,7 @@ class BusinessPartnerAPI {
         "service_type_id": servicesTypeid,
         if (location != null) "location": location,
         if (city != null) "neighborhood": city,
+        if (title != null) "title": title,
       },
       data: const NetworkRequestBody.empty(),
     );

@@ -28,7 +28,6 @@ dependencies:
   firebase_storage: ^11.0.4
   flutter:
     sdk: flutter
-  # flutter_firebase_chat_core: ^1.6.7
   flutter_link_previewer: ^3.2.0
   flutter_local_notifications: ^8.2.0
   flutter_localizations:
@@ -58,6 +57,7 @@ dependencies:
   shimmer: ^2.0.0
   supercharged: ^2.1.1
   timeago: any
+  url_launcher: ^6.1.11
   video_thumbnail: ^0.5.3
   visibility_detector: ^0.4.0+2
   workmanager: ^0.5.1

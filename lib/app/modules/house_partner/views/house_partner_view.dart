@@ -47,6 +47,7 @@ class HousePartnerView extends GetView<HousePartnerController> {
             child: FutureBuilder<HousePartnersModel?>(
               future: HousePartnerAPI.filterHouseAds(
                 servicesTypeid: controller.housePartner,
+                title: controller.textSearch,
               ),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
@@ -59,6 +60,8 @@ class HousePartnerView extends GetView<HousePartnerController> {
                             name: "BusinessSearch",
                             hint: "ابحث هنا",
                             prefixIcon: const Icon(SharekIcons.search_1),
+                            onChange: controller.onChangedSearch,
+                            controller: controller.searchController,
                             suffixIcon: GestureDetector(
                               onTap: () {
                                 Get.to(
@@ -115,7 +118,14 @@ class HousePartnerView extends GetView<HousePartnerController> {
                                       fontSize: FontSize.xlarge),
                                 ),
                                 const SizedBox(height: 8),
-                                ListView.separated(
+                               snapshot.data?.data?.isEmpty ?? false
+                                  ? Center(
+                                      child: AppText(
+                                        snapshot.data?.message ?? "",
+                                        color: Colors.black,
+                                      ),
+                                    )
+                                  :  ListView.separated(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
                                   itemCount: snapshot.data?.data?.length ?? 0,

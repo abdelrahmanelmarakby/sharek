@@ -66,6 +66,14 @@ class OtherAdsItem extends StatelessWidget {
                         AdRowItem(
                           icon: Iconsax.user,
                           text: ad?.userName ?? "",
+                          // onTap: () {
+                          //   Get.toNamed(
+                          //     Routes.ANOTHER_USER_PROFILE,
+                          //     arguments: {
+                          //       "userId": ad?.userId,
+                          //     },
+                          //   );
+                          // },
                         ),
                         AdRowItem(
                           icon: Iconsax.routing,

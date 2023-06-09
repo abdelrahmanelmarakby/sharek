@@ -121,6 +121,7 @@ class SarificeAPIS {
     String? neighborhood,
     String? sacrificeType,
     String? quantity,
+    String? title,
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
@@ -135,6 +136,7 @@ class SarificeAPIS {
       queryParams: {
         if (servicesTypeid != null) "service_type_id": servicesTypeid,
         if (location != null) "location": location,
+        if (title != null) "title": title,
         if (neighborhood != null) "neighborhood": neighborhood,
         if (sacrificeType != null) "sacrifice_type": sacrificeType,
         if (quantity != null) "quantity": quantity,

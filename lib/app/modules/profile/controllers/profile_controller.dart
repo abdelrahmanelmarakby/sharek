@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -9,6 +10,7 @@ import 'package:sharek/app/data/remote_data_source/profile_apis.dart';
 import '../../../../core/global/const.dart';
 import '../../../../core/services/shared_prefs.dart';
 import '../../../../core/widgets/snack_bar.dart';
+import '../../../data/remote_data_source/favorites_and_report_apis.dart';
 import '../../../routes/app_pages.dart';
 
 class ProfileController extends GetxController {
@@ -78,5 +80,28 @@ class ProfileController extends GetxController {
   onChangeNotifiCation(bool val) {
     notifiCation = val;
     update();
+  }
+
+  Future addToFavorites({
+    required int id,
+  }) async {
+    try {
+      BotToast.showLoading();
+      final res = await FavoritesAndReportAPIS.addToFavorites(
+        type: Partners.businessAds,
+        id: id,
+      );
+      if (res?.status == true) {
+        Get.forceAppUpdate();
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+      } else {
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+      }
+    } catch (e) {
+      BotToast.closeAllLoading();
+      log(e.toString());
+    }
   }
 }

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sharek/app/data/remote_data_source/house_ads_apis.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/remote_data_source/favorites_and_report_apis.dart';
 import '../../../routes/app_pages.dart';
@@ -19,7 +20,8 @@ class HousePartnerController extends GetxController {
     housePartner = val;
     update();
   }
- TextEditingController filterNumberPartnersCtr = TextEditingController();
+
+  TextEditingController filterNumberPartnersCtr = TextEditingController();
   TextEditingController filterNationalityPartnersCtr = TextEditingController();
   //===============================Comment==================================
   TextEditingController createCommentCtr = TextEditingController();
@@ -188,6 +190,7 @@ class HousePartnerController extends GetxController {
       if (res?.status == true) {
         BotToast.closeAllLoading();
         BotToast.showText(text: res?.message ?? "");
+        Get.forceAppUpdate();
       } else {
         BotToast.closeAllLoading();
         BotToast.showText(text: res?.message ?? "");
@@ -196,5 +199,33 @@ class HousePartnerController extends GetxController {
       BotToast.closeAllLoading();
       log(e.toString());
     }
+  }
+
+  void makePhoneCall(String phone) async {
+    var url = 'tel:$phone';
+
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  String? textSearch;
+  TextEditingController searchController = TextEditingController();
+  onChangedSearch(String value) {
+    if (value.trim().isNotEmpty) {
+      searchController.text = value;
+      textSearch = value;
+    } else {
+      textSearch = value;
+    }
+    searchController.value = searchController.value.copyWith(
+      text: value,
+      selection: TextSelection.fromPosition(
+        TextPosition(offset: value.length),
+      ),
+    );
+    update();
   }
 }

@@ -20,6 +20,7 @@ import '../../../../core/widgets/network_image.dart';
 import '../../../../core/widgets/progress_button.dart';
 import '../../../data/models/trip_ads_item_model.dart';
 import '../../../data/remote_data_source/trip_ads.dart';
+import '../../../routes/app_pages.dart';
 import '../../home/views/home_view.dart';
 import '../controllers/travel_partner_controller.dart';
 import '../widgets/comment_item.dart';
@@ -360,6 +361,14 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                               AdRowItem(
                                 icon: Iconsax.user,
                                 text: ads?.userName ?? "",
+                                onTap: () {
+                                  Get.toNamed(
+                                    Routes.ANOTHER_USER_PROFILE,
+                                    arguments: {
+                                      "userId": ads?.userId,
+                                    },
+                                  );
+                                },
                               ),
                               AdRowItem(
                                 icon: Iconsax.car,
@@ -503,27 +512,35 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                             children: [
                               Expanded(
                                 flex: 35,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(6),
-                                    color: ColorsManager.primary,
-                                  ),
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 12),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      Icon(
-                                        Iconsax.call,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(width: 10),
-                                      AppText(
-                                        "إتصال",
-                                        fontSize: 14,
-                                        fontWeight: FontWeights.regular,
-                                      ),
-                                    ],
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.makePhoneCall(
+                                      ads?.phone.toString() ?? "",
+                                    );
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(6),
+                                      color: ColorsManager.primary,
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(
+                                          Iconsax.call,
+                                          color: Colors.white,
+                                        ),
+                                        SizedBox(width: 10),
+                                        AppText(
+                                          "إتصال",
+                                          fontSize: 14,
+                                          fontWeight: FontWeights.regular,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

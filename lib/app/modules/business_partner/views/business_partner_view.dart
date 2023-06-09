@@ -16,9 +16,9 @@ import 'package:sharek/core/constants/theme/app_icons.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
 import 'package:sharek/core/constants/theme/font_manager.dart';
 import 'package:sharek/core/constants/theme/styles_manager.dart';
-import 'package:sharek/core/widgets/app_text.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
 
+import '../../../../core/widgets/app_text.dart';
 import '../../../data/models/service_type.dart';
 import '../controllers/business_partner_controller.dart';
 
@@ -48,6 +48,7 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
           child: FutureBuilder<BusinessPartnerModel?>(
             future: BusinessPartnerAPI.filterBusinessAds(
               servicesTypeid: controller.businessPartner,
+              title: controller.textSearch,
             ),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -61,6 +62,8 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                           name: "BusinessSearch",
                           hint: "ابحث هنا",
                           prefixIcon: const Icon(SharekIcons.search_1),
+                          onChange: controller.onChangedSearch,
+                          controller: controller.searchController,
                           suffixIcon: GestureDetector(
                             onTap: () {
                               Get.to(
@@ -159,17 +162,24 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                                     fontSize: FontSize.xlarge),
                               ),
                               const SizedBox(height: 8),
-                              ListView.separated(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: snapshot.data?.data?.length ?? 0,
-                                separatorBuilder: (context, index) =>
-                                    const SizedBox(height: 8),
-                                itemBuilder: (context, index) {
-                                  final ads = snapshot.data?.data?[index];
-                                  return snapshot.data?.data?.isNotEmpty ??
-                                          false
-                                      ? GestureDetector(
+                              snapshot.data?.data?.isEmpty ?? false
+                                  ? Center(
+                                      child: AppText(
+                                        snapshot.data?.message ?? "",
+                                        color: Colors.black,
+                                      ),
+                                    )
+                                  : ListView.separated(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount:
+                                          snapshot.data?.data?.length ?? 0,
+                                      separatorBuilder: (context, index) =>
+                                          const SizedBox(height: 8),
+                                      itemBuilder: (context, index) {
+                                        final ads = snapshot.data?.data?[index];
+                                        return GestureDetector(
                                           onTap: () {
                                             Get.to(
                                               () =>
@@ -192,15 +202,9 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                                               photos: ads?.photos,
                                             ),
                                           ),
-                                        )
-                                      : Center(
-                                          child: AppText(
-                                            snapshot.data?.message ?? "",
-                                            color: Colors.black,
-                                          ),
                                         );
-                                },
-                              )
+                                      },
+                                    )
                             ],
                           ),
                         )
