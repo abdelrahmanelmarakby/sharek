@@ -20,7 +20,8 @@ class HousePartnerController extends GetxController {
     housePartner = val;
     update();
   }
- TextEditingController filterNumberPartnersCtr = TextEditingController();
+
+  TextEditingController filterNumberPartnersCtr = TextEditingController();
   TextEditingController filterNationalityPartnersCtr = TextEditingController();
   //===============================Comment==================================
   TextEditingController createCommentCtr = TextEditingController();
@@ -189,6 +190,7 @@ class HousePartnerController extends GetxController {
       if (res?.status == true) {
         BotToast.closeAllLoading();
         BotToast.showText(text: res?.message ?? "");
+        Get.forceAppUpdate();
       } else {
         BotToast.closeAllLoading();
         BotToast.showText(text: res?.message ?? "");
@@ -198,7 +200,8 @@ class HousePartnerController extends GetxController {
       log(e.toString());
     }
   }
-      void makePhoneCall(String phone) async {
+
+  void makePhoneCall(String phone) async {
     var url = 'tel:$phone';
 
     if (await canLaunchUrl(Uri.parse(url))) {

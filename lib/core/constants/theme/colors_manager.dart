@@ -17,6 +17,8 @@ class ColorsManager {
   static const Color error = Color(0xFFB00020);
   static const Color red = Color(0xFFFA5F5F);
   static const Color success = Color(0xFF00C853);
+  static const Color red2 = Color(0xFFFF0000);
+
   static MaterialStateProperty<Color?> greyMatrialColor =
       MaterialStateColor.resolveWith((states) {
     if (states.contains(MaterialState.disabled)) {

@@ -211,6 +211,7 @@ class BusinessPartnerController extends GetxController {
       if (res?.status == true) {
         BotToast.closeAllLoading();
         BotToast.showText(text: res?.message ?? "");
+        Get.forceAppUpdate();
       } else {
         BotToast.closeAllLoading();
         BotToast.showText(text: res?.message ?? "");
@@ -220,8 +221,9 @@ class BusinessPartnerController extends GetxController {
       log(e.toString());
     }
   }
+
   //========================================================================
-    void makePhoneCall(String phone) async {
+  void makePhoneCall(String phone) async {
     var url = 'tel:$phone';
 
     if (await canLaunchUrl(Uri.parse(url))) {

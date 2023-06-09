@@ -382,6 +382,7 @@ class SakePartnerController extends GetxController {
       if (res?.status == true) {
         BotToast.closeAllLoading();
         BotToast.showText(text: res?.message ?? "");
+        Get.forceAppUpdate();
       } else {
         BotToast.closeAllLoading();
         BotToast.showText(text: res?.message ?? "");
