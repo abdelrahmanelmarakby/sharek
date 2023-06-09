@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable, depend_on_referenced_packages
+// ignore_for_file: must_be_immutable, depend_on_referenced_packages, use_build_context_synchronously
 
 import 'dart:developer';
 import 'package:background_downloader/background_downloader.dart';

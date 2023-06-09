@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:sharek/app/routes/app_pages.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../../core/constants/theme/theme_export.dart';
