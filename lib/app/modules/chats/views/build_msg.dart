@@ -6,9 +6,13 @@ import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:bubble/bubble.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:flutter_link_previewer/flutter_link_previewer.dart' hide Size;
+import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
+import 'package:sharek/core/extensions/num.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:sharek/app/data/models/private_message_model.dart';
@@ -50,14 +54,44 @@ class _MessageBuilderState extends State<MessageBuilder> {
   @override
   Widget build(BuildContext context) {
     if (widget.isMe) {
-      return Bubble(
-        margin: const BubbleEdges.only(top: 10),
-        alignment: Alignment.topRight,
-        padding: const BubbleEdges.only(left: 15, right: 15),
-        nip: BubbleNip.rightTop,
-        color: ColorsManager.primary.withOpacity(.8),
-        child: msgBuilder(
-            context: context, msg: widget.msg as PrivateMessage, isMe: true),
+      return CupertinoContextMenu(
+        actions: [
+          if (widget.msg?.text != null)
+            CupertinoContextMenuAction(
+              onPressed: () {
+                Clipboard.setData(
+                  ClipboardData(
+                    text: widget.msg?.text ?? "",
+                  ),
+                );
+                Navigator.pop(context);
+              },
+              trailingIcon: Iconsax.copy,
+              child: const Text("copy "),
+            ),
+          if (widget.msg?.image != null)
+            CupertinoContextMenuAction(
+              onPressed: () {},
+              trailingIcon: Iconsax.copy,
+              child: const Text("download "),
+            ),
+          if (widget.isMe)
+            CupertinoContextMenuAction(
+              onPressed: () {},
+              isDestructiveAction: true,
+              trailingIcon: CupertinoIcons.delete,
+              child: const Text("delete msg "),
+            ),
+        ],
+        child: Bubble(
+          margin: const BubbleEdges.only(top: 10),
+          alignment: Alignment.topRight,
+          padding: const BubbleEdges.only(left: 15, right: 15),
+          nip: BubbleNip.rightTop,
+          color: ColorsManager.offWhite.withOpacity(.8),
+          child: msgBuilder(
+              context: context, msg: widget.msg as PrivateMessage, isMe: true),
+        ),
       );
     } else {
       return Bubble(
@@ -106,23 +140,27 @@ class _MessageBuilderState extends State<MessageBuilder> {
         else
           const SizedBox(),
         if (msg.image != null)
-          InstaImageViewer(
-            disposeLevel: DisposeLevel.high,
-            child: Image.network(
-              msg.image ?? '',
-              //fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const SizedBox(
-                  height: 100,
-                  child: Center(
-                    child: CupertinoActivityIndicator(),
-                  ),
-                );
-              },
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(Icons.error);
-              },
+          ConstrainedBox(
+            constraints: BoxConstraints(
+                maxHeight: 150.h(context), maxWidth: context.width / 1.3),
+            child: InstaImageViewer(
+              disposeLevel: DisposeLevel.high,
+              child: Image.network(
+                msg.image ?? '',
+                //fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const SizedBox(
+                    height: 100,
+                    child: Center(
+                      child: CupertinoActivityIndicator(),
+                    ),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.error);
+                },
+              ),
             ),
           )
         else
