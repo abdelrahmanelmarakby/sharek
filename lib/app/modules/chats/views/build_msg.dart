@@ -1,10 +1,8 @@
-// ignore_for_file: must_be_immutable, depend_on_referenced_packages
+// ignore_for_file: must_be_immutable, depend_on_referenced_packages, use_build_context_synchronously
 
 import 'dart:developer';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 
-import 'package:animate_do/animate_do.dart';
 import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:bubble/bubble.dart';
 import 'package:flutter/cupertino.dart';
