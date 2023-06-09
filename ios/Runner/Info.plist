@@ -32,12 +32,17 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This is required to pick images to add in posts , stories and in chats</string>
+	<string>This is required to pick images to add  in chats</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This is required to record videos to add in posts , stories and in chats</string>
+	<string>This is required to record videos to add in chats</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This is required to pick images to add in posts , stories and in chats</string>
-	
+	<string>This is required to pick images to add stories and in chats</string>
+	 <key>NSLocationAlwaysUsageDescription</key>
+    <string>This is required to share location in chat</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This is required to share location in chat</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>This is required to share location in chat</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
