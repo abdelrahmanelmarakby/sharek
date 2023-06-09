@@ -11,7 +11,7 @@ dependencies:
   app_settings: ^4.2.0
   appinio_video_player: ^1.2.1
   audio_waveforms: ^1.0.4
-  background_downloader: ^7.4.0
+  background_downloader: any
   bot_toast: ^4.0.3
   bubble: ^1.2.1
   cached_network_image: ^3.2.3

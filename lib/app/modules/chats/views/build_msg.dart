@@ -97,15 +97,15 @@ class _MessageBuilderState extends State<MessageBuilder> {
                     break;
 
                   case TaskStatus.canceled:
-                    print('Download was canceled');
+                    log('Download was canceled');
                     break;
 
                   case TaskStatus.paused:
-                    print('Download was paused');
+                    log('Download was paused');
                     break;
 
                   default:
-                    print('Download not successful');
+                    log('Download not successful');
                 }
               },
               trailingIcon: Iconsax.document_download,
@@ -136,18 +136,18 @@ class _MessageBuilderState extends State<MessageBuilder> {
                       break;
 
                     case TaskStatus.canceled:
-                      print('Download was canceled');
+                      log('Download was canceled');
                       break;
 
                     case TaskStatus.paused:
-                      print('Download was paused');
+                      log('Download was paused');
                       break;
 
                     default:
-                      print('Download not successful');
+                      log('Download not successful');
                   }
                 } catch (e) {
-                  print(e);
+                  log(e.toString());
                 }
               },
               trailingIcon: Iconsax.document_download,
