@@ -8,6 +8,7 @@ import 'package:sharek/app/modules/chats/views/build_msg.dart';
 import 'package:sharek/core/constants/theme/theme_export.dart';
 import 'package:sharek/core/extensions/widget.dart';
 import 'package:sharek/core/services/chat/private/private_chat.dart';
+import 'package:sharek/core/widgets/network_image.dart';
 
 import 'views/attachment.dart';
 
@@ -66,19 +67,20 @@ class ChatScreenX extends StatelessWidget {
         elevation: 0.0,
         title: Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Image.network(
-                hisImage,
-                height: 30,
-                width: 30,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(
-                    Iconsax.user,
-                    color: Colors.black,
-                  );
-                },
+            Container(
+              decoration: const BoxDecoration(
+                  color: ColorsManager.primary, shape: BoxShape.circle),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: AppCachedNetworkImage(
+                    imageUrl: hisImage,
+                    height: 40,
+                    width: 40,
+                    fit: BoxFit.cover,
+                    customErrorWidget: const Icon(
+                      Iconsax.user,
+                      color: Colors.white,
+                    )),
               ),
             ),
             const SizedBox(
@@ -88,9 +90,9 @@ class ChatScreenX extends StatelessWidget {
               child: Text(
                 hisName,
                 overflow: TextOverflow.fade,
-                style: StylesManager.medium(
+                style: StylesManager.semiBold(
                   color: Colors.black,
-                  fontSize: 12,
+                  fontSize: FontSize.large,
                 ),
               ),
             ),

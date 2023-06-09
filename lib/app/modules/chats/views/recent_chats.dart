@@ -111,20 +111,20 @@ class _RecentChatsState extends State<RecentChats> {
                 flex: 85,
                 child: Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(
-                          Routes.ANOTHER_USER_PROFILE,
-                          arguments: {
-                            "userId": int.parse(chatRoom.userA ?? "") ==
-                                    int.parse(widget.myId)
-                                ? int.parse(chatRoom.userB ?? "")
-                                : int.parse(chatRoom.userA ?? ""),
-                          },
-                        );
-                      },
-                      child: Expanded(
-                        flex: 35,
+                    Expanded(
+                      flex: 35,
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.toNamed(
+                            Routes.ANOTHER_USER_PROFILE,
+                            arguments: {
+                              "userId": int.parse(chatRoom.userA ?? "") ==
+                                      int.parse(widget.myId)
+                                  ? int.parse(chatRoom.userB ?? "")
+                                  : int.parse(chatRoom.userA ?? ""),
+                            },
+                          );
+                        },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
                           child: Container(
