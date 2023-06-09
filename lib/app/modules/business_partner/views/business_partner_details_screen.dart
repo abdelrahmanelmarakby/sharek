@@ -283,13 +283,9 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                 child: Stack(
                                   alignment: Alignment.bottomCenter,
                                   children: [
-                                    ListView.separated(
+                                    PageView.builder(
                                       itemCount: ads?.photos?.length ?? 0,
                                       scrollDirection: Axis.horizontal,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      separatorBuilder: (context, index) =>
-                                          const SizedBox(width: 10),
                                       itemBuilder: (context, index) {
                                         final image = ads?.photos?[index];
                                         return AppCachedNetworkImage(
@@ -388,7 +384,7 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                             fontWeight: FontWeights.semiBold,
                           ),
                           const SizedBox(height: 12),
-                          Text(ads?.description ?? ""),
+                          SelectableText(ads?.description ?? ""),
                           const SizedBox(height: 16),
                           Divider(
                             color: Colors.grey.withOpacity(.2),
@@ -418,10 +414,10 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 12),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
+                                      children: [
                                         Icon(
                                           Iconsax.call,
                                           color: Colors.white,
@@ -460,10 +456,10 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 11),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
+                                      children: [
                                         Icon(
                                           Iconsax.sms,
                                           color: ColorsManager.primary,

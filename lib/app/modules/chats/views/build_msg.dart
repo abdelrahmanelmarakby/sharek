@@ -1,10 +1,9 @@
 // ignore_for_file: must_be_immutable, depend_on_referenced_packages
 
 import 'dart:developer';
+import 'package:background_downloader/background_downloader.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 
-import 'package:animate_do/animate_do.dart';
 import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:bubble/bubble.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,7 +13,6 @@ import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:flutter_link_previewer/flutter_link_previewer.dart' hide Size;
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:image_downloader/image_downloader.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:sharek/core/constants/theme/sizes_manager.dart';
 import 'package:sharek/core/extensions/num.dart';
@@ -78,19 +76,80 @@ class _MessageBuilderState extends State<MessageBuilder> {
           if (widget.msg?.image != null)
             CupertinoContextMenuAction(
               onPressed: () async {
-                //You can download a single file
-                await ImageDownloader.downloadImage(
-                        "https://raw.githubusercontent.com/wiki/ko2ic/image_downloader/images/flutter.png")
-                    .whenComplete(
-                        () => BotToast.showText(text: "تم تحميل الملف"));
-                Navigator.pop(context);
+                /// define the download task (subset of parameters shown)
+                final task = DownloadTask(
+                    url: widget.msg?.image ?? "",
+                    requiresWiFi: false,
+                    retries: 5,
+                    allowPause: true,
+                    metaData: 'sharek video');
+
+// Start download, and wait for result. Show progress and status changes
+// while downloading
+                final result = await FileDownloader().download(
+                  task,
+                );
+
+// Act on the result
+                switch (result.status) {
+                  case TaskStatus.complete:
+                    BotToast.showText(text: "تم تحميل الصورة ");
+                    break;
+
+                  case TaskStatus.canceled:
+                    print('Download was canceled');
+                    break;
+
+                  case TaskStatus.paused:
+                    print('Download was paused');
+                    break;
+
+                  default:
+                    print('Download not successful');
+                }
               },
               trailingIcon: Iconsax.document_download,
               child: const Text("download image"),
             ),
           if (widget.msg?.video != null)
             CupertinoContextMenuAction(
-              onPressed: () {},
+              onPressed: () async {
+                /// define the download task (subset of parameters shown)
+                final task = DownloadTask(
+                    url: widget.msg?.video ?? "",
+                    requiresWiFi: false,
+                    retries: 5,
+                    allowPause: true,
+                    metaData: 'sharek video');
+
+// Start download, and wait for result. Show progress and status changes
+// while downloading
+                try {
+                  final result = await FileDownloader().download(
+                    task,
+                  );
+
+// Act on the result
+                  switch (result.status) {
+                    case TaskStatus.complete:
+                      BotToast.showText(text: "تم تحميل مقطع الفيديو");
+                      break;
+
+                    case TaskStatus.canceled:
+                      print('Download was canceled');
+                      break;
+
+                    case TaskStatus.paused:
+                      print('Download was paused');
+                      break;
+
+                    default:
+                      print('Download not successful');
+                  }
+                } catch (e) {
+                  print(e);
+                }
+              },
               trailingIcon: Iconsax.document_download,
               child: const Text("download video"),
             ),

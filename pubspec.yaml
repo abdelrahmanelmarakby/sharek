@@ -11,6 +11,7 @@ dependencies:
   app_settings: ^4.2.0
   appinio_video_player: ^1.2.1
   audio_waveforms: ^1.0.4
+  background_downloader: ^7.4.0
   bot_toast: ^4.0.3
   bubble: ^1.2.1
   cached_network_image: ^3.2.3
@@ -27,9 +28,9 @@ dependencies:
   firebase_dynamic_links: ^5.0.6
   firebase_messaging: ^14.4.1
   firebase_storage: ^11.0.4
+
   flutter:
     sdk: flutter
-  flutter_file_downloader: ^1.1.2
   flutter_link_previewer: ^3.2.0
   flutter_local_notifications: ^8.2.0
   flutter_localizations:
@@ -41,7 +42,6 @@ dependencies:
   get: 4.6.5
   get_storage: ^2.1.1
   iconsax: ^0.0.8
-  image_downloader: ^0.31.0
   image_picker: ^0.8.7+1
   image_pickers: ^2.0.1
   insta_image_viewer: ^1.0.2

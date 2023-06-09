@@ -15,9 +15,8 @@ class AdsPhotosListView extends StatelessWidget {
         title: Text('الصور (${photos.length})'),
         centerTitle: true,
       ),
-      body: ListView.separated(
+      body: PageView.builder(
         itemCount: photos.length,
-        separatorBuilder: (context, index) => const SizedBox(height: 12),
         itemBuilder: (context, index) {
           var image = photos[index];
           return AppCachedNetworkImage(

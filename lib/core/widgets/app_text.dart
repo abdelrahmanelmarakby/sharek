@@ -30,9 +30,8 @@ class AppText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return SelectableText(
       text,
-      maxLines: maxLines,
       textAlign: centerText ? TextAlign.center : TextAlign.start,
       style: Theme.of(context).textTheme.titleMedium!.copyWith(
             color: color ?? Colors.white,
