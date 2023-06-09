@@ -71,7 +71,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
                 Navigator.pop(context);
               },
               trailingIcon: Iconsax.copy,
-              child: const Text("copy "),
+              child: const Text("نسخ "),
             ),
           if (widget.msg?.image != null)
             CupertinoContextMenuAction(
@@ -109,7 +109,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
                 }
               },
               trailingIcon: Iconsax.document_download,
-              child: const Text("download image"),
+              child: const Text("تحميل الصورة"),
             ),
           if (widget.msg?.video != null)
             CupertinoContextMenuAction(
@@ -151,14 +151,14 @@ class _MessageBuilderState extends State<MessageBuilder> {
                 }
               },
               trailingIcon: Iconsax.document_download,
-              child: const Text("download video"),
+              child: const Text("تحميل الفيديو"),
             ),
           if (widget.isMe)
             CupertinoContextMenuAction(
               onPressed: () {},
               isDestructiveAction: true,
               trailingIcon: CupertinoIcons.delete,
-              child: const Text("delete msg "),
+              child: const Text("حذف الرسالة "),
             ),
         ],
         child: Material(
