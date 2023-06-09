@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:sharek/app/data/models/private_message_model.dart';
 import 'package:sharek/app/modules/chats/views/build_msg.dart';
 import 'package:sharek/core/constants/theme/theme_export.dart';
+import 'package:sharek/core/extensions/widget.dart';
 import 'package:sharek/core/services/chat/private/private_chat.dart';
 
 import 'views/attachment.dart';
@@ -58,7 +59,6 @@ class ChatScreenX extends StatelessWidget {
   Widget build(BuildContext context) {
     final getFluffs = Provider.of<List<PrivateMessage>>(context);
     return Scaffold(
-      backgroundColor: const Color(0xFFCAF0F8).withOpacity(.3),
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
@@ -145,7 +145,7 @@ class ChatScreenX extends StatelessWidget {
                         MessageBuilder(
                           msg: msg,
                           isMe: isMe,
-                        ),
+                        ).horizontalScreenPadding,
                       ],
                     );
                   },

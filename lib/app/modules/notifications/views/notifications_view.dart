@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:sharek/app/routes/app_pages.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../../core/constants/theme/theme_export.dart';
@@ -17,7 +20,7 @@ class NotificationsView extends GetView<NotificationsController> {
         title: Text(
           'التنبيهات',
           style: StylesManager.semiBold(
-            color: ColorsManager.primary,
+            color: ColorsManager.black,
             fontSize: FontSize.xlarge,
           ),
         ),
@@ -32,6 +35,14 @@ class NotificationsView extends GetView<NotificationsController> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final notification = snapshot.data?.data;
+              if (notification?.isEmpty ?? false) {
+                return Center(
+                  child: Text(
+                    "لا توجد اشعارات",
+                    style: StylesManager.medium(fontSize: FontSize.xXlarge),
+                  ),
+                );
+              }
               return ListView.builder(
                 itemCount: notification?.length ?? 0,
                 itemBuilder: (context, index) {
@@ -76,10 +87,21 @@ class NotificationsView extends GetView<NotificationsController> {
                         leading: SizedBox(
                           height: 50,
                           width: 50,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: AppCachedNetworkImage(
-                              imageUrl: item?.avatar ?? "",
+                          child: GestureDetector(
+                            onTap: () {
+                              //   Get.toNamed(
+                              //     Routes.ANOTHER_USER_PROFILE,
+                              //     //FIXME :: ADD USER ID HERE
+                              //     arguments: {
+                              //       "userId": Random().nextInt(10),
+                              //     },
+                              //   );
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: AppCachedNetworkImage(
+                                imageUrl: item?.avatar ?? "",
+                              ),
                             ),
                           ),
                         ),

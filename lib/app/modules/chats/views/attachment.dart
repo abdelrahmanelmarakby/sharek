@@ -15,7 +15,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sharek/app/data/models/private_message_model.dart';
+import 'package:sharek/core/constants/theme/sizes_manager.dart';
 import 'package:sharek/core/constants/theme/theme_export.dart';
+import 'package:sharek/core/extensions/num.dart';
 import 'package:sharek/core/widgets/color_sonar_animation.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 import '../../../../../core/services/chat/private/private_chat.dart';
@@ -47,8 +49,6 @@ class Attachment {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
       //height: 100.0,
-
-      // color: MyColors().mainColor,
       child: Row(
         children: <Widget>[
           Expanded(
@@ -65,6 +65,8 @@ class Attachment {
                 fluff = value;
               },
               decoration: InputDecoration(
+                fillColor: ColorsManager.offWhite,
+                filled: true,
                 suffixIcon: IconButton(
                   icon: const Icon(Iconsax.attach_square),
                   iconSize: 25.0,
@@ -83,13 +85,19 @@ class Attachment {
               ),
             ),
           ),
-          IconButton(
-            icon: const Icon(Iconsax.send_14),
-            iconSize: 25.0,
-            color: ColorsManager.primary,
-            onPressed: () {
-              fluff.isNotEmpty ? postMsg(fluff: fluff) : null;
-            },
+          Sizes.size10.w(context).widthSizedBox,
+          Container(
+            decoration: const BoxDecoration(
+                color: ColorsManager.primary, shape: BoxShape.circle),
+            child: IconButton(
+              icon: const RotatedBox(
+                  quarterTurns: 2, child: Icon(Iconsax.send_14)),
+              iconSize: 25.0,
+              color: ColorsManager.white,
+              onPressed: () {
+                fluff.isNotEmpty ? postMsg(fluff: fluff) : null;
+              },
+            ),
           ),
           // AudioRecorderWidget(
           //   onRecordComplete: (path) {
