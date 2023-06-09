@@ -1,7 +1,10 @@
 // ignore_for_file: must_be_immutable, depend_on_referenced_packages
 
 import 'dart:developer';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:bubble/bubble.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,8 +14,11 @@ import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:flutter_link_previewer/flutter_link_previewer.dart' hide Size;
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:image_downloader/image_downloader.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
+import 'package:sharek/core/constants/theme/sizes_manager.dart';
 import 'package:sharek/core/extensions/num.dart';
+import 'package:sharek/core/widgets/network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:sharek/app/data/models/private_message_model.dart';
@@ -71,9 +77,22 @@ class _MessageBuilderState extends State<MessageBuilder> {
             ),
           if (widget.msg?.image != null)
             CupertinoContextMenuAction(
+              onPressed: () async {
+                //You can download a single file
+                await ImageDownloader.downloadImage(
+                        "https://raw.githubusercontent.com/wiki/ko2ic/image_downloader/images/flutter.png")
+                    .whenComplete(
+                        () => BotToast.showText(text: "تم تحميل الملف"));
+                Navigator.pop(context);
+              },
+              trailingIcon: Iconsax.document_download,
+              child: const Text("download image"),
+            ),
+          if (widget.msg?.video != null)
+            CupertinoContextMenuAction(
               onPressed: () {},
-              trailingIcon: Iconsax.copy,
-              child: const Text("download "),
+              trailingIcon: Iconsax.document_download,
+              child: const Text("download video"),
             ),
           if (widget.isMe)
             CupertinoContextMenuAction(
@@ -83,14 +102,19 @@ class _MessageBuilderState extends State<MessageBuilder> {
               child: const Text("delete msg "),
             ),
         ],
-        child: Bubble(
-          margin: const BubbleEdges.only(top: 10),
-          alignment: Alignment.topRight,
-          padding: const BubbleEdges.only(left: 15, right: 15),
-          nip: BubbleNip.rightTop,
-          color: ColorsManager.offWhite.withOpacity(.8),
-          child: msgBuilder(
-              context: context, msg: widget.msg as PrivateMessage, isMe: true),
+        child: Material(
+          color: Colors.transparent,
+          child: Bubble(
+            margin: const BubbleEdges.only(top: 10),
+            alignment: Alignment.topRight,
+            padding: const BubbleEdges.only(left: 15, right: 15),
+            nip: BubbleNip.rightTop,
+            color: ColorsManager.offWhite.withOpacity(.8),
+            child: msgBuilder(
+                context: context,
+                msg: widget.msg as PrivateMessage,
+                isMe: true),
+          ),
         ),
       );
     } else {
@@ -145,29 +169,20 @@ class _MessageBuilderState extends State<MessageBuilder> {
                 maxHeight: 150.h(context), maxWidth: context.width / 1.3),
             child: InstaImageViewer(
               disposeLevel: DisposeLevel.high,
-              child: Image.network(
-                msg.image ?? '',
-                //fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return const SizedBox(
-                    height: 100,
-                    child: Center(
-                      child: CupertinoActivityIndicator(),
-                    ),
-                  );
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.error);
-                },
+              child: AppCachedNetworkImage(
+                imageUrl: msg.image ?? '',
               ),
             ),
           )
         else
           const SizedBox(),
         if (msg.video != null)
-          CustomVideoPlayer(
-              customVideoPlayerController: _customVideoPlayerController)
+          ConstrainedBox(
+            constraints: BoxConstraints(
+                maxHeight: 150.h(context), maxWidth: context.width / 1.3),
+            child: CustomVideoPlayer(
+                customVideoPlayerController: _customVideoPlayerController),
+          )
         else
           const SizedBox(),
         Row(
@@ -175,21 +190,22 @@ class _MessageBuilderState extends State<MessageBuilder> {
           children: [
             isMe == true
                 ? const Icon(
-                    Icons.check,
+                    Icons.done_all_rounded,
                     //    size: Dimensions.getDesirableWidth(4),
-                    color: ColorsManager.accent,
+                    color: ColorsManager.success,
+                    size: Sizes.size18,
                   )
                 : const SizedBox(),
             const SizedBox(
-              width: 2,
+              width: 6,
             ),
             Text(
               '$hour:${msg.time?.minute} $amPm',
               style: const TextStyle(
                   //   fontSize: Dimensions.getDesirableWidth(3),
-                  color: ColorsManager.accent,
+                  color: ColorsManager.black,
                   fontSize: 11,
-                  fontWeight: FontWeight.w600),
+                  fontWeight: FontWeight.w400),
             ),
           ],
         ),
@@ -259,7 +275,7 @@ class _LinkPreviewTextState extends State<LinkPreviewText> {
       return RichText(
         text: TextSpan(
           text: widget.url,
-          style: StylesManager.regular(
+          style: StylesManager.medium(
             color: Colors.black,
             fontSize: FontSize.medium,
           ),

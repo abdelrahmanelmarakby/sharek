@@ -5,11 +5,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sharek/app/routes/app_pages.dart';
 import 'package:sharek/core/extensions/num.dart';
 import 'package:provider/provider.dart';
 import 'package:sharek/app/data/models/chat_model.dart';
 import 'package:sharek/core/constants/theme/sizes_manager.dart';
 import 'package:sharek/core/constants/theme/theme_export.dart';
+import 'package:sharek/core/extensions/widget.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import '../chat_screen.dart';
 
@@ -32,12 +34,12 @@ class _RecentChatsState extends State<RecentChats> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        centerTitle: true,
+        centerTitle: false,
         title: const Text(
           'الرسائل',
           style: TextStyle(
             fontSize: FontSize.xlarge,
-            color: ColorsManager.primary,
+            color: ColorsManager.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -48,7 +50,16 @@ class _RecentChatsState extends State<RecentChats> {
         itemBuilder: (context, index) {
           final ChatRoom chatRoom = getRecentChat[index];
 
-          return rowChat(context, chatRoom);
+          return Column(
+            children: [
+              rowChat(context, chatRoom),
+              const Divider(
+                height: .5,
+                thickness: .5,
+                color: ColorsManager.lightGrey,
+              ),
+            ],
+          ).horizontalScreenPadding;
         },
       ),
     );
@@ -59,143 +70,161 @@ class _RecentChatsState extends State<RecentChats> {
   }*/
 
   Widget rowChat(BuildContext context, ChatRoom chatRoom) {
-    return OpenContainer(
-      openBuilder: (context, action) => ChatScreen(
-        hisId: chatRoom.userA.toString() == widget.myId.toString()
-            ? chatRoom.userB.toString()
-            : chatRoom.userA.toString(),
-        myId: widget.myId,
-        myName: chatRoom.userA.toString() != widget.myId.toString()
-            ? chatRoom.bName.toString()
-            : chatRoom.aName.toString(),
-        myImage: chatRoom.userA.toString() != widget.myId.toString()
-            ? chatRoom.bImage.toString()
-            : chatRoom.aImage.toString(),
-        hisName: chatRoom.userA.toString() == widget.myId.toString()
-            ? chatRoom.bName.toString()
-            : chatRoom.aName.toString(),
-        hisImage: chatRoom.userA.toString() == widget.myId.toString()
-            ? chatRoom.bImage.toString()
-            : chatRoom.aImage.toString(),
-      ),
-      closedBuilder: (context, action) => Container(
-          margin: const EdgeInsets.only(top: 2, bottom: 4, right: 8, left: 8),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 12,
-          ),
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(.1),
-                  blurRadius: 10,
-                  spreadRadius: 2,
-                  offset: const Offset(5, 5),
-                )
-              ],
-              color: chatRoom.lastSender != widget.myId
-                  ? const Color.fromARGB(255, 219, 225, 252)
-                  : const Color.fromARGB(255, 255, 255, 255),
-              borderRadius: BorderRadius.circular(Sizes.size12)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: CachedNetworkImage(
-                        imageUrl: chatRoom.userA == widget.myId
-                            ? chatRoom.bImage.toString()
-                            : chatRoom.aImage.toString(),
-                        fit: BoxFit.cover,
-                        height: 48.h(context),
-                        width: 48.h(context),
-                        placeholder: (context, url) =>
-                            const CupertinoActivityIndicator(
-                                color: ColorsManager.primary),
-                        errorWidget: (context, url, error) =>
-                            const CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: Icon(
-                                Icons.person,
-                                size: 50,
-                                color: ColorsManager.primary,
-                              ),
-                            )),
-                  ),
-                  Sizes.size12.h(context).heightSizedBox,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                          //    width: Dimensions.getDesirableWidth(45.0),
-                          child: Text(
-                        chatRoom.userA == widget.myId.toString()
-                            ? chatRoom.bName.toString()
-                            : chatRoom.aName.toString(),
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontSize: FontSize.xlarge,
-                            color: ColorsManager.primary,
-                            fontWeight: FontWeight.bold),
-                      )),
-                      SizedBox(
-                        height: context.width * (.1),
-                      ),
-                      SizedBox(
-                          width: context.width * .35,
-                          child: Text('${chatRoom.lastMsg}',
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  fontSize: FontSize.medium,
-                                  color: ColorsManager.darkGrey,
-                                  //           fontSize: Dimensions.getDesirableWidth(4),
-                                  //          color: MyColors().textColor,
-                                  fontWeight: FontWeight.w500))),
-                    ],
-                  )
-                ],
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+    return SizedBox(
+      height: context.height / 9,
+      child: OpenContainer(
+        closedElevation: 0,
+        transitionType: ContainerTransitionType.fadeThrough,
+        openBuilder: (context, action) => ChatScreen(
+          hisId: chatRoom.userA.toString() == widget.myId.toString()
+              ? chatRoom.userB.toString()
+              : chatRoom.userA.toString(),
+          myId: widget.myId,
+          myName: chatRoom.userA.toString() != widget.myId.toString()
+              ? chatRoom.bName.toString()
+              : chatRoom.aName.toString(),
+          myImage: chatRoom.userA.toString() != widget.myId.toString()
+              ? chatRoom.bImage.toString()
+              : chatRoom.aImage.toString(),
+          hisName: chatRoom.userA.toString() == widget.myId.toString()
+              ? chatRoom.bName.toString()
+              : chatRoom.aName.toString(),
+          hisImage: chatRoom.userA.toString() == widget.myId.toString()
+              ? chatRoom.bImage.toString()
+              : chatRoom.aImage.toString(),
+        ),
+        closedBuilder: (context, action) => Container(
+            margin: const EdgeInsets.only(top: 2, bottom: 4, right: 8, left: 8),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 12,
+            ),
+            decoration: BoxDecoration(
+                color: chatRoom.lastSender != widget.myId
+                    ? const Color.fromARGB(255, 219, 225, 252)
+                    : const Color.fromARGB(255, 255, 255, 255),
+                borderRadius: BorderRadius.circular(Sizes.size12)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
                   children: [
-                    SizedBox(
-                      width: context.width * .1,
-                      height: context.height * .02,
-                      //  height: Dimensions.getDesirableHeight(4.0),
-                      //  width: Dimensions.getDesirableWidth(12.0),
-                      child: chatRoom.lastSender != widget.myId
-                          ? Container(
-                              alignment: Alignment.centerLeft,
-                              child: const Text('رسالة جديدة!',
-                                  style: TextStyle(
-                                      // fontSize: Dimensions.getDesirableWidth(4),
-                                      color: ColorsManager.selection,
-                                      fontWeight: FontWeight.bold)))
-                          : const Text(''),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(
+                          Routes.ANOTHER_USER_PROFILE,
+                          arguments: {
+                            "userId": int.parse(chatRoom.userA ?? "") ==
+                                    int.parse(widget.myId)
+                                ? int.parse(chatRoom.userB ?? "")
+                                : int.parse(chatRoom.userA ?? ""),
+                          },
+                        );
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: ColorsManager.primary,
+                              )),
+                          child: CachedNetworkImage(
+                              imageUrl: chatRoom.userA == widget.myId
+                                  ? chatRoom.bImage.toString()
+                                  : chatRoom.aImage.toString(),
+                              fit: BoxFit.cover,
+                              height: 48.h(context),
+                              width: 48.h(context),
+                              placeholder: (context, url) =>
+                                  const CupertinoActivityIndicator(
+                                      color: ColorsManager.primary),
+                              errorWidget: (context, url, error) =>
+                                  const CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    child: Icon(
+                                      Icons.person,
+                                      size: 50,
+                                      color: ColorsManager.primary,
+                                    ),
+                                  )),
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      height: context.height * .05,
-                    ),
-                    Text(
-                        timeago.format(
-                            DateTime.now().subtract(DateTime.now()
-                                .difference(chatRoom.lastChat!.toUtc())),
-                            locale: 'ar'),
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontSize: FontSize.small,
-                            color: ColorsManager.darkGrey,
-                            //      fontSize: Dimensions.getDesirableWidth(4),
-                            //    color: MyColors().textColor,
-                            fontWeight: FontWeight.bold)),
+                    Sizes.size12.w(context).widthSizedBox,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                            //    width: Dimensions.getDesirableWidth(45.0),
+                            child: Text(
+                          chatRoom.userA == widget.myId.toString()
+                              ? chatRoom.bName.toString()
+                              : chatRoom.aName.toString(),
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontSize: FontSize.xlarge,
+                              color: ColorsManager.black,
+                              fontWeight: FontWeight.bold),
+                        )),
+                        const Spacer(),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.done_all,
+                              size: Sizes.size18,
+                              color: ColorsManager.veryDarkGrey,
+                            ),
+                            Sizes.size10.w(context).widthSizedBox,
+                            Text('${chatRoom.lastMsg}',
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: FontSize.large,
+                                    color: ColorsManager.veryDarkGrey,
+
+                                    //           fontSize: Dimensions.getDesirableWidth(4),
+                                    //          color: MyColors().textColor,
+                                    fontWeight: FontWeight.w500)),
+                          ],
+                        ),
+                      ],
+                    )
                   ],
                 ),
-              )
-            ],
-          )),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        child: chatRoom.lastSender != widget.myId
+                            ? Container(
+                                alignment: Alignment.centerLeft,
+                                child: const Text('رسالة جديدة!',
+                                    style: TextStyle(
+                                        // fontSize: Dimensions.getDesirableWidth(4),
+                                        color: ColorsManager.selection,
+                                        fontWeight: FontWeight.bold)))
+                            : const Text(''),
+                      ),
+                      const Spacer(),
+                      Text(
+                          timeago.format(
+                              DateTime.now().subtract(DateTime.now()
+                                  .difference(chatRoom.lastChat!.toUtc())),
+                              locale: 'ar'),
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontSize: FontSize.small,
+                              color: ColorsManager.darkGrey,
+                              //      fontSize: Dimensions.getDesirableWidth(4),
+                              //    color: MyColors().textColor,
+                              fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                )
+              ],
+            )),
+      ),
     );
   }
 }

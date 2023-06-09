@@ -39,7 +39,7 @@ class OtherServicePartnerController extends GetxController {
     required String comment,
   }) async {
     try {
-      BotToast.showLoading();
+      BotToast.showLoading(clickClose: true);
       SystemChannels.textInput.invokeMethod('TextInput.hide');
       final res = await OtherServicesPartenerAPIS.createOtherComment(
         id: id,
