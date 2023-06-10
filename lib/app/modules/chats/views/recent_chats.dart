@@ -164,18 +164,15 @@ class _RecentChatsState extends State<RecentChats> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            //    width: Dimensions.getDesirableWidth(45.0),
-                            child: Text(
-                              chatRoom.userA == widget.myId.toString()
-                                  ? chatRoom.bName.toString()
-                                  : chatRoom.aName.toString(),
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontSize: FontSize.xlarge,
-                                color: ColorsManager.black,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          Text(
+                            chatRoom.userA == widget.myId.toString()
+                                ? chatRoom.bName.toString()
+                                : chatRoom.aName.toString(),
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: FontSize.xlarge,
+                              color: ColorsManager.black,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           Row(
