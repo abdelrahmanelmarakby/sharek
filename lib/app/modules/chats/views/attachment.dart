@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:audio_waveforms/audio_waveforms.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -352,21 +353,35 @@ class Attachment {
   }
 
   Future sendMyLocationToStorage(BuildContext context) async {
-    //request permission
-    await [
-      Permission.location,
-      Permission.locationWhenInUse,
-      Permission.locationAlways
-    ].request();
-    //get current location
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best);
-    final String lat = position.latitude.toString();
-    final String lng = position.longitude.toString();
-    final String location = ('$lat,$lng');
-    postMsg(
-        fluff:
-            'https://www.google.com/maps/search/?api=1&query=$location&zoom=18');
+    try {
+      final permission = await Geolocator.checkPermission();
+      switch (permission) {
+        case LocationPermission.denied:
+          await Geolocator.requestPermission();
+          break;
+
+        case LocationPermission.deniedForever:
+          await Geolocator.requestPermission();
+          break;
+        case LocationPermission.unableToDetermine:
+          await Geolocator.requestPermission();
+          break;
+        default:
+          break;
+      }
+      //get current location
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best);
+      final String lat = position.latitude.toString();
+      final String lng = position.longitude.toString();
+      final String location = ('$lat,$lng');
+      postMsg(
+          fluff:
+              'https://www.google.com/maps/search/?api=1&query=$location&zoom=18');
+    } catch (e) {
+      Get.log(e.toString());
+      BotToast.showText(text: "تعذر مشاركة الموقع");
+    }
   }
 
   //image + صورة

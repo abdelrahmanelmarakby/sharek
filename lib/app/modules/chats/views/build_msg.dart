@@ -320,11 +320,11 @@ class _LinkPreviewTextState extends State<LinkPreviewText> {
         text: widget.url,
         textStyle: StylesManager.regular(
           color: Colors.white,
-          fontSize: 12,
+          fontSize: FontSize.medium,
         ),
         linkStyle: StylesManager.regular(
           color: Colors.blue,
-          fontSize: 12,
+          fontSize: FontSize.medium,
         ),
         openOnPreviewImageTap: true,
         openOnPreviewTitleTap: true,
