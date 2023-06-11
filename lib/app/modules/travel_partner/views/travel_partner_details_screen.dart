@@ -161,6 +161,11 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                     ),
                                   );
                                 }
+                                if (val == "/delete") {
+                                  controller.deleteAds(
+                                    id: ads?.advertisementId ?? 0,
+                                  );
+                                }
                               },
                               itemBuilder: (BuildContext context) {
                                 return isUserAds
@@ -179,7 +184,7 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                           ),
                                         ),
                                         PopupMenuItem(
-                                          value: "/report",
+                                          value: "/edit",
                                           child: Row(
                                             children: [
                                               const Icon(
@@ -194,7 +199,7 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                           ),
                                         ),
                                         PopupMenuItem(
-                                          value: "/report",
+                                          value: "/delete",
                                           child: Row(
                                             children: [
                                               const Icon(

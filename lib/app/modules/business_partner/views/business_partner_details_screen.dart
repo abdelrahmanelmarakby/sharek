@@ -163,6 +163,9 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                     ),
                                   );
                                 }
+                                if (val == "/delete") {
+                                  controller.deleteAds(id: adId);
+                                }
                               },
                               itemBuilder: (BuildContext context) {
                                 return isUserAds
@@ -181,7 +184,7 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                           ),
                                         ),
                                         PopupMenuItem(
-                                          value: "/report",
+                                          value: "/edit",
                                           child: Row(
                                             children: [
                                               const Icon(
@@ -196,7 +199,7 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                           ),
                                         ),
                                         PopupMenuItem(
-                                          value: "/report",
+                                          value: "/delete",
                                           child: Row(
                                             children: [
                                               const Icon(

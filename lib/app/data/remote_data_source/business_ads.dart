@@ -203,4 +203,27 @@ class BusinessPartnerAPI {
     );
     return data;
   }
+
+  static Future<MainModel?> deleteBusinessAdById(int id) async {
+    final request = NetworkRequest(
+      type: NetworkRequestType.DELETE,
+      path: "${APIKeys.businessAds}/$id",
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
+      data: const NetworkRequestBody.empty(),
+    );
+    final response = await networkService.execute(
+        request, (json) => MainModel.fromJson(json));
+    final data = response.maybeWhen(
+      ok: (data) {
+        return data;
+      },
+      orElse: () {},
+    );
+    return data;
+  }
 }
