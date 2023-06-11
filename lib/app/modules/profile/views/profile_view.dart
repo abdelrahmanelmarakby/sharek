@@ -10,6 +10,7 @@ import 'package:sharek/core/constants/theme/font_manager.dart';
 import 'package:sharek/core/extensions/export.dart';
 import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/widgets/app_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/constants/theme/sizes_manager.dart';
 import '../../../data/models/profile_model.dart';
@@ -60,8 +61,8 @@ class ProfileView extends GetView<ProfileController> {
                           children: [
                             AppText(
                               "إعدادت الحساب",
-                              fontSize: Sizes.size14.h(context),
-                              fontWeight: FontWeights.medium,
+                              fontSize: Sizes.size16.h(context),
+                              fontWeight: FontWeights.semiBold,
                               color: ColorsManager.primary,
                             ),
                             Sizes.size8.h(context).heightSizedBox,
@@ -123,16 +124,35 @@ class ProfileView extends GetView<ProfileController> {
                               fontWeight: FontWeights.medium,
                               color: ColorsManager.primary,
                             ),
-                            const ProfileListTile(
+                            ProfileListTile(
                               title: "تواصل معنا",
+                              onTap: () {
+                                launchUrl(
+                                  Uri.parse("https://shreak.net"),
+                                  mode: LaunchMode.externalApplication,
+                                );
+                              },
                             ),
                             Sizes.size4.h(context).heightSizedBox,
-                            const ProfileListTile(
+                            ProfileListTile(
                               title: "معلومات عنا",
+                              onTap: () {
+                                launchUrl(
+                                  Uri.parse("https://shreak.net"),
+                                  mode: LaunchMode.externalApplication,
+                                );
+                              },
                             ),
                             Sizes.size4.h(context).heightSizedBox,
-                            const ProfileListTile(
+                            ProfileListTile(
                               title: "الأحكام والشروط",
+                              onTap: () {
+                                launchUrl(
+                                  Uri.parse(
+                                      "https://shreak.net/privacy_policy"),
+                                  mode: LaunchMode.externalApplication,
+                                );
+                              },
                             ),
                             Sizes.size12.h(context).heightSizedBox,
                             GestureDetector(

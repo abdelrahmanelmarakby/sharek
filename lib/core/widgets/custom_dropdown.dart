@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sharek/core/extensions/num.dart';
 import 'package:sharek/core/widgets/app_text.dart';
 
 import '../constants/theme/theme_export.dart';
@@ -13,7 +14,7 @@ class AppDropDown extends StatelessWidget {
     required this.bottomSheet,
   });
   final Widget? icon;
-  
+
   final String title;
   final bool center;
 
@@ -42,11 +43,12 @@ class AppDropDown extends StatelessWidget {
         horizontalTitleGap: 10.0,
         minLeadingWidth: 0,
         leading: icon,
-        title: AppText(
+        title: Text(
           title,
-          centerText: center,
-          fontSize: 16,
-          color: ColorsManager.black,
+          style: StylesManager.regular(
+            color: ColorsManager.charcoal,
+            fontSize: FontSize.medium.h(context),
+          ),
         ),
         trailing: icon != null
             ? const Icon(
