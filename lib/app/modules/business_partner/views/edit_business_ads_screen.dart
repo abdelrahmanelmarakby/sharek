@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,24 +13,39 @@ import '../../../../core/extensions/validator.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/progress_button.dart';
+import '../../../data/models/business_ad_model.dart';
 import '../../location_getter_widgets/controllers/location_getter_widgets_controller.dart';
 import '../../location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../controllers/business_partner_controller.dart';
 
-class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
-  const AddBusinessPartnerAdsScreen({Key? key}) : super(key: key);
-
+class EditBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
+  const EditBusinessPartnerAdsScreen({
+    Key? key,
+    this.ads,
+  }) : super(key: key);
+  final Data? ads;
   @override
   Widget build(BuildContext context) {
+    controller.editTitlePartnersCtr.text = ads?.title ?? "";
+    controller.editDescriptionPartnersCtr.text = ads?.description ?? "";
+    controller.editAdPhoneCtr.text =
+        ads?.phone != null ? ads?.phone.toString() ?? "" : "";
+    controller.editPhotos = ads?.photos?.map((e) => File(e)).toList();
+    log(controller.editPhotos?.length.toString() ?? "0");
+    Get.find<LocationGetterWidgetsController>().regionName =
+        ads?.location ?? "";
+    Get.find<LocationGetterWidgetsController>().cityName =
+        ads?.neighborhood ?? "";
+    Get.find<LocationGetterWidgetsController>().districtName = null;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('إضافة إعلان'),
+        title: const Text('تعديل إعلان'),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
-            key: controller.createAdsFormKey,
+            key: controller.editAdsFormKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -68,7 +86,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                   name: "",
                   hint: "عنوان الطلب",
                   borderRadius: 8,
-                  controller: controller.createTitlePartnersCtr,
+                  controller: controller.editTitlePartnersCtr,
                   validate: Validator.validateEmpty,
                   prefixIcon: const Icon(
                     Iconsax.document,
@@ -80,7 +98,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                   name: "",
                   hint: "تفاصيل الطلب",
                   borderRadius: 8,
-                  controller: controller.createDescriptionPartnersCtr,
+                  controller: controller.editDescriptionPartnersCtr,
                   maxLines: 4,
                   validate: Validator.validateEmpty,
                   prefixIcon: Padding(
@@ -98,7 +116,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 const SizedBox(height: 12),
                 GestureDetector(
                   onTap: () {
-                    controller.pickCreateAdsImages();
+                    controller.pickeditAdsImages();
                   },
                   child: DottedBorder(
                     color: const Color(0xFFE4E4E5),
@@ -137,7 +155,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                   borderRadius: 8,
                   type: TextInputType.phone,
                   validate: Validator.validateMobileNotRequared,
-                  controller: controller.createAdPhoneCtr,
+                  controller: controller.editAdPhoneCtr,
                   prefixIcon: const Icon(
                     Iconsax.call,
                     color: Colors.grey,
@@ -149,31 +167,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                     width: context.width,
                     text: "إضافة إعلان جديد",
                     onPressed: (animationController) {
-                      if (controller.createAdsFormKey.currentState!
-                          .validate()) {
-                        controller.createTripAds(
-                          type: 1,
-                          servicesTypeid: 1,
-                          animationController: animationController,
-                          location: Get.find<LocationGetterWidgetsController>()
-                              .regionName,
-                          neighborhood:
-                              Get.find<LocationGetterWidgetsController>()
-                                  .cityName,
-                          title: controller.createTitlePartnersCtr.text == ""
-                              ? null
-                              : controller.createTitlePartnersCtr.text,
-                          description:
-                              controller.createDescriptionPartnersCtr.text == ""
-                                  ? null
-                                  : controller
-                                      .createDescriptionPartnersCtr.text,
-                          phone: controller.createAdPhoneCtr.text == ""
-                              ? null
-                              : controller.createAdPhoneCtr.text,
-                          photos: controller.createPhotos,
-                        );
-                      }
+                      if (controller.editAdsFormKey.currentState!.validate()) {}
                     },
                   ),
                 ),

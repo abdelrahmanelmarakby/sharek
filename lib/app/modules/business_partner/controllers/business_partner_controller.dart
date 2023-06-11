@@ -34,15 +34,6 @@ class BusinessPartnerController extends GetxController {
 
   List<File>? createPhotos;
 //========================================================================
-
-  void pickCreateTripAdsImages() async {
-    List<XFile> pickedImages = await ImagePicker().pickMultiImage();
-    if (pickedImages.isEmpty) return;
-    createTripAdsPhotos = pickedImages.map((e) => File(e.path)).toList();
-    update();
-  }
-
-//========================================================================
   void pickCreateAdsImages() async {
     List<XFile> pickedImages = await ImagePicker().pickMultiImage();
     if (pickedImages.isEmpty) return;
@@ -60,6 +51,7 @@ class BusinessPartnerController extends GetxController {
     String? phone,
     String? description,
     List<File>? photos,
+    int? type,
   }) async {
     animationController.forward();
     try {
@@ -68,6 +60,7 @@ class BusinessPartnerController extends GetxController {
         neighborhood: neighborhood,
         phone: phone,
         photos: photos,
+        type: type,
         servicesTypeid: servicesTypeid,
         location: location,
         title: title,
@@ -270,5 +263,20 @@ class BusinessPartnerController extends GetxController {
       BotToast.closeAllLoading();
       log(e.toString());
     }
+  }
+
+  List<File>? editTripAdsPhotos;
+  GlobalKey<FormState> editAdsFormKey = GlobalKey<FormState>();
+  TextEditingController editTitlePartnersCtr = TextEditingController();
+  TextEditingController editDescriptionPartnersCtr = TextEditingController();
+  TextEditingController editAdPhoneCtr = TextEditingController();
+
+  List<File>? editPhotos;
+//========================================================================
+  void pickeditAdsImages() async {
+    List<XFile> pickedImages = await ImagePicker().pickMultiImage();
+    if (pickedImages.isEmpty) return;
+    createPhotos = pickedImages.map((e) => File(e.path)).toList();
+    update();
   }
 }

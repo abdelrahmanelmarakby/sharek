@@ -54,6 +54,27 @@ class BusinessPartnerAPI {
         return data;
       },
       orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
     );
     return data;
   }
@@ -88,7 +109,30 @@ class BusinessPartnerAPI {
         return data;
       },
       noAuth: (data) => Get.toNamed(Routes.AUTH),
-      orElse: () {},
+      orElse: () {
+        return;
+      },
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
     );
     return data;
   }
@@ -156,6 +200,7 @@ class BusinessPartnerAPI {
 
   static Future<MainModel?> createBusinessAds({
     int? servicesTypeid,
+    int? type,
     String? title,
     String? location,
     String? neighborhood,
@@ -174,6 +219,7 @@ class BusinessPartnerAPI {
       },
       data: NetworkRequestBody.fromData(
         FormData.fromMap({
+          if (type != null) "type": type,
           "service_type_id": servicesTypeid,
           if (location != null) "location": location,
           if (neighborhood != null) "neighborhood": neighborhood,
@@ -200,6 +246,27 @@ class BusinessPartnerAPI {
       orElse: () {
         return;
       },
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
     );
     return data;
   }
@@ -222,8 +289,35 @@ class BusinessPartnerAPI {
       ok: (data) {
         return data;
       },
-      orElse: () {},
+      noAuth: (data) {
+        return data;
+      },
+      orElse: () {
+        return;
+      },
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
     );
+
     return data;
   }
 }
