@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sharek/core/extensions/num.dart';
-import 'package:sharek/core/widgets/app_text.dart';
 
 import '../constants/theme/theme_export.dart';
 

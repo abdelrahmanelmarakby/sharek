@@ -5,9 +5,7 @@ import 'package:sharek/core/constants/theme/colors_manager.dart';
 import 'package:sharek/core/extensions/export.dart';
 
 import '../../../../core/constants/theme/font_manager.dart';
-import '../../../../core/constants/theme/sizes_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
-import '../../../../core/widgets/app_text.dart';
 
 class ProfileListTile extends StatelessWidget {
   const ProfileListTile({
