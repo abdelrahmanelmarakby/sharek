@@ -199,6 +199,8 @@ class BusinessPartnerAPI {
   }
 
   static Future<MainModel?> createBusinessAds({
+    bool update = false,
+    int? id,
     int? servicesTypeid,
     int? type,
     String? title,
@@ -210,7 +212,9 @@ class BusinessPartnerAPI {
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
-      path: APIKeys.businessAds,
+      path: update
+          ? "${APIKeys.update}${APIKeys.businessAds}/$id"
+          : APIKeys.businessAds,
       headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,
@@ -218,20 +222,22 @@ class BusinessPartnerAPI {
             'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
       },
       data: NetworkRequestBody.fromData(
-        FormData.fromMap({
-          if (type != null) "type": type,
-          "service_type_id": servicesTypeid,
-          if (location != null) "location": location,
-          if (neighborhood != null) "neighborhood": neighborhood,
-          if (title != null) "title": title,
-          if (description != null) "description": description,
-          if (phone != null) "phone": phone,
-          if (photos != null)
-            "photos[]": photos
-                .map((e) => MultipartFile.fromFileSync(e.path,
-                    filename: e.path.split('/').last))
-                .toList(),
-        }),
+        FormData.fromMap(
+          {
+            if (type != null) "type": type,
+            "service_type_id": servicesTypeid,
+            if (location != null) "location": location,
+            if (neighborhood != null) "neighborhood": neighborhood,
+            if (title != null) "title": title,
+            if (description != null) "description": description,
+            if (phone != null) "phone": phone,
+            if (photos != null)
+              "photos[]": photos
+                  .map((e) => MultipartFile.fromFileSync(e.path,
+                      filename: e.path.split('/').last))
+                  .toList(),
+          },
+        ),
       ),
     );
     final response = await networkService.execute(

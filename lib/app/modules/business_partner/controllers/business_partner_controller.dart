@@ -26,7 +26,6 @@ class BusinessPartnerController extends GetxController {
 
 //==============================createBusnissAds=============================
 
-  List<File>? createTripAdsPhotos;
   GlobalKey<FormState> createAdsFormKey = GlobalKey<FormState>();
   TextEditingController createTitlePartnersCtr = TextEditingController();
   TextEditingController createDescriptionPartnersCtr = TextEditingController();
@@ -43,6 +42,8 @@ class BusinessPartnerController extends GetxController {
 
 //========================================================================
   Future createTripAds({
+    bool update = false,
+    int ? id,
     required AnimationController animationController,
     int? servicesTypeid,
     String? title,
@@ -56,6 +57,8 @@ class BusinessPartnerController extends GetxController {
     animationController.forward();
     try {
       final res = await BusinessPartnerAPI.createBusinessAds(
+        id: id,
+        update: update,
         description: description,
         neighborhood: neighborhood,
         phone: phone,
@@ -265,7 +268,6 @@ class BusinessPartnerController extends GetxController {
     }
   }
 
-  List<File>? editTripAdsPhotos;
   GlobalKey<FormState> editAdsFormKey = GlobalKey<FormState>();
   TextEditingController editTitlePartnersCtr = TextEditingController();
   TextEditingController editDescriptionPartnersCtr = TextEditingController();

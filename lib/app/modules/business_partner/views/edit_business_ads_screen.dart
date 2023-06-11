@@ -165,9 +165,31 @@ class EditBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 Center(
                   child: AppProgressButton(
                     width: context.width,
-                    text: "إضافة إعلان جديد",
+                    text: "تعديل إعلان جديد",
                     onPressed: (animationController) {
-                      if (controller.editAdsFormKey.currentState!.validate()) {}
+                      controller.createTripAds(
+                        id: ads?.advertisementId ?? 0,
+                        update: true,
+                        type: 1,
+                        servicesTypeid: 1,
+                        animationController: animationController,
+                        location: Get.find<LocationGetterWidgetsController>()
+                            .regionName,
+                        neighborhood:
+                            Get.find<LocationGetterWidgetsController>()
+                                .cityName,
+                        title: controller.createTitlePartnersCtr.text == ""
+                            ? null
+                            : controller.createTitlePartnersCtr.text,
+                        description:
+                            controller.createDescriptionPartnersCtr.text == ""
+                                ? null
+                                : controller.createDescriptionPartnersCtr.text,
+                        phone: controller.createAdPhoneCtr.text == ""
+                            ? null
+                            : controller.createAdPhoneCtr.text,
+                        photos: controller.createPhotos,
+                      );
                     },
                   ),
                 ),

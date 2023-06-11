@@ -76,15 +76,13 @@ class APIKeys {
   static const String home = "home";
   static const String notification = "notifications";
   static const String homeSearch = "search/home";
-
   static const String regions = "regions";
   static const String cities = "cities/";
+  static const String update = "update/";
   static const String businessAds = "business-advertisements";
-
   static const String businessAdsSearch = "search/business-advertisements";
   static const String createBusinessAdComment =
       "create/comment/business-advertisement/";
-
   //=============================Trip================================
   static const String tripAds = "trip-advertisements";
   static const String tripServicesType = "trip-advertisement/service/types";
@@ -117,7 +115,7 @@ class APIKeys {
   static const String housingAdsSearch = "search/$housingAds";
   //=============================other ads===========================
   static const String otherAds = "another-advertisements";
-    static const String otherAdsSearch = "search/$otherAds";
+  static const String otherAdsSearch = "search/$otherAds";
 
   static const String createOtherComment =
       "create/comment/another-advertisement/";
