@@ -31,8 +31,8 @@ class NotificationsView extends GetView<NotificationsController> {
           future: controller.notifications,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              final notification = snapshot.data?.data;
-              if (notification?.isEmpty ?? false) {
+              final notification = snapshot.data?.data?.reversed.toList() ?? [];
+              if (notification.isEmpty) {
                 return Center(
                   child: Text(
                     "لا توجد اشعارات",
@@ -41,9 +41,9 @@ class NotificationsView extends GetView<NotificationsController> {
                 );
               }
               return ListView.builder(
-                itemCount: notification?.length ?? 0,
+                itemCount: notification.length,
                 itemBuilder: (context, index) {
-                  var item = notification?[index];
+                  var item = notification[index];
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -52,14 +52,14 @@ class NotificationsView extends GetView<NotificationsController> {
                         height: 1,
                       ),
                       ListTile(
-                        tileColor: (item?.isRead == 1)
+                        tileColor: (item.isRead == 1)
                             ? ColorsManager.white
                             : const Color(0xFFF4F4FF),
                         trailing: Text(
                           timeago
                               .format(
                                   DateTime.tryParse(
-                                        item?.createdAt ?? "",
+                                        item.createdAt ?? "",
                                       ) ??
                                       DateTime.now(),
                                   locale: "ar")
@@ -67,7 +67,7 @@ class NotificationsView extends GetView<NotificationsController> {
                           style: StylesManager.light(),
                         ),
                         subtitle: Text(
-                          item?.content ?? "",
+                          item.content ?? "",
                           style: const TextStyle(
                             fontSize: 14,
                             color: ColorsManager.veryDarkGrey,
@@ -75,7 +75,7 @@ class NotificationsView extends GetView<NotificationsController> {
                           ),
                         ),
                         title: Text(
-                          item?.title ?? "",
+                          item.title ?? "",
                           style: StylesManager.bold(
                             fontSize: FontSize.large,
                             color: ColorsManager.charcoal,
@@ -97,7 +97,7 @@ class NotificationsView extends GetView<NotificationsController> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(50),
                               child: AppCachedNetworkImage(
-                                imageUrl: item?.avatar ?? "",
+                                imageUrl: item.avatar ?? "",
                               ),
                             ),
                           ),

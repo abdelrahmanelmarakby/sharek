@@ -249,9 +249,9 @@ class _MessageBuilderState extends State<MessageBuilder> {
           children: [
             isMe == true
                 ? const Icon(
-                    Icons.done_all_rounded,
+                    Icons.done,
                     //    size: Dimensions.getDesirableWidth(4),
-                    color: ColorsManager.success,
+                    color: ColorsManager.grey,
                     size: Sizes.size18,
                   )
                 : const SizedBox(),
@@ -262,7 +262,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
               '$hour:${msg.time?.minute} $amPm',
               style: const TextStyle(
                   //   fontSize: Dimensions.getDesirableWidth(3),
-                  color: ColorsManager.black,
+                  color: ColorsManager.veryDarkGrey,
                   fontSize: 11,
                   fontWeight: FontWeight.w400),
             ),

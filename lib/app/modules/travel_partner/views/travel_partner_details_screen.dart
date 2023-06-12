@@ -493,7 +493,10 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                               ),
                               Expanded(
                                 child: AppText(
-                                  ads?.time ?? "",
+                                  ads?.time
+                                          ?.replaceAll("AM", "صباحا")
+                                          .replaceAll("PM", "مساء") ??
+                                      "",
                                   color: Colors.black,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -530,10 +533,10 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 12),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
+                                      children: [
                                         Icon(
                                           Iconsax.call,
                                           color: Colors.white,
@@ -571,10 +574,10 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 11),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
+                                      children: [
                                         Icon(
                                           Iconsax.sms,
                                           color: ColorsManager.primary,

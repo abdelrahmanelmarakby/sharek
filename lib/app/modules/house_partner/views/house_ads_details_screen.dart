@@ -285,13 +285,9 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                   child: Stack(
                                     alignment: Alignment.bottomCenter,
                                     children: [
-                                      ListView.separated(
+                                      PageView.builder(
                                         itemCount: ads?.photos?.length ?? 0,
                                         scrollDirection: Axis.horizontal,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        separatorBuilder: (context, index) =>
-                                            const SizedBox(width: 10),
                                         itemBuilder: (context, index) {
                                           final image = ads?.photos?[index];
                                           return AppCachedNetworkImage(

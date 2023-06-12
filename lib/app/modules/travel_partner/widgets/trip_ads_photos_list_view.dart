@@ -22,7 +22,7 @@ class AdsPhotosListView extends StatelessWidget {
           return AppCachedNetworkImage(
             imageUrl: image,
             radius: 0,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
             height: MediaQuery.of(context).size.height / 3,
           );
         },

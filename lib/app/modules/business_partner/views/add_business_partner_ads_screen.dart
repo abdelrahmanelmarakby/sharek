@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/core/constants/theme/styles_manager.dart';
+import 'package:sharek/core/extensions/num.dart';
 import 'package:sharek/core/widgets/custom_dropdown.dart';
 
 import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
+import '../../../../core/constants/theme/sizes_manager.dart';
 import '../../../../core/extensions/validator.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
@@ -46,7 +48,137 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 const SizedBox(height: 12),
                 AppDropDown(
                   title: "النوع",
-                  bottomSheet: Container(),
+                  bottomSheet: SizedBox(
+                    height: context.height * .5,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: Sizes.size8.h(context).heightSizedBox),
+                              IconButton.filled(
+                                  onPressed: () {
+                                    Get.close(1);
+                                  },
+                                  icon: const Icon(
+                                    Icons.cancel,
+                                    color: ColorsManager.primary,
+                                    size: Sizes.size38,
+                                  )),
+                            ],
+                          ),
+                          const Divider(
+                            color: ColorsManager.veryLightGrey,
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GestureDetector(
+                                  // onTap: () => controller.selectRegionId(
+                                  //     id: controller.searchRegions[index].id ??
+                                  //         0,
+                                  //     name: controller
+                                  //             .searchRegions[index].name ??
+                                  //         ""),
+                                  child: Text("تجاري",
+                                      style: StylesManager.bold(
+                                          fontSize: FontSize.large)),
+                                ),
+                              ),
+                              const Divider(
+                                color: ColorsManager.veryLightGrey,
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GestureDetector(
+                                  // onTap: () => controller.selectRegionId(
+                                  //     id: controller.searchRegions[index].id ??
+                                  //         0,
+                                  //     name: controller
+                                  //             .searchRegions[index].name ??
+                                  //         ""),
+                                  child: Text("عقارى",
+                                      style: StylesManager.bold(
+                                          fontSize: FontSize.large)),
+                                ),
+                              ),
+                              const Divider(
+                                color: ColorsManager.veryLightGrey,
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GestureDetector(
+                                  // onTap: () => controller.selectRegionId(
+                                  //     id: controller.searchRegions[index].id ??
+                                  //         0,
+                                  //     name: controller
+                                  //             .searchRegions[index].name ??
+                                  //         ""),
+                                  child: Text("تقني",
+                                      style: StylesManager.bold(
+                                          fontSize: FontSize.large)),
+                                ),
+                              ),
+                              const Divider(
+                                color: ColorsManager.veryLightGrey,
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GestureDetector(
+                                  // onTap: () => controller.selectRegionId(
+                                  //     id: controller.searchRegions[index].id ??
+                                  //         0,
+                                  //     name: controller
+                                  //             .searchRegions[index].name ??
+                                  //         ""),
+                                  child: Text("أراضى",
+                                      style: StylesManager.bold(
+                                          fontSize: FontSize.large)),
+                                ),
+                              ),
+                              const Divider(
+                                color: ColorsManager.veryLightGrey,
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GestureDetector(
+                                  // onTap: () => controller.selectRegionId(
+                                  //     id: controller.searchRegions[index].id ??
+                                  //         0,
+                                  //     name: controller
+                                  //             .searchRegions[index].name ??
+                                  //         ""),
+                                  child: Text("اخرى",
+                                      style: StylesManager.bold(
+                                          fontSize: FontSize.large)),
+                                ),
+                              ),
+                              const Divider(
+                                color: ColorsManager.veryLightGrey,
+                              )
+                            ],
+                          ),
+                        ]),
+                  ),
                   icon: const RotatedBox(
                     quarterTurns: 2,
                     child: Icon(Iconsax.category),
