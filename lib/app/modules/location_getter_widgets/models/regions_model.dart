@@ -1,7 +1,7 @@
 class RegionsModel {
   bool? status;
   String? message;
-  List<Data>? data;
+  List<RegionModel>? data;
 
   RegionsModel({this.status, this.message, this.data});
 
@@ -9,9 +9,9 @@ class RegionsModel {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <RegionModel>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(RegionModel.fromJson(v));
       });
     }
   }
@@ -27,13 +27,13 @@ class RegionsModel {
   }
 }
 
-class Data {
+class RegionModel {
   int? id;
   String? name;
 
-  Data({this.id, this.name});
+  RegionModel({this.id, this.name});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  RegionModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
   }
@@ -44,4 +44,7 @@ class Data {
     data['name'] = name;
     return data;
   }
+
+  @override
+  String toString() => 'RegionModel(id: $id, name: $name)';
 }

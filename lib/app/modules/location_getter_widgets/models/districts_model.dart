@@ -1,7 +1,7 @@
 class DistrictsModel {
   bool? status;
   String? message;
-  List<Data>? data;
+  List<DistrictModel>? data;
 
   DistrictsModel({this.status, this.message, this.data});
 
@@ -9,9 +9,9 @@ class DistrictsModel {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <DistrictModel>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(DistrictModel.fromJson(v));
       });
     }
   }
@@ -27,14 +27,14 @@ class DistrictsModel {
   }
 }
 
-class Data {
+class DistrictModel {
   int? id;
   String? name;
   City? city;
 
-  Data({this.id, this.name, this.city});
+  DistrictModel({this.id, this.name, this.city});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  DistrictModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     city = json['city'] != null ? City.fromJson(json['city']) : null;

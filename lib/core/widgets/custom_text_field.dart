@@ -122,6 +122,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           maxWidth: context.width,
         ),
         child: TextFormField(
+          enableSuggestions: true,
           focusNode: widget.focusNode,
           autofillHints: widget.autoFillHints,
           onTap: widget.onTap,

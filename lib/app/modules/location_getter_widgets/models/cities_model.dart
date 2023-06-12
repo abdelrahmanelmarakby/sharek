@@ -1,7 +1,7 @@
 class CitiesModel {
   bool? status;
   String? message;
-  List<Data>? data;
+  List<CityModel>? data;
 
   CitiesModel({this.status, this.message, this.data});
 
@@ -9,9 +9,9 @@ class CitiesModel {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <CityModel>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(CityModel.fromJson(v));
       });
     }
   }
@@ -27,14 +27,14 @@ class CitiesModel {
   }
 }
 
-class Data {
+class CityModel {
   int? id;
   String? name;
   Region? region;
 
-  Data({this.id, this.name, this.region});
+  CityModel({this.id, this.name, this.region});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  CityModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     region = json['region'] != null ? Region.fromJson(json['region']) : null;

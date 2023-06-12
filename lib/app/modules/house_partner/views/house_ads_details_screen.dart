@@ -353,11 +353,12 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                   text: ads?.location ?? "",
                                 ),
                                 ads?.serviceTypeId == 10 ||
-                                        ads?.nationality == null
+                                        ads?.neighborhood == null
                                     ? const Spacer()
                                     : AdRowItem(
                                         icon: Iconsax.global,
-                                        text: ads?.nationality.toString() ?? "",
+                                        text:
+                                            ads?.neighborhood.toString() ?? "",
                                       ),
                               ],
                             ),
@@ -432,10 +433,10 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                       ),
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 12),
-                                      child: Row(
+                                      child: const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children: const [
+                                        children: [
                                           Icon(
                                             Iconsax.call,
                                             color: Colors.white,
@@ -474,10 +475,10 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                       ),
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 11),
-                                      child: Row(
+                                      child: const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children: const [
+                                        children: [
                                           Icon(
                                             Iconsax.sms,
                                             color: ColorsManager.primary,

@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/app/modules/location_getter_widgets/models/cities_model.dart';
+import 'package:sharek/core/constants/theme/sizes_manager.dart';
+import 'package:sharek/core/extensions/num.dart';
 import 'package:sharek/core/widgets/custom_dropdown.dart';
 
 import '../../../../core/constants/theme/theme_export.dart';
+import '../../../../core/widgets/custom_text_field.dart';
 import '../../../data/remote_data_source/location_apis.dart';
 import '../controllers/location_getter_widgets_controller.dart';
 import '../models/districts_model.dart';
@@ -30,34 +33,80 @@ class LocationGetterWidgetsView
               return GetBuilder<LocationGetterWidgetsController>(
                 builder: (controller) => AppDropDown(
                   bottomSheet: Container(
+                    height: context.height * .5,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 30),
+                        horizontal: 15, vertical: 25),
                     child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: List.generate(
-                            regions.data?.length ?? 0,
-                            (index) => Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: GestureDetector(
-                                        onTap: () => controller.selectRegionId(
-                                            id: regions.data?[index].id ?? 0,
-                                            name: regions.data?[index].name ??
-                                                ""),
-                                        child: Text(
-                                            regions.data?[index].name ?? "",
-                                            style: StylesManager.bold(
-                                                fontSize: FontSize.large)),
-                                      ),
-                                    ),
-                                    const Divider(
-                                      color: ColorsManager.veryLightGrey,
-                                    )
-                                  ],
-                                )),
+                      child: GetBuilder<LocationGetterWidgetsController>(
+                        builder: (controller) => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                      child: Sizes.size8
+                                          .h(context)
+                                          .heightSizedBox),
+                                  IconButton.filled(
+                                      onPressed: () {
+                                        Get.close(1);
+                                      },
+                                      icon: const Icon(
+                                        Icons.cancel,
+                                        color: ColorsManager.primary,
+                                        size: Sizes.size38,
+                                      )),
+                                ],
+                              ),
+                              CustomTextField(
+                                hint: "ابحث عن المنطقة",
+                                height: 40.h(context),
+                                onChange: (value) {
+                                  controller.searchRegions =
+                                      controller.searchRegion(regions, value);
+                                },
+                                suffixIcon: const Icon(Iconsax.search_normal),
+                              ),
+                              Sizes.size18.h(context).heightSizedBox,
+                              const Divider(
+                                color: ColorsManager.veryLightGrey,
+                              ),
+                              ...List.generate(
+                                  controller.searchRegions.length,
+                                  (index) => Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: GestureDetector(
+                                              onTap: () =>
+                                                  controller.selectRegionId(
+                                                      id: controller
+                                                              .searchRegions[
+                                                                  index]
+                                                              .id ??
+                                                          0,
+                                                      name: controller
+                                                              .searchRegions[
+                                                                  index]
+                                                              .name ??
+                                                          ""),
+                                              child: Text(
+                                                  controller
+                                                          .searchRegions[index]
+                                                          .name ??
+                                                      "",
+                                                  style: StylesManager.bold(
+                                                      fontSize:
+                                                          FontSize.large)),
+                                            ),
+                                          ),
+                                          const Divider(
+                                            color: ColorsManager.veryLightGrey,
+                                          )
+                                        ],
+                                      )),
+                            ]),
                       ),
                     ),
                   ),
@@ -84,38 +133,84 @@ class LocationGetterWidgetsView
                     const SizedBox(height: 12),
                     AppDropDown(
                       bottomSheet: Container(
+                        height: context.height * .5,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 30),
+                            horizontal: 15, vertical: 25),
                         child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: List.generate(
-                                cities?.data?.length ?? 0,
-                                (index) => Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: GestureDetector(
-                                            onTap: () =>
-                                                controller.selectCityId(
-                                                    id: cities
-                                                            ?.data?[index].id ??
-                                                        0,
-                                                    name: cities?.data?[index]
-                                                            .name ??
-                                                        ""),
-                                            child: Text(
-                                                cities?.data?[index].name ?? "",
-                                                style: StylesManager.bold(
-                                                    fontSize: FontSize.large)),
-                                          ),
-                                        ),
-                                        const Divider(
-                                          color: ColorsManager.veryLightGrey,
-                                        )
-                                      ],
-                                    )),
+                          child: GetBuilder<LocationGetterWidgetsController>(
+                            builder: (controller) => Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                          child: Sizes.size8
+                                              .h(context)
+                                              .heightSizedBox),
+                                      IconButton.filled(
+                                          onPressed: () {
+                                            Get.close(1);
+                                          },
+                                          icon: const Icon(
+                                            Icons.cancel,
+                                            color: ColorsManager.primary,
+                                            size: Sizes.size38,
+                                          )),
+                                    ],
+                                  ),
+                                  CustomTextField(
+                                    hint: "ابحث عن المنطقة",
+                                    height: 40.h(context),
+                                    onChange: (value) {
+                                      controller.searchCities =
+                                          controller.searchCity(cities!, value);
+                                    },
+                                    suffixIcon:
+                                        const Icon(Iconsax.search_normal),
+                                  ),
+                                  Sizes.size18.h(context).heightSizedBox,
+                                  const Divider(
+                                    color: ColorsManager.veryLightGrey,
+                                  ),
+                                  ...List.generate(
+                                      controller.searchCities.length,
+                                      (index) => Column(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: GestureDetector(
+                                                  onTap: () =>
+                                                      controller.selectCityId(
+                                                          id: controller
+                                                                  .searchCities[
+                                                                      index]
+                                                                  .id ??
+                                                              0,
+                                                          name: controller
+                                                                  .searchCities[
+                                                                      index]
+                                                                  .name ??
+                                                              ""),
+                                                  child: Text(
+                                                      controller
+                                                              .searchCities[
+                                                                  index]
+                                                              .name ??
+                                                          "",
+                                                      style: StylesManager.bold(
+                                                          fontSize:
+                                                              FontSize.large)),
+                                                ),
+                                              ),
+                                              const Divider(
+                                                color:
+                                                    ColorsManager.veryLightGrey,
+                                              )
+                                            ],
+                                          )),
+                                ]),
                           ),
                         ),
                       ),
@@ -147,39 +242,90 @@ class LocationGetterWidgetsView
                         const SizedBox(height: 12),
                         AppDropDown(
                           bottomSheet: Container(
+                            height: context.height * .5,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 30),
+                                horizontal: 15, vertical: 25),
                             child: SingleChildScrollView(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: List.generate(
-                                    districts.data?.length ?? 0, (index) {
-                                  return Column(
+                              child:
+                                  GetBuilder<LocationGetterWidgetsController>(
+                                builder: (controller) => Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: GestureDetector(
-                                          onTap: () =>
-                                              controller.selectDistricId(
-                                                  id: districts
-                                                          .data?[index].id ??
-                                                      0,
-                                                  name: districts
-                                                          .data?[index].name ??
-                                                      ""),
-                                          child: Text(
-                                              districts.data?[index].name ?? "",
-                                              style: StylesManager.bold(
-                                                  fontSize: FontSize.large)),
-                                        ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                              child: Sizes.size8
+                                                  .h(context)
+                                                  .heightSizedBox),
+                                          IconButton.filled(
+                                              onPressed: () {
+                                                Get.close(1);
+                                              },
+                                              icon: const Icon(
+                                                Icons.cancel,
+                                                color: ColorsManager.primary,
+                                                size: Sizes.size38,
+                                              )),
+                                        ],
                                       ),
+                                      CustomTextField(
+                                        hint: "ابحث عن المنطقة",
+                                        height: 40.h(context),
+                                        onChange: (value) {
+                                          controller.searchDistricts =
+                                              controller.searchDistrict(
+                                                  districts, value);
+                                        },
+                                        suffixIcon:
+                                            const Icon(Iconsax.search_normal),
+                                      ),
+                                      Sizes.size18.h(context).heightSizedBox,
                                       const Divider(
                                         color: ColorsManager.veryLightGrey,
-                                      )
-                                    ],
-                                  );
-                                }),
+                                      ),
+                                      ...List.generate(
+                                          controller.searchCities.length,
+                                          (index) => Column(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: GestureDetector(
+                                                      onTap: () => controller
+                                                          .selectDistricId(
+                                                              id: controller
+                                                                      .searchDistricts[
+                                                                          index]
+                                                                      .id ??
+                                                                  0,
+                                                              name: controller
+                                                                      .searchDistricts[
+                                                                          index]
+                                                                      .name ??
+                                                                  ""),
+                                                      child: Text(
+                                                          controller
+                                                                  .searchDistricts[
+                                                                      index]
+                                                                  .name ??
+                                                              "",
+                                                          style: StylesManager
+                                                              .bold(
+                                                                  fontSize:
+                                                                      FontSize
+                                                                          .large)),
+                                                    ),
+                                                  ),
+                                                  const Divider(
+                                                    color: ColorsManager
+                                                        .veryLightGrey,
+                                                  )
+                                                ],
+                                              )),
+                                    ]),
                               ),
                             ),
                           ),

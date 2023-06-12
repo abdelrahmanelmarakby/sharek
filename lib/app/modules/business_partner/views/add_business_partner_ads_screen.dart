@@ -2,6 +2,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:sharek/core/constants/theme/styles_manager.dart';
+import 'package:sharek/core/widgets/custom_dropdown.dart';
 
 import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
@@ -42,27 +44,15 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 const SizedBox(height: 16),
                 const LocationGetterWidgetsView(showDistrict: true),
                 const SizedBox(height: 12),
-                Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF7F7F9),
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: const Color(0xFFE4E4E5),
-                    ),
-                  ),
-                  width: double.infinity,
-                  child: const ExpansionTile(
-                    leading: Icon(
-                      Iconsax.happyemoji,
-                      color: Colors.black,
-                    ),
-                    title: AppText(
-                      "النوع",
-                      fontSize: 16,
-                      color: ColorsManager.black,
-                    ),
+                AppDropDown(
+                  title: "النوع",
+                  bottomSheet: Container(),
+                  icon: const RotatedBox(
+                    quarterTurns: 2,
+                    child: Icon(Iconsax.category),
                   ),
                 ),
+
                 const SizedBox(height: 12),
                 CustomTextField(
                   name: "",
@@ -83,10 +73,10 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                   controller: controller.createDescriptionPartnersCtr,
                   maxLines: 4,
                   validate: Validator.validateEmpty,
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                  prefixIcon: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12),
                     child: Column(
-                      children: const [
+                      children: [
                         Icon(
                           Iconsax.document,
                           color: Colors.black,
@@ -111,9 +101,9 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                         color: Color(0xFFF7F7F9),
                       ),
                       alignment: Alignment.center,
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Icon(
                             SharekIcons.upload_1,
                             color: ColorsManager.primary,

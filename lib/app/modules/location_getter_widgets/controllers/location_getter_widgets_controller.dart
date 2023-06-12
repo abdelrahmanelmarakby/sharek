@@ -10,6 +10,8 @@ import '../models/regions_model.dart';
 
 class LocationGetterWidgetsController extends GetxController {
   late final Future<RegionsModel?> regions;
+  List cityNames = [];
+  List districtNames = [];
   CitiesModel? cities;
   DistrictsModel? districts;
   String? regionName;
@@ -18,6 +20,7 @@ class LocationGetterWidgetsController extends GetxController {
   int? regionId;
   int? cityId;
   int? districtId;
+
   selectRegionId({required int id, required String name}) async {
     regionId = id;
     regionName = name;
@@ -61,5 +64,66 @@ class LocationGetterWidgetsController extends GetxController {
     regions = LocationApis.getAllRegions();
 
     super.onInit();
+  }
+
+  //==========================  Search Variables ========================
+
+  List<RegionModel> searchRegions = [];
+  List<CityModel> searchCities = [];
+  List<DistrictModel> searchDistricts = [];
+
+  //==========================  Search Methods =============================
+  List<RegionModel> searchRegion(RegionsModel model, String text) {
+    List<RegionModel> matchedList = [];
+
+    if (text == "") {
+      update();
+      return model.data!;
+    }
+    for (RegionModel? element in model.data!) {
+      if ((element?.name?.toLowerCase() ?? "").contains(text)) {
+        matchedList.add(element!);
+      }
+    }
+    print(matchedList);
+
+    update();
+    return matchedList;
+  }
+
+  List<CityModel> searchCity(CitiesModel model, String text) {
+    List<CityModel> matchedList = [];
+    if (text == "") {
+      update();
+      return model.data!;
+    }
+
+    for (CityModel? element in model.data!) {
+      if ((element?.name?.toLowerCase() ?? "").contains(text)) {
+        matchedList.add(element!);
+      }
+    }
+    print(matchedList);
+    update();
+
+    return matchedList;
+  }
+
+  List<DistrictModel> searchDistrict(DistrictsModel model, String text) {
+    List<DistrictModel> matchedList = [];
+    if (text == "") {
+      update();
+      return model.data!;
+    }
+
+    for (DistrictModel? element in model.data!) {
+      if ((element?.name?.toLowerCase() ?? "").contains(text)) {
+        matchedList.add(element!);
+      }
+    }
+    print(matchedList);
+    update();
+
+    return matchedList;
   }
 }
