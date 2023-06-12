@@ -162,6 +162,10 @@ class OtherPartnerDetailsScreen extends GetView<OtherServicePartnerController> {
                                       ),
                                     );
                                   }
+                                  if (val == "/delete") {
+                                    controller.deleteAds(
+                                        id: ads?.advertisementId ?? 0);
+                                  }
                                 },
                                 itemBuilder: (BuildContext context) {
                                   return isUserAds
@@ -180,7 +184,7 @@ class OtherPartnerDetailsScreen extends GetView<OtherServicePartnerController> {
                                             ),
                                           ),
                                           PopupMenuItem(
-                                            value: "/report",
+                                            value: "/edit",
                                             child: Row(
                                               children: [
                                                 const Icon(
@@ -195,7 +199,7 @@ class OtherPartnerDetailsScreen extends GetView<OtherServicePartnerController> {
                                             ),
                                           ),
                                           PopupMenuItem(
-                                            value: "/report",
+                                            value: "/delete",
                                             child: Row(
                                               children: [
                                                 const Icon(

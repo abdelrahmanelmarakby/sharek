@@ -26,22 +26,12 @@ class BusinessPartnerController extends GetxController {
 
 //==============================createBusnissAds=============================
 
-  List<File>? createTripAdsPhotos;
   GlobalKey<FormState> createAdsFormKey = GlobalKey<FormState>();
   TextEditingController createTitlePartnersCtr = TextEditingController();
   TextEditingController createDescriptionPartnersCtr = TextEditingController();
   TextEditingController createAdPhoneCtr = TextEditingController();
 
   List<File>? createPhotos;
-//========================================================================
-
-  void pickCreateTripAdsImages() async {
-    List<XFile> pickedImages = await ImagePicker().pickMultiImage();
-    if (pickedImages.isEmpty) return;
-    createTripAdsPhotos = pickedImages.map((e) => File(e.path)).toList();
-    update();
-  }
-
 //========================================================================
   void pickCreateAdsImages() async {
     List<XFile> pickedImages = await ImagePicker().pickMultiImage();
@@ -52,6 +42,8 @@ class BusinessPartnerController extends GetxController {
 
 //========================================================================
   Future createTripAds({
+    bool update = false,
+    int ? id,
     required AnimationController animationController,
     int? servicesTypeid,
     String? title,
@@ -60,14 +52,18 @@ class BusinessPartnerController extends GetxController {
     String? phone,
     String? description,
     List<File>? photos,
+    int? type,
   }) async {
     animationController.forward();
     try {
       final res = await BusinessPartnerAPI.createBusinessAds(
+        id: id,
+        update: update,
         description: description,
         neighborhood: neighborhood,
         phone: phone,
         photos: photos,
+        type: type,
         servicesTypeid: servicesTypeid,
         location: location,
         title: title,
@@ -248,6 +244,41 @@ class BusinessPartnerController extends GetxController {
         TextPosition(offset: value.length),
       ),
     );
+    update();
+  }
+
+  Future deleteAds({
+    required int id,
+  }) async {
+    try {
+      BotToast.showLoading();
+      var res = await BusinessPartnerAPI.deleteBusinessAdById(id);
+      if (res?.status == true) {
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+        Get.forceAppUpdate();
+        Get.back();
+      } else {
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+      }
+    } catch (e) {
+      BotToast.closeAllLoading();
+      log(e.toString());
+    }
+  }
+
+  GlobalKey<FormState> editAdsFormKey = GlobalKey<FormState>();
+  TextEditingController editTitlePartnersCtr = TextEditingController();
+  TextEditingController editDescriptionPartnersCtr = TextEditingController();
+  TextEditingController editAdPhoneCtr = TextEditingController();
+
+  List<File>? editPhotos;
+//========================================================================
+  void pickeditAdsImages() async {
+    List<XFile> pickedImages = await ImagePicker().pickMultiImage();
+    if (pickedImages.isEmpty) return;
+    createPhotos = pickedImages.map((e) => File(e.path)).toList();
     update();
   }
 }

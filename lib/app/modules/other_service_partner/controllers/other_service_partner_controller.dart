@@ -205,4 +205,25 @@ class OtherServicePartnerController extends GetxController {
     );
     update();
   }
+
+  Future deleteAds({
+    required int id,
+  }) async {
+    try {
+      var res = await OtherServicesPartenerAPIS.deleteOtherAdsById(id);
+
+      if (res?.status == true) {
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+        Get.forceAppUpdate();
+        Get.back();
+      } else {
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+      }
+    } catch (e) {
+      BotToast.closeAllLoading();
+      log(e.toString());
+    }
+  }
 }

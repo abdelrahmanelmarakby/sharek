@@ -304,4 +304,25 @@ class TravelPartnerController extends GetxController {
     );
     update();
   }
+
+  Future deleteAds({
+    required int id,
+  }) async {
+    try {
+      BotToast.showLoading();
+      var res = await TripPartnerAPI.deleteTripAdsById(id);
+      if (res?.status == true) {
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+        Get.forceAppUpdate();
+        Get.back();
+      } else {
+        BotToast.closeAllLoading();
+        BotToast.showText(text: res?.message ?? "");
+      }
+    } catch (e) {
+      BotToast.closeAllLoading();
+      log(e.toString());
+    }
+  }
 }

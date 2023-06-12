@@ -26,6 +26,27 @@ class LocationApis {
         return data;
       },
       orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
     );
     return data;
   }
@@ -49,6 +70,27 @@ class LocationApis {
         return data;
       },
       orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
     );
     return data;
   }
@@ -72,6 +114,27 @@ class LocationApis {
         return data;
       },
       orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
     );
     return data;
   }

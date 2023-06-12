@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, deprecated_member_use
+import 'dart:developer';
+
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -167,6 +169,11 @@ class SakePartnerDetailsScreen extends GetView<SakePartnerController> {
                                       ),
                                     );
                                   }
+                                  if (val == "/delete") {
+                                    log("message");
+                                    controller.deleteAds(
+                                        id: ads?.advertisementId ?? 0);
+                                  }
                                 },
                                 itemBuilder: (BuildContext context) {
                                   return isUserAds
@@ -185,7 +192,7 @@ class SakePartnerDetailsScreen extends GetView<SakePartnerController> {
                                             ),
                                           ),
                                           PopupMenuItem(
-                                            value: "/report",
+                                            value: "/edit",
                                             child: Row(
                                               children: [
                                                 const Icon(
@@ -200,7 +207,7 @@ class SakePartnerDetailsScreen extends GetView<SakePartnerController> {
                                             ),
                                           ),
                                           PopupMenuItem(
-                                            value: "/report",
+                                            value: "/delete",
                                             child: Row(
                                               children: [
                                                 const Icon(
