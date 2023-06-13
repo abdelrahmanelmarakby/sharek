@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../core/widgets/image_picker.dart';
 import '../../../data/remote_data_source/favorites_and_report_apis.dart';
 import '../../../data/remote_data_source/trip_ads.dart';
 import '../../../routes/app_pages.dart';
@@ -69,10 +70,20 @@ class TravelPartnerController extends GetxController {
   }
 
 //========================================================================
+
   void pickCreateTripAdsImages() async {
-    List<XFile> pickedImages = await ImagePicker().pickMultiImage();
-    if (pickedImages.isEmpty) return;
-    createTripAdsPhotos = pickedImages.map((e) => File(e.path)).toList();
+    await ImagePickerDialog().pickGalleryImages(
+      maxImage: 10,
+      context: Get.context!,
+      onGet: (value) {
+        for (int i = 0; i < value.length; i++) {
+          createTripAdsPhotos = [
+            ...createTripAdsPhotos ?? [],
+            File(value[i].path ?? "")
+          ];
+        }
+      },
+    );
     update();
   }
 

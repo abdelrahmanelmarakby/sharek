@@ -177,7 +177,8 @@ class ImagePickerDialog {
         showGif: false,
         showCamera: true,
         compressSize: 500,
-        uiConfig: UIConfig(uiThemeColor: ColorsManager.accent),
+        language: Language.arabic,
+        uiConfig: UIConfig(uiThemeColor: ColorsManager.primary),
         cropConfig: CropConfig(enableCrop: false, width: 2, height: 1));
     onGet!(listImagePaths);
   }

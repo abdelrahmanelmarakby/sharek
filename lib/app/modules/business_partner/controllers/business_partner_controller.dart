@@ -10,6 +10,7 @@ import 'package:sharek/app/data/remote_data_source/business_ads.dart';
 import 'package:sharek/app/routes/app_pages.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../core/widgets/image_picker.dart';
 import '../../../data/remote_data_source/favorites_and_report_apis.dart';
 
 class BusinessPartnerController extends GetxController {
@@ -34,16 +35,23 @@ class BusinessPartnerController extends GetxController {
   List<File>? createPhotos;
 //========================================================================
   void pickCreateAdsImages() async {
-    List<XFile> pickedImages = await ImagePicker().pickMultiImage();
-    if (pickedImages.isEmpty) return;
-    createPhotos = pickedImages.map((e) => File(e.path)).toList();
+    await ImagePickerDialog().pickGalleryImages(
+      maxImage: 10,
+      context: Get.context!,
+      onGet: (value) {
+        for (int i = 0; i < value.length; i++) {
+          createPhotos = [...createPhotos ?? [], File(value[i].path ?? "")];
+        }
+      },
+    );
+    print(createPhotos);
     update();
   }
 
 //========================================================================
   Future createTripAds({
     bool update = false,
-    int ? id,
+    int? id,
     required AnimationController animationController,
     int? servicesTypeid,
     String? title,

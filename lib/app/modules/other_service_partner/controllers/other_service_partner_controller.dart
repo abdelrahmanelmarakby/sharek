@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sharek/app/data/remote_data_source/other_services_partener_apis.dart';
+import 'package:sharek/core/widgets/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/remote_data_source/favorites_and_report_apis.dart';
@@ -70,10 +71,17 @@ class OtherServicePartnerController extends GetxController {
 //========================================================================
 
 //========================================================================
+
   void pickCreateHouseAdsImages() async {
-    List<XFile> pickedImages = await ImagePicker().pickMultiImage();
-    if (pickedImages.isEmpty) return;
-    createPhotos = pickedImages.map((e) => File(e.path)).toList();
+    await ImagePickerDialog().pickGalleryImages(
+      maxImage: 10,
+      context: Get.context!,
+      onGet: (value) {
+        for (int i = 0; i < value.length; i++) {
+          createPhotos = [...createPhotos ?? [], File(value[i].path ?? "")];
+        }
+      },
+    );
     update();
   }
 

@@ -2,10 +2,13 @@
 
 import 'dart:io';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:sharek/core/constants/theme/sizes_manager.dart';
+import 'package:sharek/core/extensions/num.dart';
 import 'package:sharek/core/extensions/validator.dart';
 
 import '../../../../core/constants/theme/app_icons.dart';
@@ -121,6 +124,61 @@ class AddOtherAdsScreen extends GetView<OtherServicePartnerController> {
                           ),
                         ),
                       ),
+                    ),
+                    GetBuilder<OtherServicePartnerController>(
+                      builder: (controller) {
+                        return (controller.createPhotos?.isNotEmpty ?? false)
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12),
+                                child: SizedBox(
+                                  height: 80,
+                                  child: ListView.separated(
+                                    separatorBuilder: (context, index) =>
+                                        Sizes.size10.w(context).widthSizedBox,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: controller.createPhotos!.length,
+                                    itemBuilder: (context, index) => FadeIn(
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            height: 80,
+                                            width: 80,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              child: Image.file(
+                                                controller.createPhotos![index],
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                              top: 5,
+                                              right: 5,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  controller.createPhotos
+                                                      ?.removeAt(index);
+                                                  controller.update();
+                                                },
+                                                child: const Icon(
+                                                  Icons.cancel,
+                                                  color: ColorsManager.error,
+                                                ),
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : const SizedBox();
+                      },
                     ),
                     const SizedBox(height: 12),
                     CustomTextField(

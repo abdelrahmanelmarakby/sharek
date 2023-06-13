@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sharek/core/widgets/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/models/service_type.dart';
@@ -124,13 +125,19 @@ class SakePartnerController extends GetxController {
   TextEditingController createDescriptionPartnersCtr = TextEditingController();
 
 //========================================================================
+
   void pickCreateAdsImages() async {
-    List<XFile> pickedImages = await ImagePicker().pickMultiImage();
-    if (pickedImages.isEmpty) return;
-    createPhotos = pickedImages.map((e) => File(e.path)).toList();
+    await ImagePickerDialog().pickGalleryImages(
+      maxImage: 10,
+      context: Get.context!,
+      onGet: (value) {
+        for (int i = 0; i < value.length; i++) {
+          createPhotos = [...createPhotos ?? [], File(value[i].path ?? "")];
+        }
+      },
+    );
     update();
   }
-
 //========================================================================
 
   clearCreateData() {

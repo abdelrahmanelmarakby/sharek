@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -331,6 +332,61 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                       ),
                     ),
                   ),
+                ),
+
+                GetBuilder<BusinessPartnerController>(
+                  builder: (controller) {
+                    return (controller.createPhotos?.isNotEmpty ?? false)
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            child: SizedBox(
+                              height: 80,
+                              child: ListView.separated(
+                                separatorBuilder: (context, index) =>
+                                    Sizes.size10.w(context).widthSizedBox,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: controller.createPhotos!.length,
+                                itemBuilder: (context, index) => FadeIn(
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        height: 80,
+                                        width: 80,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: Image.file(
+                                            controller.createPhotos![index],
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                          top: 5,
+                                          right: 5,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              controller.createPhotos
+                                                  ?.removeAt(index);
+                                              controller.update();
+                                            },
+                                            child: const Icon(
+                                              Icons.cancel,
+                                              color: ColorsManager.error,
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox();
+                  },
                 ),
                 const SizedBox(height: 12),
                 CustomTextField(
