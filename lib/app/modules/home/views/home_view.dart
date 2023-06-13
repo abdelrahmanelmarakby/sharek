@@ -289,11 +289,10 @@ class AdRowItem extends StatelessWidget {
             ),
             Sizes.size4.widthSizedBox,
             Expanded(
-              child: AppText(
+              child: Text(
                 text,
                 maxLines: maxLines,
-                color: Colors.black,
-                fontSize: FontSize.medium,
+                style: StylesManager.medium(fontSize: FontSize.medium),
               ),
             ),
           ],

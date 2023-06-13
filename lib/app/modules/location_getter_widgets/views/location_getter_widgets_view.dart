@@ -29,7 +29,10 @@ class LocationGetterWidgetsView
           future: controller.regions,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              final RegionsModel regions = snapshot.data!;
+              final List<RegionModel> regions = snapshot.data?.data ?? [];
+              if (controller.searchRegions.isEmpty) {
+                controller.searchRegions = regions;
+              }
               return GetBuilder<LocationGetterWidgetsController>(
                 builder: (controller) => AppDropDown(
                   bottomSheet: Container(
@@ -127,7 +130,10 @@ class LocationGetterWidgetsView
             future: LocationApis.getCitiesById(controller.regionId!),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                final CitiesModel? cities = snapshot.data;
+                final List<CityModel> cities = snapshot.data?.data ?? [];
+                if (controller.searchCities.isEmpty) {
+                  controller.searchCities = cities;
+                }
                 return Column(
                   children: [
                     const SizedBox(height: 12),
@@ -164,7 +170,7 @@ class LocationGetterWidgetsView
                                     height: 40.h(context),
                                     onChange: (value) {
                                       controller.searchCities =
-                                          controller.searchCity(cities!, value);
+                                          controller.searchCity(cities, value);
                                     },
                                     suffixIcon:
                                         const Icon(Iconsax.search_normal),
@@ -236,7 +242,12 @@ class LocationGetterWidgetsView
                 future: LocationApis.getDistrictsById(controller.cityId!),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    final DistrictsModel districts = snapshot.data!;
+                    final List<DistrictModel> districts =
+                        snapshot.data?.data ?? [];
+                    if (controller.searchDistricts.isEmpty) {
+                      controller.searchDistricts = districts;
+                    }
+
                     return Column(
                       children: [
                         const SizedBox(height: 12),

@@ -133,7 +133,7 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                                             "",
                                     onTap: () {
                                       if (controller.businessPartner ==
-                                          businessServicesTypes[index]
+                                          businessServicesTypes[index + 2]
                                               .serviceTypeId) {
                                         controller.changeBusinessPartnerState(
                                           null,

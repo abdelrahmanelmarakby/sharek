@@ -1,10 +1,12 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:sharek/app/data/models/private_message_model.dart';
 import 'package:sharek/app/modules/chats/views/build_msg.dart';
+import 'package:sharek/app/routes/app_pages.dart';
 import 'package:sharek/core/constants/theme/theme_export.dart';
 import 'package:sharek/core/extensions/widget.dart';
 import 'package:sharek/core/services/chat/private/private_chat.dart';
@@ -58,6 +60,7 @@ class ChatScreenX extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("$hisId + $hisName");
     final getFluffs = Provider.of<List<PrivateMessage>>(context);
     return Scaffold(
       appBar: AppBar(
@@ -65,38 +68,48 @@ class ChatScreenX extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: false,
         elevation: 0.0,
-        title: Row(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                  color: ColorsManager.primary, shape: BoxShape.circle),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: AppCachedNetworkImage(
-                    imageUrl: hisImage,
-                    height: 40,
-                    width: 40,
-                    fit: BoxFit.cover,
-                    customErrorWidget: const Icon(
-                      Iconsax.user,
-                      color: Colors.white,
-                    )),
-              ),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: Text(
-                hisName,
-                overflow: TextOverflow.fade,
-                style: StylesManager.semiBold(
-                  color: Colors.black,
-                  fontSize: FontSize.large,
+        title: GestureDetector(
+          onTap: () {
+            Get.toNamed(
+              Routes.ANOTHER_USER_PROFILE,
+              arguments: {
+                "userId": int.parse(hisId),
+              },
+            );
+          },
+          child: Row(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                    color: ColorsManager.primary, shape: BoxShape.circle),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: AppCachedNetworkImage(
+                      imageUrl: hisImage,
+                      height: 40,
+                      width: 40,
+                      fit: BoxFit.cover,
+                      customErrorWidget: const Icon(
+                        Iconsax.user,
+                        color: Colors.white,
+                      )),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Text(
+                  hisName,
+                  overflow: TextOverflow.fade,
+                  style: StylesManager.semiBold(
+                    color: Colors.black,
+                    fontSize: FontSize.large,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       body: SafeArea(

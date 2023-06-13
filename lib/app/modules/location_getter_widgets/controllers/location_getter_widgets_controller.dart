@@ -73,14 +73,15 @@ class LocationGetterWidgetsController extends GetxController {
   List<DistrictModel> searchDistricts = [];
 
   //==========================  Search Methods =============================
-  List<RegionModel> searchRegion(RegionsModel model, String text) {
+  List<RegionModel> searchRegion(List<RegionModel> model, String text) {
     List<RegionModel> matchedList = [];
+    print(text);
 
     if (text == "") {
       update();
-      return model.data!;
+      return model;
     }
-    for (RegionModel? element in model.data!) {
+    for (RegionModel? element in model) {
       if ((element?.name?.toLowerCase() ?? "").contains(text)) {
         matchedList.add(element!);
       }
@@ -91,14 +92,14 @@ class LocationGetterWidgetsController extends GetxController {
     return matchedList;
   }
 
-  List<CityModel> searchCity(CitiesModel model, String text) {
+  List<CityModel> searchCity(List<CityModel> model, String text) {
     List<CityModel> matchedList = [];
     if (text == "") {
       update();
-      return model.data!;
+      return model;
     }
 
-    for (CityModel? element in model.data!) {
+    for (CityModel? element in model) {
       if ((element?.name?.toLowerCase() ?? "").contains(text)) {
         matchedList.add(element!);
       }
@@ -109,14 +110,14 @@ class LocationGetterWidgetsController extends GetxController {
     return matchedList;
   }
 
-  List<DistrictModel> searchDistrict(DistrictsModel model, String text) {
+  List<DistrictModel> searchDistrict(List<DistrictModel> model, String text) {
     List<DistrictModel> matchedList = [];
     if (text == "") {
       update();
-      return model.data!;
+      return model;
     }
 
-    for (DistrictModel? element in model.data!) {
+    for (DistrictModel? element in model) {
       if ((element?.name?.toLowerCase() ?? "").contains(text)) {
         matchedList.add(element!);
       }
