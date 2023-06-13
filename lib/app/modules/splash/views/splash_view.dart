@@ -1,10 +1,15 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:sharek/core/constants/theme/font_manager.dart';
+import 'package:sharek/core/extensions/build_context.dart';
+import 'package:sharek/core/extensions/num.dart';
 
 import 'dart:async';
 
 import '../../../../core/constants/theme/colors_manager.dart';
+import '../../../../core/constants/theme/sizes_manager.dart';
 import '../../bottom_nav_bar/views/bottom_nav_bar_view.dart';
 
 class MyCustomSplashScreen extends StatefulWidget {
@@ -56,8 +61,8 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
 
     Timer(const Duration(seconds: 2), () {
       setState(() {
-        Navigator.pushReplacement(
-            context, PageTransition(const BottomNavBarView()));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const BottomNavBarView()));
       });
     });
   }
@@ -86,35 +91,57 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
               AnimatedOpacity(
                 duration: const Duration(milliseconds: 500),
                 opacity: _textOpacity,
-                child: Text(
-                  'مرحبا بكم في شريك',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: animation1.value,
+                child: JelloIn(
+                  child: const Text(
+                    "www.shreak.net",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: FontSize.xXlarge,
+                    ),
                   ),
                 ),
               ),
             ],
           ),
-          Center(
-            child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 1000),
-              curve: Curves.fastLinearToSlowEaseIn,
-              opacity: _containerOpacity,
-              child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 1000),
-                  curve: Curves.fastLinearToSlowEaseIn,
-                  height: width / _containerSize,
-                  width: width / _containerSize,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Image.asset('assets/images/logo.png'))),
+          Positioned(
+            top: context.height / 6,
+            right: 0,
+            left: 0,
+            child: JelloIn(
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 1000),
+                curve: Curves.fastLinearToSlowEaseIn,
+                opacity: _containerOpacity,
+                child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 1000),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    height: width / _containerSize,
+                    width: width / _containerSize * 4,
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'شريك',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 50,
+                          ),
+                        ),
+                        const Text(
+                          'Welcome to',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: FontSize.xXXlarge,
+                          ),
+                        ),
+                        (Sizes.size12 * 5).h(context).heightSizedBox,
+                      ],
+                    )),
+              ),
             ),
           ),
         ],

@@ -48,8 +48,10 @@ class HomeView extends GetView<HomeController> {
     Get.put<HomeController>(HomeController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'شريك',
+          style: StylesManager.bold(
+              color: ColorsManager.primary, fontSize: FontSize.xXXlarge),
         ),
         centerTitle: true,
       ),

@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -82,6 +83,7 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                         actions: [
                           GestureDetector(
                             onTap: () {
+                              HapticFeedback.lightImpact();
                               controller.addToFavorites(id: adId);
                             },
                             child: Container(
@@ -95,9 +97,9 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                               alignment: Alignment.center,
                               child: const Center(
                                 child: Icon(
-                                  Iconsax.heart,
+                                  Iconsax.heart5,
                                   size: Sizes.size20,
-                                  color: ColorsManager.red,
+                                  color: ColorsManager.primary,
                                 ),
                               ),
                             ),
