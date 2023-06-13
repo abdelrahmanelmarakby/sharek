@@ -15,6 +15,7 @@ import 'package:sharek/core/constants/theme/app_icons.dart';
 
 import 'package:sharek/core/constants/theme/colors_manager.dart';
 import 'package:sharek/core/constants/theme/font_manager.dart';
+import 'package:sharek/core/constants/theme/sizes_manager.dart';
 import 'package:sharek/core/constants/theme/styles_manager.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
 
@@ -73,6 +74,7 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                             },
                             child: const Icon(
                               SharekIcons.filter_3,
+                              size: Sizes.size26,
                             ),
                           ),
                         ),

@@ -352,7 +352,7 @@ class ServicesList extends StatelessWidget {
               PartnerCard(
                 isDialog: false,
                 serviceId: 5,
-                name: "شركات اخرى",
+                name: "شراكات اخرى",
                 imagePath: "assets/images/bubble.svg",
               ),
             ],

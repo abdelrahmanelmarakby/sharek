@@ -84,30 +84,35 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                     ),
                     const SizedBox(height: 16),
                     const LocationGetterWidgetsView(),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      name: "",
-                      hint: "عدد الشركاء (إختياري)",
-                      borderRadius: 8,
-                      type: TextInputType.text,
-                      controller: controller.createNumberPartnersCtr,
-                      prefixIcon: const Icon(
-                        Iconsax.people,
-                        color: Colors.black,
+                    if (controller.addHousePartner == 10)
+                      Column(
+                        children: [
+                          const SizedBox(height: 12),
+                          CustomTextField(
+                            name: "",
+                            hint: "عدد الشركاء (إختياري)",
+                            borderRadius: 8,
+                            type: TextInputType.text,
+                            controller: controller.createNumberPartnersCtr,
+                            prefixIcon: const Icon(
+                              Iconsax.people,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          CustomTextField(
+                            name: "",
+                            hint: "الجنسية (إختياري)",
+                            borderRadius: 8,
+                            type: TextInputType.text,
+                            controller: controller.createNationalityPartnersCtr,
+                            prefixIcon: const Icon(
+                              Iconsax.global,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      name: "",
-                      hint: "الجنسية (إختياري)",
-                      borderRadius: 8,
-                      type: TextInputType.text,
-                      controller: controller.createNationalityPartnersCtr,
-                      prefixIcon: const Icon(
-                        Iconsax.global,
-                        color: Colors.black,
-                      ),
-                    ),
                     const SizedBox(height: 12),
                     CustomTextField(
                       name: "",
@@ -129,10 +134,10 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                       controller: controller.createDescriptionPartnersCtr,
                       maxLines: 4,
                       validate: Validator.validateEmpty,
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
+                      prefixIcon: const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 12),
                         child: Column(
-                          children: const [
+                          children: [
                             Icon(
                               Iconsax.document_text,
                               color: Colors.black,
@@ -157,9 +162,9 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                             color: Color(0xFFF7F7F9),
                           ),
                           alignment: Alignment.center,
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Icon(
                                 SharekIcons.upload_1,
                                 color: ColorsManager.primary,

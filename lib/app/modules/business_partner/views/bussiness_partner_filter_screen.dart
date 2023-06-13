@@ -47,8 +47,9 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
                                   index: businessServicesTypes[index]
                                           .serviceTypeId ??
                                       0,
-                                  title:
-                                      businessServicesTypes[index].name ?? "",
+                                  title: index == 0
+                                      ? businessServicesTypes[index].name ?? ""
+                                      : "اعلانات البائعين",
                                   onTap: () {
                                     controller.changeBusinessPartnerState(
                                       businessServicesTypes[index]

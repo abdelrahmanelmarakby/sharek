@@ -45,6 +45,7 @@ class NotificationSettingsScreen extends GetView<ProfileController> {
                 isLast: true,
                 trailing: Switch.adaptive(
                   activeColor: ColorsManager.primary,
+                  inactiveTrackColor: ColorsManager.veryLightGrey,
                   value: controller.notifiCation,
                   onChanged: controller.onChangeNotifiCation,
                 ),

@@ -28,11 +28,11 @@ class AddAdsSheet extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            Wrap(
+            const Wrap(
               runSpacing: 16,
               spacing: 0,
               alignment: WrapAlignment.start,
-              children: const [
+              children: [
                 PartnerCard(
                   isDialog: true,
                   name: "شريك اعمال",
@@ -57,7 +57,7 @@ class AddAdsSheet extends StatelessWidget {
                 PartnerCard(
                   isDialog: true,
                   serviceId: 5,
-                  name: "اخري",
+                  name: "شراكات اخرى",
                   imagePath: "assets/images/bubble.svg",
                 ),
               ],

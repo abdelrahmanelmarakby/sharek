@@ -62,8 +62,9 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                                   index: businessServicesTypes[index]
                                           .serviceTypeId ??
                                       0,
-                                  title:
-                                      businessServicesTypes[index].name ?? "",
+                                  title: index == 0
+                                      ? businessServicesTypes[index].name ?? ""
+                                      : "اعلان بيع",
                                   onTap: () {
                                     if (controller.businessPartner ==
                                         businessServicesTypes[index]

@@ -129,7 +129,8 @@ class ProfileView extends GetView<ProfileController> {
                               title: "تواصل معنا",
                               onTap: () {
                                 launchUrl(
-                                  Uri.parse("https://shreak.net"),
+                                  Uri.parse(
+                                      "https://api.whatsapp.com/send?phone=966537420496"),
                                   mode: LaunchMode.externalApplication,
                                 );
                               },
@@ -139,7 +140,7 @@ class ProfileView extends GetView<ProfileController> {
                               title: "معلومات عنا",
                               onTap: () {
                                 launchUrl(
-                                  Uri.parse("https://shreak.net"),
+                                  Uri.parse("https://shreak.net/about_us"),
                                   mode: LaunchMode.externalApplication,
                                 );
                               },

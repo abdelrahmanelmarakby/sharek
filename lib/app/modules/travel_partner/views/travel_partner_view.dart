@@ -8,6 +8,7 @@ import 'package:sharek/app/data/remote_data_source/trip_ads.dart';
 import 'package:sharek/app/modules/travel_partner/views/travel_partner_details_screen.dart';
 import 'package:sharek/app/modules/travel_partner/views/trip_ads_filter.dart';
 import 'package:sharek/core/constants/theme/app_icons.dart';
+import 'package:sharek/core/constants/theme/sizes_manager.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
@@ -77,6 +78,7 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                               },
                               child: const Icon(
                                 SharekIcons.filter_3,
+                                size: Sizes.size26,
                               ),
                             ),
                           ),

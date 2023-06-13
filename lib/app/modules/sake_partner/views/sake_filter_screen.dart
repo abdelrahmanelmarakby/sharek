@@ -55,7 +55,9 @@ class SakeFilterScreen extends GetView<SakePartnerController> {
                                     activeIndex:
                                         controller.filterSacrificePartner,
                                     index: e.serviceTypeId ?? 0,
-                                    title: e.name ?? "",
+                                    title: e.name == "اعلان بيع"
+                                        ? "اعلانات البائعين"
+                                        : e.name!,
                                     onTap: () {
                                       controller
                                           .changeFilterSacrificePartnerState(

@@ -10,6 +10,7 @@ import 'package:sharek/app/modules/sake_partner/views/sake_filter_screen.dart';
 import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
+import '../../../../core/constants/theme/sizes_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
@@ -73,6 +74,7 @@ class SakePartnerView extends GetView<SakePartnerController> {
                               },
                               child: const Icon(
                                 SharekIcons.filter_3,
+                                size: Sizes.size26,
                               ),
                             ),
                           ),
@@ -90,7 +92,9 @@ class SakePartnerView extends GetView<SakePartnerController> {
                                         activeIndex:
                                             controller.sacrificePartner ?? 0,
                                         index: e.serviceTypeId ?? 0,
-                                        title: e.name ?? "",
+                                        title: e.name == "اعلان بيع"
+                                            ? "اعلانات البائعين"
+                                            : e.name ?? "",
                                         onTap: () {
                                           if (controller.sacrificePartner ==
                                               e.serviceTypeId) {

@@ -297,7 +297,7 @@ class LocationGetterWidgetsView
                                         color: ColorsManager.veryLightGrey,
                                       ),
                                       ...List.generate(
-                                          controller.searchCities.length,
+                                          controller.searchDistricts.length,
                                           (index) => Column(
                                                 children: [
                                                   Padding(

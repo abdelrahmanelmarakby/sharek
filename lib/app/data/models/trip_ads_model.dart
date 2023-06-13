@@ -108,7 +108,7 @@ class Data {
       phone = json["phone"];
     }
     if (json["car_type"] is String) {
-      userName = json["car_type"];
+      carType = json["car_type"];
     }
     if (json["user_name"] is String) {
       userName = json["user_name"];

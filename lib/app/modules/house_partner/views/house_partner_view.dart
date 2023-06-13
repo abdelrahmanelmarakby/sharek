@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sharek/app/data/remote_data_source/house_ads_apis.dart';
 import 'package:sharek/app/modules/house_partner/bindings/house_partner_binding.dart';
+import 'package:sharek/core/constants/theme/sizes_manager.dart';
 
 import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
@@ -71,6 +72,7 @@ class HousePartnerView extends GetView<HousePartnerController> {
                               },
                               child: const Icon(
                                 SharekIcons.filter_3,
+                                size: Sizes.size26,
                               ),
                             ),
                           ),
@@ -118,44 +120,51 @@ class HousePartnerView extends GetView<HousePartnerController> {
                                       fontSize: FontSize.xlarge),
                                 ),
                                 const SizedBox(height: 8),
-                               snapshot.data?.data?.isEmpty ?? false
-                                  ? Center(
-                                      child: AppText(
-                                        snapshot.data?.message ?? "",
-                                        color: Colors.black,
-                                      ),
-                                    )
-                                  :  ListView.separated(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: snapshot.data?.data?.length ?? 0,
-                                  separatorBuilder: (context, index) =>
-                                      const SizedBox(height: 8),
-                                  itemBuilder: (context, index) {
-                                    Data? ads = snapshot.data?.data?[index];
-                                    return snapshot.data?.data?.isNotEmpty ??
-                                            false
-                                        ? GestureDetector(
-                                            onTap: () {
-                                              Get.to(
-                                                () => HousePartnerDetailsScreen(
-                                                  id: ads?.advertisementId ?? 0,
-                                                  isUserAds: false,
-                                                ),
-                                              );
-                                            },
-                                            child: HouseAdsItem(
-                                              ad: ads,
-                                            ),
-                                          )
-                                        : Center(
-                                            child: AppText(
-                                              snapshot.data?.message ?? "",
-                                              color: Colors.black,
-                                            ),
-                                          );
-                                  },
-                                )
+                                snapshot.data?.data?.isEmpty ?? false
+                                    ? Center(
+                                        child: AppText(
+                                          snapshot.data?.message ?? "",
+                                          color: Colors.black,
+                                        ),
+                                      )
+                                    : ListView.separated(
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemCount:
+                                            snapshot.data?.data?.length ?? 0,
+                                        separatorBuilder: (context, index) =>
+                                            const SizedBox(height: 8),
+                                        itemBuilder: (context, index) {
+                                          Data? ads =
+                                              snapshot.data?.data?[index];
+                                          return snapshot
+                                                      .data?.data?.isNotEmpty ??
+                                                  false
+                                              ? GestureDetector(
+                                                  onTap: () {
+                                                    Get.to(
+                                                      () =>
+                                                          HousePartnerDetailsScreen(
+                                                        id: ads?.advertisementId ??
+                                                            0,
+                                                        isUserAds: false,
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: HouseAdsItem(
+                                                    ad: ads,
+                                                  ),
+                                                )
+                                              : Center(
+                                                  child: AppText(
+                                                    snapshot.data?.message ??
+                                                        "",
+                                                    color: Colors.black,
+                                                  ),
+                                                );
+                                        },
+                                      )
                               ],
                             ),
                           ),
