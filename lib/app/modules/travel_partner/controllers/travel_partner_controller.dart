@@ -45,7 +45,10 @@ class TravelPartnerController extends GetxController {
   TextEditingController createTripAdsPriceCtr = TextEditingController();
   TextEditingController createTripAdsCarTypeCtr = TextEditingController();
   DateTime? createAdsDate;
+  String? createAdsDateError;
   DateTime? createAdsTime;
+  String? createAdsTimeErorr;
+
 //========================================================================
   changeWithPackstatus(String? val) {
     withPackval = val!;

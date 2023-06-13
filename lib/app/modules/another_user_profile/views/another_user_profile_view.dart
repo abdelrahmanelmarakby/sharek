@@ -38,218 +38,219 @@ class AnotherUserProfileView extends GetView<AnotherUserProfileController> {
 
     var userId = arguments["userId"] ?? "";
     log(userId.toString());
-    return GetBuilder<AnotherUserProfileController>(
-      builder: (controller) {
-        return Scaffold(
-          backgroundColor: Colors.white,
-          appBar: appBar(context),
-          body: RefreshIndicator(
-            onRefresh: () {
-              return Get.forceAppUpdate();
+    return GetBuilder<AnotherUserProfileController>(builder: (controller) {
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: appBar(context),
+        body: RefreshIndicator(
+          onRefresh: () {
+            return Get.forceAppUpdate();
+          },
+          child: FutureBuilder<AnotherUserProfile?>(
+            future: ProfileApis.getAnotherUserProfile(userId),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                Data? user = snapshot.data?.data;
+                return SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 70,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 20,
+                                    child: ClipOval(
+                                      child: AppCachedNetworkImage(
+                                        imageUrl:
+                                            user?.user?.avatar ?? dummyImage,
+                                        fit: BoxFit.cover,
+                                        isLoaderShimmer: true,
+                                      ),
+                                    ),
+                                  ),
+                                  const Spacer(flex: 5),
+                                  Expanded(
+                                    flex: 75,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        AppText(
+                                          user?.user?.name ?? "",
+                                          color: Colors.black,
+                                          fontSize: FontSize.xLarge,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        AppText(
+                                          "انضم ${user?.user?.createdAt2}",
+                                          color: Colors.grey,
+                                          fontSize: FontSize.medium,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                        const SizedBox(height: 4),
+                                        // Row(
+                                        //   children: const [
+                                        //     Icon(
+                                        //       Icons.star,
+                                        //       color: ColorsManager.primary,
+                                        //     ),
+                                        //     SizedBox(width: 8),
+                                        //     AppText(
+                                        //       "4.5",
+                                        //       color: ColorsManager.primary,
+                                        //       fontSize: FontSize.medium,
+                                        //       fontWeight: FontWeight.w500,
+                                        //     ),
+                                        //   ],
+                                        // ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 30,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      controller.makePhoneCall(
+                                        user?.user?.phone.toString() ?? "",
+                                      );
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      decoration: const BoxDecoration(
+                                        color: ColorsManager.primary,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Iconsax.call,
+                                        color: ColorsManager.white,
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.to(
+                                        () => ChatScreen(
+                                          hisId: "${user?.user?.id ?? 0}",
+                                          myId:
+                                              CacheHelper.getUserId.toString(),
+                                          hisName:
+                                              user?.user?.name ?? "بدون اسم",
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                        color: ColorsManager.white,
+                                        border: Border.all(
+                                          color: ColorsManager.primary,
+                                        ),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Iconsax.sms,
+                                        color: ColorsManager.primary,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 30),
+                        Text(
+                          "الإعلانات السابقة",
+                          style: StylesManager.bold(fontSize: FontSize.xlarge),
+                        ),
+                        ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: user?.advertisement?.length ?? 0,
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 8),
+                          itemBuilder: (context, index) {
+                            var ad = user?.advertisement?[index];
+                            return GestureDetector(
+                              onTap: () {
+                                if (ad?.serviceId == 1) {
+                                  Get.to(
+                                    () => BusinessPartnerDetailsScreen(
+                                      adId: ad?.advertisementId ?? 0,
+                                      isUserAds: false,
+                                    ),
+                                    binding: BusinessPartnerBinding(),
+                                  );
+                                } else if (ad?.serviceId == 2) {
+                                  Get.to(
+                                    () => TravelPartnerDetailsScreen(
+                                      id: ad?.advertisementId ?? 0,
+                                      isUserAds: false,
+                                    ),
+                                    binding: TravelPartnerBinding(),
+                                  );
+                                } else if (ad?.serviceId == 3) {
+                                  Get.to(
+                                    () => SakePartnerDetailsScreen(
+                                      id: ad?.advertisementId ?? 0,
+                                      isUserAds: false,
+                                    ),
+                                    binding: SakePartnerBinding(),
+                                  );
+                                } else if (ad?.serviceId == 4) {
+                                  Get.to(
+                                    () => HousePartnerDetailsScreen(
+                                      id: ad?.advertisementId ?? 0,
+                                      isUserAds: false,
+                                    ),
+                                    binding: HousePartnerBinding(),
+                                  );
+                                } else {
+                                  Get.to(
+                                    () => OtherPartnerDetailsScreen(
+                                      id: ad?.advertisementId ?? 0,
+                                      isUserAds: false,
+                                    ),
+                                    binding: OtherServicePartnerBinding(),
+                                  );
+                                }
+                              },
+                              child: AdCard(ad: ad),
+                            );
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(
+                    valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
+                  ),
+                );
+              }
             },
-            child: FutureBuilder<AnotherUserProfile?>(
-              future: ProfileApis.getAnotherUserProfile(userId),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  Data? user = snapshot.data?.data;
-                  return SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 70,
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 20,
-                                      child: ClipOval(
-                                        child: AppCachedNetworkImage(
-                                          imageUrl:
-                                              user?.user?.avatar ?? dummyImage,
-                                          fit: BoxFit.cover,
-                                          isLoaderShimmer: true,
-                                        ),
-                                      ),
-                                    ),
-                                    const Spacer(flex: 5),
-                                    Expanded(
-                                      flex: 75,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          AppText(
-                                            user?.user?.name ?? "",
-                                            color: Colors.black,
-                                            fontSize: FontSize.xLarge,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          AppText(
-                                            "انضم ${user?.user?.createdAt2}",
-                                            color: Colors.grey,
-                                            fontSize: FontSize.medium,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Row(
-                                            children: const [
-                                              Icon(
-                                                Icons.star,
-                                                color: ColorsManager.primary,
-                                              ),
-                                              SizedBox(width: 8),
-                                              AppText(
-                                                "4.5",
-                                                color: ColorsManager.primary,
-                                                fontSize: FontSize.medium,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                flex: 30,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        controller.makePhoneCall(
-                                          user?.user?.phone.toString() ?? "",
-                                        );
-                                      },
-                                      child: Container(
-                                        height: 50,
-                                        width: 50,
-                                        decoration: const BoxDecoration(
-                                          color: ColorsManager.primary,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: const Icon(
-                                          Iconsax.call,
-                                          color: ColorsManager.white,
-                                        ),
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Get.to(
-                                          () => ChatScreen(
-                                            hisId: "${user?.user?.id ?? 0}",
-                                            myId: CacheHelper.getUserId.toString(),
-                                            hisName: user?.user?.name ?? "بدون اسم",
-                                          ),
-                                        );
-                                      },
-                                      child: Container(
-                                        height: 50,
-                                        width: 50,
-                                        decoration: BoxDecoration(
-                                          color: ColorsManager.white,
-                                          border: Border.all(
-                                            color: ColorsManager.primary,
-                                          ),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: const Icon(
-                                          Iconsax.sms,
-                                          color: ColorsManager.primary,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 30),
-                          Text(
-                            "الإعلانات السابقة",
-                            style: StylesManager.bold(fontSize: FontSize.xlarge),
-                          ),
-                          ListView.separated(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: user?.advertisement?.length ?? 0,
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(height: 8),
-                            itemBuilder: (context, index) {
-                              var ad = user?.advertisement?[index];
-                              return GestureDetector(
-                                onTap: () {
-                                  if (ad?.serviceId == 1) {
-                                    Get.to(
-                                      () => BusinessPartnerDetailsScreen(
-                                        adId: ad?.advertisementId ?? 0,
-                                        isUserAds: false,
-                                      ),
-                                      binding: BusinessPartnerBinding(),
-                                    );
-                                  } else if (ad?.serviceId == 2) {
-                                    Get.to(
-                                      () => TravelPartnerDetailsScreen(
-                                        id: ad?.advertisementId ?? 0,
-                                        isUserAds: false,
-                                      ),
-                                      binding: TravelPartnerBinding(),
-                                    );
-                                  } else if (ad?.serviceId == 3) {
-                                    Get.to(
-                                      () => SakePartnerDetailsScreen(
-                                        id: ad?.advertisementId ?? 0,
-                                        isUserAds: false,
-                                      ),
-                                      binding: SakePartnerBinding(),
-                                    );
-                                  } else if (ad?.serviceId == 4) {
-                                    Get.to(
-                                      () => HousePartnerDetailsScreen(
-                                        id: ad?.advertisementId ?? 0,
-                                        isUserAds: false,
-                                      ),
-                                      binding: HousePartnerBinding(),
-                                    );
-                                  } else {
-                                    Get.to(
-                                      () => OtherPartnerDetailsScreen(
-                                        id: ad?.advertisementId ?? 0,
-                                        isUserAds: false,
-                                      ),
-                                      binding: OtherServicePartnerBinding(),
-                                    );
-                                  }
-                                },
-                                child: AdCard(ad: ad),
-                              );
-                            },
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator.adaptive(
-                      valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
-                    ),
-                  );
-                }
-              },
-            ),
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 }
 

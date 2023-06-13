@@ -94,16 +94,15 @@ class _RecentChatsState extends State<RecentChats> {
               : chatRoom.aImage.toString(),
         ),
         closedBuilder: (context, action) => Container(
-          margin: const EdgeInsets.only(top: 2, bottom: 4, right: 8, left: 8),
           padding: const EdgeInsets.symmetric(
             horizontal: 15,
             vertical: 12,
           ),
           decoration: BoxDecoration(
-              color: chatRoom.lastSender != widget.myId
-                  ? const Color.fromARGB(255, 219, 225, 252)
-                  : const Color.fromARGB(255, 255, 255, 255),
-              borderRadius: BorderRadius.circular(Sizes.size12)),
+            color: chatRoom.lastSender != widget.myId
+                ? const Color.fromARGB(255, 219, 225, 252)
+                : const Color.fromARGB(255, 255, 255, 255),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

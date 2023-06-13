@@ -162,10 +162,10 @@ class SakePartnerController extends GetxController {
     update();
   }
 
-  int quarter = 1;
-  int third = 1;
-  int half = 1;
-  int eighth = 1;
+  int quarter = 0;
+  int third = 0;
+  int half = 0;
+  int eighth = 0;
   TextEditingController createQuarterPriceCtr = TextEditingController();
   TextEditingController createThirdPriceCtr = TextEditingController();
   TextEditingController createHalfPriceCtr = TextEditingController();
@@ -176,8 +176,8 @@ class SakePartnerController extends GetxController {
   }
 
   void dereaseQuarter() {
-    if (quarter == 1) {
-      quarter = 1;
+    if (quarter == 0) {
+      quarter = 0;
     } else {
       quarter--;
     }
@@ -190,8 +190,8 @@ class SakePartnerController extends GetxController {
   }
 
   void dereaseThird() {
-    if (third == 1) {
-      third = 1;
+    if (third == 0) {
+      third = 0;
     } else {
       third--;
     }
@@ -204,8 +204,8 @@ class SakePartnerController extends GetxController {
   }
 
   void dereaseHalf() {
-    if (half == 1) {
-      half = 1;
+    if (half == 0) {
+      half = 0;
     } else {
       half--;
     }
@@ -218,8 +218,8 @@ class SakePartnerController extends GetxController {
   }
 
   void dereaseEighth() {
-    if (eighth == 1) {
-      eighth = 1;
+    if (eighth == 0) {
+      eighth = 0;
     } else {
       eighth--;
     }

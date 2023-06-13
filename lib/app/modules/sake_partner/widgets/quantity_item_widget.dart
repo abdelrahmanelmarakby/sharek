@@ -1,10 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
 
-class QuantityItemWidget extends StatelessWidget {
+class QuantityItemWidget extends StatefulWidget {
   const QuantityItemWidget({
     Key? key,
     required this.index,
@@ -20,14 +21,27 @@ class QuantityItemWidget extends StatelessWidget {
   final bool available;
   final String price;
   final Function() onTap;
+
+  @override
+  State<QuantityItemWidget> createState() => _QuantityItemWidgetState();
+}
+
+class _QuantityItemWidgetState extends State<QuantityItemWidget> {
+  bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        widget.onTap();
+        setState(() {
+          isSelected = !isSelected;
+        });
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
+            width: context.width / 5,
             padding: const EdgeInsets.symmetric(
               vertical: 12,
             ),
@@ -35,24 +49,25 @@ class QuantityItemWidget extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(
                 width: 1,
-                color: available
-                    ? activeIndex == index
+                color: widget.available
+                    ? (widget.activeIndex == widget.index) && isSelected
                         ? const Color(0xFF27AE60)
                         : const Color(0xffE4E4E6)
                     : const Color(0xFFEB5757),
               ),
               borderRadius: BorderRadius.circular(8),
-              color: available
-                  ? activeIndex == index
+              color: widget.available
+                  ? (widget.activeIndex == widget.index) && isSelected
                       ? const Color(0xFF27AE60).withOpacity(.1)
                       : const Color(0xffF7F7F7)
                   : const Color(0xFFEB5757).withOpacity(.1),
             ),
             child: Text(
-              "$title ($price)",
+              "${widget.title} (${widget.price})",
+              overflow: TextOverflow.visible,
               style: StylesManager.medium(
-                color: available
-                    ? activeIndex == index
+                color: widget.available
+                    ? (widget.activeIndex == widget.index) && isSelected
                         ? const Color(0xFF27AE60)
                         : Colors.black
                     : const Color(0xFFEB5757),
@@ -62,10 +77,10 @@ class QuantityItemWidget extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            available ? "متاح" : "محجوز",
+            widget.available ? "متاح" : "محجوز",
             style: StylesManager.regular(
-              color: available
-                  ? activeIndex == index
+              color: widget.available
+                  ? (widget.activeIndex == widget.index) && isSelected
                       ? const Color(0xFF27AE60)
                       : Colors.black
                   : const Color(0xFFEB5757),

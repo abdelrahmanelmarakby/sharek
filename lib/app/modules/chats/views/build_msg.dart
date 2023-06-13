@@ -168,7 +168,8 @@ class _MessageBuilderState extends State<MessageBuilder> {
             alignment: Alignment.topRight,
             padding: const BubbleEdges.only(left: 15, right: 15),
             nip: BubbleNip.rightTop,
-            color: ColorsManager.offWhite.withOpacity(.8),
+            elevation: 0,
+            color: ColorsManager.offWhite,
             child: msgBuilder(
                 context: context,
                 msg: widget.msg as PrivateMessage,
@@ -178,10 +179,12 @@ class _MessageBuilderState extends State<MessageBuilder> {
       );
     } else {
       return Bubble(
+        elevation: 0,
         margin: const BubbleEdges.only(top: 10),
         alignment: Alignment.topLeft,
         padding: const BubbleEdges.only(left: 15, right: 15),
         nip: BubbleNip.leftTop,
+        color: ColorsManager.offWhite.withOpacity(.6),
         child: msgBuilder(
           context: context,
           msg: widget.msg as PrivateMessage,

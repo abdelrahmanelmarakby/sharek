@@ -1,5 +1,6 @@
 // ignore_for_file: unused_local_variable
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:sharek/core/extensions/validator.dart';
 import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
+import '../../../../core/constants/theme/styles_manager.dart';
 import '../../../../core/extensions/input_formatter.dart';
 import '../../../../core/global/const.dart';
 import '../../../../core/widgets/app_text.dart';
@@ -159,6 +161,18 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                         color: Colors.black,
                       ),
                     ),
+                    if (controller.createAdsDateError != null)
+                      Column(
+                        children: [
+                          const SizedBox(height: 4),
+                          Text(
+                            controller.createAdsDateError!,
+                            style: StylesManager.regular(
+                                fontSize: FontSize.small,
+                                color: ColorsManager.error),
+                          ),
+                        ],
+                      ),
                     const SizedBox(height: 12),
                     CustomTextField(
                       name: "",
@@ -188,6 +202,18 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                         color: Colors.black,
                       ),
                     ),
+                    if (controller.createAdsTime == null)
+                      Column(
+                        children: [
+                          const SizedBox(height: 4),
+                          Text(
+                            controller.createAdsTimeErorr!,
+                            style: StylesManager.regular(
+                                fontSize: FontSize.small,
+                                color: ColorsManager.error),
+                          ),
+                        ],
+                      ),
                     const SizedBox(height: 12),
                     CustomTextField(
                       name: "",
@@ -254,7 +280,7 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                               ),
                               SizedBox(width: 10),
                               AppText(
-                                "رفع الصور أو الملفات",
+                                "رفع الصور  ",
                                 color: Colors.black,
                                 fontSize: 16,
                                 fontWeight: FontWeights.light,
@@ -282,6 +308,27 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                         width: context.width,
                         text: "إضافة إعلان جديد",
                         onPressed: (animationController) {
+                          print(controller.createAdsTime.toString() +
+                              controller.createAdsDate.toString());
+                          controller.createTripAdsFormKey.currentState!
+                              .validate();
+                          if (controller.createAdsDate == null) {
+                            controller.createAdsDateError =
+                                "يرجى تحديد تاريخ الرحلة";
+                            controller.update();
+                          } else {
+                            controller.createAdsDateError = null;
+                            controller.update();
+                          }
+
+                          if (controller.createAdsTime == null) {
+                            controller.createAdsTimeErorr =
+                                "يرجى تحديد ساعة الرحلة";
+                            controller.update();
+                          } else {
+                            controller.createAdsTimeErorr = null;
+                            controller.update();
+                          }
                           if (controller.createTripAdsFormKey.currentState!
                                   .validate() &&
                               controller.createAdsDate != null &&

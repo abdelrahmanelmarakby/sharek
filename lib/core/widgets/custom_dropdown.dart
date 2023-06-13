@@ -46,10 +46,10 @@ class AppDropDown extends StatelessWidget {
           title,
           style: StylesManager.regular(
             color: ColorsManager.charcoal,
-            fontSize: FontSize.medium.h(context),
+            fontSize: FontSize.small.h(context),
           ),
         ),
-        trailing: icon != null
+        trailing: icon == null
             ? const Icon(
                 Icons.keyboard_arrow_down,
                 color: ColorsManager.charcoal,

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,6 +14,7 @@ import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
 import '../../../../core/global/const.dart';
 import '../../../../core/widgets/app_text.dart';
+import '../../../../core/widgets/custom_dropdown.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../data/models/service_type.dart';
 import '../../../data/models/trip_ads_model.dart';
@@ -113,45 +115,45 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                                 )
                                 .toList(),
                           ),
-                          // const SizedBox(height: 8),
-                          // Row(
-                          //   crossAxisAlignment: CrossAxisAlignment.start,
-                          //   children: [
-                          //     Expanded(
-                          //       child: AppDropDown(
-                          //         title: "نهاية الرحلة",
-                          //         center: true,
-                          //         bottomSheet: Container(),
-                          //       ),
-                          //     ),
-                          //     const SizedBox(width: 8),
-                          //     Expanded(
-                          //       child: AppDropDown(
-                          //         title: "نهاية الرحلة",
-                          //         center: true,
-                          //         bottomSheet: Container(),
-                          //       ),
-                          //     ),
-                          //     const SizedBox(width: 8),
-                          //     Expanded(
-                          //       child: AppDropDown(
-                          //         title: controller.viewDate == null
-                          //             ? "التاريخ"
-                          //             : appDateFormate(
-                          //                 controller.viewDate!, "ar"),
-                          //         center: true,
-                          //         bottomSheet: CupertinoDatePicker(
-                          //           mode: CupertinoDatePickerMode.date,
-                          //           dateOrder: DatePickerDateOrder.ymd,
-                          //           minimumDate: DateTime.now(),
-                          //           initialDateTime: DateTime.now(),
-                          //           onDateTimeChanged:
-                          //               controller.onDateViewPickerChanged,
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
+                          const SizedBox(height: 8),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: AppDropDown(
+                                  title: "بداية الرحلة",
+                                  center: true,
+                                  bottomSheet: Container(),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: AppDropDown(
+                                  title: "نهاية الرحلة",
+                                  center: true,
+                                  bottomSheet: Container(),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: AppDropDown(
+                                  title: controller.viewDate == null
+                                      ? "التاريخ"
+                                      : appDateFormate(
+                                          controller.viewDate!, "ar"),
+                                  center: true,
+                                  bottomSheet: CupertinoDatePicker(
+                                    mode: CupertinoDatePickerMode.date,
+                                    dateOrder: DatePickerDateOrder.ymd,
+                                    minimumDate: DateTime.now(),
+                                    initialDateTime: DateTime.now(),
+                                    onDateTimeChanged:
+                                        controller.onDateViewPickerChanged,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                           const SizedBox(height: 20),
                           SizedBox(
                             width: context.width,

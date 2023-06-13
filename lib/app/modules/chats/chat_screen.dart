@@ -114,11 +114,12 @@ class ChatScreenX extends StatelessWidget {
       ),
       body: SafeArea(
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
           child: Column(
             children: [
               Expanded(
                 child: ListView.builder(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   reverse: true,
                   itemCount: getFluffs.length,
                   //padding: const EdgeInsets.only(

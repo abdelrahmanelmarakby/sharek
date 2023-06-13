@@ -60,6 +60,8 @@ class Attachment {
               },
               maxLines: 6,
               minLines: 1,
+              style: StylesManager.medium(
+                  fontSize: FontSize.large, color: ColorsManager.black),
               controller: _controller,
               textCapitalization: TextCapitalization.sentences,
               onChanged: (value) {
@@ -68,6 +70,7 @@ class Attachment {
               decoration: InputDecoration(
                 fillColor: ColorsManager.offWhite,
                 filled: true,
+
                 suffixIcon: IconButton(
                   icon: const Icon(Iconsax.attach_square),
                   iconSize: 25.0,

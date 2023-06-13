@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -6,6 +8,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import '../../../../core/constants/theme/theme_export.dart';
 import '../../../../core/widgets/network_image.dart';
 import '../../../data/models/notifications_model.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/notifications_controller.dart';
 
 class NotificationsView extends GetView<NotificationsController> {
@@ -52,6 +55,14 @@ class NotificationsView extends GetView<NotificationsController> {
                         height: 1,
                       ),
                       ListTile(
+                        onTap: () {
+                          Get.toNamed(
+                            Routes.ANOTHER_USER_PROFILE,
+                            arguments: {
+                              "userId": Random().nextInt(10) + 1,
+                            },
+                          );
+                        },
                         tileColor: (item.isRead == 1)
                             ? ColorsManager.white
                             : const Color(0xFFF4F4FF),
@@ -71,7 +82,7 @@ class NotificationsView extends GetView<NotificationsController> {
                           style: const TextStyle(
                             fontSize: 14,
                             color: ColorsManager.veryDarkGrey,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                         title: Text(
@@ -84,21 +95,10 @@ class NotificationsView extends GetView<NotificationsController> {
                         leading: SizedBox(
                           height: 50,
                           width: 50,
-                          child: GestureDetector(
-                            onTap: () {
-                              //   Get.toNamed(
-                              //     Routes.ANOTHER_USER_PROFILE,
-                              //     //FIXME :: ADD USER ID HERE
-                              //     arguments: {
-                              //       "userId": Random().nextInt(10),
-                              //     },
-                              //   );
-                            },
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(50),
-                              child: AppCachedNetworkImage(
-                                imageUrl: item.avatar ?? "",
-                              ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: AppCachedNetworkImage(
+                              imageUrl: item.avatar ?? "",
                             ),
                           ),
                         ),
