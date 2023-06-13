@@ -17,7 +17,7 @@ Map<String, String> ar = {
   LocalKeys.login: "الدخول الأن",
   LocalKeys.register: "انشاء حساب الأن",
   LocalKeys.email: " البريد الإلكتروني",
-  LocalKeys.phone: "رقم الهاتف الخاص بك",
+  LocalKeys.phone: "رقم الهاتف الخاص بك بدون صفر",
   LocalKeys.password: " رمز المرور",
   LocalKeys.passwordConfirm: "تأكيد كلمه المرور",
   LocalKeys.forgetPassword: "هل نسيت كلمة المرور ؟",

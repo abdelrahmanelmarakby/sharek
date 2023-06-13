@@ -35,7 +35,7 @@ class OtpVerification extends GetView<AuthController> {
               " ادخل كود التفعيل",
               style: StylesManager.bold(fontSize: FontSize.xlarge),
             ),
-            4.h(context).heightSizedBox,
+            32.h(context).heightSizedBox,
             Directionality(
               textDirection: TextDirection.ltr,
               child: FilledRoundedPinPut(

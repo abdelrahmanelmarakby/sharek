@@ -40,14 +40,15 @@ class EditUserInfoScreen extends GetView<ProfileController> {
                         CustomTextField(
                           borderRadius: 8,
                           controller: controller.nameCtr,
-                          hint: "اسم المستخدم",
+                          hint: " ادخل اسم المستخدم ",
                           prefixIcon: const Icon(
                             Iconsax.user,
                           ),
                         ),
                         Sizes.size12.h(context).heightSizedBox,
                         CustomTextField(
-                          hint: "رقم الهاتف",
+                          name: "ادخل الرقم بدون صفر",
+                          hint: "ادخل الرقم بدون صفر",
                           borderRadius: 8,
                           controller: controller.phoneCtr,
                           prefixIcon: const Icon(

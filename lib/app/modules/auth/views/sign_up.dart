@@ -9,6 +9,7 @@ import 'package:sharek/core/extensions/widget.dart';
 import 'package:sharek/core/language/local_keys.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
 import 'package:sharek/core/widgets/progress_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/widgets/snack_bar.dart';
 
@@ -76,12 +77,31 @@ class SignUpView extends GetView<AuthController> {
                     },
                   ),
                 ),
-                Text(
-                  "اوافق علي الشروط والاحكام",
-                  style: StylesManager.medium(
-                    color: ColorsManager.black,
-                    fontSize: FontSize.small,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      "اوافق علي",
+                      style: StylesManager.medium(
+                        color: ColorsManager.black,
+                        fontSize: FontSize.small,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        launchUrl(
+                          Uri.parse("https://shreak.net/privacy_policy"),
+                          mode: LaunchMode.externalApplication,
+                        );
+                      },
+                      child: Text(
+                        " الشروط والاحكام",
+                        style: StylesManager.medium(
+                          color: ColorsManager.primary,
+                          fontSize: FontSize.small,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

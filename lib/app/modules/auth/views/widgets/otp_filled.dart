@@ -33,14 +33,14 @@ class FilledRoundedPinPutState extends State<FilledRoundedPinPut> {
 
   @override
   Widget build(BuildContext context) {
-    const length = 5;
+    const length = 4;
     //const borderColor = Color.fromRGBO(114, 178, 238, 1);
     const errorColor = Colors.red;
     const fillColor = Color(0xffF7f7f9);
     final defaultPinTheme = PinTheme(
       width: 64,
-      height: 50,
-      margin: EdgeInsets.symmetric(horizontal: 13.h(context)),
+      height: 64,
+      //margin: EdgeInsets.symmetric(horizontal: 13.h(context)),
       textStyle: StylesManager.medium(fontSize: FontSize.large),
       decoration: BoxDecoration(
         color: fillColor,
@@ -48,53 +48,58 @@ class FilledRoundedPinPutState extends State<FilledRoundedPinPut> {
         border: Border.all(color: Colors.transparent),
       ),
     );
-    return Center(
-      child: Pinput(
-        length: length,
-        listenForMultipleSmsOnAndroid: true,
-        keyboardType: TextInputType.number,
-        controller: controller,
-        focusNode: focusNode,
-        errorTextStyle: const TextStyle(
-          color: Colors.red,
-        ),
-        defaultPinTheme: defaultPinTheme,
-        onCompleted: (pin) {
-          setState(() => showError = pin != '5555');
-        },
-        validator: (v) {
-          if (v.toString().isEmpty || v!.length != 5) {
-            return "رمز تأكيد خاطئ! نرجو كتابة الرمز الصحيح";
-          }
-          return null;
-        },
-        onChanged: widget.onChanged,
-        focusedPinTheme: defaultPinTheme.copyWith(
-          height: 50,
-          width: 64,
-          decoration: defaultPinTheme.decoration!.copyWith(
-            border: Border.all(
-              color: const Color(0xffE4E4E5),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 0.h(context)),
+      child: Center(
+        child: Pinput(
+          length: length,
+          listenForMultipleSmsOnAndroid: true,
+          keyboardType: TextInputType.number,
+          controller: controller,
+          focusNode: focusNode,
+          errorTextStyle: const TextStyle(
+            color: Colors.red,
+          ),
+          defaultPinTheme: defaultPinTheme,
+          onCompleted: (pin) {
+            setState(() => showError = pin != '5555');
+          },
+          validator: (v) {
+            if (v.toString().isEmpty || v!.length != 5) {
+              return "رمز تأكيد خاطئ! نرجو كتابة الرمز الصحيح";
+            }
+            return null;
+          },
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          onChanged: widget.onChanged,
+          focusedPinTheme: defaultPinTheme.copyWith(
+            height: 64,
+            width: 64,
+            decoration: defaultPinTheme.decoration!.copyWith(
+              border: Border.all(
+                color: ColorsManager.success,
+              ),
             ),
           ),
-        ),
-        hapticFeedbackType: HapticFeedbackType.lightImpact,
-        followingPinTheme: defaultPinTheme.copyWith(
-          decoration: BoxDecoration(
-            color: const Color(0xffE4E4E5),
-            borderRadius: BorderRadius.circular(8),
+          hapticFeedbackType: HapticFeedbackType.lightImpact,
+          followingPinTheme: defaultPinTheme.copyWith(
+            decoration: BoxDecoration(
+              color: const Color(0xffE4E4E5),
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
-        ),
-        disabledPinTheme: defaultPinTheme.copyWith(
-          decoration: BoxDecoration(
-            color: const Color(0xffE4E4E5),
-            borderRadius: BorderRadius.circular(8),
+          disabledPinTheme: defaultPinTheme.copyWith(
+            decoration: BoxDecoration(
+              color: const Color(0xffE4E4E5),
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
-        ),
-        errorPinTheme: defaultPinTheme.copyWith(
-          decoration: BoxDecoration(
-            border: Border.all(color: errorColor),
-            borderRadius: BorderRadius.circular(8),
+          errorPinTheme: defaultPinTheme.copyWith(
+            decoration: BoxDecoration(
+              border: Border.all(color: errorColor),
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
         ),
       ),

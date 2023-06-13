@@ -49,7 +49,8 @@ class ProfileController extends GetxController {
         animationController.reverse();
       });
       showSnackBar(res?.message ?? "");
-      Get.offAllNamed(Routes.BOTTOM_NAV_BAR);
+      Get.forceAppUpdate();
+      Get.offAllNamed(Routes.PROFILE);
     } else {
       animationController.reset();
       showSnackBar(res?.message ?? "");

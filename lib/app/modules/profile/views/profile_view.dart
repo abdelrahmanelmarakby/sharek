@@ -7,6 +7,7 @@ import 'package:sharek/app/data/remote_data_source/profile_apis.dart';
 import 'package:sharek/app/modules/profile/bindings/profile_binding.dart';
 import 'package:sharek/core/constants/theme/colors_manager.dart';
 import 'package:sharek/core/constants/theme/font_manager.dart';
+import 'package:sharek/core/constants/theme/styles_manager.dart';
 import 'package:sharek/core/extensions/export.dart';
 import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/widgets/app_text.dart';
@@ -159,11 +160,11 @@ class ProfileView extends GetView<ProfileController> {
                               onTap: () {
                                 controller.logOut();
                               },
-                              child: AppText(
+                              child: Text(
                                 "تسجيل الخروج",
-                                fontSize: Sizes.size14.h(context),
-                                fontWeight: FontWeights.medium,
-                                color: ColorsManager.red,
+                                style: StylesManager.medium(
+                                    fontSize: Sizes.size14.h(context),
+                                    color: ColorsManager.red),
                               ),
                             ),
                           ],
