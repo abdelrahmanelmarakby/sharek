@@ -51,15 +51,16 @@ class LocationGetterWidgetsView
                                       child: Sizes.size8
                                           .h(context)
                                           .heightSizedBox),
-                                  IconButton.filled(
-                                      onPressed: () {
-                                        Get.close(1);
-                                      },
-                                      icon: const Icon(
-                                        Icons.cancel,
-                                        color: ColorsManager.primary,
-                                        size: Sizes.size38,
-                                      )),
+                                  IconButton(
+                                    onPressed: () {
+                                      Get.close(1);
+                                    },
+                                    icon: const Icon(
+                                      Icons.cancel,
+                                      color: ColorsManager.primary,
+                                      size: Sizes.size38,
+                                    ),
+                                  ),
                                 ],
                               ),
                               CustomTextField(
@@ -154,15 +155,16 @@ class LocationGetterWidgetsView
                                           child: Sizes.size8
                                               .h(context)
                                               .heightSizedBox),
-                                      IconButton.filled(
-                                          onPressed: () {
-                                            Get.close(1);
-                                          },
-                                          icon: const Icon(
-                                            Icons.cancel,
-                                            color: ColorsManager.primary,
-                                            size: Sizes.size38,
-                                          )),
+                                      IconButton(
+                                        onPressed: () {
+                                          Get.close(1);
+                                        },
+                                        icon: const Icon(
+                                          Icons.cancel,
+                                          color: ColorsManager.primary,
+                                          size: Sizes.size38,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   CustomTextField(
@@ -270,15 +272,16 @@ class LocationGetterWidgetsView
                                               child: Sizes.size8
                                                   .h(context)
                                                   .heightSizedBox),
-                                          IconButton.filled(
-                                              onPressed: () {
-                                                Get.close(1);
-                                              },
-                                              icon: const Icon(
-                                                Icons.cancel,
-                                                color: ColorsManager.primary,
-                                                size: Sizes.size38,
-                                              )),
+                                          IconButton(
+                                            onPressed: () {
+                                              Get.close(1);
+                                            },
+                                            icon: const Icon(
+                                              Icons.cancel,
+                                              color: ColorsManager.primary,
+                                              size: Sizes.size38,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                       CustomTextField(

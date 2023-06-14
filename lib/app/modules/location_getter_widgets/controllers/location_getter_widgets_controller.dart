@@ -75,7 +75,7 @@ class LocationGetterWidgetsController extends GetxController {
   //==========================  Search Methods =============================
   List<RegionModel> searchRegion(List<RegionModel> model, String text) {
     List<RegionModel> matchedList = [];
-    print(text);
+    log(text);
 
     if (text == "") {
       update();
@@ -86,7 +86,7 @@ class LocationGetterWidgetsController extends GetxController {
         matchedList.add(element!);
       }
     }
-    print(matchedList);
+    log(matchedList.toString());
 
     update();
     return matchedList;
@@ -104,7 +104,7 @@ class LocationGetterWidgetsController extends GetxController {
         matchedList.add(element!);
       }
     }
-    print(matchedList);
+    log(matchedList.toString());
     update();
 
     return matchedList;
@@ -122,7 +122,7 @@ class LocationGetterWidgetsController extends GetxController {
         matchedList.add(element!);
       }
     }
-    print(matchedList);
+    log(matchedList.toString());
     update();
 
     return matchedList;

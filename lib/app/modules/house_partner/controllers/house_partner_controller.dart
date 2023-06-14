@@ -5,7 +5,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:sharek/app/data/remote_data_source/house_ads_apis.dart';
 import 'package:sharek/core/widgets/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -91,7 +90,7 @@ class HousePartnerController extends GetxController {
         }
       },
     );
-    print(createPhotos);
+    log(createPhotos.toString());
     update();
   }
 

@@ -44,7 +44,7 @@ class BusinessPartnerController extends GetxController {
         }
       },
     );
-    print(createPhotos);
+    log(createPhotos.toString());
     update();
   }
 

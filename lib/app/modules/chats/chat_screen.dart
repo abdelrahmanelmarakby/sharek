@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -60,7 +62,7 @@ class ChatScreenX extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("$hisId + $hisName");
+    log("$hisId + $hisName");
     final getFluffs = Provider.of<List<PrivateMessage>>(context);
     return Scaffold(
       appBar: AppBar(
