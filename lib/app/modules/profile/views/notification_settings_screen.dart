@@ -35,6 +35,7 @@ class NotificationSettingsScreen extends GetView<ProfileController> {
                 title: "رقم الجوال",
                 trailing: Switch.adaptive(
                   activeColor: ColorsManager.primary,
+                  inactiveTrackColor: ColorsManager.veryLightGrey,
                   value: controller.phoneNotifiCation,
                   onChanged: controller.onChangePhoneNotifiCation,
                 ),

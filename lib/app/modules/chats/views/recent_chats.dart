@@ -179,7 +179,7 @@ class _RecentChatsState extends State<RecentChats> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               const Icon(
-                                Icons.done_all,
+                                Icons.done,
                                 size: Sizes.size18,
                                 color: ColorsManager.veryDarkGrey,
                               ),

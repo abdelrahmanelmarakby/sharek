@@ -6,7 +6,6 @@ import 'package:sharek/core/constants/theme/colors_manager.dart';
 
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
-import '../../../../core/extensions/validator.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 

@@ -21,7 +21,6 @@ import 'package:sharek/core/extensions/num.dart';
 import 'package:sharek/core/extensions/widget.dart';
 import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/language/local_keys.dart';
-import 'package:sharek/core/widgets/app_text.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
 
 import '../../../data/remote_data_source/home_apis.dart';

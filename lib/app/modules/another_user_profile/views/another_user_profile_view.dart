@@ -277,7 +277,13 @@ AppBar appBar(BuildContext context) {
       ),
     ),
     actions: [
-      GestureDetector(
+      PopupMenuButton(
+        itemBuilder: (context) => [
+          const PopupMenuItem(
+              child: AdRowItem(icon: Icons.share, text: "مشاركة الحساب")),
+          const PopupMenuItem(
+              child: AdRowItem(icon: Icons.block, text: "ابلاغ")),
+        ],
         child: Container(
           height: 40,
           width: 40,
@@ -289,7 +295,7 @@ AppBar appBar(BuildContext context) {
           alignment: Alignment.center,
           child: const Center(
             child: Icon(
-              Icons.share_outlined,
+              Icons.more_horiz_rounded,
             ),
           ),
         ),

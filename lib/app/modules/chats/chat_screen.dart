@@ -60,7 +60,6 @@ class ChatScreenX extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("$hisId + $hisName");
     final getFluffs = Provider.of<List<PrivateMessage>>(context);
     return Scaffold(
       appBar: AppBar(

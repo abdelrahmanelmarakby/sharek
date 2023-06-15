@@ -1,7 +1,6 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:animate_do/animate_do.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -369,8 +368,6 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                         width: context.width,
                         text: "إضافة إعلان جديد",
                         onPressed: (animationController) {
-                          print(controller.createAdsTime.toString() +
-                              controller.createAdsDate.toString());
                           controller.createTripAdsFormKey.currentState!
                               .validate();
                           if (controller.createAdsDate == null) {
