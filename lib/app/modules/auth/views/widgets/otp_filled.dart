@@ -33,7 +33,7 @@ class FilledRoundedPinPutState extends State<FilledRoundedPinPut> {
 
   @override
   Widget build(BuildContext context) {
-    const length = 4;
+    const length = 5;
     //const borderColor = Color.fromRGBO(114, 178, 238, 1);
     const errorColor = Colors.red;
     const fillColor = Color(0xffF7f7f9);
