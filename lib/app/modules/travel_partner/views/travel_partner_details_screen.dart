@@ -533,10 +533,10 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 12),
-                                    child: const Row(
+                                    child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: [
+                                      children: const [
                                         Icon(
                                           Iconsax.call,
                                           color: Colors.white,
@@ -574,10 +574,10 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 11),
-                                    child: const Row(
+                                    child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: [
+                                      children: const [
                                         Icon(
                                           Iconsax.sms,
                                           color: ColorsManager.primary,
