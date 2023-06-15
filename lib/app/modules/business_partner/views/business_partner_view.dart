@@ -17,6 +17,7 @@ import 'package:sharek/core/constants/theme/colors_manager.dart';
 import 'package:sharek/core/constants/theme/font_manager.dart';
 import 'package:sharek/core/constants/theme/sizes_manager.dart';
 import 'package:sharek/core/constants/theme/styles_manager.dart';
+import 'package:sharek/core/extensions/num.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
 
 import '../../../../core/widgets/app_text.dart';
@@ -30,7 +31,7 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
     return GetBuilder<BusinessPartnerController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text('شريك أعمال'),
+          title: const Text('شريك مشروعي'),
           centerTitle: true,
           leading: IconButton(
             icon: Icon(
@@ -59,109 +60,93 @@ class BusinessPartnerView extends GetView<BusinessPartnerController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomTextField(
-                          name: "BusinessSearch",
-                          hint: "ابحث هنا",
-                          prefixIcon: const Icon(SharekIcons.search_1),
-                          onChange: controller.onChangedSearch,
-                          controller: controller.searchController,
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              Get.to(
-                                () => const BussinessPartnerFilterScreen(),
-                                binding: BusinessPartnerBinding(),
-                              );
-                            },
-                            child: const Icon(
-                              SharekIcons.filter_3,
-                              size: Sizes.size26,
+                        SizedBox(
+                          height: 40.h(context),
+                          child: CustomTextField(
+                            name: "BusinessSearch",
+                            hint: "ابحث هنا",
+                            prefixIcon: const Icon(SharekIcons.search_1),
+                            onChange: controller.onChangedSearch,
+                            controller: controller.searchController,
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                Get.to(
+                                  () => const BussinessPartnerFilterScreen(),
+                                  binding: BusinessPartnerBinding(),
+                                );
+                              },
+                              child: const Icon(
+                                SharekIcons.filter_3,
+                                size: Sizes.size26,
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(height: 12),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List.generate(
-                              2,
-                              (index) => Expanded(
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 4),
-                                  child: ServicesItem(
-                                    activeIndex:
-                                        controller.businessPartner ?? 0,
-                                    index: businessServicesTypes[index]
-                                            .serviceTypeId ??
-                                        0,
-                                    title:
-                                        businessServicesTypes[index].name ?? "",
-                                    onTap: () {
-                                      if (controller.businessPartner ==
-                                          businessServicesTypes[index]
-                                              .serviceTypeId) {
-                                        controller.changeBusinessPartnerState(
-                                          null,
-                                        );
-                                        return;
-                                      }
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                              children: List.generate(
+                            5,
+                            (index) => Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 4),
+                              child: ServicesItem(
+                                activeIndex: controller.businessPartner ?? 0,
+                                index: businessServicesTypes[index]
+                                        .serviceTypeId ??
+                                    0,
+                                title: index == 1
+                                    ? "اعلانات البائعين"
+                                    : businessServicesTypes[index].name ?? "",
+                                onTap: () {
+                                  if (controller.businessPartner ==
+                                      businessServicesTypes[index]
+                                          .serviceTypeId) {
+                                    controller.changeBusinessPartnerState(
+                                      null,
+                                    );
+                                    return;
+                                  }
 
-                                      controller.changeBusinessPartnerState(
-                                        businessServicesTypes[index]
-                                                .serviceTypeId ??
-                                            0,
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            )),
-                        const SizedBox(height: 8),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List.generate(
-                              3,
-                              (index) => Expanded(
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 4),
-                                  child: ServicesItem(
-                                    activeIndex:
-                                        controller.businessPartner ?? 0,
-                                    index: businessServicesTypes[index + 2]
+                                  controller.changeBusinessPartnerState(
+                                    businessServicesTypes[index]
                                             .serviceTypeId ??
                                         0,
-                                    title:
-                                        businessServicesTypes[index + 2].name ??
-                                            "",
-                                    onTap: () {
-                                      if (controller.businessPartner ==
-                                          businessServicesTypes[index + 2]
-                                              .serviceTypeId) {
-                                        controller.changeBusinessPartnerState(
-                                          null,
-                                        );
-                                        return;
-                                      }
-                                      controller.changeBusinessPartnerState(
-                                        businessServicesTypes[index + 2]
-                                                .serviceTypeId ??
-                                            0,
-                                      );
-                                    },
-                                  ),
-                                ),
+                                  );
+                                },
                               ),
-                            )),
+                            ),
+                          )),
+                        ),
                         const SizedBox(height: 20),
                         SizedBox(
                           width: context.width,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "الاعلانات الجديدة",
-                                style: StylesManager.bold(
-                                    fontSize: FontSize.xlarge),
+                              Row(
+                                children: [
+                                  Text(
+                                    "الاعلانات الجديدة",
+                                    style: StylesManager.bold(
+                                        fontSize: FontSize.xlarge),
+                                  ),
+                                  Sizes.size10.w(context).widthSizedBox,
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.to(
+                                        () =>
+                                            const BussinessPartnerFilterScreen(),
+                                        binding: BusinessPartnerBinding(),
+                                      );
+                                    },
+                                    child: const Icon(
+                                      SharekIcons.filter_3,
+                                      size: Sizes.size26,
+                                    ),
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 8),
                               snapshot.data?.data?.isEmpty ?? false

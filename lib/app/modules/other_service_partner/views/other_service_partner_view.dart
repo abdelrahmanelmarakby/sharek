@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sharek/app/data/remote_data_source/other_services_partener_apis.dart';
 import 'package:sharek/core/constants/theme/app_icons.dart';
+import 'package:sharek/core/extensions/num.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
@@ -42,12 +43,15 @@ class OtherServicePartnerView extends GetView<OtherServicePartnerController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomTextField(
-                            name: "BusinessSearch",
-                            hint: "ابحث هنا",
-                            controller: controller.searchController,
-                            prefixIcon: const Icon(SharekIcons.search_1),
-                            onChange: controller.onChangedSearch,
+                          SizedBox(
+                            height: 40.h(context),
+                            child: CustomTextField(
+                              name: "BusinessSearch",
+                              hint: "ابحث هنا",
+                              controller: controller.searchController,
+                              prefixIcon: const Icon(SharekIcons.search_1),
+                              onChange: controller.onChangedSearch,
+                            ),
                           ),
                           const SizedBox(height: 20),
                           Column(

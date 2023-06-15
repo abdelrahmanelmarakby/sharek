@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -131,7 +132,7 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                       hint: "تفاصيل الطلب",
                       borderRadius: 8,
                       controller: controller.createDescriptionPartnersCtr,
-                      maxLines: 4,
+                      maxLines: 20,
                       validate: Validator.validateEmpty,
                       prefixIcon: const Padding(
                         padding: EdgeInsets.symmetric(vertical: 12),
@@ -262,6 +263,20 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                         onPressed: (animationController) {
                           if (controller.createFormKey.currentState!
                               .validate()) {
+                            if (controller.half == 0 &&
+                                controller.third == 0 &&
+                                controller.eighth == 0 &&
+                                controller.quarter == 0) {
+                              BotToast.showText(text: "برجاء اضافة كمية");
+                              return;
+                            }
+                            if (controller.createHalfPriceCtr.text == "" &&
+                                controller.createEighthPriceCtr.text == "" &&
+                                controller.createThirdPriceCtr.text == "" &&
+                                controller.createQuarterPriceCtr.text == "") {
+                              BotToast.showText(text: "برجاء اضافة سعر");
+                              return;
+                            }
                             controller.createSacrificePartner == 8
                                 ? controller.createSakeAds(
                                     animationController: animationController,

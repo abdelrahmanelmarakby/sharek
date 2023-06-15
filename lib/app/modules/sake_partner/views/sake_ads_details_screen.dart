@@ -95,9 +95,9 @@ class SakePartnerDetailsScreen extends GetView<SakePartnerController> {
                                 alignment: Alignment.center,
                                 child: const Center(
                                   child: Icon(
-                                    Iconsax.heart,
+                                    Iconsax.heart4,
                                     size: Sizes.size20,
-                                    color: ColorsManager.red,
+                                    color: ColorsManager.primary,
                                   ),
                                 ),
                               ),

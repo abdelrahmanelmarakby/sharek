@@ -12,6 +12,7 @@ class AddAdsSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: context.height / 2.5,
+      width: context.width,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 4,
@@ -28,14 +29,14 @@ class AddAdsSheet extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            Wrap(
+            const Wrap(
               runSpacing: 16,
               spacing: 0,
               alignment: WrapAlignment.start,
-              children: const [
+              children: [
                 PartnerCard(
                   isDialog: true,
-                  name: "شريك اعمال",
+                  name: "شريك مشروعي",
                   imagePath: "assets/images/business_partner.svg",
                   serviceId: 1,
                 ),

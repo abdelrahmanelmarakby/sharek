@@ -97,7 +97,7 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                               alignment: Alignment.center,
                               child: const Center(
                                 child: Icon(
-                                  Iconsax.heart5,
+                                  Iconsax.heart4,
                                   size: Sizes.size20,
                                   color: ColorsManager.primary,
                                 ),
@@ -429,10 +429,10 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 12),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
+                                      children: [
                                         Icon(
                                           Iconsax.call,
                                           color: Colors.white,
@@ -471,10 +471,10 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 11),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
+                                      children: [
                                         Icon(
                                           Iconsax.sms,
                                           color: ColorsManager.primary,

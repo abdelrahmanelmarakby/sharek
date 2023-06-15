@@ -92,7 +92,7 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                 child: Icon(
                                   Iconsax.heart,
                                   size: Sizes.size20,
-                                  color: ColorsManager.red,
+                                  color: ColorsManager.primary,
                                 ),
                               ),
                             ),
@@ -533,10 +533,10 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 12),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
+                                      children: [
                                         Icon(
                                           Iconsax.call,
                                           color: Colors.white,
@@ -559,6 +559,7 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                   onTap: () {
                                     Get.to(() => ChatScreen(
                                           hisId: "${ads?.userId ?? 0}",
+                                          //hisImage: "${ads?. ?? 0}",
                                           myId:
                                               CacheHelper.getUserId.toString(),
                                           hisName: ads?.userName ?? "بدون اسم",
@@ -574,10 +575,10 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 11),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: const [
+                                      children: [
                                         Icon(
                                           Iconsax.sms,
                                           color: ColorsManager.primary,

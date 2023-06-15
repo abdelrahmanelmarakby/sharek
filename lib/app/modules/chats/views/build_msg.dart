@@ -22,12 +22,20 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:sharek/app/data/models/private_message_model.dart';
 
 import '../../../../core/constants/theme/theme_export.dart';
+import '../../../../core/services/chat/private/private_chat.dart';
 
 class MessageBuilder extends StatefulWidget {
   final PrivateMessage? msg;
   final bool isMe;
+  final String hisId;
+  final String myID;
 
-  const MessageBuilder({super.key, this.msg, this.isMe = true});
+  const MessageBuilder(
+      {super.key,
+      this.msg,
+      this.isMe = true,
+      required this.hisId,
+      required this.myID});
 
   @override
   State<MessageBuilder> createState() => _MessageBuilderState();
@@ -128,6 +136,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
                   final result = await FileDownloader().download(
                     task,
                   );
+                  print(result.status.name);
 
 // Act on the result
                   switch (result.status) {
@@ -155,7 +164,24 @@ class _MessageBuilderState extends State<MessageBuilder> {
             ),
           if (widget.isMe)
             CupertinoContextMenuAction(
-              onPressed: () {},
+              onPressed: () async {
+                print(widget.msg?.msgId);
+                BotToast.showLoading();
+                try {
+                  await PrivateChatService(
+                          myId: widget.myID, hisId: widget.hisId)
+                      .deletePrivateMessage(widget.msg?.msgId ?? "");
+                } catch (e) {
+                  print(e.toString());
+
+                  BotToast.closeAllLoading();
+                  BotToast.showText(text: "فشل حذف الرسالة");
+                  Get.back();
+                  return;
+                }
+                Get.back();
+                BotToast.closeAllLoading();
+              },
               isDestructiveAction: true,
               trailingIcon: CupertinoIcons.delete,
               child: const Text("حذف الرسالة "),
@@ -238,15 +264,15 @@ class _MessageBuilderState extends State<MessageBuilder> {
           )
         else
           const SizedBox(),
-        if (msg.video != null)
-          ConstrainedBox(
-            constraints: BoxConstraints(
-                maxHeight: 150.h(context), maxWidth: context.width / 1.3),
-            child: CustomVideoPlayer(
-                customVideoPlayerController: _customVideoPlayerController),
-          )
-        else
-          const SizedBox(),
+        // if (msg.video != null)
+        ConstrainedBox(
+          constraints: BoxConstraints(
+              maxHeight: 150.h(context), maxWidth: context.width / 1.3),
+          child: CustomVideoPlayer(
+              customVideoPlayerController: _customVideoPlayerController),
+        ),
+        // else
+        //   const SizedBox(),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [

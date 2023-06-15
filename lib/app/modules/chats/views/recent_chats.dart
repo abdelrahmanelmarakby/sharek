@@ -71,7 +71,7 @@ class _RecentChatsState extends State<RecentChats> {
 
   Widget rowChat(BuildContext context, ChatRoom chatRoom) {
     return SizedBox(
-      height: context.height / 9,
+      height: context.height / 12,
       child: OpenContainer(
         closedElevation: 0,
         transitionType: ContainerTransitionType.fadeThrough,
@@ -178,23 +178,14 @@ class _RecentChatsState extends State<RecentChats> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              const Icon(
-                                Icons.done,
-                                size: Sizes.size18,
-                                color: ColorsManager.veryDarkGrey,
-                              ),
-                              Sizes.size10.w(context).widthSizedBox,
                               Expanded(
                                 child: Text(
                                   '${chatRoom.lastMsg}',
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
                                     fontSize: FontSize.large,
+                                    fontWeight: FontWeight.w600,
                                     color: ColorsManager.veryDarkGrey,
-
-                                    //           fontSize: Dimensions.getDesirableWidth(4),
-                                    //          color: MyColors().textColor,
-                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ),
@@ -211,6 +202,20 @@ class _RecentChatsState extends State<RecentChats> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    Text(
+                      "${DateTime.now().subtract(DateTime.now().difference(chatRoom.lastChat!.toUtc())).hour}:${DateTime.now().subtract(DateTime.now().difference(chatRoom.lastChat!.toUtc())).minute}",
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: FontSize.medium,
+                        color: ColorsManager.darkGrey,
+                        //      fontSize: Dimensions.getDesirableWidth(4),
+                        //    color: MyColors().textColor,
+                        fontWeight: chatRoom.lastSender != widget.myId
+                            ? FontWeight.bold
+                            : FontWeight.w500,
+                      ),
+                    ),
+                    const Spacer(),
                     SizedBox(
                       child: chatRoom.lastSender != widget.myId
                           ? Container(
@@ -221,21 +226,6 @@ class _RecentChatsState extends State<RecentChats> {
                                       color: ColorsManager.selection,
                                       fontWeight: FontWeight.bold)))
                           : const Text(''),
-                    ),
-                    const Spacer(),
-                    Text(
-                      timeago.format(
-                          DateTime.now().subtract(DateTime.now()
-                              .difference(chatRoom.lastChat!.toUtc())),
-                          locale: 'ar'),
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: FontSize.small,
-                        color: ColorsManager.darkGrey,
-                        //      fontSize: Dimensions.getDesirableWidth(4),
-                        //    color: MyColors().textColor,
-                        fontWeight: FontWeight.bold,
-                      ),
                     ),
                   ],
                 ),

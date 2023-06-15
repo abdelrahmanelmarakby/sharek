@@ -47,81 +47,34 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 ),
                 const SizedBox(height: 12),
                 GetBuilder<BusinessPartnerController>(
-                  builder: (controller) => Column(
-                    children: [
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: List.generate(
-                            2,
-                            (index) => Expanded(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 4),
-                                child: ServicesItem(
-                                  activeIndex: controller.businessPartner ?? 0,
-                                  index: businessServicesTypes[index]
-                                          .serviceTypeId ??
-                                      0,
-                                  title: index == 0
-                                      ? businessServicesTypes[index].name ?? ""
-                                      : "اعلان بيع",
-                                  onTap: () {
-                                    if (controller.businessPartner ==
-                                        businessServicesTypes[index]
-                                            .serviceTypeId) {
-                                      controller.changeBusinessPartnerState(
-                                        null,
-                                      );
-                                      return;
-                                    }
+                  builder: (controller) => SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                        children: List.generate(
+                      5,
+                      (index) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        child: ServicesItem(
+                          activeIndex: controller.businessPartner ?? 0,
+                          index:
+                              businessServicesTypes[index].serviceTypeId ?? 0,
+                          title: businessServicesTypes[index].name ?? "",
+                          onTap: () {
+                            if (controller.businessPartner ==
+                                businessServicesTypes[index].serviceTypeId) {
+                              controller.changeBusinessPartnerState(
+                                null,
+                              );
+                              return;
+                            }
 
-                                    controller.changeBusinessPartnerState(
-                                      businessServicesTypes[index]
-                                              .serviceTypeId ??
-                                          0,
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                          )),
-                      const SizedBox(height: 8),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: List.generate(
-                            3,
-                            (index) => Expanded(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 4),
-                                child: ServicesItem(
-                                  activeIndex: controller.businessPartner ?? 0,
-                                  index: businessServicesTypes[index + 2]
-                                          .serviceTypeId ??
-                                      0,
-                                  title:
-                                      businessServicesTypes[index + 2].name ??
-                                          "",
-                                  onTap: () {
-                                    if (controller.businessPartner ==
-                                        businessServicesTypes[index + 2]
-                                            .serviceTypeId) {
-                                      controller.changeBusinessPartnerState(
-                                        null,
-                                      );
-                                      return;
-                                    }
-                                    controller.changeBusinessPartnerState(
-                                      businessServicesTypes[index + 2]
-                                              .serviceTypeId ??
-                                          0,
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                          )),
-                    ],
+                            controller.changeBusinessPartnerState(
+                              businessServicesTypes[index].serviceTypeId ?? 0,
+                            );
+                          },
+                        ),
+                      ),
+                    )),
                   ),
                 ),
                 //const FiltersList(),
@@ -286,12 +239,12 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                   hint: "تفاصيل الطلب",
                   borderRadius: 8,
                   controller: controller.createDescriptionPartnersCtr,
-                  maxLines: 4,
+                  maxLines: 20,
                   validate: Validator.validateEmpty,
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                  prefixIcon: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12),
                     child: Column(
-                      children: const [
+                      children: [
                         Icon(
                           Iconsax.document,
                           color: Colors.black,
@@ -316,9 +269,9 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                         color: Color(0xFFF7F7F9),
                       ),
                       alignment: Alignment.center,
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Icon(
                             SharekIcons.upload_1,
                             color: ColorsManager.primary,

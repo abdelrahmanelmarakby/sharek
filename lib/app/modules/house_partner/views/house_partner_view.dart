@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:sharek/app/data/remote_data_source/house_ads_apis.dart';
 import 'package:sharek/app/modules/house_partner/bindings/house_partner_binding.dart';
 import 'package:sharek/core/constants/theme/sizes_manager.dart';
+import 'package:sharek/core/extensions/num.dart';
 
 import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
@@ -57,22 +58,25 @@ class HousePartnerView extends GetView<HousePartnerController> {
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
                         children: [
-                          CustomTextField(
-                            name: "BusinessSearch",
-                            hint: "ابحث هنا",
-                            prefixIcon: const Icon(SharekIcons.search_1),
-                            onChange: controller.onChangedSearch,
-                            controller: controller.searchController,
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                Get.to(
-                                  () => const HouseAdsFiterScreen(),
-                                  binding: HousePartnerBinding(),
-                                );
-                              },
-                              child: const Icon(
-                                SharekIcons.filter_3,
-                                size: Sizes.size26,
+                          SizedBox(
+                            height: 40.h(context),
+                            child: CustomTextField(
+                              name: "BusinessSearch",
+                              hint: "ابحث هنا",
+                              prefixIcon: const Icon(SharekIcons.search_1),
+                              onChange: controller.onChangedSearch,
+                              controller: controller.searchController,
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  Get.to(
+                                    () => const HouseAdsFiterScreen(),
+                                    binding: HousePartnerBinding(),
+                                  );
+                                },
+                                child: const Icon(
+                                  SharekIcons.filter_3,
+                                  size: Sizes.size26,
+                                ),
                               ),
                             ),
                           ),
@@ -114,10 +118,27 @@ class HousePartnerView extends GetView<HousePartnerController> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "الاعلانات الجديدة",
-                                  style: StylesManager.bold(
-                                      fontSize: FontSize.xlarge),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "الاعلانات الجديدة",
+                                      style: StylesManager.bold(
+                                          fontSize: FontSize.xlarge),
+                                    ),
+                                    Sizes.size10.w(context).widthSizedBox,
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.to(
+                                          () => const HouseAdsFiterScreen(),
+                                          binding: HousePartnerBinding(),
+                                        );
+                                      },
+                                      child: const Icon(
+                                        SharekIcons.filter_3,
+                                        size: Sizes.size26,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(height: 8),
                                 snapshot.data?.data?.isEmpty ?? false

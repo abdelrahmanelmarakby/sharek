@@ -9,6 +9,7 @@ import 'package:sharek/app/modules/travel_partner/views/travel_partner_details_s
 import 'package:sharek/app/modules/travel_partner/views/trip_ads_filter.dart';
 import 'package:sharek/core/constants/theme/app_icons.dart';
 import 'package:sharek/core/constants/theme/sizes_manager.dart';
+import 'package:sharek/core/extensions/num.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
@@ -64,21 +65,24 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomTextField(
-                            name: "BusinessSearch",
-                            hint: "ابحث هنا",
-                            onChange: controller.onChangedSearch,
-                            prefixIcon: const Icon(SharekIcons.search_1),
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                Get.to(
-                                  () => const TripAdsFilter(),
-                                  binding: TravelPartnerBinding(),
-                                );
-                              },
-                              child: const Icon(
-                                SharekIcons.filter_3,
-                                size: Sizes.size26,
+                          SizedBox(
+                            height: 40.h(context),
+                            child: CustomTextField(
+                              name: "BusinessSearch",
+                              hint: "ابحث هنا",
+                              onChange: controller.onChangedSearch,
+                              prefixIcon: const Icon(SharekIcons.search_1),
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  Get.to(
+                                    () => const TripAdsFilter(),
+                                    binding: TravelPartnerBinding(),
+                                  );
+                                },
+                                child: const Icon(
+                                  SharekIcons.filter_3,
+                                  size: Sizes.size26,
+                                ),
                               ),
                             ),
                           ),
@@ -162,10 +166,27 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "الاعلانات الجديدة",
-                                  style: StylesManager.bold(
-                                      fontSize: FontSize.xlarge),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "الاعلانات الجديدة",
+                                      style: StylesManager.bold(
+                                          fontSize: FontSize.xlarge),
+                                    ),
+                                    Sizes.size10.w(context).widthSizedBox,
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.to(
+                                          () => const TripAdsFilter(),
+                                          binding: TravelPartnerBinding(),
+                                        );
+                                      },
+                                      child: const Icon(
+                                        SharekIcons.filter_3,
+                                        size: Sizes.size26,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(height: 8),
                                 snapshot.data?.data?.isEmpty ?? false

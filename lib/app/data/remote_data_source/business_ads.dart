@@ -108,7 +108,9 @@ class BusinessPartnerAPI {
       ok: (data) {
         return data;
       },
-      noAuth: (data) => Get.toNamed(Routes.AUTH),
+      noAuth: (data) {
+        return data;
+      },
       orElse: () {
         return;
       },
@@ -248,7 +250,9 @@ class BusinessPartnerAPI {
       ok: (data) {
         return data;
       },
-      noAuth: (data) => Get.toNamed(Routes.AUTH),
+      noAuth: (data) {
+        return data;
+      },
       orElse: () {
         return;
       },

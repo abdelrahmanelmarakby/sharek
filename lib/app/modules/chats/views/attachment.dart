@@ -184,7 +184,7 @@ class Attachment {
       final String storageId = ('${millSeconds.toString()}+id:$myId+');
       final String today = ('$month-$date');
 
-      /// create thumbnail from file///////////////////////
+      // /// create thumbnail from file///////////////////////
       final thumbnail = await VideoThumbnail.thumbnailData(
         video: file!.path,
         imageFormat: ImageFormat.JPEG,
@@ -197,7 +197,7 @@ class Attachment {
       final thumbnailFile = await File('${tempDir.path}/image.jpg').create();
       thumbnailFile.writeAsBytesSync(thumbnail!);
 
-      /// create thumbnail ref  //////////////////////////////////////////////////
+      // /// create thumbnail ref  //////////////////////////////////////////////////
       Reference thumbnailRef = FirebaseStorage.instance
           .ref()
           .child("images")
@@ -213,8 +213,8 @@ class Attachment {
           .child(today)
           .child(storageId);
       UploadTask uploadTask = ref.putFile(
-          File(file.path), SettableMetadata(contentType: 'video/mp4'));
-      int size = File(file.path).lengthSync();
+          File(file.path ?? ""), SettableMetadata(contentType: 'video/mp4'));
+      int size = File(file.path ?? "").lengthSync();
       downloadDialog(context, uploadTask, size);
 
       /// upload video  //////////////////////////////////////////////////
@@ -538,12 +538,12 @@ class _DownloadDialogContentState extends State<DownloadDialogContent> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-        title: const Text("Uploading"),
+        title: const Text("جاري الرفع"),
         content: SizedBox(
           height: 60,
           child: Column(
             children: [
-              const Text("Please wait..."),
+              const Text("رجاء الانتظار ...."),
               const SizedBox(
                 height: 20,
               ),

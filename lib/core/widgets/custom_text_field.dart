@@ -118,7 +118,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         constraints: BoxConstraints(
           minHeight: widget.height,
           minWidth: 1,
-          maxHeight: widget.height + 50,
+          maxHeight: widget.height + 200,
           maxWidth: context.width,
         ),
         child: TextFormField(

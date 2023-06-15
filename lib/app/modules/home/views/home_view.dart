@@ -68,17 +68,20 @@ class HomeView extends GetView<HomeController> {
                 child: SafeArea(
                   child: Column(
                     children: [
-                      CustomTextField(
-                        name: LocalKeys.search,
-                        hint: "أبحث هنا",
-                        readOnly: true,
-                        onTap: () {
-                          Get.to(
-                            () => const HomeSearchScreen(),
-                            binding: HomeBinding(),
-                          );
-                        },
-                        prefixIcon: const Icon(Iconsax.search_normal),
+                      SizedBox(
+                        height: 38.h(context),
+                        child: CustomTextField(
+                          name: LocalKeys.search,
+                          hint: "أبحث هنا",
+                          readOnly: true,
+                          onTap: () {
+                            Get.to(
+                              () => const HomeSearchScreen(),
+                              binding: HomeBinding(),
+                            );
+                          },
+                          prefixIcon: const Icon(Iconsax.search_normal),
+                        ),
                       ),
                       Sizes.size16.h(context).heightSizedBox,
                       const ServicesList(),
@@ -329,7 +332,7 @@ class ServicesList extends StatelessWidget {
               PartnerCard(
                 isDialog: false,
                 serviceId: 1,
-                name: "شريك اعمال",
+                name: "شريك مشروعي",
                 imagePath: "assets/images/business_partner.svg",
               ),
               PartnerCard(
@@ -379,7 +382,7 @@ class PartnerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Sizes.size8),
+      padding: const EdgeInsets.symmetric(horizontal: 6),
       child: GestureDetector(
         onTap: () {
           switch (serviceId) {

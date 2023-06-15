@@ -73,7 +73,8 @@ class PrivateChatService {
                 .toJson())
             .then((doc) async {
           await newPrivateMessage
-              .set(privateMessage.toJson())
+              .set(
+                  privateMessage.copyWith(msgId: newPrivateMessage.id).toJson())
               .then((doc) async {
             //update the chat room
             await chatCollection.doc(getRoomId()).update({
@@ -90,7 +91,9 @@ class PrivateChatService {
           return true;
         }).catchError((error) {});
       } else {
-        await newPrivateMessage.set(privateMessage!.toJson()).then((doc) async {
+        await newPrivateMessage
+            .set(privateMessage!.copyWith(msgId: newPrivateMessage.id).toJson())
+            .then((doc) async {
           //update the chat room
           await chatCollection.doc(getRoomId()).update({
             'lastChat': privateMessage.time,
@@ -104,5 +107,17 @@ class PrivateChatService {
         }).catchError((error) {});
       }
     } catch (error) {}
+  }
+
+  Future<void> deletePrivateMessage(String msgId) async {
+    print(msgId);
+    chatCollection
+        .doc(getRoomId())
+        .collection('chat')
+        .doc(msgId)
+        .get()
+        .then((value) => print(value));
+    final chatRoom =
+        chatCollection.doc(getRoomId()).collection('chat').doc(msgId).delete();
   }
 }

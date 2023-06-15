@@ -99,7 +99,7 @@ class EditBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                   hint: "تفاصيل الطلب",
                   borderRadius: 8,
                   controller: controller.editDescriptionPartnersCtr,
-                  maxLines: 4,
+                  maxLines: 20,
                   validate: Validator.validateEmpty,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),

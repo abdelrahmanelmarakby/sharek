@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:sharek/app/modules/sake_partner/bindings/sake_partner_binding.dart';
 import 'package:sharek/app/modules/sake_partner/views/sake_ads_details_screen.dart';
 import 'package:sharek/app/modules/sake_partner/views/sake_filter_screen.dart';
+import 'package:sharek/core/extensions/num.dart';
 
 import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
@@ -59,22 +60,25 @@ class SakePartnerView extends GetView<SakePartnerController> {
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
                         children: [
-                          CustomTextField(
-                            name: "BusinessSearch",
-                            hint: "ابحث هنا",
-                            prefixIcon: const Icon(SharekIcons.search_1),
-                            controller: controller.searchController,
-                            onChange: controller.onChangedSearch,
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                Get.to(
-                                  () => const SakeFilterScreen(),
-                                  binding: SakePartnerBinding(),
-                                );
-                              },
-                              child: const Icon(
-                                SharekIcons.filter_3,
-                                size: Sizes.size26,
+                          SizedBox(
+                            height: 40.h(context),
+                            child: CustomTextField(
+                              name: "BusinessSearch",
+                              hint: "ابحث هنا",
+                              prefixIcon: const Icon(SharekIcons.search_1),
+                              controller: controller.searchController,
+                              onChange: controller.onChangedSearch,
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  Get.to(
+                                    () => const SakeFilterScreen(),
+                                    binding: SakePartnerBinding(),
+                                  );
+                                },
+                                child: const Icon(
+                                  SharekIcons.filter_3,
+                                  size: Sizes.size26,
+                                ),
                               ),
                             ),
                           ),
@@ -156,11 +160,28 @@ class SakePartnerView extends GetView<SakePartnerController> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "الاعلانات الجديدة",
-                                  style: StylesManager.bold(
-                                    fontSize: FontSize.xlarge,
-                                  ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "الاعلانات الجديدة",
+                                      style: StylesManager.bold(
+                                        fontSize: FontSize.xlarge,
+                                      ),
+                                    ),
+                                    Sizes.size10.w(context).widthSizedBox,
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.to(
+                                          () => const SakeFilterScreen(),
+                                          binding: SakePartnerBinding(),
+                                        );
+                                      },
+                                      child: const Icon(
+                                        SharekIcons.filter_3,
+                                        size: Sizes.size26,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(height: 8),
                                 data?.isNotEmpty ?? false

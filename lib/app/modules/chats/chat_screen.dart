@@ -162,6 +162,8 @@ class ChatScreenX extends StatelessWidget {
                         MessageBuilder(
                           msg: msg,
                           isMe: isMe,
+                          hisId: hisId,
+                          myID: myId,
                         ).horizontalScreenPadding,
                       ],
                     );

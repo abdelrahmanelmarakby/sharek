@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sharek/app/data/remote_data_source/house_ads_apis.dart';
+import 'package:sharek/core/constants/theme/font_manager.dart';
+import 'package:sharek/core/constants/theme/styles_manager.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/widgets/app_text.dart';
@@ -39,6 +41,14 @@ class HouseFilterResoult extends StatelessWidget {
         ),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            if (snapshot.data?.data?.isEmpty ?? false) {
+              return Center(
+                child: Text(
+                  "لا توجد اعلانات مطابقة للبحث",
+                  style: StylesManager.semiBold(fontSize: FontSize.large),
+                ),
+              );
+            }
             return ListView.separated(
               shrinkWrap: true,
               padding: const EdgeInsets.all(16.0),
