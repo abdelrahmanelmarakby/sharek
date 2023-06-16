@@ -213,8 +213,8 @@ class Attachment {
           .child(today)
           .child(storageId);
       UploadTask uploadTask = ref.putFile(
-          File(file.path ?? ""), SettableMetadata(contentType: 'video/mp4'));
-      int size = File(file.path ?? "").lengthSync();
+          File(file.path), SettableMetadata(contentType: 'video/mp4'));
+      int size = File(file.path).lengthSync();
       downloadDialog(context, uploadTask, size);
 
       /// upload video  //////////////////////////////////////////////////

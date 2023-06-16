@@ -197,9 +197,10 @@ class _MessageBuilderState extends State<MessageBuilder> {
             elevation: 0,
             color: ColorsManager.offWhite,
             child: msgBuilder(
-                context: context,
-                msg: widget.msg as PrivateMessage,
-                isMe: true),
+              context: context,
+              msg: widget.msg as PrivateMessage,
+              isMe: true,
+            ),
           ),
         ),
       );
