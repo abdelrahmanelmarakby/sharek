@@ -1,7 +1,5 @@
 // ignore_for_file: unused_local_variable
 
-import 'dart:developer';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
