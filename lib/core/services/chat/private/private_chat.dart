@@ -110,13 +110,14 @@ class PrivateChatService {
   }
 
   Future<void> deletePrivateMessage(String msgId) async {
-    print(msgId);
+    log(msgId);
     chatCollection
         .doc(getRoomId())
         .collection('chat')
         .doc(msgId)
         .get()
-        .then((value) => print(value));
+        .then((value) => log(value.toString()));
+    // ignore: unused_local_variable
     final chatRoom =
         chatCollection.doc(getRoomId()).collection('chat').doc(msgId).delete();
   }

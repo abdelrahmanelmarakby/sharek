@@ -1,7 +1,5 @@
 // ignore_for_file: unused_local_variable
 
-import 'dart:developer';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
@@ -275,9 +273,9 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                             color: Color(0xFFF7F7F9),
                           ),
                           alignment: Alignment.center,
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Icon(
                                 SharekIcons.upload_1,
                                 color: ColorsManager.primary,

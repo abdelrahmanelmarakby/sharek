@@ -134,10 +134,10 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                       controller: controller.createDescriptionPartnersCtr,
                       maxLines: 20,
                       validate: Validator.validateEmpty,
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12),
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         child: Column(
-                          children: [
+                          children: const [
                             Icon(
                               Iconsax.document_text,
                               color: Colors.black,
@@ -162,9 +162,9 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                             color: Color(0xFFF7F7F9),
                           ),
                           alignment: Alignment.center,
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                            children: const [
                               Icon(
                                 SharekIcons.upload_1,
                                 color: ColorsManager.primary,

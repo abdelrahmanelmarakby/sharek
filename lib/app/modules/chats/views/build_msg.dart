@@ -136,7 +136,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
                   final result = await FileDownloader().download(
                     task,
                   );
-                  print(result.status.name);
+                  log(result.status.name);
 
 // Act on the result
                   switch (result.status) {
@@ -165,14 +165,14 @@ class _MessageBuilderState extends State<MessageBuilder> {
           if (widget.isMe)
             CupertinoContextMenuAction(
               onPressed: () async {
-                print(widget.msg?.msgId);
+                log(widget.msg?.msgId.toString() ??"");
                 BotToast.showLoading();
                 try {
                   await PrivateChatService(
                           myId: widget.myID, hisId: widget.hisId)
                       .deletePrivateMessage(widget.msg?.msgId ?? "");
                 } catch (e) {
-                  print(e.toString());
+                  log(e.toString());
 
                   BotToast.closeAllLoading();
                   BotToast.showText(text: "فشل حذف الرسالة");
@@ -197,9 +197,10 @@ class _MessageBuilderState extends State<MessageBuilder> {
             elevation: 0,
             color: ColorsManager.offWhite,
             child: msgBuilder(
-                context: context,
-                msg: widget.msg as PrivateMessage,
-                isMe: true),
+              context: context,
+              msg: widget.msg as PrivateMessage,
+              isMe: true,
+            ),
           ),
         ),
       );

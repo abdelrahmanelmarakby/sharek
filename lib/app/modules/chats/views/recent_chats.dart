@@ -12,7 +12,6 @@ import 'package:sharek/app/data/models/chat_model.dart';
 import 'package:sharek/core/constants/theme/sizes_manager.dart';
 import 'package:sharek/core/constants/theme/theme_export.dart';
 import 'package:sharek/core/extensions/widget.dart';
-import 'package:timeago/timeago.dart' as timeago;
 import '../chat_screen.dart';
 
 class RecentChats extends StatefulWidget {
