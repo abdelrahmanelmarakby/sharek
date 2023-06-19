@@ -24,7 +24,7 @@ class NoInternetDialog extends StatelessWidget {
             const SizedBox(width: 10),
             const Expanded(
               child: Text(
-                "No internet connection",
+                "لا يوجد اتصال بالانترنت",
                 style: TextStyle(
                   color: Colors.black54,
                   fontSize: 16.0,

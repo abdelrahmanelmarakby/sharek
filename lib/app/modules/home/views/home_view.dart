@@ -22,6 +22,7 @@ import 'package:sharek/core/extensions/widget.dart';
 import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/language/local_keys.dart';
 import 'package:sharek/core/widgets/custom_text_field.dart';
+import 'package:sharek/core/widgets/network_image.dart';
 
 import '../../../data/remote_data_source/home_apis.dart';
 import '../../business_partner/bindings/business_partner_binding.dart';
@@ -248,8 +249,8 @@ class AdCard extends StatelessWidget {
                 flex: 1,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    ad?.photos?.isNotEmpty ?? false
+                  child: AppCachedNetworkImage(
+                    imageUrl: ad?.photos?.isNotEmpty ?? false
                         ? ad?.photos?.first ?? ""
                         : dummyImage,
                     fit: BoxFit.cover,

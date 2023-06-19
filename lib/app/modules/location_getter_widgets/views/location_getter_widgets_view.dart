@@ -45,26 +45,8 @@ class LocationGetterWidgetsView
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                      child: Sizes.size8
-                                          .h(context)
-                                          .heightSizedBox),
-                                  IconButton(
-                                    onPressed: () {
-                                      Get.close(1);
-                                    },
-                                    icon: const Icon(
-                                      Icons.cancel,
-                                      color: ColorsManager.primary,
-                                      size: Sizes.size38,
-                                    ),
-                                  ),
-                                ],
-                              ),
                               CustomTextField(
-                                hint: "ابحث عن المنطقة",
+                                hint: "ابحث هنا ",
                                 height: 40.h(context),
                                 onChange: (value) {
                                   controller.searchRegions =
@@ -149,26 +131,8 @@ class LocationGetterWidgetsView
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                          child: Sizes.size8
-                                              .h(context)
-                                              .heightSizedBox),
-                                      IconButton(
-                                        onPressed: () {
-                                          Get.close(1);
-                                        },
-                                        icon: const Icon(
-                                          Icons.cancel,
-                                          color: ColorsManager.primary,
-                                          size: Sizes.size38,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                   CustomTextField(
-                                    hint: "ابحث عن المنطقة",
+                                    hint: "ابحث هنا ",
                                     height: 40.h(context),
                                     onChange: (value) {
                                       controller.searchCities =
@@ -266,26 +230,8 @@ class LocationGetterWidgetsView
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                              child: Sizes.size8
-                                                  .h(context)
-                                                  .heightSizedBox),
-                                          IconButton(
-                                            onPressed: () {
-                                              Get.close(1);
-                                            },
-                                            icon: const Icon(
-                                              Icons.cancel,
-                                              color: ColorsManager.primary,
-                                              size: Sizes.size38,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
                                       CustomTextField(
-                                        hint: "ابحث عن المنطقة",
+                                        hint: "ابحث هنا ",
                                         height: 40.h(context),
                                         onChange: (value) {
                                           controller.searchDistricts =

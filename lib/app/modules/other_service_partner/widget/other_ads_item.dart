@@ -7,6 +7,7 @@ import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
 import '../../../../core/global/const.dart';
+import '../../../../core/widgets/network_image.dart';
 import '../../home/views/home_view.dart';
 
 class OtherAdsItem extends StatelessWidget {
@@ -90,8 +91,8 @@ class OtherAdsItem extends StatelessWidget {
                 flex: 1,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    ad?.photos?.isNotEmpty ?? false
+                  child: AppCachedNetworkImage(
+                    imageUrl: ad?.photos?.isNotEmpty ?? false
                         ? ad?.photos?.first ?? ""
                         : dummyImage,
                     height: context.width / 4,

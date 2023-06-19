@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:sharek/app/data/models/private_message_model.dart';
 
+import '../../../../core/widgets/network_image.dart';
 import 'build_msg.dart';
 
 class MessageOptions extends StatefulWidget {
@@ -64,21 +65,9 @@ class _MessageOptionsState extends State<MessageOptions> {
                   (widget.msg.video == null || widget.msg.video == ''))
                 InstaImageViewer(
                   disposeLevel: DisposeLevel.high,
-                  child: Image.network(
-                    widget.msg.image ?? '',
+                  child: AppCachedNetworkImage(
+                    imageUrl: widget.msg.image ?? '',
                     //fit: BoxFit.cover,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return const SizedBox(
-                        height: 100,
-                        child: Center(
-                          child: CupertinoActivityIndicator(),
-                        ),
-                      );
-                    },
-                    errorBuilder: (context, error, stackTrace) {
-                      return const Icon(Icons.error);
-                    },
                   ),
                 )
               else
@@ -92,9 +81,9 @@ class _MessageOptionsState extends State<MessageOptions> {
               const SizedBox(
                 height: 1,
               ),
-              Row(
+              const Row(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   Icon(
                     Icons.check,
                     //    size: Dimensions.getDesirableWidth(4),

@@ -3,7 +3,9 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:sharek/core/constants/const/assets.dart';
 
+import '../constants/theme/colors_manager.dart';
 import 'loader.dart';
 import 'shimmer.dart';
 
@@ -112,7 +114,13 @@ class AppCachedNetworkImage extends StatelessWidget {
               (BuildContext context, String url, dynamic error) {
                 log('🖼 🖼 🖼 🖼 🖼 Error Fetching Image 🖼 🖼 🖼 🖼 🖼');
                 log('Image url: $url');
-                return customErrorWidget ?? const Icon(Icons.error);
+                return customErrorWidget ??
+                    Image.asset(
+                      'assets/images/logo.png',
+                      color: ColorsManager.offWhite,
+                      colorBlendMode: BlendMode.darken,
+                      fit: fit,
+                    );
               }, // coverage:ignore-end
         ),
       ),

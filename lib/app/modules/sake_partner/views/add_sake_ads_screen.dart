@@ -261,127 +261,138 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                         width: context.width,
                         text: "إضافة إعلان جديد",
                         onPressed: (animationController) {
-                          if (controller.createFormKey.currentState!
-                              .validate()) {
-                            if (controller.half == 0 &&
-                                controller.third == 0 &&
-                                controller.eighth == 0 &&
-                                controller.quarter == 0) {
-                              BotToast.showText(text: "برجاء اضافة كمية");
-                              return;
+                          try {
+                            if (controller.createFormKey.currentState!
+                                .validate()) {
+                              if (controller.half == 0 &&
+                                  controller.third == 0 &&
+                                  controller.eighth == 0 &&
+                                  controller.quarter == 0) {
+                                BotToast.showText(text: "برجاء اضافة كمية");
+                                return;
+                              }
+                              if (controller.createHalfPriceCtr.text == "" &&
+                                  controller.createEighthPriceCtr.text == "" &&
+                                  controller.createThirdPriceCtr.text == "" &&
+                                  controller.createQuarterPriceCtr.text == "") {
+                                BotToast.showText(text: "برجاء اضافة سعر");
+                                return;
+                              }
+                              controller.createSacrificePartner == 8
+                                  ? controller.createSakeAds(
+                                      animationController: animationController,
+                                      location: Get.find<
+                                              LocationGetterWidgetsController>()
+                                          .regionName,
+                                      neighborhood: Get.find<
+                                              LocationGetterWidgetsController>()
+                                          .cityName,
+                                      sacrificeType: controller
+                                          .createSacrificeTypeItem.name,
+                                      servicesTypeid:
+                                          controller.createSacrificePartner,
+                                      title: controller.createTitlePartnersCtr
+                                                  .text ==
+                                              ""
+                                          ? null
+                                          : controller
+                                              .createTitlePartnersCtr.text,
+                                      description: controller
+                                                  .createDescriptionPartnersCtr
+                                                  .text ==
+                                              ""
+                                          ? null
+                                          : controller
+                                              .createDescriptionPartnersCtr
+                                              .text,
+                                      phone:
+                                          controller.createPhoneCtr.text == ""
+                                              ? null
+                                              : controller.createPhoneCtr.text,
+                                      photos: controller.createPhotos,
+                                    )
+                                  : controller.eighth == 0 &&
+                                          controller.half == 0 &&
+                                          controller.quarter == 0 &&
+                                          controller.third == 0
+                                      ? null
+                                      : controller.createSakeAds(
+                                          animationController:
+                                              animationController,
+                                          location: Get.find<
+                                                  LocationGetterWidgetsController>()
+                                              .regionName,
+                                          neighborhood: Get.find<
+                                                  LocationGetterWidgetsController>()
+                                              .cityName,
+                                          title: controller
+                                                      .createTitlePartnersCtr
+                                                      .text ==
+                                                  ""
+                                              ? null
+                                              : controller
+                                                  .createTitlePartnersCtr.text,
+                                          description: controller
+                                                      .createDescriptionPartnersCtr
+                                                      .text ==
+                                                  ""
+                                              ? null
+                                              : controller
+                                                  .createDescriptionPartnersCtr
+                                                  .text,
+                                          phone: controller
+                                                      .createPhoneCtr.text ==
+                                                  ""
+                                              ? null
+                                              : controller.createPhoneCtr.text,
+                                          photos: controller.createPhotos,
+                                          eighthPrice: controller.eighth == 0
+                                              ? null
+                                              : int.parse(
+                                                  controller
+                                                      .createEighthPriceCtr
+                                                      .text,
+                                                ),
+                                          eighthQuantity: controller.eighth == 0
+                                              ? null
+                                              : controller.eighth,
+                                          halfPrice: controller.half == 0
+                                              ? null
+                                              : int.parse(
+                                                  controller
+                                                      .createHalfPriceCtr.text,
+                                                ),
+                                          halfQuantity: controller.half == 0
+                                              ? null
+                                              : controller.half,
+                                          quarterPrice: controller.quarter == 0
+                                              ? null
+                                              : int.parse(
+                                                  controller
+                                                      .createQuarterPriceCtr
+                                                      .text,
+                                                ),
+                                          quarterQuantity:
+                                              controller.quarter == 0
+                                                  ? null
+                                                  : controller.quarter,
+                                          sacrificeType: controller
+                                              .createSacrificeTypeItem.name,
+                                          servicesTypeid:
+                                              controller.createSacrificePartner,
+                                          thirdPrice: controller.third == 0
+                                              ? null
+                                              : controller.third,
+                                          thirdQuantity: controller.third == 0
+                                              ? null
+                                              : int.parse(
+                                                  controller
+                                                      .createThirdPriceCtr.text,
+                                                ),
+                                        );
                             }
-                            if (controller.createHalfPriceCtr.text == "" &&
-                                controller.createEighthPriceCtr.text == "" &&
-                                controller.createThirdPriceCtr.text == "" &&
-                                controller.createQuarterPriceCtr.text == "") {
-                              BotToast.showText(text: "برجاء اضافة سعر");
-                              return;
-                            }
-                            controller.createSacrificePartner == 8
-                                ? controller.createSakeAds(
-                                    animationController: animationController,
-                                    location: Get.find<
-                                            LocationGetterWidgetsController>()
-                                        .regionName,
-                                    neighborhood: Get.find<
-                                            LocationGetterWidgetsController>()
-                                        .cityName,
-                                    sacrificeType:
-                                        controller.createSacrificeTypeItem.name,
-                                    servicesTypeid:
-                                        controller.createSacrificePartner,
-                                    title: controller
-                                                .createTitlePartnersCtr.text ==
-                                            ""
-                                        ? null
-                                        : controller
-                                            .createTitlePartnersCtr.text,
-                                    description: controller
-                                                .createDescriptionPartnersCtr
-                                                .text ==
-                                            ""
-                                        ? null
-                                        : controller
-                                            .createDescriptionPartnersCtr.text,
-                                    phone: controller.createPhoneCtr.text == ""
-                                        ? null
-                                        : controller.createPhoneCtr.text,
-                                    photos: controller.createPhotos,
-                                  )
-                                : controller.eighth == 0 &&
-                                        controller.half == 0 &&
-                                        controller.quarter == 0 &&
-                                        controller.third == 0
-                                    ? null
-                                    : controller.createSakeAds(
-                                        animationController:
-                                            animationController,
-                                        location: Get.find<
-                                                LocationGetterWidgetsController>()
-                                            .regionName,
-                                        neighborhood: Get.find<
-                                                LocationGetterWidgetsController>()
-                                            .cityName,
-                                        title: controller.createTitlePartnersCtr
-                                                    .text ==
-                                                ""
-                                            ? null
-                                            : controller
-                                                .createTitlePartnersCtr.text,
-                                        description: controller
-                                                    .createDescriptionPartnersCtr
-                                                    .text ==
-                                                ""
-                                            ? null
-                                            : controller
-                                                .createDescriptionPartnersCtr
-                                                .text,
-                                        phone: controller.createPhoneCtr.text ==
-                                                ""
-                                            ? null
-                                            : controller.createPhoneCtr.text,
-                                        photos: controller.createPhotos,
-                                        eighthPrice: controller.eighth == 0
-                                            ? null
-                                            : int.parse(
-                                                controller
-                                                    .createEighthPriceCtr.text,
-                                              ),
-                                        eighthQuantity: controller.eighth == 0
-                                            ? null
-                                            : controller.eighth,
-                                        halfPrice: controller.half == 0
-                                            ? null
-                                            : int.parse(
-                                                controller
-                                                    .createHalfPriceCtr.text,
-                                              ),
-                                        halfQuantity: controller.half == 0
-                                            ? null
-                                            : controller.half,
-                                        quarterPrice: controller.quarter == 0
-                                            ? null
-                                            : int.parse(
-                                                controller
-                                                    .createQuarterPriceCtr.text,
-                                              ),
-                                        quarterQuantity: controller.quarter == 0
-                                            ? null
-                                            : controller.quarter,
-                                        sacrificeType: controller
-                                            .createSacrificeTypeItem.name,
-                                        servicesTypeid:
-                                            controller.createSacrificePartner,
-                                        thirdPrice: controller.third == 0
-                                            ? null
-                                            : controller.third,
-                                        thirdQuantity: controller.third == 0
-                                            ? null
-                                            : int.parse(
-                                                controller
-                                                    .createThirdPriceCtr.text,
-                                              ),
-                                      );
+                          } catch (e) {
+                            animationController.reset();
                           }
                         },
                       ),

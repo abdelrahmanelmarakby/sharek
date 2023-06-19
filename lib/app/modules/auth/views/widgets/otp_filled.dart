@@ -33,7 +33,7 @@ class FilledRoundedPinPutState extends State<FilledRoundedPinPut> {
 
   @override
   Widget build(BuildContext context) {
-    const length = 5;
+    const length = 4;
     //const borderColor = Color.fromRGBO(114, 178, 238, 1);
     const errorColor = Colors.red;
     const fillColor = Color(0xffF7f7f9);
@@ -65,7 +65,7 @@ class FilledRoundedPinPutState extends State<FilledRoundedPinPut> {
             setState(() => showError = pin != '5555');
           },
           validator: (v) {
-            if (v.toString().isEmpty || v!.length != 5) {
+            if (v.toString().isEmpty || v!.length != 4) {
               return "رمز تأكيد خاطئ! نرجو كتابة الرمز الصحيح";
             }
             return null;

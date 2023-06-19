@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:sharek/core/widgets/network_image.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
@@ -90,8 +91,8 @@ class SakeAdsItem extends StatelessWidget {
                 flex: 1,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    ad?.photos?.isNotEmpty ?? false
+                  child: AppCachedNetworkImage(
+                    imageUrl: ad?.photos?.isNotEmpty ?? false
                         ? ad?.photos?.first ?? ""
                         : dummyImage,
                     height: context.width / 4,

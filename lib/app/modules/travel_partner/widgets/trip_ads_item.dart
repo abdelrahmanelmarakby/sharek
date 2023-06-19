@@ -6,6 +6,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
+import '../../../../core/widgets/network_image.dart';
 import '../../home/views/home_view.dart';
 
 class TripAdsItem extends StatelessWidget {
@@ -84,8 +85,8 @@ class TripAdsItem extends StatelessWidget {
                 flex: 1,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    ad?.photos?[0] ?? "",
+                  child: AppCachedNetworkImage(
+                    imageUrl: ad?.photos?[0] ?? "",
                     height: context.width / 4,
                     width: context.width / 4,
                     fit: BoxFit.cover,
