@@ -5,19 +5,24 @@ import 'package:sharek/core/extensions/export.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/sizes_manager.dart';
+import '../../../../core/global/const.dart';
+import '../../../../core/services/shared_prefs.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../controllers/profile_controller.dart';
 import '../widgets/profile_list_tile.dart';
 
 class NotificationSettingsScreen extends GetView<ProfileController> {
-  const NotificationSettingsScreen({super.key});
-
+  const NotificationSettingsScreen({
+    super.key,
+    required this.phone,
+  });
+  final String phone;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text('إعدادت التنبيهات'),
+          title: const Text('إعدادت التطبيق'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -36,20 +41,36 @@ class NotificationSettingsScreen extends GetView<ProfileController> {
                 trailing: Switch.adaptive(
                   activeColor: ColorsManager.primary,
                   inactiveTrackColor: ColorsManager.veryLightGrey,
-                  value: controller.phoneNotifiCation,
+                  value:
+                      SharedPrefService(prefs: globalPrefs).loadIsPhoneStatus(),
                   onChanged: controller.onChangePhoneNotifiCation,
                 ),
               ),
               Sizes.size16.h(context).heightSizedBox,
               ProfileListTile(
                 title: "الإشعارات",
-                isLast: true,
                 trailing: Switch.adaptive(
                   activeColor: ColorsManager.primary,
                   inactiveTrackColor: ColorsManager.veryLightGrey,
-                  value: controller.notifiCation,
+                  value:
+                      SharedPrefService(prefs: globalPrefs).loadIsNotiStatus(),
                   onChanged: controller.onChangeNotifiCation,
                 ),
+              ),
+              Sizes.size8.h(context).heightSizedBox,
+              AppText(
+                "الحساب",
+                fontSize: Sizes.size12.h(context),
+                fontWeight: FontWeights.medium,
+                color: ColorsManager.primary,
+              ),
+              ProfileListTile(
+                title: "حذف الحساب",
+                isLast: true,
+                color: ColorsManager.red2,
+                onTap: () {
+                  controller.deleteAccount(phone: phone);
+                },
               ),
             ],
           ),

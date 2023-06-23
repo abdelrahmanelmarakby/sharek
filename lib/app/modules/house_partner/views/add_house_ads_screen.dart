@@ -260,12 +260,13 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                             controller.createHouseAds(
                               animationController: animationController,
                               servicesTypeid: controller.addHousePartner,
-                              location:
-                                  Get.find<LocationGetterWidgetsController>()
-                                      .regionName,
-                              neighborhood:
-                                  Get.find<LocationGetterWidgetsController>()
-                                      .cityName,
+                              district: Get.find<LocationGetterWidgetsController>()
+                              .districtName,
+                          location: Get.find<LocationGetterWidgetsController>()
+                              .regionName,
+                          neighborhood:
+                              Get.find<LocationGetterWidgetsController>()
+                                  .cityName,
                               numberPartners: controller
                                           .createNumberPartnersCtr.text !=
                                       ""

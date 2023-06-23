@@ -123,6 +123,7 @@ class HousePartnerController extends GetxController {
     String? title,
     String? phone,
     List<File>? photos,
+    String? district,
   }) async {
     animationController.forward();
     try {
@@ -131,6 +132,7 @@ class HousePartnerController extends GetxController {
         nationality: nationality,
         phone: phone,
         photos: photos,
+        district: district,
         description: description,
         location: location,
         neighborhood: neighborhood,

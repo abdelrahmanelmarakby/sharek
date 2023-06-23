@@ -209,6 +209,7 @@ class BusinessPartnerAPI {
     String? location,
     String? neighborhood,
     String? phone,
+    String? district,
     String? description,
     List<File>? photos,
   }) async {
@@ -227,6 +228,7 @@ class BusinessPartnerAPI {
         FormData.fromMap(
           {
             if (type != null) "type": type,
+            if (district != null) "district": district,
             "service_type_id": servicesTypeid,
             if (location != null) "location": location,
             if (neighborhood != null) "neighborhood": neighborhood,

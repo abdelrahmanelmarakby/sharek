@@ -203,6 +203,9 @@ class AddOtherAdsScreen extends GetView<OtherServicePartnerController> {
                               .validate()) {
                             controller.createHouseAds(
                               animationController: animationController,
+                              district:
+                                  Get.find<LocationGetterWidgetsController>()
+                                      .districtName,
                               location:
                                   Get.find<LocationGetterWidgetsController>()
                                       .regionName,

@@ -1,5 +1,4 @@
 import 'package:appinio_video_player/appinio_video_player.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:sharek/app/data/models/private_message_model.dart';
@@ -81,9 +80,9 @@ class _MessageOptionsState extends State<MessageOptions> {
               const SizedBox(
                 height: 1,
               ),
-              const Row(
+              Row(
                 mainAxisSize: MainAxisSize.min,
-                children: [
+                children: const [
                   Icon(
                     Icons.check,
                     //    size: Dimensions.getDesirableWidth(4),

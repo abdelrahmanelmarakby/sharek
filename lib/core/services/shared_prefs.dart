@@ -43,4 +43,20 @@ class SharedPrefService extends GetxService {
   bool loadIsFirstTime() {
     return prefs.getBool("FirstTime") ?? true;
   }
+
+  bool loadIsNotiStatus() {
+    return prefs.getBool("NotiStatus") ?? true;
+  }
+
+  bool loadIsPhoneStatus() {
+    return prefs.getBool("PhoneStatus") ?? true;
+  }
+
+  Future<bool> saveIsNotiStatus(bool val) async {
+    return await prefs.setBool("NotiStatus", val);
+  }
+
+  Future<bool> saveIsPhoneStatus(bool val) async {
+    return await prefs.setBool("PhoneStatus", val);
+  }
 }

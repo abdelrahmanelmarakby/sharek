@@ -103,6 +103,8 @@ class OtherServicePartnerController extends GetxController {
     String? title,
     String? phone,
     List<File>? photos,
+        String? district,
+
   }) async {
     animationController.forward();
     try {
@@ -113,6 +115,7 @@ class OtherServicePartnerController extends GetxController {
         location: location,
         neighborhood: neighborhood,
         title: title,
+        district: district,
       );
       if (res?.status == true) {
         animationController.reset();

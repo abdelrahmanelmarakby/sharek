@@ -94,21 +94,6 @@ class AnotherUserProfileView extends GetView<AnotherUserProfileController> {
                                           fontWeight: FontWeight.w400,
                                         ),
                                         const SizedBox(height: 4),
-                                        // Row(
-                                        //   children: const [
-                                        //     Icon(
-                                        //       Icons.star,
-                                        //       color: ColorsManager.primary,
-                                        //     ),
-                                        //     SizedBox(width: 8),
-                                        //     AppText(
-                                        //       "4.5",
-                                        //       color: ColorsManager.primary,
-                                        //       fontSize: FontSize.medium,
-                                        //       fontWeight: FontWeight.w500,
-                                        //     ),
-                                        //   ],
-                                        // ),
                                       ],
                                     ),
                                   )
@@ -121,25 +106,29 @@ class AnotherUserProfileView extends GetView<AnotherUserProfileController> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      controller.makePhoneCall(
-                                        user?.user?.phone.toString() ?? "",
-                                      );
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: const BoxDecoration(
-                                        color: ColorsManager.primary,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: const Icon(
-                                        Iconsax.call,
-                                        color: ColorsManager.white,
-                                      ),
-                                    ),
-                                  ),
+                                  user?.user?.phoneStatus == 0 ||
+                                          user?.user?.phone == null
+                                      ? const SizedBox()
+                                      : GestureDetector(
+                                          onTap: () {
+                                            controller.makePhoneCall(
+                                              user?.user?.phone.toString() ??
+                                                  "",
+                                            );
+                                          },
+                                          child: Container(
+                                            height: 50,
+                                            width: 50,
+                                            decoration: const BoxDecoration(
+                                              color: ColorsManager.primary,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: const Icon(
+                                              Iconsax.call,
+                                              color: ColorsManager.white,
+                                            ),
+                                          ),
+                                        ),
                                   GestureDetector(
                                     onTap: () {
                                       Get.to(

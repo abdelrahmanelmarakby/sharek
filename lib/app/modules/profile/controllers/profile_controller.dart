@@ -76,11 +76,13 @@ class ProfileController extends GetxController {
   onChangePhoneNotifiCation(bool val) {
     phoneNotifiCation = val;
     update();
+    updatePhoneStatues(status: val);
   }
 
   onChangeNotifiCation(bool val) {
     notifiCation = val;
     update();
+    updateNotiStatues(status: val);
   }
 
   Future addToFavorites({
@@ -103,6 +105,47 @@ class ProfileController extends GetxController {
     } catch (e) {
       BotToast.closeAllLoading();
       log(e.toString());
+    }
+  }
+
+  Future updateNotiStatues({
+    required bool status,
+  }) async {
+    final res = await ProfileApis.updateNotificationStatus(status: status);
+    if (res?.status == true) {
+      SharedPrefService(prefs: globalPrefs).saveIsNotiStatus(status);
+      showSnackBar(res?.message ?? "");
+      Get.forceAppUpdate();
+    } else {
+      showSnackBar(res?.message ?? "");
+      Get.forceAppUpdate();
+    }
+  }
+
+  Future updatePhoneStatues({
+    required bool status,
+  }) async {
+    final res = await ProfileApis.updatePhoneStatus(status: status);
+    if (res?.status == true) {
+      SharedPrefService(prefs: globalPrefs).saveIsPhoneStatus(status);
+      showSnackBar(res?.message ?? "");
+      Get.forceAppUpdate();
+    } else {
+      showSnackBar(res?.message ?? "");
+      Get.forceAppUpdate();
+    }
+  }
+
+  Future deleteAccount({
+    required String phone,
+  }) async {
+    final res = await ProfileApis.deleteAccount(phone: phone);
+    if (res?.status == true) {
+      SharedPrefService(prefs: globalPrefs).removeToken();
+      Get.offAllNamed(Routes.AUTH);
+      showSnackBar(res?.message ?? "");
+    } else {
+      showSnackBar(res?.message ?? "");
     }
   }
 }

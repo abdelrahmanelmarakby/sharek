@@ -13,12 +13,15 @@ class ProfileListTile extends StatelessWidget {
     this.onTap,
     required this.title,
     this.isLast = false,
+    this.color = ColorsManager.charcoal,
     this.trailing,
   }) : super(key: key);
   final Function()? onTap;
   final String title;
   final bool? isLast;
   final Widget? trailing;
+  final Color color;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +40,7 @@ class ProfileListTile extends StatelessWidget {
             title: Text(
               title,
               style: StylesManager.regular(
-                color: ColorsManager.charcoal,
+                color: color,
                 fontSize: FontSize.large.h(context),
               ),
             ),

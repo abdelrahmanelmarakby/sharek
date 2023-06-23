@@ -371,6 +371,8 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                           type: 1,
                           servicesTypeid: 1,
                           animationController: animationController,
+                          district: Get.find<LocationGetterWidgetsController>()
+                              .districtName,
                           location: Get.find<LocationGetterWidgetsController>()
                               .regionName,
                           neighborhood:

@@ -60,7 +60,7 @@ class MyAdsScreen extends GetView<ProfileController> {
                         Get.to(
                           () => BusinessPartnerDetailsScreen(
                             adId: ad?.advertisementId ?? 0,
-                            isUserAds: true,
+                            isUserAds: false,
                           ),
                           binding: BusinessPartnerBinding(),
                         );
@@ -68,7 +68,7 @@ class MyAdsScreen extends GetView<ProfileController> {
                         Get.to(
                           () => TravelPartnerDetailsScreen(
                             id: ad?.advertisementId ?? 0,
-                            isUserAds: true,
+                            isUserAds: false,
                           ),
                           binding: TravelPartnerBinding(),
                         );
@@ -76,7 +76,7 @@ class MyAdsScreen extends GetView<ProfileController> {
                         Get.to(
                           () => SakePartnerDetailsScreen(
                             id: ad?.advertisementId ?? 0,
-                            isUserAds: true,
+                            isUserAds: false,
                           ),
                           binding: SakePartnerBinding(),
                         );
@@ -84,7 +84,7 @@ class MyAdsScreen extends GetView<ProfileController> {
                         Get.to(
                           () => HousePartnerDetailsScreen(
                             id: ad?.advertisementId ?? 0,
-                            isUserAds: true,
+                            isUserAds: false,
                           ),
                           binding: HousePartnerBinding(),
                         );
@@ -92,7 +92,7 @@ class MyAdsScreen extends GetView<ProfileController> {
                         Get.to(
                           () => OtherPartnerDetailsScreen(
                             id: ad?.advertisementId ?? 0,
-                            isUserAds: true,
+                            isUserAds: false,
                           ),
                           binding: OtherServicePartnerBinding(),
                         );

@@ -420,7 +420,9 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                               children: [
                                 Expanded(
                                   flex: 35,
-                                  child: GestureDetector(
+                                  child: ads?.phone == null
+                                    ? const SizedBox()
+                                    : GestureDetector(
                                     onTap: () {
                                       controller.makePhoneCall(
                                         ads?.phone.toString() ?? "",
@@ -495,7 +497,7 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                     ),
                                   ),
                                 ),
-                                const Spacer(flex: 15),
+                              Spacer(flex: ads?.phone == null ? 50 : 15),
                               ],
                             ),
                             const SizedBox(height: 16),

@@ -68,7 +68,7 @@ class ProfileView extends GetView<ProfileController> {
                             ),
                             Sizes.size8.h(context).heightSizedBox,
                             ProfileListTile(
-                              title: "معلومات شخصية",
+                              title: "المعلومات شخصية",
                               onTap: () {
                                 Get.to(
                                   () => const EditUserInfoScreen(),
@@ -98,10 +98,13 @@ class ProfileView extends GetView<ProfileController> {
                             ),
                             Sizes.size4.h(context).heightSizedBox,
                             ProfileListTile(
-                              title: "إعدادت التنبيهات",
+                              title: 'إعدادت التطبيق',
                               onTap: () {
                                 Get.to(
-                                  () => const NotificationSettingsScreen(),
+                                  () => NotificationSettingsScreen(
+                                    phone:
+                                        userData.data?.phone.toString() ?? "",
+                                  ),
                                   binding: ProfileBinding(),
                                 );
                               },

@@ -59,6 +59,7 @@ class BusinessPartnerController extends GetxController {
     String? phone,
     String? description,
     List<File>? photos,
+    String? district,
     int? type,
   }) async {
     animationController.forward();
@@ -71,6 +72,7 @@ class BusinessPartnerController extends GetxController {
         phone: phone,
         photos: photos,
         type: type,
+        district: district,
         servicesTypeid: servicesTypeid,
         location: location,
         title: title,

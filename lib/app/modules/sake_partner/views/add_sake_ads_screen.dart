@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -264,20 +263,20 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                           try {
                             if (controller.createFormKey.currentState!
                                 .validate()) {
-                              if (controller.half == 0 &&
-                                  controller.third == 0 &&
-                                  controller.eighth == 0 &&
-                                  controller.quarter == 0) {
-                                BotToast.showText(text: "برجاء اضافة كمية");
-                                return;
-                              }
-                              if (controller.createHalfPriceCtr.text == "" &&
-                                  controller.createEighthPriceCtr.text == "" &&
-                                  controller.createThirdPriceCtr.text == "" &&
-                                  controller.createQuarterPriceCtr.text == "") {
-                                BotToast.showText(text: "برجاء اضافة سعر");
-                                return;
-                              }
+                              // if (controller.half == 0 &&
+                              //     controller.third == 0 &&
+                              //     controller.eighth == 0 &&
+                              //     controller.quarter == 0) {
+                              //   BotToast.showText(text: "برجاء اضافة كمية");
+                              //   return;
+                              // }
+                              // if (controller.createHalfPriceCtr.text == "" &&
+                              //     controller.createEighthPriceCtr.text == "" &&
+                              //     controller.createThirdPriceCtr.text == "" &&
+                              //     controller.createQuarterPriceCtr.text == "") {
+                              //   BotToast.showText(text: "برجاء اضافة سعر");
+                              //   return;
+                              // }
                               controller.createSacrificePartner == 8
                                   ? controller.createSakeAds(
                                       animationController: animationController,
@@ -319,6 +318,9 @@ class AddSakeAdsScreen extends GetView<SakePartnerController> {
                                       : controller.createSakeAds(
                                           animationController:
                                               animationController,
+                                          district: Get.find<
+                                                  LocationGetterWidgetsController>()
+                                              .districtName,
                                           location: Get.find<
                                                   LocationGetterWidgetsController>()
                                               .regionName,

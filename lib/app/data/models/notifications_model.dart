@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 class NotificationsModel {
   bool? status;
   String? message;
@@ -6,51 +8,87 @@ class NotificationsModel {
   NotificationsModel({this.status, this.message, this.data});
 
   NotificationsModel.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    message = json['message'];
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
-      });
+    if (json["status"] is bool) {
+      status = json["status"];
+    }
+    if (json["message"] is String) {
+      message = json["message"];
+    }
+    if (json["data"] is List) {
+      data = json["data"] == null
+          ? null
+          : (json["data"] as List).map((e) => Data.fromJson(e)).toList();
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = status;
-    data['message'] = message;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["status"] = status;
+    _data["message"] = message;
+    if (data != null) {
+      _data["data"] = data?.map((e) => e.toJson()).toList();
     }
-    return data;
+    return _data;
   }
 }
 
 class Data {
+  int? id;
+  int? userId;
+  int? senderId;
   String? title;
   String? content;
   int? isRead;
   String? avatar;
   String? createdAt;
 
-  Data({this.title, this.content, this.isRead, this.avatar, this.createdAt});
+  Data(
+      {this.id,
+      this.userId,
+      this.senderId,
+      this.title,
+      this.content,
+      this.isRead,
+      this.avatar,
+      this.createdAt});
 
   Data.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
-    content = json['content'];
-    isRead = json['is_read'];
-    avatar = json['avatar'];
-    createdAt = json['created_at'];
+    if (json["id"] is int) {
+      id = json["id"];
+    }
+    if (json["user_id"] is int) {
+      userId = json["user_id"];
+    }
+    if (json["sender_id"] is int) {
+      senderId = json["sender_id"];
+    }
+    if (json["title"] is String) {
+      title = json["title"];
+    }
+    if (json["content"] is String) {
+      content = json["content"];
+    }
+    if (json["is_read"] is int) {
+      isRead = json["is_read"];
+    }
+    if (json["avatar"] is String) {
+      avatar = json["avatar"];
+    }
+    if (json["created_at"] is String) {
+      createdAt = json["created_at"];
+    }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['title'] = title;
-    data['content'] = content;
-    data['is_read'] = isRead;
-    data['avatar'] = avatar;
-    data['created_at'] = createdAt;
-    return data;
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["id"] = id;
+    _data["user_id"] = userId;
+    _data["sender_id"] = senderId;
+    _data["title"] = title;
+    _data["content"] = content;
+    _data["is_read"] = isRead;
+    _data["avatar"] = avatar;
+    _data["created_at"] = createdAt;
+    return _data;
   }
 }

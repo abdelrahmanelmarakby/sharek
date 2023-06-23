@@ -169,6 +169,7 @@ class OtherServicesPartenerAPIS {
     String? description,
     String? phone,
     List<File>? photos,
+    String? district,
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
@@ -186,6 +187,7 @@ class OtherServicesPartenerAPIS {
           if (title != null) "title": title,
           if (description != null) "description": description,
           if (phone != null) "phone": phone,
+          if (district != null) "district": district,
           if (photos != null)
             "photos[]": photos
                 .map(

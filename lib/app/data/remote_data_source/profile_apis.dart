@@ -386,4 +386,175 @@ class ProfileApis {
     );
     return data;
   }
+
+  static Future<MainModel?> updateNotificationStatus({
+    required bool status,
+  }) async {
+    final request = NetworkRequest(
+      type: NetworkRequestType.POST,
+      path: "notification/status",
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
+      data: NetworkRequestBody.fromData(
+        FormData.fromMap(
+          {
+            "status": status ? 1 : 0,
+          },
+        ),
+      ),
+    );
+    final response = await networkService.execute(
+        request, (json) => MainModel.fromJson(json));
+    final data = response.maybeWhen(
+      ok: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
+        return data;
+      },
+      orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
+    );
+    return data;
+  }
+
+  static Future<MainModel?> updatePhoneStatus({
+    required bool status,
+  }) async {
+    final request = NetworkRequest(
+      type: NetworkRequestType.POST,
+      path: "phone/status",
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
+      data: NetworkRequestBody.fromData(
+        FormData.fromMap(
+          {
+            "status": status ? 1 : 0,
+          },
+        ),
+      ),
+    );
+    final response = await networkService.execute(
+        request, (json) => MainModel.fromJson(json));
+    final data = response.maybeWhen(
+      ok: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
+        return data;
+      },
+      orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
+    );
+    return data;
+  }
+
+  static Future<MainModel?> deleteAccount({
+    required String phone,
+  }) async {
+    final request = NetworkRequest(
+      type: NetworkRequestType.POST,
+      path: "delete-account",
+      headers: {
+        'Accept': 'application/json',
+        'api_password': APIKeys.apiPassword,
+        'Authorization':
+            'Bearer ${SharedPrefService(prefs: globalPrefs).getToken()}',
+      },
+      data: NetworkRequestBody.fromData(
+        FormData.fromMap(
+          {
+            "phone": phone,
+          },
+        ),
+      ),
+    );
+    final response = await networkService.execute(
+        request, (json) => MainModel.fromJson(json));
+    final data = response.maybeWhen(
+      ok: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
+        return data;
+      },
+      orElse: () {},
+      badRequest: (data) {
+        return data;
+      },
+      conflict: (data) {
+        return data;
+      },
+      invalidParameters: (data) {
+        return data;
+      },
+      noAccess: (data) {
+        return data;
+      },
+      noData: (data) {
+        return data;
+      },
+      notFound: (data) {
+        return data;
+      },
+      unProcessable: (data) {
+        return data;
+      },
+    );
+    return data;
+  }
 }

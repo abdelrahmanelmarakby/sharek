@@ -133,11 +133,12 @@ class Advertisement {
 
 class User {
   int? id;
-  int? phone;
+  dynamic phone;
   String? name;
   dynamic accountVerified;
-  String? deviceToken;
+  dynamic deviceToken;
   String? avatar;
+  int? phoneStatus;
   String? createdAt1;
   String? createdAt2;
 
@@ -148,6 +149,7 @@ class User {
       this.accountVerified,
       this.deviceToken,
       this.avatar,
+      this.phoneStatus,
       this.createdAt1,
       this.createdAt2});
 
@@ -155,18 +157,17 @@ class User {
     if (json["id"] is int) {
       id = json["id"];
     }
-    if (json["phone"] is int) {
-      phone = json["phone"];
-    }
+    phone = json["phone"];
     if (json["name"] is String) {
       name = json["name"];
     }
     accountVerified = json["account_verified"];
-    if (json["device_token"] is String) {
-      deviceToken = json["device_token"];
-    }
+    deviceToken = json["device_token"];
     if (json["avatar"] is String) {
       avatar = json["avatar"];
+    }
+    if (json["phone_status"] is int) {
+      phoneStatus = json["phone_status"];
     }
     if (json["created_at_1"] is String) {
       createdAt1 = json["created_at_1"];
@@ -184,6 +185,7 @@ class User {
     _data["account_verified"] = accountVerified;
     _data["device_token"] = deviceToken;
     _data["avatar"] = avatar;
+    _data["phone_status"] = phoneStatus;
     _data["created_at_1"] = createdAt1;
     _data["created_at_2"] = createdAt2;
     return _data;

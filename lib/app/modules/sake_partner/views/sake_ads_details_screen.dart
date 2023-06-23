@@ -428,37 +428,41 @@ class SakePartnerDetailsScreen extends GetView<SakePartnerController> {
                               children: [
                                 Expanded(
                                   flex: 35,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      controller.makePhoneCall(
-                                        ads?.phone.toString() ?? "",
-                                      );
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(6),
-                                        color: ColorsManager.primary,
-                                      ),
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 12),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: const [
-                                          Icon(
-                                            Iconsax.call,
-                                            color: Colors.white,
+                                  child: ads?.phone == null
+                                      ? const SizedBox()
+                                      : GestureDetector(
+                                          onTap: () {
+                                            controller.makePhoneCall(
+                                              ads?.phone.toString() ?? "",
+                                            );
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              color: ColorsManager.primary,
+                                            ),
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 12),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: const [
+                                                Icon(
+                                                  Iconsax.call,
+                                                  color: Colors.white,
+                                                ),
+                                                SizedBox(width: 10),
+                                                AppText(
+                                                  "إتصال",
+                                                  fontSize: 14,
+                                                  fontWeight:
+                                                      FontWeights.regular,
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                          SizedBox(width: 10),
-                                          AppText(
-                                            "إتصال",
-                                            fontSize: 14,
-                                            fontWeight: FontWeights.regular,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                        ),
                                 ),
                                 const SizedBox(width: 16),
                                 Expanded(
@@ -503,7 +507,7 @@ class SakePartnerDetailsScreen extends GetView<SakePartnerController> {
                                     ),
                                   ),
                                 ),
-                                const Spacer(flex: 15),
+                              Spacer(flex: ads?.phone == null ? 50 : 15),
                               ],
                             ),
                             const SizedBox(height: 16),

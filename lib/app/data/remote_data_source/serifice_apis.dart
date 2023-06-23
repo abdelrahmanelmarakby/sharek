@@ -237,6 +237,7 @@ class SarificeAPIS {
     int? quarterQuantity,
     int? halfPrice,
     int? halfQuantity,
+    String? district,
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.POST,
@@ -264,6 +265,7 @@ class SarificeAPIS {
           if (thirdQuantity != null) "third_quantity": thirdQuantity,
           if (halfPrice != null) "half_price": halfPrice,
           if (halfQuantity != null) "half_quantity": halfQuantity,
+          if (district != null) "district": district,
           if (photos != null)
             "photos[]": photos
                 .map(

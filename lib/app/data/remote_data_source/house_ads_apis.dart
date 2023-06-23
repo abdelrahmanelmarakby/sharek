@@ -224,6 +224,7 @@ class HousePartnerAPI {
     String? title,
     String? description,
     String? phone,
+    String? district,
     List<File>? photos,
   }) async {
     final request = NetworkRequest(
@@ -245,6 +246,7 @@ class HousePartnerAPI {
           if (title != null) "title": title,
           if (description != null) "description": description,
           if (phone != null) "phone": phone,
+          if (district != null) "district": district,
           if (photos != null)
             "photos[]": photos
                 .map(

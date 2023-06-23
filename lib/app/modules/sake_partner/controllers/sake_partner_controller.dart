@@ -251,6 +251,7 @@ class SakePartnerController extends GetxController {
     int? quarterQuantity,
     int? halfPrice,
     int? halfQuantity,
+    String? district,
   }) async {
     animationController.forward();
     try {
@@ -271,6 +272,7 @@ class SakePartnerController extends GetxController {
         sacrificeType: sacrificeType,
         thirdPrice: thirdPrice,
         thirdQuantity: thirdQuantity,
+        district: district,
       );
       if (res?.status == true) {
         animationController.reset();
