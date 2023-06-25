@@ -518,11 +518,11 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                           const SizedBox(height: 12),
                           Row(
                             children: [
-                              Expanded(
-                                flex: 35,
-                                child: ads?.phone == null
-                                    ? const SizedBox()
-                                    : GestureDetector(
+                              ads?.phone == null
+                                  ? const SizedBox()
+                                  : Expanded(
+                                      flex: 35,
+                                      child: GestureDetector(
                                         onTap: () {
                                           controller.makePhoneCall(
                                             ads?.phone.toString() ?? "",
@@ -554,7 +554,7 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                           ),
                                         ),
                                       ),
-                              ),
+                                    ),
                               const SizedBox(width: 16),
                               Expanded(
                                 flex: 35,

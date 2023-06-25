@@ -103,10 +103,14 @@ class SakePartnerController extends GetxController {
       final res =
           await SarificeAPIS.sacrificeReservation(id: id, quantity: quantity);
       if (res?.status == true) {
+        sacrificeReservation = null;
+        sacrificeReservationId = null;
         animationController.reset();
         BotToast.showText(text: res?.message ?? "");
         Get.forceAppUpdate();
       } else {
+        sacrificeReservation = null;
+        sacrificeReservationId = null;
         animationController.reset();
         BotToast.showText(text: res?.message ?? "");
         Get.forceAppUpdate();

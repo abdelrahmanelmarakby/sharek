@@ -418,11 +418,11 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                             const SizedBox(height: 12),
                             Row(
                               children: [
-                                Expanded(
-                                  flex: 35,
-                                  child: ads?.phone == null
+                              ads?.phone == null
                                     ? const SizedBox()
-                                    : GestureDetector(
+                                    :   Expanded(
+                                  flex: 35,
+                                  child: GestureDetector(
                                     onTap: () {
                                       controller.makePhoneCall(
                                         ads?.phone.toString() ?? "",

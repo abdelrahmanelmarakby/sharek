@@ -65,6 +65,7 @@ class _QuantityItemWidgetState extends State<QuantityItemWidget> {
             child: Text(
               "${widget.title} (${widget.price})",
               overflow: TextOverflow.visible,
+              textAlign: TextAlign.center,
               style: StylesManager.medium(
                 color: widget.available
                     ? (widget.activeIndex == widget.index) && isSelected
