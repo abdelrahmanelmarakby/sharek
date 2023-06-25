@@ -161,6 +161,7 @@ class HousePartnerAPI {
     String? neighborhood,
     String? nationality,
     String? title,
+    String? district,
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
@@ -179,6 +180,7 @@ class HousePartnerAPI {
         if (numberPartners != null) "number_partners": numberPartners,
         if (nationality != null) "nationality": nationality,
         if (title != null) "title": title,
+        if (district != null) "district": district,
       },
     );
     final response = await networkService.execute(

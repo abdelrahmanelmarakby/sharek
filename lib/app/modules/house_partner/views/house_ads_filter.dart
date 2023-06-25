@@ -119,6 +119,8 @@ class HouseAdsFiterScreen extends GetView<HousePartnerController> {
                         neighborhood:
                             Get.find<LocationGetterWidgetsController>()
                                 .cityName,
+                        district: Get.find<LocationGetterWidgetsController>()
+                            .districtName,
                         nationality:
                             controller.filterNationalityPartnersCtr.text,
                       ),

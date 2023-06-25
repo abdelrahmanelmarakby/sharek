@@ -19,12 +19,14 @@ class HouseFilterResoult extends StatelessWidget {
     this.numberPartners,
     this.neighborhood,
     this.nationality,
+    this.district
   }) : super(key: key);
   final int? servicesTypeid;
   final String? location;
   final int? numberPartners;
   final String? neighborhood;
   final String? nationality;
+  final String? district;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +40,7 @@ class HouseFilterResoult extends StatelessWidget {
           neighborhood: neighborhood,
           numberPartners: numberPartners,
           servicesTypeid: servicesTypeid,
+          district: district,
         ),
         builder: (context, snapshot) {
           if (snapshot.hasData) {

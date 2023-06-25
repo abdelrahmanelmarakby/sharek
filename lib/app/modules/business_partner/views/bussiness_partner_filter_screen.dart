@@ -78,6 +78,8 @@ class BussinessPartnerFilterScreen extends GetView<BusinessPartnerController> {
                     location:
                         Get.find<LocationGetterWidgetsController>().regionName,
                     city: Get.find<LocationGetterWidgetsController>().cityName,
+                    district: Get.find<LocationGetterWidgetsController>()
+                        .districtName,
                     type: controller.bussinessTypeModel?.id,
                   ),
                 );

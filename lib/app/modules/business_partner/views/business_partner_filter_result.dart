@@ -16,13 +16,14 @@ class BusinessAdsFilterResult extends GetView<BusinessPartnerController> {
   final String? city;
   final String? location;
   final int? type;
-
+final String?district;
   const BusinessAdsFilterResult({
     super.key,
     this.servicesTypeid,
     this.city,
     this.location,
     this.type,
+    this.district,
   });
 
   @override
@@ -33,6 +34,7 @@ class BusinessAdsFilterResult extends GetView<BusinessPartnerController> {
         city: city,
         location: location,
         type: type,
+        district: district,
       ),
       builder: (context, snapshot) {
         return Scaffold(

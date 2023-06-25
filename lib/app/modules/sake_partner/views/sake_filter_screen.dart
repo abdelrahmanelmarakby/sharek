@@ -164,6 +164,8 @@ class SakeFilterScreen extends GetView<SakePartnerController> {
                           neighborhood:
                               Get.find<LocationGetterWidgetsController>()
                                   .cityName,
+                                      district: Get.find<LocationGetterWidgetsController>()
+                            .districtName,
                           quantity: controller.filterSacrificePartner == 8
                               ? null
                               : controller.filterQuantityItem?.name ?? "",

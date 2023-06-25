@@ -17,12 +17,14 @@ class SakeFilterResultScreen extends GetView<SakePartnerController> {
     this.neighborhood,
     this.sacrificeType,
     this.quantity,
+    this.district,
   });
   final int? servicesTypeid;
   final String? location;
   final String? neighborhood;
   final String? sacrificeType;
   final String? quantity;
+  final String? district;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +38,7 @@ class SakeFilterResultScreen extends GetView<SakePartnerController> {
           location: location,
           neighborhood: neighborhood,
           quantity: quantity,
+          district: district,
         ),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
