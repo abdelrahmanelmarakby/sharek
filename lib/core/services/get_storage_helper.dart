@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sharek/app/modules/location_getter_widgets/models/districts_model.dart';
 
@@ -67,7 +70,14 @@ class CacheHelper {
   static Future<void> _cacheRegion(RegionModel region) async =>
       await _appBox.write('region', region);
 
-  static RegionModel? get getRegion => _appBox.read('region');
+  static RegionModel? get getRegion {
+    if (_appBox.read('region') != null) {
+      return RegionModel.fromJson(_appBox.read('region'));
+    }
+
+    return null;
+  }
+
   //========================================================
   static Future<void> cacheCity({
     required CityModel city,
@@ -78,7 +88,13 @@ class CacheHelper {
   static Future<void> _cacheCity(CityModel city) async =>
       await _appBox.write('city', city);
 
-  static CityModel? get getCity => _appBox.read('city');
+  static CityModel? get getCity {
+    if (_appBox.read('city') != null) {
+      return CityModel.fromJson(_appBox.read('city'));
+    }
+
+    return null;
+  }
   //========================================================
 
   static Future<void> cacheDistrict({
@@ -90,7 +106,13 @@ class CacheHelper {
   static Future<void> _cacheDistrict(DistrictModel district) async =>
       await _appBox.write('district', district);
 
-  static DistrictModel? get getDistrict => _appBox.read('district');
+  static DistrictModel? get getDistrict {
+    if (_appBox.read('district') != null) {
+      return DistrictModel.fromJson(_appBox.read('district'));
+    }
+
+    return null;
+  }
   //========================================================
 
   //========================================================

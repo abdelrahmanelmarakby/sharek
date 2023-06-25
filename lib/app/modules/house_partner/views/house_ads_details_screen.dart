@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, deprecated_member_use
+import 'package:bot_toast/bot_toast.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -439,10 +440,10 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                             ),
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 12),
-                                            child: Row(
+                                            child: const Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
-                                              children: const [
+                                              children: [
                                                 Icon(
                                                   Iconsax.call,
                                                   color: Colors.white,
@@ -464,13 +465,17 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                   flex: 35,
                                   child: GestureDetector(
                                     onTap: () {
-                                      Get.to(() => ChatScreen(
-                                            hisId: "${ads?.userId ?? 0}",
-                                            myId: CacheHelper.getUserId
-                                                .toString(),
-                                            hisName:
-                                                ads?.userName ?? "بدون اسم",
-                                          ));
+                                      CacheHelper.getUserToken == null ||
+                                              CacheHelper.getUserId == null
+                                          ? Get.to(() => ChatScreen(
+                                                hisId: "${ads?.userId ?? 0}",
+                                                myId: CacheHelper.getUserId
+                                                    .toString(),
+                                                hisName:
+                                                    ads?.userName ?? "بدون اسم",
+                                              ))
+                                          : BotToast.showText(
+                                              text: 'برجاء تسجيل الدخول');
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -482,10 +487,10 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                       ),
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 11),
-                                      child: Row(
+                                      child: const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children: const [
+                                        children: [
                                           Icon(
                                             Iconsax.sms,
                                             color: ColorsManager.primary,
