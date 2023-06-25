@@ -254,7 +254,7 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                       children: [
                         const Expanded(
                           child: AppText(
-                            "هل تقبل طرود؟",
+                            "هل تحتاج الى طرود؟",
                             color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeights.medium,

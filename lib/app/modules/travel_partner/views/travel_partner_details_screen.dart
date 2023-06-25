@@ -401,7 +401,7 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                             children: [
                               const Expanded(
                                 child: AppText(
-                                  "هل يقبل طرود:",
+                                  "هل يحتاج الى طرود؟",
                                   color: Colors.black,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
