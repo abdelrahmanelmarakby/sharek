@@ -30,6 +30,11 @@ class HomeAPI {
       badRequest: (data) {
         return data;
       },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
+        return data;
+      },
       conflict: (data) {
         return data;
       },
@@ -77,6 +82,7 @@ class HomeAPI {
       ok: (data) {
         return data;
       },
+      
       orElse: () {},
       badRequest: (data) {
         return data;

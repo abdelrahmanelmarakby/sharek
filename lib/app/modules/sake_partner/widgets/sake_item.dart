@@ -48,10 +48,13 @@ class SakeAdsItem extends StatelessWidget {
                   ),
                   Expanded(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AdRowItem(
                           icon: Iconsax.clock,
-                          text: ad?.createdAt1 ?? "",
+                          text: ad?.createdAt2 ?? "",
+                          maxLines: 2,
                         ),
                         AdRowItem(
                           icon: Iconsax.location,
@@ -62,19 +65,13 @@ class SakeAdsItem extends StatelessWidget {
                   ),
                   Expanded(
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AdRowItem(
                           icon: Iconsax.user,
                           text: ad?.userName ?? "",
-                          // onTap: () {
-                          //   Get.toNamed(
-                          //     Routes.ANOTHER_USER_PROFILE,
-                          //     arguments: {
-                          //       "userId": ad?.userId,
-                          //     },
-                          //   );
-                          // },
+                          maxLines: 2,
                         ),
                         AdRowItem(
                           icon: Iconsax.routing,

@@ -208,29 +208,30 @@ class AdCard extends StatelessWidget {
                     ),
                     Expanded(
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AdRowItem(
-                              icon: Iconsax.clock, text: ad?.createdAt1 ?? ""),
+                            icon: Iconsax.clock,
+                            text: ad?.createdAt2 ?? "",
+                            maxLines: 2,
+                          ),
                           AdRowItem(
-                              icon: Iconsax.location, text: ad?.location ?? "")
+                            icon: Iconsax.location,
+                            text: ad?.location ?? "",
+                          )
                         ],
                       ),
                     ),
                     Expanded(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AdRowItem(
                             icon: Iconsax.user,
                             text: ad?.userName ?? "",
-                            // onTap: () {
-                            //   Get.toNamed(
-                            //     Routes.ANOTHER_USER_PROFILE,
-                            //     arguments: {
-                            //       "userId": ad?.userId,
-                            //     },
-                            //   );
-                            // },
+                            maxLines: 2,
                           ),
                           AdRowItem(
                             icon: Iconsax.routing,
@@ -270,12 +271,14 @@ class AdRowItem extends StatelessWidget {
     required this.text,
     this.flex = 1,
     this.onTap,
+    this.textAlign = TextAlign.start,
     this.maxLines = 1,
   }) : super(key: key);
   final IconData icon;
   final String text;
   final int flex;
   final int maxLines;
+  final TextAlign? textAlign;
 
   final Function()? onTap;
   @override
@@ -284,6 +287,8 @@ class AdRowItem extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Icon(
               icon,
@@ -295,6 +300,7 @@ class AdRowItem extends StatelessWidget {
               child: Text(
                 text,
                 maxLines: maxLines,
+                textAlign: textAlign,
                 style: StylesManager.medium(fontSize: FontSize.medium),
               ),
             ),

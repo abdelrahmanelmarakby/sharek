@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:get/get.dart';
-import 'package:timeago/timeago.dart' as timeago;
+import 'package:sharek/core/global/const.dart';
 
 import '../../../../core/constants/theme/theme_export.dart';
 import '../../../../core/widgets/network_image.dart';
@@ -106,14 +106,13 @@ class NotificationsView extends GetView<NotificationsController> {
                             ? ColorsManager.white
                             : const Color(0xFFF4F4FF),
                         trailing: Text(
-                          timeago
-                              .format(
-                                  DateTime.tryParse(
-                                        item.createdAt ?? "",
-                                      ) ??
-                                      DateTime.now(),
-                                  locale: "ar")
-                              .toString(),
+                          appDateFormate(
+                            DateTime.tryParse(
+                                  item.createdAt ?? "",
+                                ) ??
+                                DateTime.now(),
+                            "ar",
+                          ),
                           style: StylesManager.light(),
                         ),
                         subtitle: Text(

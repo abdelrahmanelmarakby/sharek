@@ -42,19 +42,18 @@ class CommentItemWidget extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Expanded(
-              flex: 20,
-              child: ClipOval(
-                child: AppCachedNetworkImage(
-                  imageUrl: image,
-                  fit: BoxFit.cover,
-                  isLoaderShimmer: true,
-                ),
+            ClipOval(
+              child: AppCachedNetworkImage(
+                imageUrl: image,
+                fit: BoxFit.cover,
+                width: 55,
+                height: 55,
+                isCircular: true,
+                isLoaderShimmer: true,
               ),
             ),
-            const Spacer(flex: 5),
+            const SizedBox(width: 12),
             Expanded(
-              flex: 75,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

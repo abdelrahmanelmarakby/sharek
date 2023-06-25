@@ -1,7 +1,9 @@
+import 'package:get/get.dart';
 import 'package:sharek/core/global/const.dart';
 import 'package:sharek/core/services/shared_prefs.dart';
 
 import '../../../core/services/network_service.dart/dio_network_service.dart';
+import '../../routes/app_pages.dart';
 import '../models/main_model.dart';
 import '../models/notifications_model.dart';
 
@@ -70,9 +72,6 @@ class NotificationsAPI {
       ok: (data) {
         return data;
       },
-      noAuth: (data) {
-        return data;
-      },
       orElse: () {},
       badRequest: (data) {
         return data;
@@ -87,6 +86,11 @@ class NotificationsAPI {
         return data;
       },
       noData: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
         return data;
       },
       notFound: (data) {

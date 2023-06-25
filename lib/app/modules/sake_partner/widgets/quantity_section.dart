@@ -33,9 +33,9 @@ class SakeQuantitySection extends GetView<SakePartnerController> {
         Wrap(
           runSpacing: 4,
           spacing: 4,
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if (quantities?.quarter?.quantity == 0)
+            if (quantities?.quarter?.quantity == 0 &&
+                quantities?.quarter?.price != 0)
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 4,
@@ -73,7 +73,7 @@ class SakeQuantitySection extends GetView<SakePartnerController> {
                   price: quantities?.quarter?.price.toString() ?? "",
                 ),
               ),
-            if (quantities?.half?.quantity == 0)
+            if (quantities?.half?.quantity == 0 && quantities?.half?.price != 0)
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 4,
@@ -109,7 +109,8 @@ class SakeQuantitySection extends GetView<SakePartnerController> {
                   price: quantities?.half?.price.toString() ?? "",
                 ),
               ),
-            if (quantities?.third?.quantity == 0)
+            if (quantities?.third?.quantity == 0 &&
+                quantities?.third?.price != 0)
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 4,
@@ -145,7 +146,8 @@ class SakeQuantitySection extends GetView<SakePartnerController> {
                   price: quantities?.third?.price.toString() ?? "",
                 ),
               ),
-            if (quantities?.eighth?.quantity == 0)
+            if (quantities?.eighth?.quantity == 0 &&
+                quantities?.eighth?.price != 0)
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 4,
@@ -167,26 +169,27 @@ class SakeQuantitySection extends GetView<SakePartnerController> {
                 ),
               ),
             for (int i = 0; i < (quantities?.eighth?.quantity ?? 0); i++)
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 4,
+              if (quantities?.eighth?.price != 0)
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 4,
+                  ),
+                  child: QuantityItemWidget(
+                    activeIndex: controller.sacrificeReservationId ?? -1,
+                    index: 3,
+                    title: "ثمن",
+                    onTap: () {
+                      quantities?.eighth?.quantity != 0
+                          ? controller.changesacrificeReservationState(
+                              "eighth",
+                              3,
+                            )
+                          : null;
+                    },
+                    available: quantities?.eighth?.quantity != 0 ? true : false,
+                    price: quantities?.eighth?.price.toString() ?? "",
+                  ),
                 ),
-                child: QuantityItemWidget(
-                  activeIndex: controller.sacrificeReservationId ?? -1,
-                  index: 3,
-                  title: "ثمن",
-                  onTap: () {
-                    quantities?.eighth?.quantity != 0
-                        ? controller.changesacrificeReservationState(
-                            "eighth",
-                            3,
-                          )
-                        : null;
-                  },
-                  available: quantities?.eighth?.quantity != 0 ? true : false,
-                  price: quantities?.eighth?.price.toString() ?? "",
-                ),
-              ),
           ],
         ),
         const SizedBox(height: 24),
