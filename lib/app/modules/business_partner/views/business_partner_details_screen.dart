@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/app/data/models/business_ad_model.dart';
 import 'package:sharek/app/data/remote_data_source/business_ads.dart';
-import 'package:sharek/app/modules/business_partner/bindings/business_partner_binding.dart';
 import 'package:sharek/app/modules/travel_partner/widgets/comment_item.dart';
 import 'package:sharek/app/modules/travel_partner/widgets/trip_ads_photos_list_view.dart';
 import 'package:sharek/core/constants/theme/font_manager.dart';
@@ -26,7 +25,6 @@ import '../../../routes/app_pages.dart';
 import '../../chats/chat_screen.dart';
 import '../../home/views/home_view.dart';
 import '../controllers/business_partner_controller.dart';
-import 'edit_business_ads_screen.dart';
 
 class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
   const BusinessPartnerDetailsScreen({
@@ -168,12 +166,12 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                   controller.deleteAds(id: adId);
                                 }
                                 if (val == "/edit") {
-                                  Get.to(
-                                    () => EditBusinessPartnerAdsScreen(
-                                      ads: ads,
-                                    ),
-                                    binding: BusinessPartnerBinding(),
-                                  );
+                                  // Get.to(
+                                  //   () => EditBusinessPartnerAdsScreen(
+                                  //     ads: ads,
+                                  //   ),
+                                  //   binding: BusinessPartnerBinding(),
+                                  // );
                                 }
                               },
                               itemBuilder: (BuildContext context) {

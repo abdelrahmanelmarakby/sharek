@@ -429,7 +429,7 @@ class PartnerCard extends StatelessWidget {
           children: [
             Container(
               height: 80.h(context),
-              width: 80.h(context),
+              width: 90.h(context),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
@@ -447,7 +447,9 @@ class PartnerCard extends StatelessWidget {
             Sizes.size8.heightSizedBox,
             Text(
               name,
-              style: StylesManager.semiBold(fontSize: FontSize.medium),
+              style: StylesManager.semiBold(
+                fontSize: 13,
+              ),
             )
           ],
         ),
