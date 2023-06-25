@@ -213,7 +213,7 @@ class AdCard extends StatelessWidget {
                         children: [
                           AdRowItem(
                             icon: Iconsax.clock,
-                            text: ad?.createdAt2 ?? "",
+                            text: ad?.createdAt1 ?? "",
                             maxLines: 2,
                           ),
                           AdRowItem(

@@ -34,7 +34,7 @@ class SakeQuantitySection extends GetView<SakePartnerController> {
           runSpacing: 4,
           spacing: 4,
           children: [
-            if (quantities?.quarter?.quantity == 0 &&
+            if (quantities?.quarter?.quantity == 0 ||
                 quantities?.quarter?.price != 0)
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -73,7 +73,7 @@ class SakeQuantitySection extends GetView<SakePartnerController> {
                   price: quantities?.quarter?.price.toString() ?? "",
                 ),
               ),
-            if (quantities?.half?.quantity == 0 && quantities?.half?.price != 0)
+            if (quantities?.half?.quantity == 0 || quantities?.half?.price != 0)
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 4,
@@ -109,7 +109,7 @@ class SakeQuantitySection extends GetView<SakePartnerController> {
                   price: quantities?.half?.price.toString() ?? "",
                 ),
               ),
-            if (quantities?.third?.quantity == 0 &&
+            if (quantities?.third?.quantity == 0 ||
                 quantities?.third?.price != 0)
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -146,7 +146,7 @@ class SakeQuantitySection extends GetView<SakePartnerController> {
                   price: quantities?.third?.price.toString() ?? "",
                 ),
               ),
-            if (quantities?.eighth?.quantity == 0 &&
+            if (quantities?.eighth?.quantity == 0 ||
                 quantities?.eighth?.price != 0)
               Padding(
                 padding: const EdgeInsets.symmetric(

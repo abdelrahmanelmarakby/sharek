@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:get/get.dart';
-import 'package:sharek/core/global/const.dart';
 
 import '../../../../core/constants/theme/theme_export.dart';
+import '../../../../core/global/const.dart';
 import '../../../../core/widgets/network_image.dart';
 import '../../../data/models/notifications_model.dart';
 import '../../../data/remote_data_source/notifications_apis.dart';
@@ -39,7 +39,7 @@ class NotificationsView extends GetView<NotificationsController> {
             );
           }
           if (snapshot.hasData) {
-            final notification = snapshot.data?.data?.reversed.toList() ?? [];
+            final notification = snapshot.data?.data?.toList() ?? [];
             if (notification.isEmpty) {
               return Center(
                 child: Text(
@@ -106,13 +106,10 @@ class NotificationsView extends GetView<NotificationsController> {
                             ? ColorsManager.white
                             : const Color(0xFFF4F4FF),
                         trailing: Text(
-                          appDateFormate(
-                            DateTime.tryParse(
-                                  item.createdAt ?? "",
-                                ) ??
-                                DateTime.now(),
-                            "ar",
-                          ),
+                          appTimeFormate(
+                              DateTime.tryParse(item.createdAt ?? "") ??
+                                  DateTime.now(),
+                              "ar"),
                           style: StylesManager.light(),
                         ),
                         subtitle: Text(
