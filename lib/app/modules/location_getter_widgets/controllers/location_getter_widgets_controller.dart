@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
+import 'package:sharek/core/services/get_storage_helper.dart';
 
 import '../../../data/remote_data_source/location_apis.dart';
 import '../models/cities_model.dart';
@@ -11,17 +12,19 @@ import '../models/regions_model.dart';
 class LocationGetterWidgetsController extends GetxController {
   late final Future<RegionsModel?> regions;
   DistrictsModel? districts;
-  String? regionName;
-  String? districtName;
-  int? regionId;
-  int? cityId;
+  String? regionName = CacheHelper.getRegion?.name;
+  String? districtName = CacheHelper.getDistrict?.name;
+  int? regionId = CacheHelper.getRegion?.id;
+  int? cityId = CacheHelper.getCity?.id;
   CitiesModel? cities;
-  String? cityName;
-  int? districtId;
+  String? cityName = CacheHelper.getCity?.name;
+  int? districtId = CacheHelper.getDistrict?.id;
 
   selectRegionId({required int id, required String name}) async {
     regionId = id;
     regionName = name;
+    CacheHelper.cacheRegion(region: RegionModel(id: id, name: name));
+
     Get.close(1);
     BotToast.showLoading();
     try {
@@ -37,6 +40,8 @@ class LocationGetterWidgetsController extends GetxController {
   selectCityId({required int id, required String name}) async {
     cityId = id;
     cityName = name;
+    CacheHelper.cacheCity(city: CityModel(id: id, name: name));
+
     Get.close(1);
 
     BotToast.showLoading();
@@ -53,6 +58,8 @@ class LocationGetterWidgetsController extends GetxController {
   selectDistricId({required int id, required String name}) {
     districtId = id;
     districtName = name;
+    CacheHelper.cacheDistrict(district: DistrictModel(id: id, name: name));
+
     Get.close(1);
     update();
   }
@@ -121,5 +128,4 @@ class LocationGetterWidgetsController extends GetxController {
   }
 
   //=========================================================================
-
 }

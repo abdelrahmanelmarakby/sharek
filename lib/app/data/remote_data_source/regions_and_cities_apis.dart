@@ -1,8 +1,9 @@
+import 'package:sharek/app/modules/location_getter_widgets/models/regions_model.dart';
+
 import '../../../core/global/const.dart';
 import '../../../core/services/network_service.dart/dio_network_service.dart';
 import '../../../core/services/shared_prefs.dart';
 import '../models/city_model.dart';
-import '../models/region_model.dart';
 
 class RegionsAndCitiesAPIS {
   static Future<RegionModel?> getRegions() async {

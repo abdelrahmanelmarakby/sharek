@@ -1,4 +1,8 @@
 import 'package:get_storage/get_storage.dart';
+import 'package:sharek/app/modules/location_getter_widgets/models/districts_model.dart';
+
+import '../../app/modules/location_getter_widgets/models/cities_model.dart';
+import '../../app/modules/location_getter_widgets/models/regions_model.dart';
 
 class CacheHelper {
   //========================================================
@@ -38,6 +42,7 @@ class CacheHelper {
       await _appBox.write('langCode', langCode);
 
   static String get getLocale => _appBox.read('langCode') ?? "ar";
+
   //========================================================
   static Future<void> saveIsFirstTime({
     required bool firstTime,
@@ -51,7 +56,43 @@ class CacheHelper {
 
   static bool get getFirstTime => _appBox.read('FirstTime') ?? true;
   //========================================================
+
+//=========================================================
+  static Future<void> cacheRegion({
+    required RegionModel region,
+  }) async {
+    await _cacheRegion(region);
+  }
+
+  static Future<void> _cacheRegion(RegionModel region) async =>
+      await _appBox.write('region', region);
+
+  static RegionModel? get getRegion => _appBox.read('region');
   //========================================================
+  static Future<void> cacheCity({
+    required CityModel city,
+  }) async {
+    await _cacheCity(city);
+  }
+
+  static Future<void> _cacheCity(CityModel city) async =>
+      await _appBox.write('city', city);
+
+  static CityModel? get getCity => _appBox.read('city');
+  //========================================================
+
+  static Future<void> cacheDistrict({
+    required DistrictModel district,
+  }) async {
+    await _cacheDistrict(district);
+  }
+
+  static Future<void> _cacheDistrict(DistrictModel district) async =>
+      await _appBox.write('district', district);
+
+  static DistrictModel? get getDistrict => _appBox.read('district');
+  //========================================================
+
   //========================================================
   //========================================================
   //========================================================
