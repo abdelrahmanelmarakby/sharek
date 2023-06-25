@@ -30,6 +30,14 @@ class NotificationsView extends GetView<NotificationsController> {
       body: FutureBuilder<NotificationsModel?>(
         future: NotificationsAPI.getAllNotifications(),
         builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            Center(
+              child: Text(
+                "برجاء تسجيل الدخول",
+                style: StylesManager.medium(fontSize: FontSize.xXlarge),
+              ),
+            );
+          }
           if (snapshot.hasData) {
             final notification = snapshot.data?.data?.reversed.toList() ?? [];
             if (notification.isEmpty) {
