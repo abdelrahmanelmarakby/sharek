@@ -8,6 +8,7 @@ import '../../../../core/constants/theme/sizes_manager.dart';
 import '../../../../core/global/const.dart';
 import '../../../../core/services/shared_prefs.dart';
 import '../../../../core/widgets/app_text.dart';
+import '../../../../core/widgets/progress_button.dart';
 import '../controllers/profile_controller.dart';
 import '../widgets/profile_list_tile.dart';
 
@@ -69,7 +70,64 @@ class NotificationSettingsScreen extends GetView<ProfileController> {
                 isLast: true,
                 color: ColorsManager.red2,
                 onTap: () {
-                  controller.deleteAccount(phone: phone);
+                  //  controller.deleteAccount(phone: phone);
+                  Get.dialog(
+                    Dialog(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const AppText(
+                              "حذف الحساب",
+                              color: ColorsManager.red2,
+                              fontSize: 18,
+                              fontWeight: FontWeights.semiBold,
+                            ),
+                            const SizedBox(height: 12),
+                            const AppText(
+                              "هل انت متأكد من حذف الحساب ؟",
+                              color: ColorsManager.grey,
+                              fontSize: 14,
+                              fontWeight: FontWeights.regular,
+                            ),
+                            const SizedBox(height: 24),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: AppProgressButton(
+                                    onPressed: (anim) {
+                                      controller.deleteAccount(phone: phone);
+                                    },
+                                    text: "حذف",
+                                    width: MediaQuery.of(context).size.width,
+                                    backgroundColor: ColorsManager.red2,
+                                  ),
+                                ),
+                                const SizedBox(width: 20),
+                                Expanded(
+                                  child: AppProgressButton(
+                                    onPressed: (anim) {
+                                      Get.back();
+                                    },
+                                    text: "إلغاء",
+                                    width: MediaQuery.of(context).size.width,
+                                    backgroundColor: ColorsManager.primary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
                 },
               ),
             ],

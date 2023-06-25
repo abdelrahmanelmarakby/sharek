@@ -197,9 +197,10 @@ class _RecentChatsState extends State<RecentChats> {
                 ),
               ),
               Expanded(
-                flex: 15,
+                flex: 20,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "${DateTime.now().subtract(DateTime.now().difference(chatRoom.lastChat!.toUtc())).hour}:${DateTime.now().subtract(DateTime.now().difference(chatRoom.lastChat!.toUtc())).minute}",
@@ -214,18 +215,19 @@ class _RecentChatsState extends State<RecentChats> {
                             : FontWeight.w500,
                       ),
                     ),
-                    const Spacer(),
-                    SizedBox(
-                      child: chatRoom.lastSender != widget.myId
-                          ? Container(
-                              alignment: Alignment.centerLeft,
-                              child: const Text('رسالة جديدة!',
-                                  style: TextStyle(
-                                      // fontSize: Dimensions.getDesirableWidth(4),
-                                      color: ColorsManager.selection,
-                                      fontWeight: FontWeight.bold)))
-                          : const Text(''),
-                    ),
+                    chatRoom.lastSender != widget.myId
+                        ? Container(
+                            alignment: Alignment.centerLeft,
+                            child: const Text(
+                              'رسالة جديدة!',
+                              style: TextStyle(
+                                // fontSize: Dimensions.getDesirableWidth(4),
+                                color: ColorsManager.selection,
+                                fontWeight: FontWeights.medium,
+                              ),
+                            ),
+                          )
+                        : const Text(''),
                   ],
                 ),
               )

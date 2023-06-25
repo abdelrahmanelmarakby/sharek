@@ -20,7 +20,7 @@ class EditUserInfoScreen extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('معلومات الحساب'),
+        title: const Text("المعلومات الشخصية"),
       ),
       body: FutureBuilder<UserInfoModel?>(
         future: ProfileApis.getUserProfile(),

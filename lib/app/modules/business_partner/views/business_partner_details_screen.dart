@@ -1,7 +1,5 @@
 // ignore_for_file: deprecated_member_use
 
-import 'dart:developer';
-
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -53,7 +51,6 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                   controller: controller.scrollController,
                   floatHeaderSlivers: true,
                   headerSliverBuilder: (context, innerBoxIsScrolled) {
-                    log(innerBoxIsScrolled.toString());
                     return [
                       SliverAppBar(
                         floating: false,
@@ -385,6 +382,11 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                   );
                                 },
                               ),
+                              AdRowItem(
+                                icon: Iconsax.location,
+                                text: ads?.district ?? "",
+                              ),
+                              const Spacer(),
                             ],
                           ),
                           const SizedBox(height: 16),

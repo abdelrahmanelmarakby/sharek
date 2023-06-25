@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_typing_uninitialized_variables
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -64,7 +63,6 @@ class HomeView extends GetView<HomeController> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final HomeModel? homeData = snapshot.data;
-              log(homeData.toString());
               return SingleChildScrollView(
                 child: SafeArea(
                   child: Column(

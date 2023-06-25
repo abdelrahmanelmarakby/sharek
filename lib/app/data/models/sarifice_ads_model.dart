@@ -1,4 +1,3 @@
-
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 class SarificeAdsModel {
@@ -9,14 +8,16 @@ class SarificeAdsModel {
   SarificeAdsModel({this.status, this.message, this.data});
 
   SarificeAdsModel.fromJson(Map<String, dynamic> json) {
-    if(json["status"] is bool) {
+    if (json["status"] is bool) {
       status = json["status"];
     }
-    if(json["message"] is String) {
+    if (json["message"] is String) {
       message = json["message"];
     }
-    if(json["data"] is List) {
-      data = json["data"] == null ? null : (json["data"] as List).map((e) => Data.fromJson(e)).toList();
+    if (json["data"] is List) {
+      data = json["data"] == null
+          ? null
+          : (json["data"] as List).map((e) => Data.fromJson(e)).toList();
     }
   }
 
@@ -24,7 +25,7 @@ class SarificeAdsModel {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["status"] = status;
     _data["message"] = message;
-    if(data != null) {
+    if (data != null) {
       _data["data"] = data?.map((e) => e.toJson()).toList();
     }
     return _data;
@@ -41,54 +42,75 @@ class Data {
   String? description;
   String? sacrificeType;
   int? phone;
+  String? district;
   String? userName;
   String? createdAt1;
   String? createdAt2;
   dynamic quantities;
   List<String>? photos;
 
-  Data({this.advertisementId, this.userId, this.serviceTypeId, this.location, this.neighborhood, this.title, this.description, this.sacrificeType, this.phone, this.userName, this.createdAt1, this.createdAt2, this.quantities, this.photos});
+  Data({
+    this.advertisementId,
+    this.userId,
+    this.serviceTypeId,
+    this.location,
+    this.neighborhood,
+    this.title,
+    this.description,
+    this.sacrificeType,
+    this.phone,
+    this.userName,
+    this.createdAt1,
+    this.createdAt2,
+    this.quantities,
+    this.photos,
+    this.district,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
-    if(json["advertisement_id"] is int) {
+    if (json["advertisement_id"] is int) {
       advertisementId = json["advertisement_id"];
     }
-    if(json["user_id"] is int) {
+    if (json["user_id"] is int) {
       userId = json["user_id"];
     }
-    if(json["service_type_id"] is int) {
+    if (json["service_type_id"] is int) {
       serviceTypeId = json["service_type_id"];
     }
-    if(json["location"] is String) {
+    if (json["location"] is String) {
       location = json["location"];
     }
-    if(json["neighborhood"] is String) {
+    if (json["neighborhood"] is String) {
       neighborhood = json["neighborhood"];
     }
-    if(json["title"] is String) {
+    if (json["title"] is String) {
       title = json["title"];
     }
-    if(json["description"] is String) {
+    if (json["description"] is String) {
       description = json["description"];
     }
-    if(json["sacrifice_type"] is String) {
+    if (json["sacrifice_type"] is String) {
       sacrificeType = json["sacrifice_type"];
     }
-    if(json["phone"] is int) {
+    if (json["phone"] is int) {
       phone = json["phone"];
     }
-    if(json["user_name"] is String) {
+    if (json["user_name"] is String) {
       userName = json["user_name"];
     }
-    if(json["created_at_1"] is String) {
+    if (json["created_at_1"] is String) {
       createdAt1 = json["created_at_1"];
     }
-    if(json["created_at_2"] is String) {
+    if (json["created_at_2"] is String) {
       createdAt2 = json["created_at_2"];
     }
+    if (json["district"] is String) {
+      district = json["district"];
+    }
     quantities = json["quantities"];
-    if(json["photos"] is List) {
-      photos = json["photos"] == null ? null : List<String>.from(json["photos"]);
+    if (json["photos"] is List) {
+      photos =
+          json["photos"] == null ? null : List<String>.from(json["photos"]);
     }
   }
 
@@ -103,11 +125,12 @@ class Data {
     _data["description"] = description;
     _data["sacrifice_type"] = sacrificeType;
     _data["phone"] = phone;
+    _data["district"] = district;
     _data["user_name"] = userName;
     _data["created_at_1"] = createdAt1;
     _data["created_at_2"] = createdAt2;
     _data["quantities"] = quantities;
-    if(photos != null) {
+    if (photos != null) {
       _data["photos"] = photos;
     }
     return _data;

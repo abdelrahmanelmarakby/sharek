@@ -77,13 +77,12 @@ class AuthController extends GetxController {
     if (res.status == true) {
       animationController.forward();
       print(res.data?.user?.id);
-
       await Future.delayed(300.milliseconds, () {
         animationController.reset();
       });
       showSnackBar(res.message ?? "");
       SharedPrefService(prefs: globalPrefs).saveToken(res.data?.token ?? '');
-      Get.offAndToNamed(Routes.BOTTOM_NAV_BAR);
+      Get.offAllNamed(Routes.BOTTOM_NAV_BAR);
     } else {
       showSnackBar(res.message ?? 'حدث خطآ ما'.tr);
       animationController.reset();

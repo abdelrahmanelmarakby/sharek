@@ -139,12 +139,16 @@ class ProfileController extends GetxController {
   Future deleteAccount({
     required String phone,
   }) async {
+    Get.back();
+    BotToast.showLoading();
     final res = await ProfileApis.deleteAccount(phone: phone);
     if (res?.status == true) {
+      BotToast.closeAllLoading();
+      showSnackBar(res?.message ?? "");
       SharedPrefService(prefs: globalPrefs).removeToken();
       Get.offAllNamed(Routes.AUTH);
-      showSnackBar(res?.message ?? "");
     } else {
+      BotToast.closeAllLoading();
       showSnackBar(res?.message ?? "");
     }
   }

@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/app/modules/travel_partner/widgets/services_type_item.dart';
-import 'package:sharek/core/constants/theme/styles_manager.dart';
 import 'package:sharek/core/extensions/num.dart';
-import 'package:sharek/core/widgets/custom_dropdown.dart';
 
 import '../../../../core/constants/theme/app_icons.dart';
 import '../../../../core/constants/theme/colors_manager.dart';
@@ -21,6 +19,7 @@ import '../../../data/models/service_type.dart';
 import '../../location_getter_widgets/controllers/location_getter_widgets_controller.dart';
 import '../../location_getter_widgets/views/location_getter_widgets_view.dart';
 import '../controllers/business_partner_controller.dart';
+import '../widgets/type_drop_down.dart';
 
 class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
   const AddBusinessPartnerAdsScreen({Key? key}) : super(key: key);
@@ -81,146 +80,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                 const SizedBox(height: 16),
                 const LocationGetterWidgetsView(showDistrict: true),
                 const SizedBox(height: 12),
-                AppDropDown(
-                  title: "النوع",
-                  bottomSheet: SizedBox(
-                    height: context.height * .5,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: Sizes.size8.h(context).heightSizedBox),
-                              IconButton(
-                                onPressed: () {
-                                  Get.close(1);
-                                },
-                                icon: const Icon(
-                                  Icons.cancel,
-                                  color: ColorsManager.primary,
-                                  size: Sizes.size38,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Divider(
-                            color: ColorsManager.veryLightGrey,
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GestureDetector(
-                                  // onTap: () => controller.selectRegionId(
-                                  //     id: controller.searchRegions[index].id ??
-                                  //         0,
-                                  //     name: controller
-                                  //             .searchRegions[index].name ??
-                                  //         ""),
-                                  child: Text("تجاري",
-                                      style: StylesManager.bold(
-                                          fontSize: FontSize.large)),
-                                ),
-                              ),
-                              const Divider(
-                                color: ColorsManager.veryLightGrey,
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GestureDetector(
-                                  // onTap: () => controller.selectRegionId(
-                                  //     id: controller.searchRegions[index].id ??
-                                  //         0,
-                                  //     name: controller
-                                  //             .searchRegions[index].name ??
-                                  //         ""),
-                                  child: Text("عقارى",
-                                      style: StylesManager.bold(
-                                          fontSize: FontSize.large)),
-                                ),
-                              ),
-                              const Divider(
-                                color: ColorsManager.veryLightGrey,
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GestureDetector(
-                                  // onTap: () => controller.selectRegionId(
-                                  //     id: controller.searchRegions[index].id ??
-                                  //         0,
-                                  //     name: controller
-                                  //             .searchRegions[index].name ??
-                                  //         ""),
-                                  child: Text("تقني",
-                                      style: StylesManager.bold(
-                                          fontSize: FontSize.large)),
-                                ),
-                              ),
-                              const Divider(
-                                color: ColorsManager.veryLightGrey,
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GestureDetector(
-                                  // onTap: () => controller.selectRegionId(
-                                  //     id: controller.searchRegions[index].id ??
-                                  //         0,
-                                  //     name: controller
-                                  //             .searchRegions[index].name ??
-                                  //         ""),
-                                  child: Text("أراضى",
-                                      style: StylesManager.bold(
-                                          fontSize: FontSize.large)),
-                                ),
-                              ),
-                              const Divider(
-                                color: ColorsManager.veryLightGrey,
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GestureDetector(
-                                  // onTap: () => controller.selectRegionId(
-                                  //     id: controller.searchRegions[index].id ??
-                                  //         0,
-                                  //     name: controller
-                                  //             .searchRegions[index].name ??
-                                  //         ""),
-                                  child: Text("اخرى",
-                                      style: StylesManager.bold(
-                                          fontSize: FontSize.large)),
-                                ),
-                              ),
-                              const Divider(
-                                color: ColorsManager.veryLightGrey,
-                              )
-                            ],
-                          ),
-                        ]),
-                  ),
-                  icon: const RotatedBox(
-                    quarterTurns: 2,
-                    child: Icon(Iconsax.category),
-                  ),
-                ),
-
+                const TypeDropDown(),
                 const SizedBox(height: 12),
                 CustomTextField(
                   name: "",
@@ -288,7 +148,6 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                     ),
                   ),
                 ),
-
                 GetBuilder<BusinessPartnerController>(
                   builder: (controller) {
                     return (controller.createPhotos?.isNotEmpty ?? false)
@@ -321,19 +180,20 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                                         ),
                                       ),
                                       Positioned(
-                                          top: 5,
-                                          right: 5,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              controller.createPhotos
-                                                  ?.removeAt(index);
-                                              controller.update();
-                                            },
-                                            child: const Icon(
-                                              Icons.cancel,
-                                              color: ColorsManager.error,
-                                            ),
-                                          )),
+                                        top: 5,
+                                        right: 5,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            controller.createPhotos
+                                                ?.removeAt(index);
+                                            controller.update();
+                                          },
+                                          child: const Icon(
+                                            Icons.cancel,
+                                            color: ColorsManager.error,
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -365,11 +225,14 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                       if (controller.businessPartner == null) {
                         BotToast.showText(text: "برجاء اختيار نوع الخدمة");
                       }
+                      if (controller.bussinessTypeModel == null) {
+                        BotToast.showText(text: "برجاء اختيار النوع ");
+                      }
                       if (controller.createAdsFormKey.currentState!
                           .validate()) {
                         controller.createTripAds(
-                          type: 1,
-                          servicesTypeid: 1,
+                          type: controller.bussinessTypeModel?.id,
+                          servicesTypeid: controller.businessPartner,
                           animationController: animationController,
                           district: Get.find<LocationGetterWidgetsController>()
                               .districtName,

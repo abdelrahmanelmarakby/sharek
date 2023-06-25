@@ -40,6 +40,7 @@ class Data {
   String? description;
   String? sacrificeType;
   int? phone;
+  String? district;
   String? userName;
   String? createdAt1;
   String? createdAt2;
@@ -62,6 +63,7 @@ class Data {
       this.createdAt2,
       this.quantities,
       this.photos,
+      this.district,
       this.comments});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -110,6 +112,9 @@ class Data {
       photos =
           json["photos"] == null ? null : List<String>.from(json["photos"]);
     }
+    if (json["district"] is String) {
+      district = json["district"];
+    }
     if (json["comments"] is List) {
       comments = json["comments"] == null
           ? null
@@ -136,6 +141,7 @@ class Data {
     if (quantities != null) {
       _data["quantities"] = quantities?.toJson();
     }
+    _data["district"] = district;
     if (photos != null) {
       _data["photos"] = photos;
     }

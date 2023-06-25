@@ -11,6 +11,7 @@ import 'package:sharek/app/routes/app_pages.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/widgets/image_picker.dart';
+import '../../../data/models/bussiness_type_model.dart';
 import '../../../data/remote_data_source/favorites_and_report_apis.dart';
 
 class BusinessPartnerController extends GetxController {
@@ -120,8 +121,9 @@ class BusinessPartnerController extends GetxController {
       final res = await BusinessPartnerAPI.createBusinessComment(
           id: id, comment: comment);
       if (res?.status == true) {
-        update();
         createCommentCtr.clear();
+        isText = false;
+        update();
         BotToast.closeAllLoading();
         BotToast.showText(text: res?.message ?? "");
       } else {
@@ -143,7 +145,6 @@ class BusinessPartnerController extends GetxController {
 
   TextEditingController city = TextEditingController();
   TextEditingController location = TextEditingController();
-
   //========================================================================
   //========================================================================
   //===============================Trip Details=============================
@@ -289,5 +290,13 @@ class BusinessPartnerController extends GetxController {
     if (pickedImages.isEmpty) return;
     createPhotos = pickedImages.map((e) => File(e.path)).toList();
     update();
+  }
+
+  //========================================================================
+  BussinessTypeModel? bussinessTypeModel;
+  pickTypeId(BussinessTypeModel val) {
+    bussinessTypeModel = val;
+    update();
+    Get.close(1);
   }
 }

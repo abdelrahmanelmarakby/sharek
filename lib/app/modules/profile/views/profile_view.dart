@@ -68,7 +68,7 @@ class ProfileView extends GetView<ProfileController> {
                             ),
                             Sizes.size8.h(context).heightSizedBox,
                             ProfileListTile(
-                              title: "المعلومات شخصية",
+                              title: "المعلومات الشخصية",
                               onTap: () {
                                 Get.to(
                                   () => const EditUserInfoScreen(),
@@ -146,8 +146,8 @@ class ProfileView extends GetView<ProfileController> {
                                       appBar: AppBar(
                                         title: const Text("معلومات عنا"),
                                       ),
-                                      body: const Column(
-                                        children: [
+                                      body: Column(
+                                        children: const [
                                           Text("""
 """)
                                         ],
@@ -164,13 +164,13 @@ class ProfileView extends GetView<ProfileController> {
                                         title: const Text(
                                             "الشروط و سياسة الخصوصية"),
                                       ),
-                                      body: const SingleChildScrollView(
+                                      body: SingleChildScrollView(
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: [
+                                          children: const [
                                             Text("""الأحكام  والشروط  : 
                                       - تعريف بالتطبيق  : 
                                       1 - الطرف الأول تطبيق شريك : شريك هو تطبيق إعلاني سعودي جديد بخدمات جديدة ومتميزة، مختص في جمع الشركاء في عدة مجالات مختلفة مع الأشخاص الأنسب لموقعك واهتمامك. 

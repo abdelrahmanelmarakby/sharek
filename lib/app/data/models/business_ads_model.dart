@@ -39,6 +39,7 @@ class Data {
   String? type;
   String? location;
   String? neighborhood;
+  String? district;
   String? title;
   String? description;
   int? phone;
@@ -54,6 +55,7 @@ class Data {
       this.type,
       this.location,
       this.neighborhood,
+      this.district,
       this.title,
       this.description,
       this.phone,
@@ -80,6 +82,9 @@ class Data {
     }
     if (json["neighborhood"] is String) {
       neighborhood = json["neighborhood"];
+    }
+    if (json["district"] is String) {
+      district = json["district"];
     }
     if (json["title"] is String) {
       title = json["title"];
@@ -113,6 +118,7 @@ class Data {
     _data["type"] = type;
     _data["location"] = location;
     _data["neighborhood"] = neighborhood;
+    _data["district"] = district;
     _data["title"] = title;
     _data["description"] = description;
     _data["phone"] = phone;

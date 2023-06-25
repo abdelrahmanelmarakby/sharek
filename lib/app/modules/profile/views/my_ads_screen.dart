@@ -76,7 +76,7 @@ class MyAdsScreen extends GetView<ProfileController> {
                         Get.to(
                           () => SakePartnerDetailsScreen(
                             id: ad?.advertisementId ?? 0,
-                            isUserAds: false,
+                            isUserAds: true,
                           ),
                           binding: SakePartnerBinding(),
                         );

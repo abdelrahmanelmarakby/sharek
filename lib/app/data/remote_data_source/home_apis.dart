@@ -64,6 +64,7 @@ class HomeAPI {
       },
       queryParams: {
         if (search != null) "search": search,
+        "location": "الرياض",
       },
       data: const NetworkRequestBody.empty(),
     );

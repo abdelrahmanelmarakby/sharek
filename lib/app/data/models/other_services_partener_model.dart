@@ -44,6 +44,7 @@ class Data {
   String? createdAt1;
   String? createdAt2;
   List<String>? photos;
+  String? district;
 
   Data(
       {this.advertisementId,
@@ -56,6 +57,7 @@ class Data {
       this.userName,
       this.createdAt1,
       this.createdAt2,
+      this.district,
       this.photos});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -89,6 +91,9 @@ class Data {
     if (json["created_at_2"] is String) {
       createdAt2 = json["created_at_2"];
     }
+    if (json["district"] is String) {
+      district = json["district"];
+    }
     if (json["photos"] is List) {
       photos =
           json["photos"] == null ? null : List<String>.from(json["photos"]);
@@ -107,6 +112,7 @@ class Data {
     _data["user_name"] = userName;
     _data["created_at_1"] = createdAt1;
     _data["created_at_2"] = createdAt2;
+    _data["district"] = district;
     if (photos != null) {
       _data["photos"] = photos;
     }

@@ -36,6 +36,7 @@ class Data {
   int? serviceTypeId;
   String? location;
   String? neighborhood;
+  String? district;
   int? numberPartners;
   String? nationality;
   String? title;
@@ -53,6 +54,7 @@ class Data {
       this.serviceTypeId,
       this.location,
       this.neighborhood,
+      this.district,
       this.numberPartners,
       this.nationality,
       this.title,
@@ -79,6 +81,9 @@ class Data {
     }
     if (json["neighborhood"] is String) {
       neighborhood = json["neighborhood"];
+    }
+    if (json["district"] is String) {
+      district = json["district"];
     }
     if (json["number_partners"] is int) {
       numberPartners = json["number_partners"];
@@ -124,6 +129,7 @@ class Data {
     _data["service_type_id"] = serviceTypeId;
     _data["location"] = location;
     _data["neighborhood"] = neighborhood;
+    _data["district"] = district;
     _data["number_partners"] = numberPartners;
     _data["nationality"] = nationality;
     _data["title"] = title;
