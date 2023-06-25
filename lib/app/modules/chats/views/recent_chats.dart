@@ -221,7 +221,7 @@ class _RecentChatsState extends State<RecentChats> {
                             child: const Text(
                               'رسالة جديدة!',
                               style: TextStyle(
-                                // fontSize: Dimensions.getDesirableWidth(4),
+                                fontSize: 12,
                                 color: ColorsManager.selection,
                                 fontWeight: FontWeights.medium,
                               ),

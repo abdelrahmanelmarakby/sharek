@@ -59,20 +59,19 @@ class AnotherUserProfileView extends GetView<AnotherUserProfileController> {
                               flex: 70,
                               child: Row(
                                 children: [
-                                  Expanded(
-                                    flex: 20,
-                                    child: ClipOval(
-                                      child: AppCachedNetworkImage(
-                                        imageUrl:
-                                            user?.user?.avatar ?? dummyImage,
-                                        fit: BoxFit.cover,
-                                        isLoaderShimmer: true,
-                                      ),
+                                  ClipOval(
+                                    child: AppCachedNetworkImage(
+                                      imageUrl:
+                                          user?.user?.avatar ?? dummyImage,
+                                      fit: BoxFit.cover,
+                                      width: 60,
+                                      height: 60,
+                                      isCircular: true,
+                                      isLoaderShimmer: true,
                                     ),
                                   ),
-                                  const Spacer(flex: 5),
+                                  const SizedBox(width: 12),
                                   Expanded(
-                                    flex: 75,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,

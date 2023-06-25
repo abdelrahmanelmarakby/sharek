@@ -20,8 +20,6 @@ class ServiceTypeModel {
 List<ServiceTypeModel> businessServicesTypes = [
   ServiceTypeModel(name: "بحث عن شريك", serviceTypeId: 1),
   ServiceTypeModel(name: "إعلان البائعين", serviceTypeId: 2),
-  ServiceTypeModel(name: "فرنشايز", serviceTypeId: 4),
-  ServiceTypeModel(name: "محاماة", serviceTypeId: 5),
   ServiceTypeModel(name: "خدمات اخرى", serviceTypeId: 3),
 ];
 List<ServiceTypeModel> tripServicesTypes = [

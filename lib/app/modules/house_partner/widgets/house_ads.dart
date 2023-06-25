@@ -50,7 +50,7 @@ class HouseAdsItem extends StatelessWidget {
                       children: [
                         AdRowItem(
                           icon: Iconsax.clock,
-                          text: ad?.createdAt2 ?? "",
+                          text: ad?.createdAt1 ?? "",
                           maxLines: 2,
                         ),
                         AdRowItem(
@@ -70,7 +70,7 @@ class HouseAdsItem extends StatelessWidget {
                           text: ad?.userName ?? "",
                           maxLines: 2,
                         ),
-                        ad?.serviceTypeId == 10 || ad?.nationality == null
+                        ad?.nationality == null
                             ? const Spacer()
                             : AdRowItem(
                                 icon: Iconsax.global,

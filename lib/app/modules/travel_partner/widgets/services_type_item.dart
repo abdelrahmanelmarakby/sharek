@@ -41,6 +41,8 @@ class ServicesItem extends StatelessWidget {
         ),
         child: Text(
           title,
+          maxLines: 2,
+          textAlign: TextAlign.center,
           style: StylesManager.regular(
             color: Colors.black,
             fontSize: FontSize.medium,

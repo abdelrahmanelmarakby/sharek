@@ -144,6 +144,7 @@ class BusinessPartnerAPI {
     String? location,
     String? city,
     String? title,
+    int? type,
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
@@ -159,6 +160,7 @@ class BusinessPartnerAPI {
         if (location != null) "location": location,
         if (city != null) "neighborhood": city,
         if (title != null) "title": title,
+        if (type != null) "type": type,
       },
       data: const NetworkRequestBody.empty(),
     );

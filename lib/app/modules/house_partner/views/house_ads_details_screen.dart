@@ -353,8 +353,7 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                   icon: Iconsax.location,
                                   text: ads?.location ?? "",
                                 ),
-                                ads?.serviceTypeId == 10 ||
-                                        ads?.nationality == null
+                                ads?.nationality == null
                                     ? AdRowItem(
                                         icon: Iconsax.location,
                                         text: ads?.district ?? "",
@@ -385,8 +384,7 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                   icon: Iconsax.routing,
                                   text: ads?.neighborhood ?? "",
                                 ),
-                                ads?.serviceTypeId == 10 ||
-                                        ads?.nationality == null
+                                ads?.nationality == null
                                     ? const Spacer()
                                     : AdRowItem(
                                         icon: Iconsax.location,

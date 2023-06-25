@@ -268,7 +268,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
         // if (msg.video != null)
         ConstrainedBox(
           constraints: BoxConstraints(
-              maxHeight: 150.h(context), maxWidth: context.width / 1.3),
+              maxHeight: 150.h(context), maxWidth: context.width / 1.2),
           child: CustomVideoPlayer(
               customVideoPlayerController: _customVideoPlayerController),
         ),
