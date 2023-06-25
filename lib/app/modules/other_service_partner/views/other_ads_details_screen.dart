@@ -351,6 +351,10 @@ class OtherPartnerDetailsScreen extends GetView<OtherServicePartnerController> {
                                   icon: Iconsax.location,
                                   text: ads?.location ?? "",
                                 ),
+                                AdRowItem(
+                                  icon: Iconsax.location,
+                                  text: ads?.district ?? "",
+                                ),
                               ],
                             ),
                             const SizedBox(height: 13),
@@ -408,42 +412,44 @@ class OtherPartnerDetailsScreen extends GetView<OtherServicePartnerController> {
                             const SizedBox(height: 12),
                             Row(
                               children: [
-                             ads?.phone == null
+                                ads?.phone == null
                                     ? const SizedBox()
-                                    :   Expanded(
-                                  flex: 35,
-                                  child:  GestureDetector(
-                                    onTap: () {
-                                      controller.makePhoneCall(
-                                        ads?.phone.toString() ?? "",
-                                      );
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(6),
-                                        color: ColorsManager.primary,
-                                      ),
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 12),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: const [
-                                          Icon(
-                                            Iconsax.call,
-                                            color: Colors.white,
+                                    : Expanded(
+                                        flex: 35,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            controller.makePhoneCall(
+                                              ads?.phone.toString() ?? "",
+                                            );
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                              color: ColorsManager.primary,
+                                            ),
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 12),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: const [
+                                                Icon(
+                                                  Iconsax.call,
+                                                  color: Colors.white,
+                                                ),
+                                                SizedBox(width: 10),
+                                                AppText(
+                                                  "إتصال",
+                                                  fontSize: 14,
+                                                  fontWeight:
+                                                      FontWeights.regular,
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                          SizedBox(width: 10),
-                                          AppText(
-                                            "إتصال",
-                                            fontSize: 14,
-                                            fontWeight: FontWeights.regular,
-                                          ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ),
                                 const SizedBox(width: 16),
                                 Expanded(
                                   flex: 35,
@@ -487,7 +493,7 @@ class OtherPartnerDetailsScreen extends GetView<OtherServicePartnerController> {
                                     ),
                                   ),
                                 ),
-                              Spacer(flex: ads?.phone == null ? 50 : 15),
+                                Spacer(flex: ads?.phone == null ? 50 : 15),
                               ],
                             ),
                             const SizedBox(height: 16),

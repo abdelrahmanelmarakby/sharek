@@ -10,15 +10,13 @@ import '../models/regions_model.dart';
 
 class LocationGetterWidgetsController extends GetxController {
   late final Future<RegionsModel?> regions;
-  List cityNames = [];
-  List districtNames = [];
-  CitiesModel? cities;
   DistrictsModel? districts;
   String? regionName;
-  String? cityName;
   String? districtName;
   int? regionId;
   int? cityId;
+  CitiesModel? cities;
+  String? cityName;
   int? districtId;
 
   selectRegionId({required int id, required String name}) async {
@@ -27,7 +25,7 @@ class LocationGetterWidgetsController extends GetxController {
     Get.close(1);
     BotToast.showLoading();
     try {
-      (cities = await LocationApis.getCitiesById(regionId ?? 0));
+      (cities = await LocationApis.getCitiesById(id: regionId ?? 0));
     } catch (e) {
       log(e.toString());
     }
@@ -71,7 +69,6 @@ class LocationGetterWidgetsController extends GetxController {
   List<RegionModel> searchRegions = [];
   List<CityModel> searchCities = [];
   List<DistrictModel> searchDistricts = [];
-
   //==========================  Search Methods =============================
   List<RegionModel> searchRegion(List<RegionModel> model, String text) {
     List<RegionModel> matchedList = [];
@@ -85,7 +82,6 @@ class LocationGetterWidgetsController extends GetxController {
         matchedList.add(element!);
       }
     }
-
     update();
     return matchedList;
   }
@@ -123,4 +119,7 @@ class LocationGetterWidgetsController extends GetxController {
 
     return matchedList;
   }
+
+  //=========================================================================
+
 }

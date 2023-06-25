@@ -24,6 +24,7 @@ import '../../../../core/widgets/progress_button.dart';
 import '../../../../core/widgets/src/radio_button_builder.dart';
 import '../../../../core/widgets/src/radio_group.dart';
 import '../../../data/models/service_type.dart';
+import '../../location_getter_widgets/views/all_cities_widgets.dart';
 import '../controllers/travel_partner_controller.dart';
 import '../widgets/services_type_item.dart';
 
@@ -79,23 +80,39 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                     ),
                     const SizedBox(height: 16),
                     AppDropDown(
-                      icon: const Icon(
-                        Iconsax.location,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                      title: "بداية الرحلة",
-                      bottomSheet: Container(),
-                    ),
-                    const SizedBox(height: 12),
-                    AppDropDown(
+                      title: controller.createStartCity ?? "بداية الرحلة",
+                      center: true,
                       icon: const Icon(
                         Iconsax.location_tick,
                         size: 20,
                         color: Colors.black,
                       ),
-                      title: "نهاية الرحلة",
-                      bottomSheet: Container(),
+                      onTap: () async {
+                        String res = await Get.bottomSheet(
+                          const AllCitiesWidget(),
+                          backgroundColor: Colors.white,
+                        );
+                        controller.createStartCity = res;
+                        controller.update();
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    AppDropDown(
+                      title: controller.createEndCity ?? "نهاية الرحلة",
+                      center: true,
+                      icon: const Icon(
+                        Iconsax.location_tick,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                      onTap: () async {
+                        String res = await Get.bottomSheet(
+                          const AllCitiesWidget(),
+                          backgroundColor: Colors.white,
+                        );
+                        controller.createEndCity = res;
+                        controller.update();
+                      },
                     ),
                     const SizedBox(height: 12),
                     controller.addTravelPartner == 7
@@ -394,12 +411,12 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                             controller.createTripAds(
                               animationController: animationController,
                               servicesTypeid: controller.addTravelPartner,
-                              startingPlace: "sssss",
+                              startingPlace: controller.createStartCity ?? "",
                               numberPassengers: int.parse(
                                 controller
                                     .createTripAdsNumberPassengersCtr.text,
                               ),
-                              endingPlace: "xxxxx",
+                              endingPlace: controller.createEndCity ?? "",
                               nationality: controller
                                   .createTripAdsNumberPassengersCtr.text,
                               date: controller.createAdsDate == null

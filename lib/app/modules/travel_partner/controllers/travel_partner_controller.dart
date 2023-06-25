@@ -14,6 +14,9 @@ import '../../../routes/app_pages.dart';
 
 class TravelPartnerController extends GetxController {
   int? travelPartner;
+  String? startCity;
+  String? endCity;
+  
   clearData() {
     travelPartner = null;
     viewDate = null;
@@ -48,7 +51,8 @@ class TravelPartnerController extends GetxController {
   String? createAdsDateError;
   DateTime? createAdsTime;
   String? createAdsTimeErorr;
-
+  String? createStartCity;
+  String? createEndCity;
 //========================================================================
   changeWithPackstatus(String? val) {
     withPackval = val!;
@@ -187,6 +191,8 @@ class TravelPartnerController extends GetxController {
     travelPartneFilter = 6;
     filterDate = null;
     filterTime = null;
+    startCity =null;
+    endCity =null;
     filterIsWithPack = true;
     filterPassengersCtr.clear();
     filterPriceCtr.clear();

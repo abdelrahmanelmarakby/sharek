@@ -1,23 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:sharek/core/extensions/num.dart';
 
 import '../constants/theme/theme_export.dart';
 
 class AppDropDown extends StatelessWidget {
   const AppDropDown({
-    super.key,
+    Key? key,
     this.icon,
-    this.center = false,
     required this.title,
-    required this.bottomSheet,
-  });
+    this.center = false,
+    this.bottomSheet,
+    this.onTap,
+  }) : super(key: key);
   final Widget? icon;
-
   final String title;
   final bool center;
-
-  final Widget bottomSheet;
+  final Widget? bottomSheet;
+  final Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,12 +33,13 @@ class AppDropDown extends StatelessWidget {
       width: context.width,
       padding: EdgeInsets.zero,
       child: ListTile(
-        onTap: () {
-          Get.bottomSheet(
-            bottomSheet,
-            backgroundColor: Colors.white,
-          );
-        },
+        onTap: onTap ??
+            () {
+              Get.bottomSheet(
+                bottomSheet!,
+                backgroundColor: Colors.white,
+              );
+            },
         contentPadding: const EdgeInsets.symmetric(horizontal: 10),
         dense: true,
         horizontalTitleGap: 10.0,

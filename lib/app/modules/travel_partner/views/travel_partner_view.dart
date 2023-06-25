@@ -20,6 +20,7 @@ import '../../../../core/widgets/custom_dropdown.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../data/models/service_type.dart';
 import '../../../data/models/trip_ads_model.dart';
+import '../../location_getter_widgets/views/all_cities_widgets.dart';
 import '../bindings/travel_partner_binding.dart';
 import '../controllers/travel_partner_controller.dart';
 import '../widgets/trip_ads_item.dart';
@@ -53,6 +54,8 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
               future: TripPartnerAPI.filterTripAds(
                 servicesTypeid: controller.travelPartner,
                 title: controller.textSearch,
+                startingPlace: controller.startCity,
+                endingPlace: controller.endCity,
                 date: controller.viewDate == null
                     ? null
                     : appDateFormate(controller.viewDate!, "en"),
@@ -127,17 +130,31 @@ class TravelPartnerView extends GetView<TravelPartnerController> {
                             children: [
                               Expanded(
                                 child: AppDropDown(
-                                  title: "بداية الرحلة",
+                                  title: controller.startCity ?? "بداية الرحلة",
                                   center: true,
-                                  bottomSheet: Container(),
+                                  onTap: () async {
+                                    String res = await Get.bottomSheet(
+                                      const AllCitiesWidget(),
+                                      backgroundColor: Colors.white,
+                                    );
+                                    controller.startCity = res;
+                                    controller.update();
+                                  },
                                 ),
                               ),
                               const SizedBox(width: 8),
                               Expanded(
                                 child: AppDropDown(
-                                  title: "نهاية الرحلة",
+                                  title: controller.endCity ?? "نهاية الرحلة",
                                   center: true,
-                                  bottomSheet: Container(),
+                                  onTap: () async {
+                                    String res = await Get.bottomSheet(
+                                      const AllCitiesWidget(),
+                                      backgroundColor: Colors.white,
+                                    );
+                                    controller.endCity = res;
+                                    controller.update();
+                                  },
                                 ),
                               ),
                               const SizedBox(width: 8),

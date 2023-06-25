@@ -51,10 +51,10 @@ class LocationApis {
     return data;
   }
 
-  static Future<CitiesModel?> getCitiesById(int id) async {
+  static Future<CitiesModel?> getCitiesById({int? id}) async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
-      path: APIKeys.getCitiesById(id),
+      path:id !=null? "${APIKeys.baseUrl}cities/$id" : "${APIKeys.baseUrl}cities/",
       headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,

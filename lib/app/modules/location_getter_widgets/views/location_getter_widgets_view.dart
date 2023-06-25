@@ -110,7 +110,7 @@ class LocationGetterWidgetsView
         GetBuilder<LocationGetterWidgetsController>(builder: (controller) {
           if (controller.regionId == null) return const SizedBox();
           return FutureBuilder<CitiesModel?>(
-            future: LocationApis.getCitiesById(controller.regionId!),
+            future: LocationApis.getCitiesById(id: controller.regionId!),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final List<CityModel> cities = snapshot.data?.data ?? [];

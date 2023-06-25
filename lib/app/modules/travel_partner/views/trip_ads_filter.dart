@@ -18,6 +18,7 @@ import '../../../../core/widgets/progress_button.dart';
 import '../../../../core/widgets/src/radio_button_builder.dart';
 import '../../../../core/widgets/src/radio_group.dart';
 import '../../../data/models/service_type.dart';
+import '../../location_getter_widgets/views/all_cities_widgets.dart';
 import '../controllers/travel_partner_controller.dart';
 import '../widgets/services_type_item.dart';
 
@@ -73,21 +74,39 @@ class TripAdsFilter extends GetView<TravelPartnerController> {
                   ),
                   const SizedBox(height: 16),
                   AppDropDown(
+                    title: controller.startCity ?? "بداية الرحلة",
+                    center: true,
                     icon: const Icon(
-                      Iconsax.location,
+                      Iconsax.location_tick,
+                      size: 20,
                       color: Colors.black,
                     ),
-                    title: "بداية الرحلة",
-                    bottomSheet: Container(),
+                    onTap: () async {
+                      String res = await Get.bottomSheet(
+                        const AllCitiesWidget(),
+                        backgroundColor: Colors.white,
+                      );
+                      controller.startCity = res;
+                      controller.update();
+                    },
                   ),
                   const SizedBox(height: 12),
                   AppDropDown(
+                    title: controller.endCity ?? "نهاية الرحلة",
+                    center: true,
                     icon: const Icon(
                       Iconsax.location_tick,
+                      size: 20,
                       color: Colors.black,
                     ),
-                    title: "نهاية الرحلة",
-                    bottomSheet: Container(),
+                    onTap: () async {
+                      String res = await Get.bottomSheet(
+                        const AllCitiesWidget(),
+                        backgroundColor: Colors.white,
+                      );
+                      controller.endCity = res;
+                      controller.update();
+                    },
                   ),
                   const SizedBox(height: 12),
                   controller.travelPartneFilter == 7

@@ -60,7 +60,7 @@ class MyAdsScreen extends GetView<ProfileController> {
                         Get.to(
                           () => BusinessPartnerDetailsScreen(
                             adId: ad?.advertisementId ?? 0,
-                            isUserAds: false,
+                            isUserAds: true,
                           ),
                           binding: BusinessPartnerBinding(),
                         );
@@ -68,7 +68,7 @@ class MyAdsScreen extends GetView<ProfileController> {
                         Get.to(
                           () => TravelPartnerDetailsScreen(
                             id: ad?.advertisementId ?? 0,
-                            isUserAds: false,
+                            isUserAds: true,
                           ),
                           binding: TravelPartnerBinding(),
                         );
@@ -84,7 +84,7 @@ class MyAdsScreen extends GetView<ProfileController> {
                         Get.to(
                           () => HousePartnerDetailsScreen(
                             id: ad?.advertisementId ?? 0,
-                            isUserAds: false,
+                            isUserAds: true,
                           ),
                           binding: HousePartnerBinding(),
                         );
@@ -92,7 +92,7 @@ class MyAdsScreen extends GetView<ProfileController> {
                         Get.to(
                           () => OtherPartnerDetailsScreen(
                             id: ad?.advertisementId ?? 0,
-                            isUserAds: false,
+                            isUserAds: true,
                           ),
                           binding: OtherServicePartnerBinding(),
                         );
