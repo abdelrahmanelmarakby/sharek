@@ -77,6 +77,7 @@ class AddOtherAdsScreen extends GetView<OtherServicePartnerController> {
                       borderRadius: 8,
                       controller: controller.createDescriptionPartnersCtr,
                       maxLines: 20,
+                      type: TextInputType.text,
                       validate: Validator.validateEmpty,
                       prefixIcon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 12),

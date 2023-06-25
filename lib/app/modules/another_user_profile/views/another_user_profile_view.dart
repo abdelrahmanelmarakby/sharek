@@ -1,14 +1,14 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sharek/app/data/remote_data_source/profile_apis.dart';
+import 'package:sharek/core/extensions/export.dart';
 import 'package:sharek/core/global/const.dart';
 
 import '../../../../core/constants/theme/colors_manager.dart';
 import '../../../../core/constants/theme/font_manager.dart';
+import '../../../../core/constants/theme/sizes_manager.dart';
 import '../../../../core/constants/theme/styles_manager.dart';
 import '../../../../core/services/get_storage_helper.dart';
 import '../../../../core/widgets/app_text.dart';
@@ -34,10 +34,6 @@ class AnotherUserProfileView extends GetView<AnotherUserProfileController> {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final arguments = Get.arguments;
-
-    var userId = arguments["userId"] ?? "";
-    log(userId.toString());
     return GetBuilder<AnotherUserProfileController>(builder: (controller) {
       return Scaffold(
         backgroundColor: Colors.white,
@@ -47,7 +43,7 @@ class AnotherUserProfileView extends GetView<AnotherUserProfileController> {
             return Get.forceAppUpdate();
           },
           child: FutureBuilder<AnotherUserProfile?>(
-            future: ProfileApis.getAnotherUserProfile(userId),
+            future: ProfileApis.getAnotherUserProfile(Get.arguments["userId"]),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 Data? user = snapshot.data?.data;
@@ -268,10 +264,39 @@ AppBar appBar(BuildContext context) {
     actions: [
       PopupMenuButton(
         itemBuilder: (context) => [
-          const PopupMenuItem(
-              child: AdRowItem(icon: Icons.share, text: "مشاركة الحساب")),
-          const PopupMenuItem(
-              child: AdRowItem(icon: Icons.block, text: "ابلاغ")),
+          PopupMenuItem(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Icon(
+                  Icons.share,
+                  color: ColorsManager.grey,
+                  size: Sizes.size20,
+                ),
+                Sizes.size4.widthSizedBox,
+                Text(
+                  "مشاركة الحساب",
+                  style: StylesManager.medium(fontSize: FontSize.medium),
+                ),
+              ],
+            ),
+          ),
+          PopupMenuItem(
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.block,
+                  color: ColorsManager.grey,
+                  size: Sizes.size20,
+                ),
+                Sizes.size4.widthSizedBox,
+                Text(
+                  "ابلاغ",
+                  style: StylesManager.medium(fontSize: FontSize.medium),
+                ),
+              ],
+            ),
+          ),
         ],
         child: Container(
           height: 40,

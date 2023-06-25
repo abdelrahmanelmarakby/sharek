@@ -354,12 +354,14 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                   text: ads?.location ?? "",
                                 ),
                                 ads?.serviceTypeId == 10 ||
-                                        ads?.neighborhood == null
-                                    ? const Spacer()
+                                        ads?.nationality == null
+                                    ? AdRowItem(
+                                        icon: Iconsax.location,
+                                        text: ads?.district ?? "",
+                                      )
                                     : AdRowItem(
                                         icon: Iconsax.global,
-                                        text:
-                                            ads?.neighborhood.toString() ?? "",
+                                        text: ads?.nationality.toString() ?? "",
                                       ),
                               ],
                             ),
@@ -383,10 +385,13 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                   icon: Iconsax.routing,
                                   text: ads?.neighborhood ?? "",
                                 ),
-                                AdRowItem(
-                                  icon: Iconsax.location,
-                                  text: ads?.district ?? "",
-                                ),
+                                ads?.serviceTypeId == 10 ||
+                                        ads?.nationality == null
+                                    ? const Spacer()
+                                    : AdRowItem(
+                                        icon: Iconsax.location,
+                                        text: ads?.district ?? "",
+                                      ),
                               ],
                             ),
                             const SizedBox(height: 16),

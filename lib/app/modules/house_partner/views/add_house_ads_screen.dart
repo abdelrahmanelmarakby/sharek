@@ -120,7 +120,7 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                       hint: "عنوان الطلب",
                       borderRadius: 8,
                       controller: controller.createTitlePartnersCtr,
-                      type: TextInputType.number,
+                      type: TextInputType.text,
                       prefixIcon: const Icon(
                         Iconsax.document_text,
                         color: Colors.black,
@@ -128,11 +128,11 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                     ),
                     const SizedBox(height: 12),
                     CustomTextField(
-                      name: "",
                       hint: "تفاصيل الطلب",
                       borderRadius: 8,
                       controller: controller.createDescriptionPartnersCtr,
-                       maxLines: 20,
+                      maxLines: 20,
+                      type: TextInputType.text,
                       validate: Validator.validateEmpty,
                       prefixIcon: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -260,13 +260,15 @@ class AddHouseAdsScreen extends GetView<HousePartnerController> {
                             controller.createHouseAds(
                               animationController: animationController,
                               servicesTypeid: controller.addHousePartner,
-                              district: Get.find<LocationGetterWidgetsController>()
-                              .districtName,
-                          location: Get.find<LocationGetterWidgetsController>()
-                              .regionName,
-                          neighborhood:
-                              Get.find<LocationGetterWidgetsController>()
-                                  .cityName,
+                              district:
+                                  Get.find<LocationGetterWidgetsController>()
+                                      .districtName,
+                              location:
+                                  Get.find<LocationGetterWidgetsController>()
+                                      .regionName,
+                              neighborhood:
+                                  Get.find<LocationGetterWidgetsController>()
+                                      .cityName,
                               numberPartners: controller
                                           .createNumberPartnersCtr.text !=
                                       ""

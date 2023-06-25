@@ -146,7 +146,7 @@ class TripPartnerAPI {
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
-      path: APIKeys.tripAdsSearch,
+      path: APIKeys.tripAds,
       headers: {
         'Accept': 'application/json',
         'api_password': APIKeys.apiPassword,
