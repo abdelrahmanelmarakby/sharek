@@ -20,7 +20,7 @@ String appDateFormate(DateTime date, String locale) {
 }
 
 String appTimeFormate(DateTime time, String locale) {
-  String pattern = "h:mma";
+  String pattern = "HH:mm";
   var format = DateFormat(pattern, locale);
   var timeString = format.format(time);
   return timeString;

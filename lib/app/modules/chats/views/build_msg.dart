@@ -165,7 +165,7 @@ class _MessageBuilderState extends State<MessageBuilder> {
           if (widget.isMe)
             CupertinoContextMenuAction(
               onPressed: () async {
-                log(widget.msg?.msgId.toString() ??"");
+                log(widget.msg?.msgId.toString() ?? "");
                 BotToast.showLoading();
                 try {
                   await PrivateChatService(
@@ -265,15 +265,15 @@ class _MessageBuilderState extends State<MessageBuilder> {
           )
         else
           const SizedBox(),
-        // if (msg.video != null)
-        ConstrainedBox(
-          constraints: BoxConstraints(
-              maxHeight: 150.h(context), maxWidth: context.width / 1.2),
-          child: CustomVideoPlayer(
-              customVideoPlayerController: _customVideoPlayerController),
-        ),
-        // else
-        //   const SizedBox(),
+        if (msg.video != null)
+          SizedBox(
+            height: 150.h(context),
+            width: context.width / 2,
+            child: CustomVideoPlayer(
+              customVideoPlayerController: _customVideoPlayerController,
+            ),
+          ),
+        const SizedBox(),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
