@@ -164,8 +164,7 @@ class SarificeAPIS {
     String? sacrificeType,
     String? quantity,
     String? title,
-        String? district,
-
+    String? district,
   }) async {
     final request = NetworkRequest(
       type: NetworkRequestType.GET,
@@ -184,8 +183,7 @@ class SarificeAPIS {
         if (neighborhood != null) "neighborhood": neighborhood,
         if (sacrificeType != null) "sacrifice_type": sacrificeType,
         if (quantity != null) "quantity": quantity,
-                if (district != null) "district": district,
-
+        if (district != null) "district": district,
       },
     );
     final response = await networkService.execute(

@@ -50,7 +50,7 @@ class AddBusinessPartnerAdsScreen extends GetView<BusinessPartnerController> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                         children: List.generate(
-                      5,
+                      3,
                       (index) => Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: ServicesItem(

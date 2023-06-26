@@ -302,6 +302,7 @@ class SakePartnerController extends GetxController {
   ];
   changefilterQuantityTypeState(ServiceTypeModel val) {
     filterQuantityItem = val;
+
     update();
   }
 
