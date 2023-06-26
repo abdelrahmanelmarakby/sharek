@@ -22,6 +22,7 @@ import '../../../data/models/trip_ads_item_model.dart';
 import '../../../data/remote_data_source/trip_ads.dart';
 import '../../../routes/app_pages.dart';
 import '../../home/views/home_view.dart';
+import '../../profile/views/soon_screen.dart';
 import '../controllers/travel_partner_controller.dart';
 import '../widgets/comment_item.dart';
 import '../widgets/trip_ads_photos_list_view.dart';
@@ -164,6 +165,20 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                                 if (val == "/delete") {
                                   controller.deleteAds(
                                     id: ads?.advertisementId ?? 0,
+                                  );
+                                }
+                                if (val == "/edit") {
+                                  Get.to(
+                                    () => const SoonScreen(
+                                      title: "تعديل اعلان",
+                                    ),
+                                  );
+                                }
+                                if (val == "/share") {
+                                  Get.to(
+                                    () => const SoonScreen(
+                                      title: "مشاركة الاعلان",
+                                    ),
                                   );
                                 }
                               },

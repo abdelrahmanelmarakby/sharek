@@ -19,6 +19,7 @@ import '../../../data/models/other_service_partner_item_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../chats/chat_screen.dart';
 import '../../home/views/home_view.dart';
+import '../../profile/views/soon_screen.dart';
 import '../../travel_partner/widgets/comment_item.dart';
 import '../../travel_partner/widgets/trip_ads_photos_list_view.dart';
 import '../controllers/other_service_partner_controller.dart';
@@ -165,6 +166,20 @@ class OtherPartnerDetailsScreen extends GetView<OtherServicePartnerController> {
                                   if (val == "/delete") {
                                     controller.deleteAds(
                                         id: ads?.advertisementId ?? 0);
+                                  }
+                                  if (val == "/edit") {
+                                    Get.to(
+                                      () => const SoonScreen(
+                                        title: "تعديل اعلان",
+                                      ),
+                                    );
+                                  }
+                                  if (val == "/share") {
+                                    Get.to(
+                                      () => const SoonScreen(
+                                        title: "مشاركة الاعلان",
+                                      ),
+                                    );
                                   }
                                 },
                                 itemBuilder: (BuildContext context) {
