@@ -414,9 +414,11 @@ class TravelPartnerDetailsScreen extends GetView<TravelPartnerController> {
                           const SizedBox(height: 12),
                           Row(
                             children: [
-                              const Expanded(
+                              Expanded(
                                 child: AppText(
-                                  "هل يحتاج الى طرود؟",
+                                  ads?.serviceTypeId == 6
+                                      ? "هل تحتاج الى طرود؟"
+                                      : "هل تقبل طرود؟",
                                   color: Colors.black,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,

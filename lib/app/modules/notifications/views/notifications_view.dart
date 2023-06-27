@@ -95,12 +95,16 @@ class NotificationsView extends GetView<NotificationsController> {
                       ),
                       ListTile(
                         onTap: () {
-                          Get.toNamed(
-                            Routes.ANOTHER_USER_PROFILE,
-                            arguments: {
-                              "userId": item.userId ?? 0,
-                            },
-                          );
+                          if (item.type == "sacrifice") {
+                            Get.toNamed(
+                              Routes.ANOTHER_USER_PROFILE,
+                              arguments: {
+                                "userId": item.senderId ?? 0,
+                              },
+                            );
+                          }else{
+                            
+                          }
                         },
                         tileColor: (item.isRead == 1)
                             ? ColorsManager.white

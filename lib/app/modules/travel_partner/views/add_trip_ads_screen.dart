@@ -252,9 +252,11 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                     const SizedBox(height: 12),
                     Row(
                       children: [
-                        const Expanded(
+                        Expanded(
                           child: AppText(
-                            "هل تحتاج الى طرود؟",
+                            controller.addTravelPartner == 6
+                                ? "هل تحتاج الى طرود؟"
+                                : "هل تقبل طرود؟",
                             color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeights.medium,
@@ -412,11 +414,11 @@ class AddTripAdsScreen extends GetView<TravelPartnerController> {
                               animationController: animationController,
                               servicesTypeid: controller.addTravelPartner,
                               startingPlace: controller.createStartCity ?? "",
+                              endingPlace: controller.createEndCity ?? "",
                               numberPassengers: int.parse(
                                 controller
                                     .createTripAdsNumberPassengersCtr.text,
                               ),
-                              endingPlace: controller.createEndCity ?? "",
                               nationality: controller
                                   .createTripAdsNumberPassengersCtr.text,
                               date: controller.createAdsDate == null

@@ -20,7 +20,6 @@ class TripAdsFilterResult extends GetView<TravelPartnerController> {
   final double? price;
   final bool? withPackages;
   final String? carType;
-  final String? nationality;
 
   const TripAdsFilterResult({
     super.key,
@@ -33,7 +32,6 @@ class TripAdsFilterResult extends GetView<TravelPartnerController> {
     this.price,
     this.withPackages,
     this.carType,
-    this.nationality,
   });
 
   @override
@@ -49,7 +47,6 @@ class TripAdsFilterResult extends GetView<TravelPartnerController> {
         price: price,
         startingPlace: startingPlace,
         time: time,
-        nationality: nationality,
       ),
       builder: (context, snapshot) {
         return Scaffold(
