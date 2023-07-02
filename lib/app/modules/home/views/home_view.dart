@@ -53,6 +53,7 @@ class HomeView extends GetView<HomeController> {
               color: ColorsManager.primary, fontSize: FontSize.xXXlarge),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: RefreshIndicator(
         onRefresh: () {
@@ -94,7 +95,7 @@ class HomeView extends GetView<HomeController> {
                           ),
                           Sizes.size10.heightSizedBox,
                           ...List.generate(
-                            homeData?.data?.newAdvertisements?.length ??0,
+                            homeData?.data?.newAdvertisements?.length ?? 0,
                             (index) {
                               NewAdvertisements? ad =
                                   homeData?.data?.newAdvertisements?[index];

@@ -32,6 +32,7 @@ class _RecentChatsState extends State<RecentChats> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         centerTitle: false,
         title: const Text(
