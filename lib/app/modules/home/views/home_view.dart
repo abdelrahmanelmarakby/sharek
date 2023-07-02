@@ -94,7 +94,7 @@ class HomeView extends GetView<HomeController> {
                           ),
                           Sizes.size10.heightSizedBox,
                           ...List.generate(
-                            20,
+                            homeData?.data?.newAdvertisements?.length ??0,
                             (index) {
                               NewAdvertisements? ad =
                                   homeData?.data?.newAdvertisements?[index];
@@ -213,7 +213,7 @@ class AdCard extends StatelessWidget {
                         children: [
                           AdRowItem(
                             icon: Iconsax.clock,
-                            text: ad?.createdAt2 ?? "",
+                            text: ad?.createdAt1 ?? "",
                             maxLines: 2,
                           ),
                           AdRowItem(

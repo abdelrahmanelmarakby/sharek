@@ -24,6 +24,7 @@ import '../../../../core/widgets/custom_text_field.dart';
 import '../../../routes/app_pages.dart';
 import '../../chats/chat_screen.dart';
 import '../../home/views/home_view.dart';
+import '../../profile/views/soon_screen.dart';
 import '../controllers/business_partner_controller.dart';
 
 class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
@@ -166,12 +167,18 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                   controller.deleteAds(id: adId);
                                 }
                                 if (val == "/edit") {
-                                  // Get.to(
-                                  //   () => EditBusinessPartnerAdsScreen(
-                                  //     ads: ads,
-                                  //   ),
-                                  //   binding: BusinessPartnerBinding(),
-                                  // );
+                                  Get.to(
+                                    () => const SoonScreen(
+                                      title: "تعديل اعلان",
+                                    ),
+                                  );
+                                }
+                                if (val == "/share") {
+                                  Get.to(
+                                    () => const SoonScreen(
+                                      title: "مشاركة الاعلان",
+                                    ),
+                                  );
                                 }
                               },
                               itemBuilder: (BuildContext context) {

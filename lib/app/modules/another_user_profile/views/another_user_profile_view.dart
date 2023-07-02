@@ -22,6 +22,7 @@ import '../../house_partner/bindings/house_partner_binding.dart';
 import '../../house_partner/views/house_ads_details_screen.dart';
 import '../../other_service_partner/bindings/other_service_partner_binding.dart';
 import '../../other_service_partner/views/other_ads_details_screen.dart';
+import '../../profile/views/soon_screen.dart';
 import '../../sake_partner/bindings/sake_partner_binding.dart';
 import '../../sake_partner/views/sake_ads_details_screen.dart';
 import '../../travel_partner/bindings/travel_partner_binding.dart';
@@ -262,8 +263,25 @@ AppBar appBar(BuildContext context) {
     ),
     actions: [
       PopupMenuButton(
+        onSelected: (value) {
+          if (value == "/share") {
+            Get.to(
+              () => const SoonScreen(
+                title: "مشاركة الحساب",
+              ),
+            );
+          }
+          if (value == "/rebort") {
+            Get.to(
+              () => const SoonScreen(
+                title: "ابلاغ عن حساب",
+              ),
+            );
+          }
+        },
         itemBuilder: (context) => [
           PopupMenuItem(
+            value: "/share",
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -281,7 +299,9 @@ AppBar appBar(BuildContext context) {
             ),
           ),
           PopupMenuItem(
+            value: "/rebort",
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Icon(
                   Icons.block,

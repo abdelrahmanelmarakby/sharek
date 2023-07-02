@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:get/get.dart';
-import 'package:sharek/core/global/const.dart';
 
 import '../../../../core/constants/theme/theme_export.dart';
+import '../../../../core/global/const.dart';
 import '../../../../core/widgets/network_image.dart';
 import '../../../data/models/notifications_model.dart';
 import '../../../data/remote_data_source/notifications_apis.dart';
@@ -95,24 +95,23 @@ class NotificationsView extends GetView<NotificationsController> {
                       ),
                       ListTile(
                         onTap: () {
-                          Get.toNamed(
-                            Routes.ANOTHER_USER_PROFILE,
-                            arguments: {
-                              "userId": item.userId ?? 0,
-                            },
-                          );
+                          if (item.type == "sacrifice") {
+                            Get.toNamed(
+                              Routes.ANOTHER_USER_PROFILE,
+                              arguments: {
+                                "userId": item.senderId ?? 0,
+                              },
+                            );
+                          } else {}
                         },
                         tileColor: (item.isRead == 1)
                             ? ColorsManager.white
                             : const Color(0xFFF4F4FF),
                         trailing: Text(
-                          appDateFormate(
-                            DateTime.tryParse(  
-                                  item.createdAt ?? "",
-                                ) ??
-                                DateTime.now(),
-                            "ar",
-                          ),
+                          appTimeFormate(
+                              DateTime.tryParse(item.createdAt ?? "") ??
+                                  DateTime.now(),
+                              "ar"),
                           style: StylesManager.light(),
                         ),
                         subtitle: Text(

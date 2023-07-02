@@ -76,7 +76,7 @@ dev_dependencies:
   icons_launcher: ^2.1.0
 
 icons_launcher:
-  image_path: "assets/images/logo.png"
+  image_path: "assets/images/logo_j.jpg"
   adaptive_background_color: "#ffffff"
   platforms:
     android:

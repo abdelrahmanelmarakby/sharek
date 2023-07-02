@@ -217,9 +217,11 @@ class TripAdsFilter extends GetView<TravelPartnerController> {
                   const SizedBox(height: 12),
                   Row(
                     children: [
-                      const Expanded(
+                      Expanded(
                         child: AppText(
-                          "هل تحتاج طرود؟",
+                          controller.travelPartneFilter == 6
+                              ? "هل تحتاج الى طرود؟"
+                              : "هل تقبل طرود؟",
                           color: Colors.black,
                           fontSize: 16,
                           fontWeight: FontWeights.medium,
@@ -244,6 +246,8 @@ class TripAdsFilter extends GetView<TravelPartnerController> {
                     onPressed: (animationController) {
                       Get.to(
                         () => TripAdsFilterResult(
+                          startingPlace: controller.createStartCity ?? "",
+                          endingPlace: controller.createEndCity ?? "",
                           servicesTypeid: controller.travelPartneFilter,
                           carType: controller.filterCarTypeCtr.text == ""
                               ? null

@@ -38,6 +38,8 @@ class Data {
   int? senderId;
   String? title;
   String? content;
+  String? type;
+  int? advertisementId;
   int? isRead;
   String? avatar;
   String? createdAt;
@@ -48,6 +50,8 @@ class Data {
       this.senderId,
       this.title,
       this.content,
+      this.type,
+      this.advertisementId,
       this.isRead,
       this.avatar,
       this.createdAt});
@@ -68,6 +72,12 @@ class Data {
     if (json["content"] is String) {
       content = json["content"];
     }
+    if (json["type"] is String) {
+      type = json["type"];
+    }
+    if (json["advertisement_id"] is int) {
+      advertisementId = json["advertisement_id"];
+    }
     if (json["is_read"] is int) {
       isRead = json["is_read"];
     }
@@ -86,6 +96,8 @@ class Data {
     _data["sender_id"] = senderId;
     _data["title"] = title;
     _data["content"] = content;
+    _data["type"] = type;
+    _data["advertisement_id"] = advertisementId;
     _data["is_read"] = isRead;
     _data["avatar"] = avatar;
     _data["created_at"] = createdAt;

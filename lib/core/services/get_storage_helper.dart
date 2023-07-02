@@ -1,7 +1,7 @@
 import 'package:get_storage/get_storage.dart';
-import 'package:sharek/app/modules/location_getter_widgets/models/districts_model.dart';
 
 import '../../app/modules/location_getter_widgets/models/cities_model.dart';
+import '../../app/modules/location_getter_widgets/models/districts_model.dart';
 import '../../app/modules/location_getter_widgets/models/regions_model.dart';
 
 class CacheHelper {
@@ -65,7 +65,7 @@ class CacheHelper {
   }
 
   static Future<void> _cacheRegion(RegionModel region) async =>
-      await _appBox.write('region', region);
+      await _appBox.write('region', region.toJson());
 
   static RegionModel? get getRegion {
     if (_appBox.read('region') != null) {
