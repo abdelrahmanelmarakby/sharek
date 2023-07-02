@@ -468,6 +468,9 @@ class BusinessPartnerDetailsScreen extends GetView<BusinessPartnerController> {
                                         hisId: "${ads?.userId ?? 0}",
                                         myId: CacheHelper.getUserId.toString(),
                                         hisName: ads?.userName ?? "بدون اسم",
+                                        myName: CacheHelper.getUserName ?? "",
+                                        myImage: CacheHelper.getUserimg ??
+                                            dummyImage,
                                       ),
                                     );
                                   },

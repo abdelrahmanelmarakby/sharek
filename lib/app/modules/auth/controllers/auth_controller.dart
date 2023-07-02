@@ -73,7 +73,12 @@ class AuthController extends GetxController {
     animationController.forward();
     final res = await AuthApis.registerOtp(phone: phone, code: code);
 
-    CacheHelper.cacheUserId(id: res!.data!.user!.id!);
+    CacheHelper.cacheUser(
+      id: res!.data!.user!.id!,
+      token: res.data?.token ?? "",
+      img: res.data?.user?.avatar ?? dummyImage,
+      name: res.data?.user?.name ?? "",
+    );
     if (res.status == true) {
       animationController.forward();
       print(res.data?.user?.id);
@@ -100,7 +105,12 @@ class AuthController extends GetxController {
     if (res?.status == true) {
       animationController.forward();
       try {
-        CacheHelper.cacheUserId(id: res?.data?.user?.id ?? 0);
+        CacheHelper.cacheUser(
+          id: res!.data!.user!.id!,
+          token: res.data?.token ?? "",
+          img: res.data?.user?.avatar ?? dummyImage,
+          name: res.data?.user?.name ?? "",
+        );
       } catch (e) {
         showSnackBar(e.toString());
       }

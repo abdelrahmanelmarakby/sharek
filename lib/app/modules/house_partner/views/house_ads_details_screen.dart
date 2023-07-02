@@ -13,6 +13,7 @@ import '../../../../core/constants/theme/font_manager.dart';
 import '../../../../core/constants/theme/sizes_manager.dart';
 import '../../../../core/global/const.dart';
 import '../../../../core/services/get_storage_helper.dart';
+import '../../../../core/services/shared_prefs.dart';
 import '../../../../core/widgets/app_text.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/network_image.dart';
@@ -483,7 +484,9 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                   flex: 35,
                                   child: GestureDetector(
                                     onTap: () {
-                                      CacheHelper.getUserToken == null ||
+                                      SharedPrefService(prefs: globalPrefs)
+                                                      .token ==
+                                                  null ||
                                               CacheHelper.getUserId == null
                                           ? Get.to(() => ChatScreen(
                                                 hisId: "${ads?.userId ?? 0}",
@@ -491,6 +494,12 @@ class HousePartnerDetailsScreen extends GetView<HousePartnerController> {
                                                     .toString(),
                                                 hisName:
                                                     ads?.userName ?? "بدون اسم",
+                                                myName:
+                                                    CacheHelper.getUserName ??
+                                                        "",
+                                                myImage:
+                                                    CacheHelper.getUserimg ??
+                                                        dummyImage,
                                               ))
                                           : BotToast.showText(
                                               text: 'برجاء تسجيل الدخول');

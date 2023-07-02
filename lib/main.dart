@@ -23,7 +23,6 @@ Future<void> main() async {
   );
   final pref = await SharedPreferences.getInstance();
   GetStorage.init();
-  log(CacheHelper.getUserToken.toString());
   log(CacheHelper.getUserId.toString());
   // Workmanager().initialize(
   //   callbackDispatcher,

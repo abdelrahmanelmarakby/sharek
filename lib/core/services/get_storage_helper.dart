@@ -11,25 +11,27 @@ class CacheHelper {
   static Future<void> init() async => await GetStorage.init();
   //========================================================
 
-  static Future<void> cacheUserId({
+  static Future<void> cacheUser({
     required int id,
+    required String token,
+    required String name,
+    required String img,
   }) async {
-    await _cacheUserId(id);
+    Future.wait([
+      _cacheUserId(id),
+      // _cacheUserToken(token),
+      _cacheUserName(name),
+      _cacheUserimg(img),
+    ]);
   }
 
   static Future<void> _cacheUserId(int id) async =>
       await _appBox.write('id', id);
   static String? get getUserId => _appBox.read('id').toString();
 
-  static Future<void> cacheToken({
-    required String token,
-  }) async {
-    await _cacheUserToken(token);
-  }
-
-  static Future<void> _cacheUserToken(String token) async =>
-      await _appBox.write('token', token);
-  static String? get getUserToken => _appBox.read('token');
+  // static Future<void> _cacheUserToken(String token) async =>
+  //     await _appBox.write('token', token);
+  // static String? get getUserToken => _appBox.read('token');
 
 //=========================================================
   static Future<void> cacheLocale({
@@ -112,7 +114,26 @@ class CacheHelper {
   }
   //========================================================
 
+  static Future<void> cacheUserName({
+    required String name,
+  }) async {
+    await _cacheUserName(name);
+  }
+
+  static Future<void> _cacheUserName(String name) async =>
+      await _appBox.write('name', name);
+  static String? get getUserName => _appBox.read('name').toString();
   //========================================================
+
+  static Future<void> cacheUserImg({
+    required String img,
+  }) async {
+    await _cacheUserimg(img);
+  }
+
+  static Future<void> _cacheUserimg(String img) async =>
+      await _appBox.write('img', img);
+  static String? get getUserimg => _appBox.read('img').toString();
   //========================================================
   //========================================================
   //========================================================

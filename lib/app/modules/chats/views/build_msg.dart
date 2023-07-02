@@ -81,9 +81,10 @@ class _MessageBuilderState extends State<MessageBuilder> {
               trailingIcon: Iconsax.copy,
               child: const Text("نسخ "),
             ),
-          if (widget.msg?.image != null)
+          if (widget.msg?.image != null && widget.msg?.video == null)
             CupertinoContextMenuAction(
               onPressed: () async {
+                Get.back();
                 /// define the download task (subset of parameters shown)
                 final task = DownloadTask(
                     url: widget.msg?.image ?? "",
@@ -252,10 +253,12 @@ class _MessageBuilderState extends State<MessageBuilder> {
           )
         else
           const SizedBox(),
-        if (msg.image != null)
+        if (msg.image != null && msg.video == null)
           ConstrainedBox(
             constraints: BoxConstraints(
-                maxHeight: 150.h(context), maxWidth: context.width / 1.3),
+              maxHeight: 300.h(context),
+              maxWidth: context.width,
+            ),
             child: InstaImageViewer(
               disposeLevel: DisposeLevel.high,
               child: AppCachedNetworkImage(
@@ -266,9 +269,11 @@ class _MessageBuilderState extends State<MessageBuilder> {
         else
           const SizedBox(),
         if (msg.video != null)
-          SizedBox(
-            height: 150.h(context),
-            width: context.width / 2,
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: 300.h(context),
+              maxWidth: context.width,
+            ),
             child: CustomVideoPlayer(
               customVideoPlayerController: _customVideoPlayerController,
             ),

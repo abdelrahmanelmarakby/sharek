@@ -485,13 +485,17 @@ class SakePartnerDetailsScreen extends GetView<SakePartnerController> {
                                   flex: 35,
                                   child: GestureDetector(
                                     onTap: () {
-                                      Get.to(() => ChatScreen(
-                                            hisId: "${ads?.userId ?? 0}",
-                                            myId: CacheHelper.getUserId
-                                                .toString(),
-                                            hisName:
-                                                ads?.userName ?? "بدون اسم",
-                                          ));
+                                      Get.to(
+                                        () => ChatScreen(
+                                          hisId: "${ads?.userId ?? 0}",
+                                          myId:
+                                              CacheHelper.getUserId.toString(),
+                                          hisName: ads?.userName ?? "بدون اسم",
+                                          myName: CacheHelper.getUserName ?? "",
+                                          myImage: CacheHelper.getUserimg ??
+                                              dummyImage,
+                                        ),
+                                      );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(

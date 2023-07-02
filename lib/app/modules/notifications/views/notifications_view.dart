@@ -102,7 +102,9 @@ class NotificationsView extends GetView<NotificationsController> {
                                 "userId": item.senderId ?? 0,
                               },
                             );
-                          } else {}
+                          } else {
+                            
+                          }
                         },
                         tileColor: (item.isRead == 1)
                             ? ColorsManager.white
