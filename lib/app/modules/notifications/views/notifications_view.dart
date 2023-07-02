@@ -39,7 +39,7 @@ class NotificationsView extends GetView<NotificationsController> {
             );
           }
           if (snapshot.hasData) {
-            final notification = snapshot.data?.data?.reversed.toList() ?? [];
+            final notification = snapshot.data?.data ?? [];
             if (notification.isEmpty) {
               return Center(
                 child: Text(
@@ -107,7 +107,7 @@ class NotificationsView extends GetView<NotificationsController> {
                             : const Color(0xFFF4F4FF),
                         trailing: Text(
                           appDateFormate(
-                            DateTime.tryParse(
+                            DateTime.tryParse(  
                                   item.createdAt ?? "",
                                 ) ??
                                 DateTime.now(),
