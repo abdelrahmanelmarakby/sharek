@@ -13,14 +13,14 @@ class QuantityItemWidget extends StatefulWidget {
     required this.title,
     required this.available,
     required this.price,
-    required this.onTap,
+    this.onTap,
   }) : super(key: key);
   final int index;
   final int activeIndex;
   final String title;
   final bool available;
   final String price;
-  final Function() onTap;
+  final Function()? onTap;
 
   @override
   State<QuantityItemWidget> createState() => _QuantityItemWidgetState();
@@ -32,7 +32,7 @@ class _QuantityItemWidgetState extends State<QuantityItemWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        widget.onTap();
+        widget.onTap!();
         setState(() {
           isSelected = !isSelected;
         });

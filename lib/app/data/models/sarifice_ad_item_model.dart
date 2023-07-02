@@ -36,11 +36,11 @@ class Data {
   int? serviceTypeId;
   String? location;
   String? neighborhood;
+  String? district;
   String? title;
   String? description;
   String? sacrificeType;
   int? phone;
-  String? district;
   String? userName;
   String? createdAt1;
   String? createdAt2;
@@ -54,6 +54,7 @@ class Data {
       this.serviceTypeId,
       this.location,
       this.neighborhood,
+      this.district,
       this.title,
       this.description,
       this.sacrificeType,
@@ -63,7 +64,6 @@ class Data {
       this.createdAt2,
       this.quantities,
       this.photos,
-      this.district,
       this.comments});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -81,6 +81,9 @@ class Data {
     }
     if (json["neighborhood"] is String) {
       neighborhood = json["neighborhood"];
+    }
+    if (json["district"] is String) {
+      district = json["district"];
     }
     if (json["title"] is String) {
       title = json["title"];
@@ -112,9 +115,6 @@ class Data {
       photos =
           json["photos"] == null ? null : List<String>.from(json["photos"]);
     }
-    if (json["district"] is String) {
-      district = json["district"];
-    }
     if (json["comments"] is List) {
       comments = json["comments"] == null
           ? null
@@ -131,6 +131,7 @@ class Data {
     _data["service_type_id"] = serviceTypeId;
     _data["location"] = location;
     _data["neighborhood"] = neighborhood;
+    _data["district"] = district;
     _data["title"] = title;
     _data["description"] = description;
     _data["sacrifice_type"] = sacrificeType;
@@ -141,7 +142,6 @@ class Data {
     if (quantities != null) {
       _data["quantities"] = quantities?.toJson();
     }
-    _data["district"] = district;
     if (photos != null) {
       _data["photos"] = photos;
     }
@@ -230,8 +230,9 @@ class Quantities {
 class Half {
   int? price;
   int? quantity;
+  int? reservation;
 
-  Half({this.price, this.quantity});
+  Half({this.price, this.quantity, this.reservation});
 
   Half.fromJson(Map<String, dynamic> json) {
     if (json["price"] is int) {
@@ -240,12 +241,16 @@ class Half {
     if (json["quantity"] is int) {
       quantity = json["quantity"];
     }
+    if (json["reservation"] is int) {
+      reservation = json["reservation"];
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["price"] = price;
     _data["quantity"] = quantity;
+    _data["reservation"] = reservation;
     return _data;
   }
 }
@@ -253,8 +258,9 @@ class Half {
 class Third {
   int? price;
   int? quantity;
+  int? reservation;
 
-  Third({this.price, this.quantity});
+  Third({this.price, this.quantity, this.reservation});
 
   Third.fromJson(Map<String, dynamic> json) {
     if (json["price"] is int) {
@@ -263,12 +269,16 @@ class Third {
     if (json["quantity"] is int) {
       quantity = json["quantity"];
     }
+    if (json["reservation"] is int) {
+      reservation = json["reservation"];
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["price"] = price;
     _data["quantity"] = quantity;
+    _data["reservation"] = reservation;
     return _data;
   }
 }
@@ -276,8 +286,9 @@ class Third {
 class Quarter {
   int? price;
   int? quantity;
+  int? reservation;
 
-  Quarter({this.price, this.quantity});
+  Quarter({this.price, this.quantity, this.reservation});
 
   Quarter.fromJson(Map<String, dynamic> json) {
     if (json["price"] is int) {
@@ -286,12 +297,16 @@ class Quarter {
     if (json["quantity"] is int) {
       quantity = json["quantity"];
     }
+    if (json["reservation"] is int) {
+      reservation = json["reservation"];
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["price"] = price;
     _data["quantity"] = quantity;
+    _data["reservation"] = reservation;
     return _data;
   }
 }
@@ -299,8 +314,9 @@ class Quarter {
 class Eighth {
   int? price;
   int? quantity;
+  int? reservation;
 
-  Eighth({this.price, this.quantity});
+  Eighth({this.price, this.quantity, this.reservation});
 
   Eighth.fromJson(Map<String, dynamic> json) {
     if (json["price"] is int) {
@@ -309,12 +325,16 @@ class Eighth {
     if (json["quantity"] is int) {
       quantity = json["quantity"];
     }
+    if (json["reservation"] is int) {
+      reservation = json["reservation"];
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["price"] = price;
     _data["quantity"] = quantity;
+    _data["reservation"] = reservation;
     return _data;
   }
 }

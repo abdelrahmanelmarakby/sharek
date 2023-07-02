@@ -190,6 +190,73 @@ class SakeQuantitySection extends GetView<SakePartnerController> {
           ],
         ),
         const SizedBox(height: 24),
+        const AppText(
+          "المحجوز",
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeights.semiBold,
+        ),
+        const SizedBox(height: 12),
+        Wrap(
+          runSpacing: 4,
+          spacing: 4,
+          children: [
+            for (int i = 0; i < (quantities?.quarter?.reservation ?? 0); i++)
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 4,
+                ),
+                child: QuantityItemWidget(
+                  activeIndex: controller.sacrificeReservationId ?? -1,
+                  index: 0,
+                  title: "ربع",
+                  available: false,
+                  price: quantities?.quarter?.price.toString() ?? "",
+                ),
+              ),
+            for (int i = 0; i < (quantities?.half?.reservation ?? 0); i++)
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 4,
+                ),
+                child: QuantityItemWidget(
+                  activeIndex: controller.sacrificeReservationId ?? -1,
+                  index: 1,
+                  title: "نصف",
+                  available: false,
+                  price: quantities?.half?.price.toString() ?? "",
+                ),
+              ),
+            for (int i = 0; i < (quantities?.third?.reservation ?? 0); i++)
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 4,
+                ),
+                child: QuantityItemWidget(
+                  activeIndex: controller.sacrificeReservationId ?? -1,
+                  index: 2,
+                  title: "ثلث",
+                  available: false,
+                  price: quantities?.third?.price.toString() ?? "",
+                ),
+              ),
+            for (int i = 0; i < (quantities?.eighth?.reservation ?? 0); i++)
+              if (quantities?.eighth?.price != 0)
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 4,
+                  ),
+                  child: QuantityItemWidget(
+                    activeIndex: controller.sacrificeReservationId ?? -1,
+                    index: 3,
+                    title: "ثمن",
+                    available: false,
+                    price: quantities?.eighth?.price.toString() ?? "",
+                  ),
+                ),
+          ],
+        ),
+        const SizedBox(height: 24),
         Center(
           child: AppProgressButton(
             width: context.width,

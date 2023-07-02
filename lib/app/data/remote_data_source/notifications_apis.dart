@@ -42,6 +42,11 @@ class NotificationsAPI {
       noData: (data) {
         return data;
       },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
+        return data;
+      },
       notFound: (data) {
         return data;
       },
@@ -121,9 +126,6 @@ class NotificationsAPI {
       ok: (data) {
         return data;
       },
-      noAuth: (data) {
-        return data;
-      },
       orElse: () {},
       badRequest: (data) {
         return data;
@@ -135,6 +137,11 @@ class NotificationsAPI {
         return data;
       },
       noAccess: (data) {
+        return data;
+      },
+      noAuth: (data) {
+        SharedPrefService(prefs: globalPrefs).removeToken();
+        Get.offAllNamed(Routes.AUTH);
         return data;
       },
       noData: (data) {

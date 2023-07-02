@@ -50,7 +50,7 @@ class ProfileController extends GetxController {
       });
       showSnackBar(res?.message ?? "");
       Get.forceAppUpdate();
-      Get.offAllNamed(Routes.PROFILE);
+      Get.offAllNamed(Routes.BOTTOM_NAV_BAR);
     } else {
       animationController.reset();
       showSnackBar(res?.message ?? "");
